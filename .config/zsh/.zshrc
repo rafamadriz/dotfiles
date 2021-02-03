@@ -8,8 +8,8 @@ bindkey -e
 autoload -U colors && colors	# Load colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-if [[ ! -a ~/.config/zsh ]]; then
-    mkdir -p ~/.config/zsh
+if [[ ! -a ~/.cache/zsh ]]; then
+    mkdir -p ~/.cache/zsh
 fi
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
