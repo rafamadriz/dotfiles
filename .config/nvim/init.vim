@@ -46,6 +46,15 @@ set noshowmode
 " Load first
 source $HOME/.config/nvim/plug-config/polyglot.vim
 
+" jump to the last position when reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" EJS
+au BufNewFile,BufRead *.ejs set filetype=html
+
+"Markdown
+au BufNewFile,BufRead *.md set conceallevel=0
+
 """""""""""""""""""""""""""""""""""""
 "------------  Vim Plug  -----------"
 """""""""""""""""""""""""""""""""""""
