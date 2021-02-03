@@ -3,6 +3,7 @@ export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
 # default programs
 export EDITOR="nvim"
+export VISUAL="nvim"
 export BROWSER="firefox"
 
 # XDG paths
