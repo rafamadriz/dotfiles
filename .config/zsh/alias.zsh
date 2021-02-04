@@ -1,6 +1,6 @@
 # add color to commands
 alias \
-	ls="exa -h --color=always --group-directories-first" \
+	ls="exa --color=always" \
 	grep="grep --color=auto" \
 	diff="diff --color=auto" \
     dir='dir --color=auto' \
