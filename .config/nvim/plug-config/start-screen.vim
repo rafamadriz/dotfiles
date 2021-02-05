@@ -7,7 +7,7 @@
         "\]
 
 let g:startify_custom_header = [
-        \'     __    __                     __     __  __                ',
+        \'    __    __                     __     __  __                ',
         \'    |  \  |  \                   |  \   |  \|  \               ',
         \'    | $$\ | $$  ______    ______ | $$   | $$ \$$ ______ ____   ',
         \'    | $$$\| $$ /      \  /      \| $$   | $$|  \|      \    \  ',
@@ -22,7 +22,7 @@ let g:startify_bookmarks = [
             \ { 'i': '~/.config/nvim/init.vim' },
             \ { 'p': '~/Documents/Programming/' },
             \ { 'w': '~/Documents/Programming/WebDevelBoot2.0/' },
-            \ { 'z': '~/.zshrc' },
+            \ { 'z': '~/.config/zsh/.zshrc' },
             \ { 't': '~/.config/kitty/kitty.conf' },
             \ ]
 
