@@ -15,14 +15,15 @@ alias \
     untar='tar -xvf' \
     vim='nvim' \
     v='nvim' \
+    vi='vim' \
     rm='rm -v' \
     cp='cp -iv' \
+    ..='cd ..' \
     mv='mv -iv' \
     btop='bpytop' \
     show='apt show' \
     apshow='aptitude show' \
     search='apt search' \
-    ..='cd ..' \
     media='cd /media/rafa/Media' \
     server='kitty +kitten ssh root@169.63.212.65' \
     pro='cd ~/Documents/Programming' \
