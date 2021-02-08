@@ -49,7 +49,7 @@ source $HOME/.config/nvim/plug-config/polyglot.vim
 """""""""""""""""""""""""""""""""""""
 "------------  Vim Plug  -----------"
 """""""""""""""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Start screen
 Plug 'mhinz/vim-startify'
@@ -70,7 +70,6 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/syntastic'
-Plug 'easymotion/vim-easymotion'
 Plug 'sheerun/vim-polyglot'
 Plug 'yggdroot/indentline'
 Plug 'preservim/nerdcommenter'

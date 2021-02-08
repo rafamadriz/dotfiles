@@ -3,6 +3,8 @@
 """"""""""""""""""""""
 syntax on
 filetype plugin on
+set nocompatible
+set viminfo+=n$HOME/.config/vim/.viminfo
 set path+=**
 set wildmenu
 set tabstop=4 softtabstop=4
@@ -14,7 +16,6 @@ set relativenumber
 set nohlsearch
 set hidden
 set noshowmode
-set nocompatible
 set noerrorbells
 set smartcase
 set noswapfile

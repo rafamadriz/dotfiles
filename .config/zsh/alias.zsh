@@ -15,7 +15,6 @@ alias \
     untar='tar -xvf' \
     vim='nvim' \
     v='nvim' \
-    vi='vim' \
     rm='rm -v' \
     cp='cp -iv' \
     ..='cd ..' \
