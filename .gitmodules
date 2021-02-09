@@ -1,4 +1,4 @@
-[submodule "/home/rafa/.config/zsh/plugins/colored-man-pages"]
+[submodule ".config/zsh/plugins/colored-man-pages"]
 	path = .config/zsh/plugins/colored-man-pages
 	url = https://github.com/ael-code/zsh-colored-man-pages.git
 [submodule ".config/zsh/plugins/syntax-highlighting"]
