@@ -1,0 +1,9 @@
+[submodule "/home/rafa/.config/zsh/plugins/colored-man-pages"]
+	path = .config/zsh/plugins/colored-man-pages
+	url = https://github.com/ael-code/zsh-colored-man-pages.git
+[submodule ".config/zsh/plugins/syntax-highlighting"]
+	path = .config/zsh/plugins/syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".config/zsh/plugins/zsh-autosuggestions"]
+	path = .config/zsh/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git

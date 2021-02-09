@@ -16,6 +16,9 @@ export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
 export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android
 export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
+export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
+export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
 
 # Disable files
 export LESSHISTFILE=-
