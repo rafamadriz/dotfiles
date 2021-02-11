@@ -25,7 +25,7 @@ set smartindent
 set nu
 set nohlsearch
 set hidden
-set numberwidth=5
+set numberwidth=1
 set relativenumber
 set backspace=indent,eol,start
 set smartcase
@@ -56,6 +56,7 @@ Plug 'mhinz/vim-startify'
 
 " Themes
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
@@ -71,7 +72,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'yggdroot/indentline'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'preservim/nerdcommenter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mattn/emmet-vim'
@@ -86,7 +87,7 @@ call plug#end()
 "-----------  Themes  ------------"
 """""""""""""""""""""""""""""""""""
 "let g:material_theme_style = 'palenight'
-colorscheme sonokai
+colorscheme nord
 
 " Transparency
 "hi! Normal ctermbg=NONE guibg=NONE
@@ -105,6 +106,6 @@ source $HOME/.config/nvim/plug-config/nerdtree.vim
 source $HOME/.config/nvim/plug-config/easymotion.vim
 source $HOME/.config/nvim/plug-config/neoclide-coc.vim
 source $HOME/.config/nvim/plug-config/emmet.vim
-source $HOME/.config/nvim/plug-config/indentLine.vim
+source $HOME/.config/nvim/plug-config/indent-guides.vim
 source $HOME/.config/nvim/plug-config/fzf.vim
 source $HOME/.config/nvim/plug-config/arline.vim
