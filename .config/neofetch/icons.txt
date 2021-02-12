@@ -1,0 +1,16 @@
+time:  UE384
+time:  UF252
+shell:  UE60A
+shell:  UE795
+kernel:  UE712
+debian:  UF306
+arch:  UF303
+DE:  UF69E
+DE:   UE8AA
+packages:  UF8D6
+memory: ﴝ UFD1D
+disk: ◕ U25D5
+disk:   UE6C4
+cofee: ☕ U2615
+other:  UE614
+cpu:  Uf2db
