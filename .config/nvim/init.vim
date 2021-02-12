@@ -57,6 +57,8 @@ Plug 'mhinz/vim-startify'
 " Themes
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'arcticicestudio/nord-vim'
+Plug 'b4skyx/serenade'
+Plug 'sainnhe/forest-night'
 Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/sonokai'
@@ -86,8 +88,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""
 "-----------  Themes  ------------"
 """""""""""""""""""""""""""""""""""
-"let g:material_theme_style = 'palenight'
-colorscheme nord
+colorscheme forest-night
 
 " Transparency
 "hi! Normal ctermbg=NONE guibg=NONE
@@ -101,6 +102,7 @@ source $HOME/.config/nvim/keys/autocm.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------  Plugin Configuration  --------------"
 """""""""""""""""""""""""""""""""""""""""""""""""""""
+source $HOME/.config/nvim/plug-config/themes.vim
 source $HOME/.config/nvim/plug-config/start-screen.vim
 source $HOME/.config/nvim/plug-config/nerdtree.vim
 source $HOME/.config/nvim/plug-config/easymotion.vim
