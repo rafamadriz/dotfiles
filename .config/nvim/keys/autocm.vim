@@ -18,3 +18,6 @@ augroup RAFA
     "Markdown
     autocmd FileType markdown let g:indentLine_enabled=0
 augroup END
+
+" Automatically install coc-extensions
+let g:coc_global_extensions=["coc-stylelintplus", "coc-snippets", "coc-prettier", "coc-pairs", "coc-html", "coc-emmet", "coc-cssmodules", "coc-tsserver", "coc-json", "coc-css"]
