@@ -34,6 +34,7 @@ set noswapfile
 set nobackup
 set undodir=~/.config/nvim/undodir
 set undofile
+set splitbelow
 set updatetime=50
 set incsearch
 set termguicolors
@@ -72,6 +73,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
+Plug 'vimlab/split-term.vim'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'nathanaelkane/vim-indent-guides'
