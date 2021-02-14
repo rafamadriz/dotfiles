@@ -42,4 +42,3 @@ source ~/.config/zsh/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh/plugins/colored-man-pages/colored-man-pages.plugin.zsh
 source ~/.config/zsh/plugins/fzf/key-bindings.zsh
 source ~/.config/zsh/plugins/fzf/completion.zsh
-
