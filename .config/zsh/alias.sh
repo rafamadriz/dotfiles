@@ -1,8 +1,10 @@
+#!/bin/sh
+
 # add color to commands
 alias \
-	ls="exa --color=always" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto" \
+    ls="exa --color=always" \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
     dir='dir --color=auto' \
     vdir='vdir --color=auto' \
     grep='grep --color=auto' \
