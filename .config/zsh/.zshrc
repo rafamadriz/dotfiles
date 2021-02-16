@@ -1,9 +1,10 @@
-# Created by newuser for 5.8
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.config/zsh/history
-HISTSIZE=1000
-SAVEHIST=1000
-bindkey -e
+HISTSIZE=10000
+SAVEHIST=10000
+
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
 
 autoload -U colors && colors	# Load colors
 autoload -Uz vcs_info
@@ -31,7 +32,7 @@ autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # aliases
-source ~/.config/zsh/alias.zsh
+source ~/.config/zsh/alias.sh
 
 # completion menu
 source ~/.config/zsh/menu.zsh
