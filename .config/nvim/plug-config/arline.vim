@@ -9,7 +9,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 " Switch to your current theme
-let g:airline_theme = 'forest_night'
+let g:airline_theme = 'onedark'
 
 " Always show tabs
 set showtabline=2
