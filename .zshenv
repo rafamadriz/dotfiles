@@ -5,6 +5,7 @@ export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export BROWSER="firefox"
+export TERM='kitty'
 
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
