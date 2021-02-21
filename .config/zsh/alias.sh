@@ -14,6 +14,7 @@ alias \
 
 # shortcuts
 alias \
+    startx='startx $HOME/.config/X11/xinitrc'
     untar='tar -xvf' \
     vim='nvim' \
     v='nvim' \
