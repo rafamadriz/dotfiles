@@ -90,7 +90,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""
 "-----------  Themes  ------------"
 """""""""""""""""""""""""""""""""""
-colorscheme forest-night
+colorscheme onedark
 
 " Transparency
 "hi! Normal ctermbg=NONE guibg=NONE
