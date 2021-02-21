@@ -14,13 +14,13 @@ alias \
 
 # shortcuts
 alias \
-    startx='startx $HOME/.config/X11/xinitrc'
+    startx='startx $HOME/.config/X11/xinitrc'\
     untar='tar -xvf' \
     vim='nvim' \
     v='nvim' \
     rm='rm -v' \
-    cp='cp -iv' \
     ..='cd ..' \
+    cp='cp -iv' \
     mv='mv -iv' \
     btop='bpytop' \
     show='apt show' \
