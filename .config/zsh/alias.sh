@@ -18,21 +18,41 @@ alias \
     untar='tar -xvf' \
     vim='nvim' \
     v='nvim' \
-    rm='rm -v' \
+    rm='rm -vI' \
     ..='cd ..' \
     cp='cp -iv' \
     mv='mv -iv' \
-    btop='bpytop' \
-    show='apt show' \
-    apshow='aptitude show' \
-    search='apt search' \
     media='cd /media/rafa/Media' \
-    server='kitty +kitten ssh root@169.63.212.65' \
-    pro='cd ~/Documents/Programming' \
-    proweb='cd ~/Documents/Programming/WebDevelBoot2.0' \
-    procs50='cd ~/Documents/Programming/CS50' \
-    vpn='sudo protonvpn' \
     play='~/.config/scripts/mpv-fullscreen.sh' \
     getmusic='~/.config/scripts/getmusic.sh' \
     config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 \
+
+# search for all scripts and dotfiles, then open them with editor of choice
+sc() {
+    du -a ~/.config/* ~/.local/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;
+}
+
+# fd - cd into any hidden directory of the current folder
+fd() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
+# cdf - cd into the directory of the selected file
+cdf() {
+   local file
+   local dir
+   file=$(find ${1:-.} | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
