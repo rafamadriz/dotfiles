@@ -1,5 +1,7 @@
 # Adds `~/.local/bin` to $PATH
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+# NOTE: exporting path from here doesn't seem worh.
+# Export from ~/.config/zsh/.zshrc is the only way :(
+#export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
 # default programs
 export EDITOR="nvim"
