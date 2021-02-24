@@ -1,0 +1,40 @@
+@import "../colors/nord.rasi"
+
+inputbar {
+    children: [ textbox-prompt-colon, prompt ];
+    position: center;
+    border-radius: 0px;
+}
+
+textbox-prompt-colon {
+    padding: 0% 0% 0% 4%;
+	str: "  Syetem Uptime";
+    background-color: @al;
+    text-color: @fg;
+}
+
+prompt {
+    font: "Inter Bold 12";
+    padding: 0% 5% 0% 4%;
+    enabled: true;
+	background-color: @al;
+	text-color: @fg;
+}
+
+listview {
+	cycle: true;
+	lines: 5;
+	margin: 0 0 0 0;
+	scrollbar: false;
+	background-color: @al;
+}
+
+element selected {
+	background-color: @ac;
+	text-color: @bg;
+    border-radius:  5px;
+}
+
+element{
+    padding: 12px;
+}
