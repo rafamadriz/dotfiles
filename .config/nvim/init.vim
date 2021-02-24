@@ -10,39 +10,28 @@
 """""""""""""""""""""""""""""""""""""""""""
 "----------  General Settings  -----------"
 """""""""""""""""""""""""""""""""""""""""""
-syntax on
-filetype plugin on
-set path+=**
-set wildmenu
-set clipboard+=unnamedplus
-set cursorline
-set showcmd
-set mouse=a
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set nu
-set nohlsearch
-set hidden
-set numberwidth=1
-set relativenumber
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
+set incsearch ignorecase smartcase nohlsearch
+set numberwidth=1 relativenumber nu title
 set backspace=indent,eol,start
-set smartcase
-set ignorecase
-set noswapfile
-set nobackup
+set noswapfile nobackup undofile
 set undodir=~/.config/nvim/undodir
-set undofile
-set splitbelow
+set showcmd noshowmode
+set clipboard+=unnamedplus
 set updatetime=50
-set incsearch
-set termguicolors
 set scrolloff=10
-set autoindent
 set background=dark
+set termguicolors
 set encoding=UTF-8
-set noshowmode
+set path+=**
+set nowrap
+set wildmenu
+set cursorline
+set mouse=a
+set hidden
+set splitbelow
+filetype plugin on
+syntax on
 
 " Load first
 source $HOME/.config/nvim/plug-config/polyglot.vim
@@ -91,7 +80,7 @@ call plug#end()
 "-----------  Themes  ------------"
 """""""""""""""""""""""""""""""""""
 colorscheme onedark
-
+highlight Comment gui=italic
 " Transparency
 "hi! Normal ctermbg=NONE guibg=NONE
 "hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
