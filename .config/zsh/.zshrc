@@ -2,6 +2,9 @@ HISTFILE=~/.config/zsh/history
 HISTSIZE=10000
 SAVEHIST=10000
 
+# export here because for some reason .zshenv doesn't export the path
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -17,9 +20,9 @@ setopt PROMPT_SUBST
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 zstyle ':vcs_info:*' actionformats \
-    $'%F{4}\UE725%F{3} at %F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+    $'%F{4}\UE0A0%F{3} on %F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats       \
-    $'%F{4}\UE725%F{3} at %F{5}[%F{4}%b%F{5}]%f '
+    $'%F{4}\UE0A0%F{3} on %F{5}[%F{4}%b%F{5}]%f '
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 precmd () { vcs_info }
 # prompt 2.0
@@ -33,6 +36,7 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # aliases
 source ~/.config/zsh/alias.sh
+source ~/.config/zsh/swallow.sh
 
 # completion menu
 source ~/.config/zsh/menu.zsh
