@@ -16,10 +16,10 @@ user_does() {
     rm --force --recursive "$dir_tmp" >/dev/null 2>&1;
 
     # git set-up for dotfiles
-    function config {
+    function dot {
        /usr/bin/git --git-dir="$HOME"/$git_dir/ --work-tree="$HOME" "$@"
     }
-    config config status.showUntrackedFiles no
+    dot config status.showUntrackedFiles no
 
     # junegunn/vim-plug for managin plugins
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \

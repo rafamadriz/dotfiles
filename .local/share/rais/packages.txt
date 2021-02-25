@@ -91,6 +91,9 @@ name: xorg-xdpyinfo
 - Description: X.Org initialisation program
 name: xorg-xinit
 
+- Description: Classic X utility to set your root window background to a given pattern or color
+name: xorg-xsetroot
+
 ###########################
 ######### FONTS ###########
 ###########################
