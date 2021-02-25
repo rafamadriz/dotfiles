@@ -1,0 +1,168 @@
+###########################
+######### UTILS ###########
+###########################
+- Description: remote and local copying tool
+name: rsync
+
+- Description: Daemon that runs specified programs at scheduled times and related tools
+name: cronie
+
+- Description: better ls command
+name: exa
+
+- Description: man pages
+name: man-db
+
+- Description: Library for sending desktop notifications
+name: libnotify
+
+- Description: Cat clone with syntax highlighting and git integration
+name: bat
+
+- Description: Shell script analysis tool
+name: shellcheck
+
+- Description: javascript runtime
+name: nodejs
+
+- Description: package manager npm
+name: npm
+
+- Description: clipboard
+name: xclip
+
+- Description: Utility for performing actions on windows in X
+name: xdo
+
+- Description: Command-line X11 automation tool
+name: xdotool
+
+- Description: Wallpaper setting utility for X
+name: xwallpaper
+
+- Description: Fast and light imlib2-based image viewer
+name: feh
+
+- Description: the better shell
+name: zsh
+
+- Description: fuzzy finder
+name: fzf
+
+###########################
+######### AUDIO ###########
+###########################
+- Description: audio system
+name: pulseaudio
+
+- Description: ALSA configuration for pulseaudio
+name: pulseaudio-alsa
+
+- Description: CLI and curses mixer for pulseaudio
+name: pulsemixer
+
+###########################
+###### BSPWM SET UP #######
+###########################
+- Description: Tiling window manager based on binary space partitioning
+name: bspwm
+
+- Description: Simple X hotkey daemon
+name: sxhkd
+
+- Description: Customizable and lightweight notification-daemon
+name: dunst
+
+- Description: A small program for hiding the mouse cursor
+name: unclutter
+
+- Description: elegant icon theme
+name: papirus-icon-theme
+
+###########################
+######### X11 #############
+###########################
+- Description: Xorg X server
+name: xorg-server
+
+- Description: Display information utility for X
+name: xorg-xdpyinfo
+
+- Description: X.Org initialisation program
+name: xorg-xinit
+
+###########################
+######### FONTS ###########
+###########################
+- Description: best font ever
+name: ttf-fira-code
+
+- Description: A typeface specially designed for user interfaces
+name: inter-font
+
+- Description: Font family based on the Bitstream Vera Fonts with a wider range of characters
+name: ttf-dejavu
+
+- Description: Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New
+name: ttf-liberation
+
+- Description: Google Noto TTF fonts
+name: noto-fonts
+
+##############################
+######### PROGRAMS ###########
+##############################
+- Description: terminal
+name: kitty
+
+- Description: A window switcher, application launcher and dmenu
+name: rofi
+
+- Description: Powerful yet simple to use screenshot software
+name: flameshot
+
+- Description: Simple X Image Viewer
+name: sxiv
+
+- Description: a free, open source, and cross-platform media player
+name: mpv
+
+##############################
+######### NEOVIM/VIM #########
+##############################
+- Description: better vim
+name: neovim
+
+- Description: vi improved
+name: vim
+
+- Description: python support for neovim
+name: python-pynvim
+
+##############################
+######### AUR ################
+##############################
+
+- Description: A simple, minimal lockscreen
+aur: betterlockscreen
+
+- Description: Window Manager agnostic swallowing feature for terminal emulators
+aur: devour
+
+- Description: A library for configuring and customizing font access, optimized for Infinality Remix.
+aur: fontconfig-infinality-remix
+
+- Description: A terminal based graphical activity monitor inspired by gtop and vtop
+aur: gotop-bin
+
+- Description: Nordic is a Gtk3.20+ theme created using the awesome Nord color pallete.
+aur: nordic-darker-theme
+
+- Description: iBhagwan's compton|picom fork (X compositor) with dual_kawase blur and rounded corners
+aur: picom-ibhagwan-git
+
+- Description: A fast and easy-to-use status bar
+aur: polybar
+
+- Description: Clipboard manager to use with rofi - Image support and blacklist
+aur: rofi-greenclip
