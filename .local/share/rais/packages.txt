@@ -152,9 +152,6 @@ aur: betterlockscreen
 - Description: Window Manager agnostic swallowing feature for terminal emulators
 aur: devour
 
-- Description: A library for configuring and customizing font access, optimized for Infinality Remix.
-aur: fontconfig-infinality-remix
-
 - Description: A terminal based graphical activity monitor inspired by gtop and vtop
 aur: gotop-bin
 
