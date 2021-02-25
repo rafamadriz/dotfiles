@@ -25,12 +25,12 @@ alias \
     media='cd /media/rafa/Media' \
     play='~/.config/scripts/mpv-fullscreen.sh' \
     getmusic='~/.config/scripts/getmusic.sh' \
-    config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+    dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 \
 
 # search for all scripts and dotfiles, then open them with editor of choice
 sc() {
-    du -a ~/.config/* ~/.local/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;
+    du -a ~/.config/* ~/.local/bin/* ~/.local/share/rais/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;
 }
 
 # fd - cd into any hidden directory of the current folder
