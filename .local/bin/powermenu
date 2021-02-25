@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # display a power menu to: shutdown, reboot,
 # lock, logout, and suspend. This script can be
@@ -6,11 +6,11 @@
 # or with a keyboard shortcut
 
 # options to be displayed
-shutdown="   Shutdown"
-reboot="   Reboot"
-lock="   Lock"
-logout="   Logout"
-suspend="   Suspend"
+shutdown=$(echo -e "\tShutdown" )
+reboot=$(echo -e "\tReboot")
+lock=$(echo -e "\tLock")
+logout=$(echo -e "\tLogout")
+suspend=$(echo -e "\tSuspend")
 
 uptime=$(uptime -p | sed -e 's/up //g')
 
@@ -27,7 +27,7 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-        betterlockscreen --lock blur
+        betterlockscreen --lock dimblur
         ;;
     $logout)
         bspc quit
