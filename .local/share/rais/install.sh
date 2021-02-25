@@ -9,14 +9,20 @@ echo "============================"
 echo "== Installing dotfiles... =="
 echo "============================"
 
-pacman -Syy >/dev/null 2>&1
+pacman -Syy
+pacman -Syu
+
+userdo() {
+   sudo --user "$user"
+}
+
 install_aurHelper() {
-   directory=$(mktemp -d)
+   directory="tmp"
    aur_repo="https://aur.archlinux.org/paru.git"
 
-   pacman -Q git >/dev/null 2>&1 || pacman -S --noconfirm --needed git >/dev/null 2>&1
-   git clone "$aur_repo" "$directory"
-   (cd "$directory" && makepkg -sri --noconfirm)
+   pacman -Q git  || pacman -S --noconfirm --needed git
+   userdo git clone "$aur_repo" "$directory"
+   (cd "$directory" && userdo makepkg -sri --noconfirm)
    rm -rf "$directory"
 }
 
@@ -24,7 +30,7 @@ install_depencies() {
    # Official repositories dependencies
    dependencies=($(sed -n '/name/p' ./packages.txt | awk '{print $2}'))
    for pkg in "${dependencies[@]}"; do
-      pacman -Qn "$pkg" >/dev/null  2>&1 || pacman -S --noconfirm --needed "$pkg" >/dev/null  2>&1
+      pacman -Qn "$pkg" | pacman -S --noconfirm --needed "$pkg"
    done
 
    # AUR dependencies
@@ -50,14 +56,14 @@ root_does() {
 root_does
 
 # run scriptUser
-sudo --user "$user" ./scriptUser.sh
+userdo ./scriptUser.sh
 
 # vimrc config for root user.
 # Useful to have some nice vim defaults when editing files as root
 ln -s --force /home/"$user"/.local/share/misc0/vimrc /root/.vimrc
 
 # change shell to zsh
-[ "$(echo "$SHELL")" != "/usr/bin/zsh" ] && chsh -s /usr/bin/zsh "$user" >/dev/null 2>&1
+[ "$(echo "$SHELL")" != "/usr/bin/zsh" ] && chsh -s /usr/bin/zsh "$user"
 
 echo "=========="
 echo "== Done =="
