@@ -21,6 +21,9 @@ user_does() {
     }
     dot config status.showUntrackedFiles no
 
+    # setting up betterlockscreen
+    betterlockscreen -u "$HOME"/.local/share/wall/firewatch.jpg
+
     # junegunn/vim-plug for managin plugins
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' >/dev/null 2>&1

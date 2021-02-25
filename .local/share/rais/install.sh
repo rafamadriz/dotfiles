@@ -12,15 +12,17 @@ echo "============================"
 pacman -Syy
 pacman -Syu
 
-userdo() {
-   sudo --user "$user"
-}
+userdo() { sudo --user "$user" }
+
+pacman_install() { pacman -S --noconfirm --needed }
+
+aur_install() { paru -S --aur --needed --noconfirm --removemake }
 
 install_aurHelper() {
    directory="tmp"
    aur_repo="https://aur.archlinux.org/paru.git"
 
-   pacman -Q git  || pacman -S --noconfirm --needed git
+   pacman -Q git  || pacman_install git
    userdo git clone "$aur_repo" "$directory"
    (cd "$directory" && userdo makepkg -sri --noconfirm)
    rm -rf "$directory"
@@ -30,13 +32,13 @@ install_depencies() {
    # Official repositories dependencies
    dependencies=($(sed -n '/name/p' ./packages.txt | awk '{print $2}'))
    for pkg in "${dependencies[@]}"; do
-      pacman -Qn "$pkg" | pacman -S --noconfirm --needed "$pkg"
+      pacman -Qn "$pkg" | pacman_install "$pkg"
    done
 
    # AUR dependencies
    dependencies_aur=($(sed -n '/aur/p' ./packages.txt | awk '{print $2}'))
    for pkg_aur in "${dependencies_aur[@]}"; do
-      pacman -Qm "$pkg_aur" || paru -S --aur --needed --noconfirm --removemake "$pkg_aur"
+      pacman -Qm "$pkg_aur" || aur_install "$pkg_aur"
    done
 }
 
