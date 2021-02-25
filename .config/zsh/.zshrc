@@ -36,7 +36,7 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # aliases
 source ~/.config/zsh/alias.sh
-source ~/.config/zsh/swallow.sh
+source ~/.config/zsh/devour.sh
 
 # completion menu
 source ~/.config/zsh/menu.zsh
