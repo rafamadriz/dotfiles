@@ -29,6 +29,9 @@ super + v
 super + a
 	rofimoji
 
+super + shift + p
+	toggleprogram "picom" "--experimental-backends"
+
 # make sxhkd reload its configuration files:
 super + shift + r
 	pkill -USR1 -x sxhkd
