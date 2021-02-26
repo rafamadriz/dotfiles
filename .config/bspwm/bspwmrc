@@ -17,7 +17,7 @@ greenclip daemon &
 bspc monitor -d I II III IV V
 
 # Rules
-bspc rule -a firefox desktop='^2'
+bspc rule -a firefox desktop='^2' focus=on
 
 # Truncate a couple of common commands that are used herein.
 _bc() {
