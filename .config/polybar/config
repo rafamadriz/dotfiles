@@ -38,7 +38,7 @@ format-padding = 1
 ;compositing-border = over
 ;pseudo-transparency = false
 
-[bar/example]
+[bar/nordblocks]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
@@ -105,10 +105,10 @@ label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
 [module/updates]
-type = custom/script
-exec = pacman -Qu | wc -l
-interval = 200
+type = custom/ipc
+hook-0 = pacman -Qu | wc -l
 label = %output%
+click-left = upgradepkg
 format-prefix = " "
 format-background = #d08770
 initial = 1
@@ -301,7 +301,7 @@ date = "  %h %d - %I:%m %p"
 
 format-background = #434c5e
 
-label = %date% %time%
+label = %date%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -332,7 +332,7 @@ format-volume-padding = 2
 ;   <bar-volume>
 format-muted = <label-muted>
 format-muted-prefix = 婢
-format-muted-background = #5e81ac
+format-muted-background = ${colors.yellow}
 format-muted-padding = 2
 
 ; Available tokens:
