@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# polybar module to upgrade packages when clicked
+kitty -e sudo pacman -Syu && polybar-msg -p "$(pidof "polybar")" hook pacman-packages 1
