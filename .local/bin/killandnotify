@@ -1,0 +1,4 @@
+#!/bin/sh
+# Kills an application and sends a notification that it's been killed
+
+killall "$1" && notify-send "$1" "$2"
