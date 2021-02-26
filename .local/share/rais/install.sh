@@ -19,7 +19,7 @@ install_aurHelper() {
    aur_repo="https://aur.archlinux.org/paru.git"
 
    pkg="git"
-   pacman -Qn git  || pacman_install $pkg
+   pacman_install $pkg
    sudo --user "$user" git clone "$aur_repo" "$directory"
    (cd "$directory" && sudo --user "$user" makepkg -sri --noconfirm)
    rm -rf "$directory"
@@ -29,13 +29,13 @@ install_depencies() {
    # Official repositories dependencies
    dependencies=($(sed -n '/name/p' packages.txt | cut -d' ' -f2))
    for pkg in "${dependencies[@]}"; do
-      pacman -Qn "$pkg" || pacman_install "$pkg"
+      pacman_install "$pkg"
    done
 
    # AUR dependencies
    dependencies_aur=($(sed -n '/name/p' packages.txt | cut -d' ' -f2))
    for pkg_aur in "${dependencies_aur[@]}"; do
-      pacman -Qm "$pkg_aur" || sudo --user "$user" paru -S --aur --needed --noconfirm --removemake "$pkg_aur"
+      sudo --user "$user" paru -S --aur --needed --noconfirm --removemake "$pkg_aur"
    done
 }
 
