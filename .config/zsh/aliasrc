@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # add color to commands
 alias \
@@ -14,29 +14,30 @@ alias \
 
 # shortcuts
 alias \
-    startx='startx $HOME/.config/X11/xinitrc'\
-    untar='tar -xvf' \
-    vim='nvim' \
-    v='nvim' \
-    rm='rm -vI' \
-    ..='cd ..' \
-    cp='cp -iv' \
-    mv='mv -iv' \
-    media='cd /media/rafa/Media' \
-    play='~/.config/scripts/mpv-fullscreen.sh' \
-    getmusic='~/.config/scripts/getmusic.sh' \
+    startx="startx $HOME/.config/X11/xinitrc" \
+    sysinfo="inxi -Fxz" \
+    untar="tar -xvf" \
+    vim="nvim" \
+    v="nvim" \
+    rm="rm -vI" \
+    cp="cp -iv" \
+    ..="cd .." \
+    mv="mv -iv" \
+    media="cd /media/rafa/Media" \
+    play="~/.config/scripts/mpv-fullscreen.sh" \
+    getmusic="~/.config/scripts/getmusic.sh" \
     dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 \
 
 # search for all scripts and dotfiles, then open them with editor of choice
 sc() {
-    du -a ~/.config/* ~/.local/bin/* ~/.local/share/rais/* | awk '{print $2}' | fzf | xargs -r $EDITOR ;
+    du -a ~/.config/* ~/.local/bin/* ~/.local/share/rais/* | awk '{print $2}' | fzf | xargs -r "$EDITOR" ;
 }
 
 # fd - cd into any hidden directory of the current folder
 fd() {
   local dir
-  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+  dir=$(find "${1:-.}" -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
 # fkill - kill process
@@ -46,7 +47,7 @@ fkill() {
 
   if [ "x$pid" != "x" ]
   then
-    echo $pid | xargs kill -${1:-9}
+    echo "$pid" | xargs kill -"${1:-9}"
   fi
 }
 
@@ -54,5 +55,5 @@ fkill() {
 cdf() {
    local file
    local dir
-   file=$(find ${1:-.} | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+   file=$(find "${1:-.}" | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
