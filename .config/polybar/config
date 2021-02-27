@@ -107,11 +107,11 @@ label-indicator-underline = ${colors.secondary}
 [module/updates]
 type = custom/ipc
 hook-0 = pacman -Qu | wc -l
+interval = 100
 label = %output%
 click-left = upgradepkg
 format-prefix = " "
 format-background = #d08770
-initial = 1
 
 [module/bspwm]
 type = internal/bspwm
