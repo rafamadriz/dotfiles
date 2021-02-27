@@ -9,7 +9,7 @@ echo "============================"
 # who's the user running the script ?
 [ "$SUDO_USER" ] && user=$SUDO_USER || user=$(whoami)
 
-mkdir rais  cd rais || exit
+mkdir rais && cd rais || exit
 
 dotscript="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/dotScript.sh"
 pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.txt"
