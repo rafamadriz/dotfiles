@@ -49,6 +49,18 @@ name: zsh
 - Description: fuzzy finder
 name: fzf
 
+################################
+### Mounting Android Devices ###
+################################
+- Description: Library implementation of the Media Transfer Protocol
+name: libmtp
+
+- Description: Virtual filesystem implementation for GIO
+name: gvfs
+
+- Description: Virtual filesystem implementation for GIO (MTP backend; Android, media player)
+name: gvfs-mtp
+
 ###########################
 ######### AUDIO ###########
 ###########################
@@ -78,6 +90,9 @@ name: unclutter
 
 - Description: elegant icon theme
 name: papirus-icon-theme
+
+- Description: gtk theme
+name: arc-gtk-theme
 
 ###########################
 ######### X11 #############
@@ -154,9 +169,6 @@ aur: devour
 
 - Description: A terminal based graphical activity monitor inspired by gtop and vtop
 aur: gotop-bin
-
-- Description: Nordic is a Gtk3.20+ theme created using the awesome Nord color pallete.
-aur: nordic-darker-theme
 
 - Description: iBhagwan's compton|picom fork (X compositor) with dual_kawase blur and rounded corners
 aur: picom-ibhagwan-git
