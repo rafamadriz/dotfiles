@@ -10,6 +10,7 @@ echo "============================"
 [ "$SUDO_USER" ] && user=$SUDO_USER || user=$(whoami)
 
 mkdir rais && cd rais || exit
+mv install.sh ./rais
 
 dotscript="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/dotScript.sh"
 pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.txt"

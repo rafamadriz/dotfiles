@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# who's the user running the script ?
+[ "$SUDO_USER" ] && user=$SUDO_USER || user=$(whoami)
+
 user_does() {
     repo="https://github.com/rafamadriz/dotfiles.git"
     git_dir=".dotfiles"
@@ -12,7 +15,7 @@ user_does() {
     git clone --recurse-submodules --separate-git-dir="$HOME"/$git_dir $repo "$dir_tmp" >/dev/null 2>&1;
 
     # copy all dotfiles to $HOME (this will overwrite any existing destination file)
-    rsync --backup --backup-dir="$HOME"/backups --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/ ;
+    rsync -v --backup --backup-dir=/home/"$user"/backups --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/ ;
     rm --force --recursive "$dir_tmp" >/dev/null 2>&1;
 
     # git set-up for dotfiles
