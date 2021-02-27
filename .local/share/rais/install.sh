@@ -9,9 +9,6 @@ echo "============================"
 # who's the user running the script ?
 [ "$SUDO_USER" ] && user=$SUDO_USER || user=$(whoami)
 
-mkdir rais && cd rais || exit
-mv install.sh ./rais
-
 dotscript="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/dotScript.sh"
 pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.txt"
 
@@ -37,7 +34,7 @@ install_aurHelper() {
    rm -rf "$directory"
 }
 
-install_depencies() {
+install_dependencies() {
    # Official repositories dependencies
    dependencies=($(sed -n '/name/p' packages.txt | cut -d' ' -f2))
    for pkg in "${dependencies[@]}"; do
@@ -53,7 +50,7 @@ install_depencies() {
 
 root_does() {
    install_aurHelper
-   install_depencies
+   install_dependencies
 
    # Make pacman and paru colorful and adds eye candy on the progress bar.
    grep -q "^Color" /etc/pacman.conf || sed -i "s/^#Color$/Color/" /etc/pacman.conf

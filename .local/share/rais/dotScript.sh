@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# who's the user running the script ?
-[ "$SUDO_USER" ] && user=$SUDO_USER || user=$(whoami)
-
 user_does() {
     repo="https://github.com/rafamadriz/dotfiles.git"
     git_dir=".dotfiles"
@@ -12,11 +9,11 @@ user_does() {
     mkdir -p "$HOME"/.local/share/fonts
 
     # clone repository
-    git clone --recurse-submodules --separate-git-dir="$HOME"/$git_dir $repo "$dir_tmp" >/dev/null 2>&1;
+    git clone --recurse-submodules --separate-git-dir="$HOME"/$git_dir $repo "$dir_tmp" ;
 
     # copy all dotfiles to $HOME (this will overwrite any existing destination file)
-    rsync -v --backup --backup-dir=/home/"$user"/backups --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/ ;
-    rm --force --recursive "$dir_tmp" >/dev/null 2>&1;
+    rsync --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/ ;
+    rm --force --recursive "$dir_tmp" ;
 
     # git set-up for dotfiles
     function dot {
@@ -25,13 +22,13 @@ user_does() {
     dot config status.showUntrackedFiles no
 
     # setting up betterlockscreen
-    betterlockscreen -u "$HOME"/.local/share/wall/firewatch.jpg
+    #betterlockscreen -u "$HOME"/.local/share/wall/firewatch.jpg
 
     # junegunn/vim-plug for managin plugins
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' >/dev/null 2>&1
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
     # install neovim's plugins
-    nvim --headless +PlugInstall +qall >/dev/null 2>&1
+    nvim --headless +PlugInstall +qall
 }
 user_does
