@@ -18,7 +18,7 @@ for url in $dotscript $pkgs_list; do
     curl -OL $url
 done
 
-chmod +x "$dotscript"
+chmod +x dotScript.sh
 
 pacman -Syy
 pacman_install() {
