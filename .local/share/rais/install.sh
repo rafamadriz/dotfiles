@@ -11,7 +11,7 @@ echo "============================"
 
 mkdir rais  cd rais || exit
 
-dotscript="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/scriptUser.sh"
+dotscript="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/dotScript.sh"
 pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.txt"
 
 for url in $dotscript $pkgs_list; do
