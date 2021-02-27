@@ -1,20 +1,12 @@
 # Adds `~/.local/bin` to $PATH
-# NOTE: exporting path from here doesn't seem worh.
-# Export from ~/.config/zsh/.zshrc is the only way :(
-#export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
-
-# default programs
-export EDITOR="nvim"
-export VISUAL="nvim"
-export BROWSER="firefox"
-export TERM='kitty'
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
-# Doesn't seem to work
+# Android
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
 export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android
@@ -42,3 +34,17 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+
+
+# Default Apps
+export EDITOR="nvim"
+#export READER="zathura"
+export VISUAL="nvim"
+export TERMINAL="kitty"
+export BROWSER="firefox"
+export VIDEO="mpv"
+export IMAGE="sxiv"
+export COLORTERM="truecolor"
+export OPENER="xdg-open"
+export PAGER="less"
+export WM="bspwm"
