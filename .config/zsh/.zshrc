@@ -6,12 +6,17 @@ setopt HIST_IGNORE_ALL_DUPS
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
-export LC_CTYPE="en_US.UTF-8"
+
+# Things that for some reason do not export from ~/.zshenv and have to do it from here
+export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
 export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
 
 # prompt
 source ~/.config/zsh/prompt.zsh
 
+# these directories are necessary for zsh to
+# create history file, etc... Create them if don't exist
 if [[ ! -d ~/.cache/zsh ]]; then
     mkdir -p ~/.cache/zsh
 fi
