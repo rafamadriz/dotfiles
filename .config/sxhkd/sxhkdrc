@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-	kitty
+	$TERMINAL
 
 # program launcher
 super + space
@@ -28,6 +28,10 @@ super + v
 # emojis
 super + a
 	rofimoji
+
+# task switchher
+alt + Tab
+	rofi -show
 
 super + shift + p
 	toggleprogram "picom" "--experimental-backends"
