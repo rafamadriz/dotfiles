@@ -6,12 +6,30 @@
 super + Return
 	$TERMINAL
 
+super + w
+	$BROWSER
+
 # program launcher
 super + space
 	appmenu
 
-super + w
-	$BROWSER
+# music
+super + alt + {F6, F7}
+	{mpc pause; dunstify "Song Paused", \
+	mpc play; dunstify "$(mpc --format '%title% \n%artist% - %album%' current)"}
+
+super + alt + {F5, F8}
+	{mpc prev; dunstify "$(mpc --format '%title% \n%artist% - %album%' current)", \
+	mpc next; dunstify "$(mpc --format '%title% \n%artist% - %album%' current)"}
+
+# volume controls
+super + {F6, F7}
+	{pulsemixer --change-volume -5, \
+	pulsemixer --change-volume +5 }
+
+super + {F5, F8}
+	{pulsemixer --change-volume -20, \
+	pulsemixer --change-volume +20 }
 
 # screenshots tool (selection)
 shift + Print
@@ -37,8 +55,8 @@ super + shift + p
 	toggleprogram "picom" "--experimental-backends"
 
 # make sxhkd reload its configuration files:
-super + shift + r
-	pkill -USR1 -x sxhkd
+ctrl + Escape
+    pkill -USR1 -x sxhkd; dunstify "Sxhkd configuration reloaded"
 
 #
 # bspwm hotkeys
