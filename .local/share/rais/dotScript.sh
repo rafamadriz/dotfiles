@@ -12,7 +12,7 @@ user_does() {
     git clone --recurse-submodules --separate-git-dir="$HOME"/$git_dir $repo "$dir_tmp" ;
 
     # copy all dotfiles to $HOME (this will overwrite any existing destination file)
-    rsync --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/ ;
+    rsync --backup --backup-dir=/tmp/$HOME/backup --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/ ;
     rm --force --recursive "$dir_tmp" ;
 
     # git set-up for dotfiles

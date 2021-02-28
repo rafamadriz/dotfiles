@@ -74,6 +74,18 @@ name: pulseaudio-alsa
 name: pulsemixer
 
 ###########################
+######### MUSIC ###########
+###########################
+- Description: music player/visualizer
+name: ncmpcpp
+
+- Description: Flexible, powerful, server-side application for playing music
+name: mpd
+
+- Description: Minimalist command line interface to MPD
+name mpc
+
+###########################
 ###### BSPWM SET UP #######
 ###########################
 - Description: Tiling window manager based on binary space partitioning
