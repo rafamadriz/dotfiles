@@ -11,6 +11,8 @@ export KEYTIMEOUT=1
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
+# Adds `~/.local/bin` to $PATH
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
 
 # prompt
 source ~/.config/zsh/prompt.zsh
