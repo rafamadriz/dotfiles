@@ -65,6 +65,8 @@ root_does() {
 
    # change shell to zsh
    [ "$(echo "$SHELL")" != "/usr/bin/zsh" ] && chsh -s /usr/bin/zsh "$user"
+
+   rm -f packages.txt dotScript.sh
 }
 root_does
 
