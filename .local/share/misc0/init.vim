@@ -3,35 +3,34 @@
 """"""""""""""""""""""
 syntax on
 filetype plugin on
-set nocompatible
-set viminfo+=n$HOME/.config/vim/.viminfo
-set path+=**
-set wildmenu
-set tabstop=4 softtabstop=4
-set shiftwidth=4
-set expandtab
-set smartindent
-set nu
-set relativenumber
-set nohlsearch
-set hidden
-set noshowmode
-set noerrorbells
-set smartcase
-set noswapfile
-set nobackup
-set incsearch
-set termguicolors
-set backspace=indent,eol,start
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
+set incsearch ignorecase smartcase nohlsearch
+set numberwidth=1 relativenumber nu title
+set viminfo+=n$HOME/.config/nvim/viminfo
 set completeopt=menuone,longest,noselect
-set complete+=kspell
 set omnifunc=syntaxcomplete#Complete
-set shortmess+=c
-set showmatch
-set wildmode=full
-set scrolloff=10
+set undodir=~/.config/nvim/undodir
+set noswapfile nobackup undofile
+set backspace=indent,eol,start
+set clipboard+=unnamedplus
+set showcmd noshowmode
+set complete+=kspell
+set background=dark
 set updatetime=50
-set clipboard=unnamedplus
+set scrolloff=10
+set termguicolors
+set encoding=UTF-8
+set noerrorbells
+set shortmess+=c
+set path+=**
+set nowrap
+set showmatch
+set wildmenu
+set cursorline
+set nocompatible
+set mouse=a
+set hidden
+set splitbelow
 
 " jump to the last position when reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
