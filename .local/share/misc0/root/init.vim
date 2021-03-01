@@ -15,7 +15,6 @@ set backspace=indent,eol,start
 set clipboard+=unnamedplus
 set showcmd noshowmode
 set complete+=kspell
-set background=dark
 set updatetime=50
 set scrolloff=10
 set termguicolors
@@ -34,6 +33,9 @@ set splitbelow
 
 " jump to the last position when reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+colorscheme tender
+highlight Comment gui=italic
 
 """"""""""""""""
 "  Statusline  "
@@ -62,14 +64,15 @@ set statusline+=%4*\ %p%%
 set statusline+=%4*\ %l/%L
 set statusline+=%4*\ col:%c\ |
 
-hi User1 guifg=Black guibg=#778c82
-hi User2 guifg=#000000 guibg=#a5d194
-hi User3 guifg=#000000 guibg=#bd97cb
-hi User4 guifg=#000000 guibg=#d88ca8
-hi User5 guifg=#000000 guibg=#b7c8c2
+hi user1 guifg=#1d1d1d ctermfg=234 guibg=#666666 ctermbg=242 gui=Bold cterm=Bold
+hi user2 guifg=#999999 ctermfg=246 guibg=#444444 ctermbg=238 gui=NONE cterm=NONE
+hi user3 guifg=NONE ctermfg=NONE guibg=#444444 ctermbg=238 gui=NONE cterm=NONE
+hi user4 guifg=#c9d05c ctermfg=185 guibg=NONE ctermbg=NONE gui=Bold cterm=Bold
 
-highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
-highlight PmenuSel ctermfg=15 ctermbg=0 guifg=#ffffff guibg=DarkGrey
+hi PMenu guifg=#dadada ctermfg=253 guibg=#335261 ctermbg=239 gui=NONE cterm=NONE
+hi PMenuSel guifg=#335261 ctermfg=239 guibg=#c9d05c ctermbg=185 gui=NONE cterm=NONE
+hi PmenuSbar guifg=#335261 ctermfg=239 guibg=#335261 ctermbg=239 gui=NONE cterm=NONE
+hi PmenuThumb guifg=#c9d05c ctermfg=185 guibg=#c9d05c ctermbg=185 gui=NONE cterm=NONE
 
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
