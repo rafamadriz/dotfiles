@@ -23,6 +23,7 @@ alias \
     cp="cp -iv" \
     ..="cd .." \
     mv="mv -iv" \
+    mv="mv -iv" \
     media="cd /media/rafa/Media" \
     play="~/.config/scripts/mpv-fullscreen.sh" \
     getmusic="~/.config/scripts/getmusic.sh" \
