@@ -6,8 +6,13 @@
 super + Return
 	$TERMINAL
 
+# Browser
 super + w
 	$BROWSER
+
+# file manager
+super + e
+	$TERMINAL -e lf
 
 # program launcher
 super + space
