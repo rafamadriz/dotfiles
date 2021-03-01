@@ -7,7 +7,7 @@ inputbar {
 }
 
 textbox-prompt-colon {
-    padding: 0% 0% 0% 4%;
+    padding: 0% 0% 0% 2%;
 	str: "  Syetem Uptime";
     background-color: @al;
     text-color: @fg;
@@ -15,7 +15,7 @@ textbox-prompt-colon {
 
 prompt {
     font: "Inter Bold 12";
-    padding: 0% 4% 0% 4%;
+    padding: 0% 4% 0% 2%;
     enabled: true;
 	background-color: @al;
 	text-color: @fg;
