@@ -105,8 +105,8 @@ label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
 [module/updates]
-type = custom/ipc
-hook-0 = pacman -Qu | wc -l
+type = custom/script
+exec = pacman -Qu | wc -l
 label = %output%
 interval = 100
 click-left = upgradepkg
