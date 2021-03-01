@@ -1,0 +1,109 @@
+set icons
+set drawbox
+set hidden true
+
+# Basic bindings
+map . set hidden!
+map U unselect
+map f fzf_jump
+map nf nfile
+map N nfiles
+map nd mkdir
+map * mkex
+map o open_config
+map p %cp -ri -- $fs .
+map m %mv -i -- $fs .
+map au unarchive
+
+# Trash Mappings
+map dd trash
+map tr restore_trash
+
+# Bindings
+map n
+map d
+map c
+
+# bookmarks
+map T cd ~/.local/share/Trash/files
+map D cd ~/downloads
+map P cd ~/pictures
+map M cd /media/rafa/Media
+map bz cd ~/.config/zsh
+map bn cd ~/.config/nvim
+map br cd ~/.config/rofi
+
+cmd open_config ${{
+    du -a ~/.config/* ~/.local/bin/* ~/.local/share/rais/* | awk '{print $2}' | fzf | xargs -r "$EDITOR" ;
+}}
+
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd nfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR $ans
+}}
+
+cmd nfiles ${{
+  printf "File Name: "
+  read ans
+  touch $ans
+}}
+
+cmd mkex ${{
+  for file in "$fx"
+  do
+    togglex $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    # extract the substring from start of string up to delimiter.
+    # this is the first "element" of the string.
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    # if there's only one element left, set `files` to an empty string.
+    # this causes us to exit this `while` loop.
+    # else, we delete the first "element" of the string from files, and move onto the next.
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
+cmd fzf_jump ${{
+  res="$(find . | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
