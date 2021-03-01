@@ -59,9 +59,12 @@ root_does() {
    # run scriptUser
    sudo --user "$user" ./dotScript.sh
 
-   # vimrc config for root user.
-   # Useful to have some nice vim defaults when editing files as root
-   ln -s --force /home/"$user"/.local/share/misc0/vimrc /root/.vimrc
+   # better root defaults
+   [[ ! -d /root/.config/nvim ]] && mkdir -p /root/.config/nvim/colors
+   ln -s --force /home/"$user"/.local/share/misc0/root/init.vim /root/.config/nvim/init.vim
+   ln -s --force /home/"$user"/.local/share/misc0/root/tender.vim /root/.config/nvim/colors/tender.vim
+   ln -s --forece /home/"$user"/.local/share/misc0/root/bashrc /root/.bashrc
+   ln -s --forece /home/"$user"/.local/share/misc0/root/bash_profile /root/.bash_profile
 
    # change shell to zsh
    [ "$(echo "$SHELL")" != "/usr/bin/zsh" ] && chsh -s /usr/bin/zsh "$user"
