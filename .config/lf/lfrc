@@ -4,7 +4,6 @@ set hidden true
 
 # Basic bindings
 map . set hidden!
-map U unselect
 map f fzf_jump
 map nf nfile
 map N nfiles
