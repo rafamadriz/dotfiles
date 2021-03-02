@@ -49,6 +49,9 @@ name: zsh
 - Description: fuzzy finder
 name: fzf
 
+- Description: Command line trashcan (recycle bin) interface
+name: trash-cli
+
 ################################
 ### Mounting Android Devices ###
 ################################
@@ -124,9 +127,6 @@ name: xorg-xsetroot
 ###########################
 ######### FONTS ###########
 ###########################
-- Description: best font ever
-name: ttf-fira-code
-
 - Description: A typeface specially designed for user interfaces
 name: inter-font
 
@@ -150,9 +150,6 @@ name: rofi
 
 - Description: Powerful yet simple to use screenshot software
 name: flameshot
-
-- Description: Simple X Image Viewer
-name: sxiv
 
 - Description: a free, open source, and cross-platform media player
 name: mpv
@@ -190,3 +187,9 @@ aur: polybar
 
 - Description: Clipboard manager to use with rofi - Image support and blacklist
 aur: rofi-greenclip
+
+- Description: Patched font Fira (Fura) Code from the nerd-fonts library
+aur: nerd-fonts-fira-code
+
+- Description: A terminal file manager inspred by ranger written in Go
+aur: lf
