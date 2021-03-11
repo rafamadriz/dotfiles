@@ -1,6 +1,8 @@
 set icons
 set drawbox
 set hidden true
+set previewer ~/.local/bin/preview
+set preview true
 
 # Basic bindings
 map . set hidden!
@@ -24,6 +26,7 @@ map d
 map c
 
 # bookmarks
+map ~ cd ~/
 map T cd ~/.local/share/Trash/files
 map D cd ~/downloads
 map P cd ~/pictures
@@ -100,6 +103,7 @@ cmd fzf_jump ${{
 cmd unarchive ${{
   case "$f" in
       *.zip) unzip "$f" ;;
+      *.tar.xz) tar -xvf ;;
       *.tar.gz) tar -xzvf "$f" ;;
       *.tar.bz2) tar -xjvf "$f" ;;
       *.tar) tar -xvf "$f" ;;
