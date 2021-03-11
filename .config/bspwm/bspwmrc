@@ -6,7 +6,7 @@ killall mpd
 mpd &
 killall "polybar"
 "$HOME"/.config/polybar/launch.sh
-xwallpaper --zoom ~/.local/share/wall/naruto.png
+xwallpaper --zoom ~/.local/share/wall/fox.jpg
 killall "flameshot"
 flameshot & # screenshot utility
 killall "dunst"
@@ -19,7 +19,7 @@ greenclip daemon &
 bspc monitor -d I II III IV V
 
 # Rules
-bspc rule -a firefox desktop='^2' focus=on
+bspc rule -a firefox desktop='^2' focus=on follow=on
 
 # Truncate a couple of common commands that are used herein.
 _bc() {
