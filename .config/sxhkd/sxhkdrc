@@ -76,7 +76,7 @@ alt + shift + x
     betterlockscreen -l blur
 
 # close and kill
-super + q
+super + shift + q
 	bspc node -c
 
 # alternate between the tiled and monocle layout
