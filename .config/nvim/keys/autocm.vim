@@ -5,7 +5,7 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-augroup RAFA
+augroup USER
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
 
@@ -20,4 +20,4 @@ augroup RAFA
 augroup END
 
 " Automatically install coc-extensions
-let g:coc_global_extensions=["coc-stylelintplus", "coc-snippets", "coc-prettier", "coc-pairs", "coc-html", "coc-emmet", "coc-cssmodules", "coc-tsserver", "coc-json", "coc-css"]
+let g:coc_global_extensions=["coc-stylelintplus", "coc-prettier", "coc-pairs", "coc-html", "coc-emmet", "coc-cssmodules", "coc-tsserver", "coc-json", "coc-css", "coc-sh", "coc-pyright"]
