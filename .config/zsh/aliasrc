@@ -32,7 +32,8 @@ alias \
 
 # search for all scripts and dotfiles, then open them with editor of choice
 sc() {
-    du -a ~/.config/* ~/.local/bin/* ~/.local/share/rais/* | awk '{print $2}' | fzf | xargs -r "$EDITOR" ;
+    find ~/ ~/.config ~/.local/bin ~/.local/share/rais -type f \
+      | fzf  --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR" ;
 }
 
 # fd - cd into any hidden directory of the current folder
@@ -56,5 +57,5 @@ fkill() {
 cdf() {
    local file
    local dir
-   file=$(find "${1:-.}" | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+   file=$(find "${1:-.}" -type f | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
