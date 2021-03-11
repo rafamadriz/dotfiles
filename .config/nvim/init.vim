@@ -16,11 +16,14 @@ set numberwidth=1 relativenumber nu title
 set backspace=indent,eol,start
 set noswapfile nobackup undofile
 set undodir=~/.config/nvim/undodir
-set showcmd noshowmode
 set clipboard+=unnamedplus
+set showcmd noshowmode
+set background=dark
+set showtabline=2
+set shortmess+=c
 set updatetime=50
 set scrolloff=10
-set background=dark
+set cmdheight=2
 set termguicolors
 set encoding=UTF-8
 set path+=**
@@ -45,15 +48,11 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'mhinz/vim-startify'
 
 " Themes
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'arcticicestudio/nord-vim'
 Plug 'b4skyx/serenade'
 Plug 'sainnhe/forest-night'
-Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'liuchengxu/space-vim-theme'
 Plug 'sainnhe/sonokai'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'joshdick/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline-themes'
@@ -68,23 +67,24 @@ Plug 'sheerun/vim-polyglot'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'preservim/nerdcommenter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mattn/emmet-vim'
 Plug 'ap/vim-css-color'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
 """""""""""""""""""""""""""""""""""
 "-----------  Themes  ------------"
 """""""""""""""""""""""""""""""""""
-colorscheme onedark
+source $HOME/.config/nvim/plug-config/themes.vim
+colorscheme space_vim_theme
 highlight Comment gui=italic
 " Transparency
-hi! Normal ctermbg=NONE guibg=NONE
-hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
-
+"hi! Normal ctermbg=NONE guibg=NONE
+"hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "---------------  Keybindings Configuration  -----------------"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,12 +93,10 @@ source $HOME/.config/nvim/keys/autocm.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "-------------  Plugin Configuration  --------------"
 """""""""""""""""""""""""""""""""""""""""""""""""""""
-source $HOME/.config/nvim/plug-config/themes.vim
 source $HOME/.config/nvim/plug-config/start-screen.vim
 source $HOME/.config/nvim/plug-config/nerdtree.vim
-source $HOME/.config/nvim/plug-config/easymotion.vim
 source $HOME/.config/nvim/plug-config/neoclide-coc.vim
-source $HOME/.config/nvim/plug-config/emmet.vim
 source $HOME/.config/nvim/plug-config/indent-guides.vim
 source $HOME/.config/nvim/plug-config/fzf.vim
-source $HOME/.config/nvim/plug-config/arline.vim
+source $HOME/.config/nvim/plug-config/airline.vim
+source $HOME/.config/nvim/plug-config/treesitter.vim
