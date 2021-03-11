@@ -1,0 +1,11 @@
+#!/bin/env bash
+
+# script to toggle on/off executable bit of files in lf
+
+file=$1
+
+if [[ -x "$file" ]]; then
+    /usr/bin/chmod -x "$file"
+else
+    /usr/bin/chmod +x "$file"
+fi
