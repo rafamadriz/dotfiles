@@ -10,13 +10,22 @@ export KEYTIMEOUT=1
 # prompt
 source ~/.config/zsh/prompt.zsh
 
-# these directories are necessary for zsh to
+# these directories are necessary for zsh, to
 # create history file, etc... Create them if don't exist
 [[ ! -d ~/.cache/zsh ]] && mkdir -p ~/.cache/zsh
 [[ ! -d ~/.local/share/zsh ]] && mkdir -p ~/.local/share/zsh
 
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
+
+# Exports
+export FZF_DEFAULT_COMMAND='find -type f'
+export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+export FZF_ALT_C_COMMAND='find . -type d'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+export MYVIMRC="~/.config/nvim/init.vim"
 
 # aliases
 source ~/.config/zsh/aliasrc
