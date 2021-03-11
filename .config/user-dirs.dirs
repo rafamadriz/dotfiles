@@ -6,7 +6,7 @@
 # absolute path. No other format is supported.
 #
 
-/*XDG_DESKTOP_DIR="$HOME/desktop"*/
+XDG_DESKTOP_DIR="$HOME/desktop"
 XDG_DOWNLOAD_DIR="$HOME/downloads"
 XDG_TEMPLATES_DIR="$HOME/templates"
 XDG_PUBLICSHARE_DIR="$HOME/public"
