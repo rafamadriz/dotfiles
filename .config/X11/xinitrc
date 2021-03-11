@@ -6,4 +6,5 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 setxkbmap -layout es -variant winkeys &
 xsetroot -cursor_name left_ptr
+xset r rate 200 40 &
 exec bspwm
