@@ -8,7 +8,6 @@ let mapleader = " "
 " - ^x^] - tags only
 
 inoremap jk <ESC>
-inoremap kj <ESC>
 nnoremap Q <Nop>
 nmap <leader>w :w<CR>
 nmap <leader>q :bdelete<CR>
@@ -27,7 +26,6 @@ nnoremap <S-h>  :vertical resize -2<CR>
 nnoremap <S-l>  :vertical resize +2<CR>
 
 " NERDTree
-nnoremap = :call nerdtree#invokeKeyMap("o")<CR>
 nnoremap <silent> <leader>f :NERDTreeToggle %<CR>
 
 " FZF
@@ -36,12 +34,14 @@ nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>h :Rg<CR>
 
 " Tabs  navigation
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <A-1> <Plug>AirlineSelectTab1
+nmap <A-2> <Plug>AirlineSelectTab2
+nmap <A-3> <Plug>AirlineSelectTab3
+nmap <A-4> <Plug>AirlineSelectTab4
+nmap <A-5> <Plug>AirlineSelectTab5
+nmap <A-6> <Plug>AirlineSelectTab6
+nmap <A-7> <Plug>AirlineSelectTab7
+nmap <A-8> <Plug>AirlineSelectTab8
+nmap <A-9> <Plug>AirlineSelectTab9
+nnoremap gt :bn<CR>
+nnoremap gT :bp<CR>
