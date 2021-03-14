@@ -19,6 +19,9 @@
 - Description: better ls command
   name: exa
 
+- Description: Simple, fast and user-friendly alternative to find
+  name: fd
+
 - Description: man pages
   name: man-db
 
