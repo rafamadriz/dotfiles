@@ -2,203 +2,203 @@
 ######### UTILS ###########
 ###########################
 - Description: remote and local copying tool
-name: rsync
+  name: rsync
 
 - Description: Daemon that runs specified programs at scheduled times and related tools
-name: cronie
+  name: cronie
 
 - Description: Fast and flexible source code highlighter (CLI version)
-name: highlight
+  name: highlight
 
 - Description: Supplies technical and tag information about a video or audio file (CLI interface)
-name: mediainfo
+  name: mediainfo
 
--Description: Simple PDF text extraction
-name: python-pdftotext
+- Description: Simple PDF text extraction
+  name: python-pdftotext
 
 - Description: better ls command
-name: exa
+  name: exa
 
 - Description: man pages
-name: man-db
+  name: man-db
 
 - Description: Library for sending desktop notifications
-name: libnotify
+  name: libnotify
 
 - Description: Cat clone with syntax highlighting and git integration
-name: bat
+  name: bat
 
 - Description: javascript runtime
-name: nodejs
+  name: nodejs
 
 - Description: package manager npm
-name: npm
+  name: npm
 
 - Description: clipboard
-name: xclip
+  name: xclip
 
 - Description: Utility for performing actions on windows in X
-name: xdo
+  name: xdo
 
 - Description: Wallpaper setting utility for X
-name: xwallpaper
+  name: xwallpaper
 
 - Description: Fast and light imlib2-based image viewer
-name: feh
+  name: feh
 
 - Description: the better shell
-name: zsh
+  name: zsh
 
 - Description: fuzzy finder
-name: fzf
+  name: fzf
 
 - Description: A search tool that combines the usability of ag with the raw speed of grep
-name: ripgrep
+  name: ripgrep
 
 - Description: Command line trashcan (recycle bin) interface
-name: trash-cli
+  name: trash-cli
 
 ################################
 ### Mounting Android Devices ###
 ################################
 - Description: Library implementation of the Media Transfer Protocol
-name: libmtp
+  name: libmtp
 
 - Description: Virtual filesystem implementation for GIO
-name: gvfs
+  name: gvfs
 
 - Description: Virtual filesystem implementation for GIO (MTP backend; Android, media player)
-name: gvfs-mtp
+  name: gvfs-mtp
 
 ###########################
 ######### AUDIO ###########
 ###########################
 - Description: audio system
-name: pulseaudio
+  name: pulseaudio
 
 - Description: ALSA configuration for pulseaudio
-name: pulseaudio-alsa
+  name: pulseaudio-alsa
 
 - Description: CLI and curses mixer for pulseaudio
-name: pulsemixer
+  name: pulsemixer
 
 ###########################
 ######### MUSIC ###########
 ###########################
 - Description: music player/visualizer
-name: ncmpcpp
+  name: ncmpcpp
 
 - Description: Flexible, powerful, server-side application for playing music
-name: mpd
+  name: mpd
 
 - Description: Minimalist command line interface to MPD
-name mpc
+  name: mpc
 
 ###########################
 ###### BSPWM SET UP #######
 ###########################
 - Description: Tiling window manager based on binary space partitioning
-name: bspwm
+  name: bspwm
 
 - Description: Simple X hotkey daemon
-name: sxhkd
+  name: sxhkd
 
 - Description: Customizable and lightweight notification-daemon
-name: dunst
+  name: dunst
 
 - Description: A small program for hiding the mouse cursor
-name: unclutter
+  name: unclutter
 
 - Description: elegant icon theme
-name: papirus-icon-theme
+  name: papirus-icon-theme
 
 - Description: gtk theme
-name: arc-gtk-theme
+  name: arc-gtk-theme
 
 ###########################
 ######### X11 #############
 ###########################
 - Description: Xorg X server
-name: xorg-server
+  name: xorg-server
 
 - Description: Display information utility for X
-name: xorg-xdpyinfo
+  name: xorg-xdpyinfo
 
 - Description: X.Org initialisation program
-name: xorg-xinit
+  name: xorg-xinit
 
 - Description: Classic X utility to set your root window background to a given pattern or color
-name: xorg-xsetroot
+  name: xorg-xsetroot
 
 ###########################
 ######### FONTS ###########
 ###########################
 - Description: A typeface specially designed for user interfaces
-name: inter-font
+  name: inter-font
 
 - Description: Font family based on the Bitstream Vera Fonts with a wider range of characters
-name: ttf-dejavu
+  name: ttf-dejavu
 
 - Description: Font family which aims at metric compatibility with Arial, Times New Roman, and Courier New
-name: ttf-liberation
+  name: ttf-liberation
 
 - Description: Google Noto TTF fonts
-name: noto-fonts
+  name: noto-fonts
 
 ##############################
 ######### PROGRAMS ###########
 ##############################
 - Description: terminal
-name: kitty
+  name: kitty
 
 - Description: A window switcher, application launcher and dmenu
-name: rofi
+  name: rofi
 
 - Description: Powerful yet simple to use screenshot software
-name: flameshot
+  name: flameshot
 
 - Description: a free, open source, and cross-platform media player
-name: mpv
+  name: mpv
 
 ##############################
 ######### NEOVIM/VIM #########
 ##############################
 - Description: better vim
-name: neovim
+  name: neovim
 
 - Description: python support for neovim
-name: python-pynvim
+  name: python-pynvim
 
 ##############################
 ######### AUR ################
 ##############################
 
 - Description: A simple, minimal lockscreen
-aur: betterlockscreen
+  aur: betterlockscreen
 
 - Description: Window Manager agnostic swallowing feature for terminal emulators
-aur: devour
+  aur: devour
 
 - Description: iBhagwan's compton|picom fork (X compositor) with dual_kawase blur and rounded corners
-aur: picom-ibhagwan-git
+  aur: picom-ibhagwan-git
 
 - Description: A fast and easy-to-use status bar
-aur: polybar
+  aur: polybar
 
 - Description: Clipboard manager to use with rofi - Image support and blacklist
-aur: rofi-greenclip
+  aur: rofi-greenclip
 
 - Description: Patched font Fira (Fura) Code from the nerd-fonts library
-aur: nerd-fonts-fira-code
+  aur: nerd-fonts-fira-code
 
 - Description: A terminal file manager inspred by ranger written in Go
-aur: lf
+  aur: lf
 
 - Description: General purpuse file previewer
-aur: pistol-git
+  aur: pistol-git
 
--Description: Sxiv fork which opens all files in the input file's directory, with some custom bindings.
-aur: sxiv-bachoseven-git
+- Description: Sxiv fork which opens all files in the input file's directory, with some custom bindings.
+  aur: sxiv-bachoseven-git
 
 - Description: Shell script analysis tool
-aur: shellcheck-bin
+  aur: shellcheck-bin

@@ -36,13 +36,13 @@ install_aurHelper() {
 
 install_dependencies() {
    # Official repositories dependencies
-   dependencies=($(sed -n '/name/p' packages.txt | cut -d' ' -f2))
+   dependencies=("$(sed -n 's/^[ \t]*//;/name/p' packages.yml | cut -d' ' -f2)")
    for pkg in "${dependencies[@]}"; do
       pacman_install "$pkg"
    done
 
    # AUR dependencies
-   dependencies_aur=($(sed -n '/aur/p' packages.txt | cut -d' ' -f2))
+   dependencies_aur=("$(sed -n 's/^[ \t]*//;/aur/p' packages.yml | cut -d' ' -f2)")
    for pkg_aur in "${dependencies_aur[@]}"; do
       sudo --user "$user" paru -S --aur --needed --noconfirm --removemake "$pkg_aur"
    done
