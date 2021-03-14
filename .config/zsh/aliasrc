@@ -37,7 +37,7 @@ sc() {
 }
 
 # fd - cd into any hidden directory of the current folder
-fd() {
+fcd() {
   local dir
   dir=$(find "${1:-.}" -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
