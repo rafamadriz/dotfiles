@@ -10,7 +10,7 @@ echo "============================"
 [ "$SUDO_USER" ] && user=$SUDO_USER || user=$(whoami)
 
 dotscript="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/dotScript.sh"
-pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.txt"
+pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.yml"
 
 for url in $dotscript $pkgs_list; do
     curl -OL $url
