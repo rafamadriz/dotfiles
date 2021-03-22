@@ -61,7 +61,7 @@ super + shift + p
 
 # make sxhkd reload its configuration files:
 ctrl + Escape
-    pkill -USR1 -x sxhkd; dunstify "Sxhkd configuration reloaded"
+	pkill -USR1 -x sxhkd; dunstify "Sxhkd configuration reloaded"
 
 #
 # bspwm hotkeys
@@ -73,7 +73,7 @@ super + alt + {q,r}
 
 # lockscreen
 alt + shift + x
-    betterlockscreen -l blur
+	betterlockscreen -l blur
 
 # close and kill
 super + shift + q
