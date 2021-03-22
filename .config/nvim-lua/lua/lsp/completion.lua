@@ -92,7 +92,9 @@ _G.s_tab_complete = function()
   end
 end
 
-u.map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-u.map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-u.map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-u.map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+--u.map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+--u.map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+--u.map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+--u.map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+u.map("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], {expr = true})
+u.map("i", "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], {expr = true})
