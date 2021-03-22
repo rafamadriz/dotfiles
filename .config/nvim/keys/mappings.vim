@@ -43,5 +43,5 @@ nmap <A-6> <Plug>AirlineSelectTab6
 nmap <A-7> <Plug>AirlineSelectTab7
 nmap <A-8> <Plug>AirlineSelectTab8
 nmap <A-9> <Plug>AirlineSelectTab9
-nnoremap gt :bn<CR>
-nnoremap gT :bp<CR>
+nnoremap bn :bn<CR>
+nnoremap bp :bp<CR>
