@@ -7,8 +7,7 @@ export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
 # Android
-export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
-export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android
+export ANDROID_SDK_ROOT="$XDG_CONFIG_HOME"/android
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android
 export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
