@@ -7,5 +7,6 @@ require('mappings')
 require('plugins/treesitter')
 
 -- LSP
+require('lua')
 require('lsp/lua')
 require('lsp/completion')
