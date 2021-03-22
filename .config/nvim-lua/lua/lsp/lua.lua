@@ -9,6 +9,7 @@
 -- ./3rd/luamake/luamake rebuild
 local sumneko_root_path = '/home/rafa/.cache/nvim/nlua/sumneko_lua'
 local sumneko_binary = sumneko_root_path..'/bin/Linux/lua-language-server'
+local on_attach = require'completion'.on_attach
 
 require'lspconfig'.sumneko_lua.setup {
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
