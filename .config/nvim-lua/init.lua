@@ -13,6 +13,5 @@ require('plugins/startify')
 require('plugins/indent_guides')
 
 -- LSP
---
 require('lsp')
 require('lsp/completion')
