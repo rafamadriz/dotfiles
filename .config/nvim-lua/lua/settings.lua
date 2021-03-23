@@ -24,7 +24,7 @@ u.opt('o', 'mouse', 'a')
 u.opt('o', 'hidden', true)
 u.opt('o', 'splitbelow', true)
 u.opt('o', 'splitright', true)
-u.opt('o', 'completeopt', 'menuone,noselect')
+u.opt('o', 'completeopt', 'menuone,noinsert,noselect')
 
 -- Window
 u.opt('w', 'relativenumber', true)
@@ -35,7 +35,7 @@ u.opt('w', 'cursorline', true)
 u.opt('w', 'conceallevel', 0)
 
 -- Buffer
-local indent = 4
+local indent = 2
 u.opt('b', 'tabstop', indent)
 u.opt('b', 'softtabstop', indent)
 u.opt('b', 'shiftwidth', indent)
