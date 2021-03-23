@@ -10,20 +10,34 @@ end
 
 return require('packer').startup(function()
   -- LSP
-  use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/completion-nvim'
-  use 'onsails/lspkind-nvim'
+  use {
+      'neovim/nvim-lspconfig',
+      requires = {{'onsails/lspkind-nvim'}, {'hrsh7th/nvim-compe'}}
+  }
 
   -- Treesitter
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
   -- Nvim tree
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+      'kyazdani42/nvim-tree.lua',
+      requires = {'kyazdani42/nvim-web-devicons'}
+  }
+
+  -- Statusline and bufferline
+  use 'akinsho/nvim-bufferline.lua'
+  use 'glepnir/galaxyline.nvim'
+
+  -- Startify
+  use 'mhinz/vim-startify'
+
+  -- Indent guides
+  use 'glepnir/indent-guides.nvim'
 
   -- Themes
   use 'sainnhe/sonokai'
   use 'glepnir/zephyr-nvim'
-  use 'Th3Whit3Wolf/one-nvim'
+  use 'joshdick/onedark.vim'
   use 'liuchengxu/space-vim-theme'
   use 'christianchiarulli/nvcode-color-schemes.vim'
   use 'gruvbox-community/gruvbox'
