@@ -27,6 +27,7 @@ export FZF_ALT_C_COMMAND='fd --type d . --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 export MYVIMRC="~/.config/nvim/init.vim"
 export ANDROID_HOME="$XDG_DATA_HOME"/android
+export PATH="$PATH:${$(find ~/.local/share/npm/bin -type d -printf %p:)%%:}"
 
 # aliases
 source ~/.config/zsh/aliasrc
