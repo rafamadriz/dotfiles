@@ -27,11 +27,11 @@ require'lspconfig'.jsonls.setup { on_attach = on_attach }
 -- ninja -f ninja/linux.ninja
 -- cd ../..
 -- ./3rd/luamake/luamake rebuild
-local sumneko_root_path = '/home/rafa/.cache/nvim/nlua/sumneko_lua'
-local sumneko_binary = sumneko_root_path..'/bin/Linux/lua-language-server'
+local luapath = '/home/rafa/.cache/nvim/nlua/sumneko_lua'
+local luabin = luapath..'/bin/Linux/lua-language-server'
 
 require'lspconfig'.sumneko_lua.setup {
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+  cmd = {luabin, "-E", luapath .. "/main.lua"};
   settings = {
     Lua = {
       runtime = {
@@ -43,7 +43,7 @@ require'lspconfig'.sumneko_lua.setup {
       completion = { enable = true },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = {"vim", "map", "filter", "range", "reduce", "head", "tail", "nth", "use"},
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -54,5 +54,5 @@ require'lspconfig'.sumneko_lua.setup {
       },
     },
   },
+  on_attach = on_attach
 }
-require'lspconfig'.sumneko_lua.setup{ on_attach = on_attach }
