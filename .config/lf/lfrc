@@ -1,7 +1,7 @@
 set icons
 set drawbox
 set hidden true
-set previewer ~/.local/bin/preview
+set previewer ~/.local/bin/scripts/preview
 set preview true
 
 # Basic bindings
