@@ -53,6 +53,7 @@ return require("packer").startup(
         use "windwp/nvim-autopairs"
         use "norcalli/nvim-colorizer.lua"
         use "akinsho/nvim-toggleterm.lua"
+        use "RRethy/vim-illuminate"
 
         -- Themes
         use "sainnhe/sonokai"
@@ -60,5 +61,7 @@ return require("packer").startup(
         use "christianchiarulli/nvcode-color-schemes.vim"
         use "gruvbox-community/gruvbox"
         use "Th3Whit3Wolf/one-nvim"
+        use "sainnhe/edge"
+        use "novakne/kosmikoa.nvim"
     end
 )
