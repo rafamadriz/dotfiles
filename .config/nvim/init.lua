@@ -1,17 +1,20 @@
 -- General settings
-require('plugins')
-require('themes')
-require('settings')
-require('mappings')
+require("settings")
+require("mappings")
+require("plugins")
+require("themes")
 
 -- Plugins
-require('plugins/treesitter')
-require('plugins/nvim-tree')
-require('plugins/bufferline')
-require('plugins/statusline')
-require('plugins/startify')
-require('plugins/indent_guides')
+require("plugins/treesitter")
+require("plugins/nvim-tree")
+require("plugins/bufferline")
+require("plugins/statusline")
+require("plugins/startify")
+require("plugins/indent-guides")
+require("plugins/toggleterm")
+require("plugins/telescope")
+require("plugins/general")
 
 -- LSP
-require('lsp')
-require('lsp/completion')
+require("lsp")
+require("lsp/completion")
