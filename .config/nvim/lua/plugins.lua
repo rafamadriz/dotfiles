@@ -10,11 +10,12 @@ end
 
 return require("packer").startup(
     function()
-        -- LSP
+        -- Autocomplete
         use {
             "neovim/nvim-lspconfig",
             requires = {{"onsails/lspkind-nvim"}, {"hrsh7th/nvim-compe"}}
         }
+        use "mattn/emmet-vim"
 
         -- Telescope
         use {
