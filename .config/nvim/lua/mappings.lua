@@ -1,28 +1,15 @@
 local u = require("utils")
-local cmd = vim.cmd
 
 vim.g.mapleader = " "
 
--- Autocommands
-cmd [[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
-cmd [[au BufNewFile,BufRead *.ejs set filetype=html]]
-cmd [[au FileType markdown let g:indentLine_enabled=0]]
--- Automatically deletes all trailing whitespace and newlines at end of file on save.
-cmd [[au BufWritePre * %s/\s\+$//e]]
-cmd [[au BufWritePre * %s/\n\+\%$//e]]
-cmd [[au BufWritePre *.[ch] %s/\%$/\r/e]]
--- Disables automatic commenting on newline:
-cmd [[au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]]
--- Neoformat
-cmd [[au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry]]
--- Source init.lua one save
-cmd [[au BufWritePre plugins.lua luafile %]]
-
 -- Basics
 u.map("n", "<leader>w", ":w<CR>")
-u.map("n", "<leader>q", ":bdelete<CR>")
+u.map("n", "<leader>q", ":BufferClose<CR>")
 u.map("i", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
+-- Move selected line / block of text in visual mode
+u.map("x", "K", ":move '<-2<CR>gv-gv")
+u.map("x", "J", ":move '>+1<CR>gv-gv")
 
 -- Better window navigation
 u.map("n", "<C-h>", "<C-w>h")
@@ -37,8 +24,18 @@ u.map("n", "<S-h>", ":vertical resize -2<CR>")
 u.map("n", "<S-l>", ":vertical resize +2<CR>")
 
 -- buffer navigation
-u.map("n", "<TAB>", ":bnext<CR>")
-u.map("n", "<S-TAB>", ":bprevious<CR>")
+u.map("n", "<TAB>", ":BufferNext<CR>")
+u.map("n", "<S-TAB>", ":BufferPrevious<CR>")
+u.map("n", "<A-1>", ":BufferGoto 1<CR>")
+u.map("n", "<A-2>", ":BufferGoto 2<CR>")
+u.map("n", "<A-3>", ":BufferGoto 3<CR>")
+u.map("n", "<A-4>", ":BufferGoto 4<CR>")
+u.map("n", "<A-5>", ":BufferGoto 5<CR>")
+u.map("n", "<A-6>", ":BufferGoto 6<CR>")
+u.map("n", "<A-7>", ":BufferGoto 7<CR>")
+u.map("n", "<A-8>", ":BufferGoto 8<CR>")
+u.map("n", "<A-9>", ":BufferGoto 9<CR>")
+u.map("n", "<A-l>", ":BufferLast<CR>")
 
 -- File manager
 u.map("n", "<leader>e", ":NvimTreeToggle<CR>")
@@ -55,7 +52,7 @@ u.map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
 u.map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
 u.map("n", "gt", ":lua vim.lsp.buf.type_definition()<CR>")
 u.map("n", "gr", ":lua vim.lsp.buf.references()<CR>")
-u.map("n", "K", ":lua vim.lsp.buf.hover()<CR>")
+-- u.map("n", "K", ":lua vim.lsp.buf.hover()<CR>")
 u.map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
 u.map("n", "<space>rn", ":lua vim.lsp.buf.rename()<CR>")
 u.map("n", "<C-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
