@@ -10,12 +10,15 @@ end
 
 return require("packer").startup(
     function()
+        use "wbthomason/packer.nvim"
+
         -- Autocomplete
         use {
             "neovim/nvim-lspconfig",
             requires = {{"onsails/lspkind-nvim"}, {"hrsh7th/nvim-compe"}}
         }
         use "mattn/emmet-vim"
+        use "windwp/nvim-ts-autotag"
 
         -- Telescope
         use {
@@ -28,7 +31,7 @@ return require("packer").startup(
         }
 
         -- Treesitter
-        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", requires = {"p00f/nvim-ts-rainbow"}}
 
         -- File manager
         use {
@@ -37,7 +40,7 @@ return require("packer").startup(
         }
 
         -- Statusline and bufferline
-        use "akinsho/nvim-bufferline.lua"
+        use "romgrk/barbar.nvim"
         use "glepnir/galaxyline.nvim"
 
         -- Start screen
