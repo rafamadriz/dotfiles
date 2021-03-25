@@ -19,6 +19,7 @@ autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # Exports
+export PATH="$PATH:${$(find ~/.local/bin ~/.local/share/npm/bin -type d -printf %p:)%%:}"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
 export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
@@ -27,7 +28,6 @@ export FZF_ALT_C_COMMAND='fd --type d . --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 export MYVIMRC="~/.config/nvim/init.lua"
 export ANDROID_HOME="$XDG_DATA_HOME"/android
-export PATH="$PATH:${$(find ~/.local/share/npm/bin -type d -printf %p:)%%:}"
 
 # aliases
 source ~/.config/zsh/aliasrc
