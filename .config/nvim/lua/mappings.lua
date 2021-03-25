@@ -45,7 +45,7 @@ u.map("n", "<leader>ff", ":Telescope find_files<CR>")
 u.map("n", "<leader>fg", ":Telescope live_grep<CR>")
 u.map("n", "<leader>b", ":Telescope buffers<CR>")
 u.map("n", "<leader>fh", ":Telescope help_tags<CR>")
-u.map("n", "<leader>dot", [[:lua require('utils').search_dotfiles()<CR>]])
+u.map("n", "<leader>dot", ":lua require('utils').search_dotfiles()<CR>")
 
 -- LSP
 u.map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
