@@ -14,6 +14,7 @@ require("plugins/startify")
 require("plugins/indent-guides")
 require("plugins/toggleterm")
 require("plugins/telescope")
+require("plugins/emmet")
 
 -- LSP
 require("lsp")
