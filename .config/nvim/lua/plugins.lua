@@ -1,44 +1,60 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-  execute 'packadd packer.nvim'
+    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+    execute "packadd packer.nvim"
 end
 
-return require('packer').startup(function()
-  -- LSP
-  use {
-      'neovim/nvim-lspconfig',
-      requires = {{'onsails/lspkind-nvim'}, {'hrsh7th/nvim-compe'}}
-  }
+return require("packer").startup(
+    function()
+        -- LSP
+        use {
+            "neovim/nvim-lspconfig",
+            requires = {{"onsails/lspkind-nvim"}, {"hrsh7th/nvim-compe"}}
+        }
 
-  -- Treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+        -- Telescope
+        use {
+            "nvim-telescope/telescope.nvim",
+            requires = {
+                {"nvim-lua/popup.nvim"},
+                {"nvim-lua/plenary.nvim"},
+                {"nvim-telescope/telescope-fzy-native.nvim"}
+            }
+        }
 
-  -- Nvim tree
-  use {
-      'kyazdani42/nvim-tree.lua',
-      requires = {'kyazdani42/nvim-web-devicons'}
-  }
+        -- Treesitter
+        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
 
-  -- Statusline and bufferline
-  use 'akinsho/nvim-bufferline.lua'
-  use 'glepnir/galaxyline.nvim'
+        -- File manager
+        use {
+            "kyazdani42/nvim-tree.lua",
+            requires = {"kyazdani42/nvim-web-devicons"}
+        }
 
-  -- Startify
-  use 'mhinz/vim-startify'
+        -- Statusline and bufferline
+        use "akinsho/nvim-bufferline.lua"
+        use "glepnir/galaxyline.nvim"
 
-  -- Indent guides
-  use 'glepnir/indent-guides.nvim'
+        -- Start screen
+        use "mhinz/vim-startify"
 
-  -- Themes
-  use 'sainnhe/sonokai'
-  use 'glepnir/zephyr-nvim'
-  use 'joshdick/onedark.vim'
-  use 'liuchengxu/space-vim-theme'
-  use 'christianchiarulli/nvcode-color-schemes.vim'
-  use 'gruvbox-community/gruvbox'
-end)
+        -- General plugins
+        use "glepnir/indent-guides.nvim"
+        use "sbdchd/neoformat"
+        use "b3nj5m1n/kommentary"
+        use "windwp/nvim-autopairs"
+        use "norcalli/nvim-colorizer.lua"
+        use "akinsho/nvim-toggleterm.lua"
+
+        -- Themes
+        use "sainnhe/sonokai"
+        use "liuchengxu/space-vim-theme"
+        use "christianchiarulli/nvcode-color-schemes.vim"
+        use "gruvbox-community/gruvbox"
+        use "Th3Whit3Wolf/one-nvim"
+    end
+)
