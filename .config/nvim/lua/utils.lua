@@ -3,33 +3,65 @@ local utils = {}
 local G = {}
 local Git = {}
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-local api, fn, cmd, g, ft = vim.api, vim.fn, vim.cmd, vim.g, vim.bo.filetype
-local home = os.getenv("HOME")
-local path_sep = G.is_windows and '\\' or '/'
-
+local api, fn, ft = vim.api, vim.fn, vim.bo.filetype
 
 -- options
 function utils.opt(scope, key, value)
     scopes[scope][key] = value
-    if scope ~= 'o' then scopes['o'][key] = value end
+    if scope ~= "o" then
+        scopes["o"][key] = value
+    end
 end
 
 -- mappings
 function utils.map(mode, key, result, opts)
-    local options = { noremap = true, silent = true }
-    if opts then options = vim.tbl_extend('force', options, opts) end
+    local options = {noremap = true, silent = true}
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
     vim.api.nvim_set_keymap(mode, key, result, options)
 end
 
+-- Telescope
+function utils.search_dotfiles()
+    require("telescope.builtin").find_files(
+        {
+            prompt_title = "Dotfiles",
+            cwd = "$HOME/.config/"
+        }
+    )
+end
+
 -- completion
+local function documentHighlight(client, bufnr)
+    -- Set autocommands conditional on server_capabilities
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec(
+            [[
+      hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
+      hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
+      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]],
+            false
+        )
+    end
+end
+
 function utils.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)
 end
 
--- Global
+-- Local
 --- Check if a file or directory exists in this path
 function G.exists(file)
-    if file == '' or file == nil then return false end
+    if file == "" or file == nil then
+        return false
+    end
     local ok, err, code = os.rename(file, file)
     if not ok then
         if code == 13 then
@@ -41,7 +73,9 @@ function G.exists(file)
 end
 
 function G.isdir(path)
-    if path == '' or path == nil then return false end
+    if path == "" or path == nil then
+        return false
+    end
     -- "/" works on both Unix and Windows
     return G.exists(path .. "/")
 end
@@ -88,10 +122,8 @@ function Git.get_root_dir(path)
     -- able to do that inside of logical operator
     local parent_path = pathname(path)
 
-    return has_git_dir(path)
-        or has_git_file(path)
-        -- Otherwise go up one level and make a recursive call
-        or (parent_path ~= path and Git.get_root_dir(parent_path) or nil)
+    return has_git_dir(path) or has_git_file(path) or -- Otherwise go up one level and make a recursive call
+        (parent_path ~= path and Git.get_root_dir(parent_path) or nil)
 end
 
 function utils.get_branch()
@@ -151,7 +183,9 @@ end
 
 function utils.check_workspace()
     local current_file = fn.expand("%:p")
-    if current_file == '' or current_file == nil then return false end
+    if current_file == "" or current_file == nil then
+        return false
+    end
     local current_dir
     -- if file is a symlinks
     if fn.getftype(current_file) == "link" then
