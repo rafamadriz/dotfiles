@@ -4,7 +4,7 @@ local on_attach = require "utils".commom_on_attach
 require "lspconfig".bashls.setup {on_attach = on_attach}
 
 -- npm i -g typescript typescript-language-server
-require "lspconfig".tsserver.setup {on_attach = on_attach}
+require "lspconfig".tsserver.setup {on_attach = on_attach, settings = {documentFormatting = false}}
 
 -- npm i -g vscode-css-languageserver-bin
 require "lspconfig".cssls.setup {on_attach = on_attach}
