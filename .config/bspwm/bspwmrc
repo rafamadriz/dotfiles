@@ -1,6 +1,6 @@
 #! /bin/sh
 
-pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x sxhkd >/dev/null || sxhkd &
 picom -b --experimental-backends &
 killall mpd
 mpd &
@@ -22,16 +22,16 @@ bspc rule -a firefox desktop='^2' focus=on follow=on
 
 # Truncate a couple of common commands that are used herein.
 _bc() {
-	bspc config "$@"
+  bspc config "$@"
 }
 
 ### BSPWM configuration ###
-_bc top_padding          36
-_bc border_width         4
-_bc window_gap           13
-_bc split_ratio          0.52
-_bc borderless_monocle   true
-_bc gapless_monocle      true
+_bc top_padding 36
+_bc border_width 4
+_bc window_gap 13
+_bc split_ratio 0.52
+_bc borderless_monocle true
+_bc gapless_monocle true
 
 # Colors
 _bc normal_border_color "#c8ccd4"
