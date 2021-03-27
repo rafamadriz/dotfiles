@@ -15,10 +15,18 @@ return require("packer").startup(
         -- Autocomplete
         use {
             "neovim/nvim-lspconfig",
-            requires = {{"onsails/lspkind-nvim"}, {"hrsh7th/nvim-compe"}}
+            requires = {
+                {"hrsh7th/nvim-compe"},
+                {"onsails/lspkind-nvim"},
+                {"hrsh7th/vim-vsnip"}
+            }
         }
         use "mattn/emmet-vim"
-        use "windwp/nvim-ts-autotag"
+        use "capaj/vscode-standardjs-snippets"
+        use "Wscats/html-snippets"
+        use "cstrap/python-snippets"
+        use "Harry-Ross/vscode-c-snippets"
+        use "kitagry/vs-snippets"
 
         -- Telescope
         use {
@@ -26,12 +34,17 @@ return require("packer").startup(
             requires = {
                 {"nvim-lua/popup.nvim"},
                 {"nvim-lua/plenary.nvim"},
-                {"nvim-telescope/telescope-fzy-native.nvim"}
+                {"nvim-telescope/telescope-fzy-native.nvim"},
+                {"nvim-telescope/telescope-media-files.nvim"}
             }
         }
 
         -- Treesitter
-        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate", requires = {"p00f/nvim-ts-rainbow"}}
+        use {
+            "nvim-treesitter/nvim-treesitter",
+            run = ":TSUpdate",
+            requires = {"windwp/nvim-ts-autotag"}
+        }
 
         -- File manager
         use {
@@ -54,6 +67,8 @@ return require("packer").startup(
         use "norcalli/nvim-colorizer.lua"
         use "akinsho/nvim-toggleterm.lua"
         use "RRethy/vim-illuminate"
+        use "p00f/nvim-ts-rainbow"
+        use "vim-scripts/loremipsum"
 
         -- Themes
         use "sainnhe/sonokai"
