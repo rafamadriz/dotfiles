@@ -11,7 +11,7 @@ u.opt("o", "backup", false)
 u.opt("o", "writebackup", false)
 u.opt("o", "clipboard", "unnamedplus")
 u.opt("o", "showmode", false)
-u.opt("o", "pumheight", 10)
+u.opt("o", "pumheight", 15)
 u.opt("o", "showtabline", 2)
 u.opt("o", "updatetime", 100)
 u.opt("o", "scrolloff", 10)
@@ -62,5 +62,3 @@ cmd [[au BufWritePre *.[ch] %s/\%$/\r/e]]
 cmd [[au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]]
 -- Neoformat
 cmd [[au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry]]
--- Source init.lua one save
-cmd [[au BufWritePre plugins.lua luafile %]]
