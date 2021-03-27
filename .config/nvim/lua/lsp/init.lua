@@ -1,36 +1,56 @@
-local on_attach = require "utils".commom_on_attach
+local nvim_lsp = require "lspconfig"
 
 -- npm i -g bash-language-server
-require "lspconfig".bashls.setup {on_attach = on_attach}
+nvim_lsp.bashls.setup {}
 
 -- npm i -g typescript typescript-language-server
-require "lspconfig".tsserver.setup {on_attach = on_attach, settings = {documentFormatting = false}}
+nvim_lsp.tsserver.setup {}
 
 -- npm i -g vscode-css-languageserver-bin
-require "lspconfig".cssls.setup {on_attach = on_attach}
+nvim_lsp.cssls.setup {}
 
 -- npm i -g vscode-html-languageserver-bin
-require "lspconfig".html.setup {on_attach = on_attach}
+nvim_lsp.html.setup {}
 
 -- npm i -g pyright
-require "lspconfig".pyright.setup {on_attach = on_attach}
+nvim_lsp.pyright.setup {}
 
 -- npm i -g vscode-json-languageserver
-require "lspconfig".jsonls.setup {on_attach = on_attach}
+nvim_lsp.jsonls.setup {}
+
+-- npm i -g emmet-ls
+local configs = require "lspconfig/configs"
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+configs.emmet_ls = {
+    default_config = {
+        cmd = {"emmet-ls", "--stdio"},
+        filetypes = {"html", "css"},
+        root_dir = function()
+            return vim.loop.cwd()
+        end,
+        settings = {}
+    }
+}
+nvim_lsp.emmet_ls.setup {}
+
+-- pacman -S clang
+nvim_lsp.clangd.setup {}
 
 -- lua  https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 -- install instructions:
--- git clone https://github.com/sumneko/lua-language-server $HOME/.cache/nvim/nlua/sumneko_lua
--- cd ~/.cache/nvim/nlua/sumneko_lua
+-- git clone https://github.com/sumneko/lua-language-server $HOME/.local/share/nvim/lua/sumneko_lua
+-- cd ~/.local/share/nvim/lua/sumneko_lua
 -- git submodule update --init --recursive
 -- cd 3rd/luamake
 -- ninja -f ninja/linux.ninja
 -- cd ../..
 -- ./3rd/luamake/luamake rebuild
-local luapath = "/home/rafa/.cache/nvim/nlua/sumneko_lua"
+local luapath = "/home/rafa/.local/share/nvim/lua/sumneko_lua"
 local luabin = luapath .. "/bin/Linux/lua-language-server"
 
-require "lspconfig".sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
     cmd = {luabin, "-E", luapath .. "/main.lua"},
     settings = {
         Lua = {
@@ -53,6 +73,5 @@ require "lspconfig".sumneko_lua.setup {
                 }
             }
         }
-    },
-    on_attach = on_attach
+    }
 }
