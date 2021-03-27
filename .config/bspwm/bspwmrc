@@ -4,7 +4,6 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 picom -b --experimental-backends &
 killall mpd
 mpd &
-killall "polybar"
 "$HOME"/.config/polybar/launch.sh
 xwallpaper --zoom ~/.local/share/wall/fox.jpg
 killall "flameshot"
