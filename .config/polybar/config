@@ -191,7 +191,7 @@ type = custom/text
 content-background = ${colors.red}
 content-padding = 2
 content = ""
-click-left = ~/.local/bin/powermenu
+click-left = ~/.local/bin/scripts/powermenu
 
 [module/memory]
 ;type = internal/memory
