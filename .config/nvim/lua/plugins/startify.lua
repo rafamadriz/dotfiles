@@ -27,7 +27,7 @@ vim.api.nvim_exec(
 )
 
 vim.api.nvim_exec(
-    "let startify_bookmarks = [ { 'i': '~/.config/nvim/init.lua' }, { 'z': '~/.config/zsh/.zshrc' } ]",
+    "let startify_bookmarks = [ { 'i': '~/.config/nvim/init.lua' }, {'c': '~/.config/nvim/lua/config.lua'}, { 'z': '~/.config/zsh/.zshrc' } ]",
     true
 )
 

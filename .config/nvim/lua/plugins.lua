@@ -22,11 +22,7 @@ return require("packer").startup(
             }
         }
         use "mattn/emmet-vim"
-        use "capaj/vscode-standardjs-snippets"
-        use "Wscats/html-snippets"
-        use "cstrap/python-snippets"
-        use "Harry-Ross/vscode-c-snippets"
-        use "kitagry/vs-snippets"
+        use "rafamadriz/friendly-snippets"
 
         -- Telescope
         use {
@@ -46,11 +42,18 @@ return require("packer").startup(
             requires = {"windwp/nvim-ts-autotag"}
         }
 
+        -- Git
+        use "lewis6991/gitsigns.nvim"
+
         -- File manager
         use {
             "kyazdani42/nvim-tree.lua",
             requires = {"kyazdani42/nvim-web-devicons"}
         }
+
+        -- Markdown
+        use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install"}
+        use "junegunn/goyo.vim"
 
         -- Statusline and bufferline
         use "romgrk/barbar.nvim"
@@ -72,11 +75,11 @@ return require("packer").startup(
 
         -- Themes
         use "sainnhe/sonokai"
-        use "liuchengxu/space-vim-theme"
+        use "wadackel/vim-dogrun"
         use "christianchiarulli/nvcode-color-schemes.vim"
-        use "gruvbox-community/gruvbox"
+        use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
         use "Th3Whit3Wolf/one-nvim"
+        use "Th3Whit3Wolf/space-nvim"
         use "sainnhe/edge"
-        use "novakne/kosmikoa.nvim"
     end
 )

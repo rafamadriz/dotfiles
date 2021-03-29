@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("utils.core")
 local cmd = vim.cmd
 
 -- Global
@@ -49,16 +49,3 @@ cmd("set shortmess+=c")
 cmd("set iskeyword+=-")
 cmd("set path+=**")
 cmd("filetype plugin on")
-
--- Autocommands
-cmd [[au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
-cmd [[au BufNewFile,BufRead *.ejs set filetype=html]]
-cmd [[au FileType markdown let g:indentLine_enabled=0]]
--- Automatically deletes all trailing whitespace and newlines at end of file on save.
-cmd [[au BufWritePre * %s/\s\+$//e]]
-cmd [[au BufWritePre * %s/\n\+\%$//e]]
-cmd [[au BufWritePre *.[ch] %s/\%$/\r/e]]
--- Disables automatic commenting on newline:
-cmd [[au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o]]
--- Neoformat
-cmd [[au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry]]

@@ -1,7 +1,7 @@
 local vim = vim
 local i = require("plugins.statusline.icons")
 local u = require("plugins.statusline.utils")
-local git = require("utils")
+local git = require("utils.extra")
 local diagnostic = require("plugins.statusline.providers.diagnostic")
 local M = {}
 
