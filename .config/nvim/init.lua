@@ -1,8 +1,11 @@
 -- General settings
-require("settings")
+require("options")
+require("config")
+require("handlers")
 require("mappings")
+require("autocmds")
 require("plugins")
-require("themes")
+require("colorscheme")
 
 -- LSP
 require("lsp")
