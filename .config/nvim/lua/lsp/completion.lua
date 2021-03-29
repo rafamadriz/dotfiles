@@ -1,4 +1,4 @@
-local u = require("utils")
+local u = require("utils.core")
 
 -- TODO figure out why this don't work
 vim.fn.sign_define(
@@ -49,9 +49,9 @@ require "compe".setup {
     documentation = true,
     source = {
         path = {kind = "  "},
-        buffer = {kind = "  "},
-        calc = {kind = "  "},
-        vsnip = {kind = ""},
+        buffer = {kind = ""},
+        calc = {kind = " "},
+        vsnip = {kind = "﬌"},
         nvim_lsp = {kind = ""},
         nvim_lua = {kind = " "},
         spell = {kind = "  "},
