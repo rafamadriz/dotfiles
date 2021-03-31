@@ -10,9 +10,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     }
 )
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
 local nvim_lsp = require "lspconfig"
 
 -- npm i -g bash-language-server
@@ -32,8 +29,6 @@ nvim_lsp.jsonls.setup {}
 
 -- npm i -g emmet-ls
 local configs = require "lspconfig/configs"
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 configs.emmet_ls = {
     default_config = {
@@ -65,7 +60,6 @@ local luabin = luapath .. "/bin/Linux/lua-language-server"
 
 nvim_lsp.sumneko_lua.setup {
     cmd = {luabin, "-E", luapath .. "/main.lua"},
-    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {
@@ -76,9 +70,8 @@ nvim_lsp.sumneko_lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {"vim"}
+                globals = {"vim", "use"}
             },
-            completion = {snippetSupport = true},
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = {

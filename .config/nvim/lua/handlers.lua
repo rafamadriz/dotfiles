@@ -36,8 +36,10 @@ local function check_theme(theme)
     elseif theme == "sonokai" then
         style = styles.sonokai
     end
-    if CS == "" or CS == nil then
-        CS = style[1]
+    if style ~= nil then
+        if CS == "" or CS == nil then
+            CS = style[1]
+        end
     end
 end
 check_theme(C)
