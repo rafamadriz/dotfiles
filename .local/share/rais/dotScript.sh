@@ -24,11 +24,10 @@ user_does() {
   # setting up betterlockscreen
   #betterlockscreen -u "$HOME"/.local/share/wall/firewatch.jpg
 
-  # junegunn/vim-plug for managin plugins
-  curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  # wbthomason/packer.nvim for managin plugins
+  git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
   # install neovim's plugins
-  nvim --headless +PlugInstall +qall
+  nvim --headless +PackerInstall +qall
 }
 user_does
