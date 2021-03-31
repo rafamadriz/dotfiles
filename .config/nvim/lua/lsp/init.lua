@@ -55,7 +55,7 @@ nvim_lsp.clangd.setup {}
 -- cd ../..
 -- ./3rd/luamake/luamake rebuild
 
-local luapath = "/home/rafa/.local/share/nvim/lua/sumneko_lua"
+local luapath = "/home/" .. os.getenv("USER") .. "/.local/share/nvim/lua/sumneko_lua"
 local luabin = luapath .. "/bin/Linux/lua-language-server"
 
 nvim_lsp.sumneko_lua.setup {
