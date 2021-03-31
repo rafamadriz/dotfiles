@@ -1,3 +1,6 @@
 [user]
-	email = rafamadrizjr@gmail.com
+	email = rafaelcontacto@pm.me
 	name = rafamadriz
+	signingkey = F5302DA7C6F2F5FD
+[commit]
+	gpgsign = true
