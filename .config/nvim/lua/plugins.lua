@@ -12,17 +12,16 @@ return require("packer").startup(
     function()
         use "wbthomason/packer.nvim"
 
-        -- Autocomplete
+        -- LSP, Autocomplete and snippets
         use {
             "neovim/nvim-lspconfig",
-            requires = {
-                {"hrsh7th/nvim-compe"},
-                {"onsails/lspkind-nvim"},
-                {"hrsh7th/vim-vsnip"}
-            }
+            "hrsh7th/nvim-compe",
+            "sbdchd/neoformat",
+            "onsails/lspkind-nvim",
+            "hrsh7th/vim-vsnip",
+            "mattn/emmet-vim",
+            "rafamadriz/friendly-snippets"
         }
-        use "mattn/emmet-vim"
-        use "rafamadriz/friendly-snippets"
 
         -- Telescope
         use {
@@ -37,9 +36,9 @@ return require("packer").startup(
 
         -- Treesitter
         use {
-            "nvim-treesitter/nvim-treesitter",
-            run = ":TSUpdate",
-            requires = {"windwp/nvim-ts-autotag"}
+            {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
+            "windwp/nvim-ts-autotag",
+            "p00f/nvim-ts-rainbow"
         }
 
         -- Git
@@ -56,30 +55,32 @@ return require("packer").startup(
         use "junegunn/goyo.vim"
 
         -- Statusline and bufferline
-        use "romgrk/barbar.nvim"
-        use "glepnir/galaxyline.nvim"
+        use {"romgrk/barbar.nvim", "glepnir/galaxyline.nvim"}
 
-        -- Start screen
-        use "mhinz/vim-startify"
+        -- Terminal
+        use {"akinsho/nvim-toggleterm.lua", "voldikss/vim-floaterm"}
 
         -- General plugins
-        use "glepnir/indent-guides.nvim"
-        use "sbdchd/neoformat"
-        use "b3nj5m1n/kommentary"
-        use "windwp/nvim-autopairs"
-        use "norcalli/nvim-colorizer.lua"
-        use "akinsho/nvim-toggleterm.lua"
-        use "RRethy/vim-illuminate"
-        use "p00f/nvim-ts-rainbow"
-        use "vim-scripts/loremipsum"
+        use {
+            "mhinz/vim-startify",
+            "mbbill/undotree",
+            "b3nj5m1n/kommentary",
+            "glepnir/indent-guides.nvim",
+            "windwp/nvim-autopairs",
+            "norcalli/nvim-colorizer.lua",
+            "RRethy/vim-illuminate",
+            "vim-scripts/loremipsum"
+        }
 
         -- Themes
-        use "sainnhe/sonokai"
-        use "wadackel/vim-dogrun"
-        use "christianchiarulli/nvcode-color-schemes.vim"
-        use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-        use "Th3Whit3Wolf/one-nvim"
-        use "Th3Whit3Wolf/space-nvim"
-        use "sainnhe/edge"
+        use {
+            "sainnhe/sonokai",
+            "wadackel/vim-dogrun",
+            "christianchiarulli/nvcode-color-schemes.vim",
+            "Th3Whit3Wolf/one-nvim",
+            "Th3Whit3Wolf/space-nvim",
+            "sainnhe/edge",
+            {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
+        }
     end
 )

@@ -48,16 +48,16 @@ require "compe".setup {
     max_menu_width = 100,
     documentation = true,
     source = {
-        path = {kind = "  "},
-        buffer = {kind = ""},
-        calc = {kind = " "},
-        vsnip = {kind = "﬌"},
-        nvim_lsp = {kind = ""},
-        nvim_lua = {kind = " "},
+        path = {kind = "  "},
+        buffer = {kind = "  "},
+        calc = {kind = "   "},
+        vsnip = {kind = " ﬌ "},
+        nvim_lsp = {kind = "  "},
+        nvim_lua = {kind = "  "},
         spell = {kind = "  "},
-        tags = true,
-        -- treesitter = true,
-        emoji = {kind = " ﲃ "}
+        tags = false,
+        treesitter = false,
+        emoji = false
     }
 }
 
@@ -66,30 +66,29 @@ require("lspkind").init(
     {
         with_text = true,
         symbol_map = {
-            Text = "",
-            Method = "ƒ",
-            Function = "",
-            Constructor = "",
-            Variable = "",
-            Class = "",
-            Interface = "ﰮ",
-            Module = "",
-            Property = "",
-            Unit = "",
-            Value = "",
-            Enum = "了",
-            Keyword = "",
-            Snippet = "﬌",
-            Color = "",
-            File = "",
-            Folder = "",
-            EnumMember = "",
-            Constant = "",
-            Struct = ""
+            Text = "  ",
+            Method = " ƒ ",
+            Function = "  ",
+            Constructor = "  ",
+            Variable = "  ",
+            Class = "  ",
+            Interface = "  ",
+            Module = "  ",
+            Property = "  ",
+            Unit = "  ",
+            Value = "  ",
+            Enum = "  ",
+            Keyword = "  ",
+            Snippet = " ﬌ ",
+            Color = "  ",
+            File = "  ",
+            Folder = "  ",
+            EnumMember = "  ",
+            Constant = "   ",
+            Struct = "   "
         }
     }
 )
-
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end

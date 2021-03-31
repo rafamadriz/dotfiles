@@ -35,6 +35,14 @@ map bz cd ~/.config/zsh
 map bn cd ~/.config/nvim
 map br cd ~/.config/rofi
 
+# Custom Functions
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$f";;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
 cmd open_config ${{
     du -a ~/.config/* ~/.local/bin/* ~/.local/share/rais/* | awk '{print $2}' | fzf | xargs -r "$EDITOR" ;
 }}
