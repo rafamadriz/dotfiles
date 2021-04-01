@@ -1,4 +1,4 @@
-# To install on Arch based distribution run with `sudo`:
+# To install on Arch based distribution run:
 
 ```sh
 
