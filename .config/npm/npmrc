@@ -1,5 +1,4 @@
-prefix=${XDG_DATA_HOME}/npm
-cache=${XDG_CACHE_HOME}/npm
-tmp=${XDG_RUNTIME_DIR}/npm
-init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
+cache=/home/rafa/.cache/npm
+tmp=/run/user/1000/npm
+init-module=/home/rafa/.config/npm/config/npm-init.js
 package-lock=false
