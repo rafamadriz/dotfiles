@@ -56,6 +56,15 @@ get_pkg_list() {
   curl -OL $pkgs_list
 }
 
+wait() {
+  sudo -v
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done 2>/dev/null &
+}
+
 check_net() {
   ping -q -c 1 example.org >/dev/null || error "Check your network connection" exit
 }
@@ -63,6 +72,7 @@ check_net() {
 sync() {
   warn "sudo password is needed for installind dependencies"
   info "Sycning repositories"
+  wait
   sudo pacman -Syy
 }
 
