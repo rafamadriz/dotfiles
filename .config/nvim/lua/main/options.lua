@@ -47,5 +47,5 @@ u.opt("b", "syntax", "on")
 -- Commands
 cmd("set shortmess+=c")
 cmd("set iskeyword+=-")
-cmd("set path+=**")
+cmd("set path+=.,**")
 cmd("filetype plugin on")

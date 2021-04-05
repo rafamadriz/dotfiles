@@ -18,11 +18,6 @@ require("kommentary.config").use_extended_mappings()
 -- Autopairs
 require("nvim-autopairs").setup()
 
--- Illuminate
-vim.g.Illuminate_ftblacklist = {"NvimTree"}
-vim.g.Illuminate_highlightUnderCursor = 0
-vim.g.Illuminate_delay = 500
-
 -- Git signs
 require("gitsigns").setup {
     signs = {
@@ -48,3 +43,21 @@ require("gitsigns").setup {
     status_formatter = nil, -- Use default
     use_decoration_api = false
 }
+
+-- Emmet
+vim.g.user_emmet_mode = "inv"
+vim.g.user_emmet_expandabbr_key = ",,"
+vim.g.user_emmet_expandword_key = "<C-y>;"
+vim.g.user_emmet_update_tag = "<C-y>u"
+vim.g.user_emmet_balancetaginward_key = "<C-y>d"
+vim.g.user_emmet_balancetagoutward_key = "<C-y>D"
+vim.g.user_emmet_next_key = "<C-y>n"
+vim.g.user_emmet_prev_key = "<C-y>N"
+vim.g.user_emmet_imagesize_key = "<C-y>i"
+vim.g.user_emmet_togglecomment_key = "<C-y>/"
+vim.g.user_emmet_splitjointag_key = "<C-y>j"
+vim.g.user_emmet_removetag_key = "<C-y>k"
+vim.g.user_emmet_anchorizeurl_key = "<C-y>a"
+vim.g.user_emmet_anchorizesummary_key = "<C-y>A"
+vim.g.user_emmet_mergelines_key = "<C-y>m"
+vim.g.user_emmet_codepretty_key = "<C-y>c"

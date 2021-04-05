@@ -55,40 +55,41 @@ require "compe".setup {
         nvim_lsp = {kind = "  "},
         nvim_lua = {kind = "  "},
         spell = {kind = "  "},
-        tags = false,
-        treesitter = false,
-        emoji = false
+        tags = true,
+        -- treesitter = true,
+        emoji = {kind = " ﲃ "}
     }
 }
 
 -- symbols for autocomplete
-require("lspkind").init(
-    {
-        with_text = true,
-        symbol_map = {
-            Text = "  ",
-            Method = " ƒ ",
-            Function = "  ",
-            Constructor = "  ",
-            Variable = "  ",
-            Class = "  ",
-            Interface = "  ",
-            Module = "  ",
-            Property = "  ",
-            Unit = "  ",
-            Value = "  ",
-            Enum = "  ",
-            Keyword = "  ",
-            Snippet = " ﬌ ",
-            Color = "  ",
-            File = "  ",
-            Folder = "  ",
-            EnumMember = "  ",
-            Constant = "   ",
-            Struct = "   "
-        }
-    }
-)
+vim.lsp.protocol.CompletionItemKind = {
+    "   ",
+    "  ",
+    "  ",
+    "  ",
+    " ﴲ ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    " 襁 ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    " ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    "  ",
+    " ﲀ ",
+    " ﳤ ",
+    "  ",
+    "  ",
+    "  "
+}
+
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end

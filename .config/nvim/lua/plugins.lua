@@ -17,10 +17,9 @@ return require("packer").startup(
             "neovim/nvim-lspconfig",
             "hrsh7th/nvim-compe",
             "sbdchd/neoformat",
-            "onsails/lspkind-nvim",
             "hrsh7th/vim-vsnip",
             "mattn/emmet-vim",
-            "rafamadriz/friendly-snippets"
+            "~/Repos/friendly-snippets"
         }
 
         -- Telescope
@@ -29,7 +28,6 @@ return require("packer").startup(
             requires = {
                 {"nvim-lua/popup.nvim"},
                 {"nvim-lua/plenary.nvim"},
-                {"nvim-telescope/telescope-fzy-native.nvim"},
                 {"nvim-telescope/telescope-media-files.nvim"}
             }
         }
@@ -45,41 +43,36 @@ return require("packer").startup(
         use "lewis6991/gitsigns.nvim"
 
         -- File manager
-        use {
-            "kyazdani42/nvim-tree.lua",
-            requires = {"kyazdani42/nvim-web-devicons"}
-        }
+        use "kyazdani42/nvim-tree.lua"
 
         -- Markdown
         use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install"}
         use "junegunn/goyo.vim"
 
-        -- Statusline and bufferline
-        use {"romgrk/barbar.nvim", "glepnir/galaxyline.nvim"}
+        -- Statusline
+        use "glepnir/galaxyline.nvim"
 
         -- Terminal
         use {"akinsho/nvim-toggleterm.lua", "voldikss/vim-floaterm"}
 
         -- General plugins
         use {
+            "kyazdani42/nvim-web-devicons",
             "mhinz/vim-startify",
             "mbbill/undotree",
             "b3nj5m1n/kommentary",
-            "glepnir/indent-guides.nvim",
             "windwp/nvim-autopairs",
-            "norcalli/nvim-colorizer.lua",
-            "RRethy/vim-illuminate",
-            "vim-scripts/loremipsum"
+            "norcalli/nvim-colorizer.lua"
         }
 
         -- Themes
         use {
             "sainnhe/sonokai",
-            "wadackel/vim-dogrun",
             "christianchiarulli/nvcode-color-schemes.vim",
-            "Th3Whit3Wolf/one-nvim",
             "Th3Whit3Wolf/space-nvim",
             "sainnhe/edge",
+            "Iron-E/nvim-highlite",
+            {"Th3Whit3Wolf/onebuddy", requires = "tjdevries/colorbuddy.vim"},
             {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
         }
     end
