@@ -3,7 +3,17 @@ local gls = gl.section
 local devicons = require "nvim-web-devicons"
 local vcs = require("galaxyline.provider_vcs")
 
-gl.short_line_list = {"vim-plug", "tagbar", "Mundo", "MundoDiff", "startify"}
+gl.short_line_list = {
+    "diff",
+    "undotree",
+    "vista",
+    "vista_markdown",
+    "NvimTree",
+    "startify",
+    "packer",
+    "packager",
+    "FloaTerm"
+}
 
 -- Gruvbox
 local colors = {

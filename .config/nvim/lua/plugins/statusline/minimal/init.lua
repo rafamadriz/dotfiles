@@ -2,7 +2,7 @@ local cmd = vim.cmd
 local fn = vim.fn
 local gl = require("galaxyline")
 local section = gl.section
-gl.short_line_list = {"LuaTree", "packager", "Floaterm", "coc-eplorer"}
+gl.short_line_list = {"packager", "Floaterm", "packer", "NvimTree", "undotree", "diff", "Floaterm"}
 
 local one_dark_colors = {
     bg = "#2e3440",

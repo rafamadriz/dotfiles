@@ -35,7 +35,7 @@ vim.fn.sign_define(
 )
 
 require "compe".setup {
-    enabled = true,
+    enabled = Completion.enabled,
     autocomplete = true,
     debug = false,
     min_length = 1,
@@ -48,13 +48,13 @@ require "compe".setup {
     max_menu_width = 100,
     documentation = true,
     source = {
-        path = {kind = "  "},
-        buffer = {kind = "  "},
-        calc = {kind = "   "},
-        vsnip = {kind = " ﬌ "},
-        nvim_lsp = {kind = "  "},
+        path = Completion.path,
+        buffer = Completion.buffer,
+        calc = Completion.calc,
+        vsnip = Completion.snippets,
+        nvim_lsp = Completion.lsp,
         nvim_lua = {kind = "  "},
-        spell = {kind = "  "},
+        spell = Completion.spell,
         tags = true,
         -- treesitter = true,
         emoji = {kind = " ﲃ "}

@@ -1,12 +1,3 @@
-require("config")
-
-C = Theming.colorscheme:gsub("%s+", "")
-CS = Theming.colorscheme_style:gsub("%s+", "")
-
-if C == "" or C == nil then
-    C = "edge"
-end
-
 local styles = {
     edge = {
         "default",
@@ -27,22 +18,34 @@ local styles = {
     }
 }
 
-local function check_theme(theme)
-    local style
-    if theme == "edge" then
-        style = styles.edge
-    elseif theme == "gruvbox" then
-        style = styles.gruvbox
-    elseif theme == "sonokai" then
-        style = styles.sonokai
-    end
-    if style ~= nil then
-        if CS == "" or CS == nil then
-            CS = style[1]
+if Theming.colorscheme == nil or Theming.colorscheme:gsub("%s+", "") == "" then
+    C = "edge"
+else
+    C = Theming.colorscheme:gsub("%s+", "")
+end
+
+if Theming.colorscheme_style ~= nil then
+    CS = Theming.colorscheme_style:gsub("%s+", "")
+    local function check_theme(theme)
+        local style
+        if theme == "edge" then
+            style = styles.edge
+        elseif theme == "gruvbox" then
+            style = styles.gruvbox
+        elseif theme == "sonokai" then
+            style = styles.sonokai
+        end
+        if style ~= nil then
+            if CS == "" or CS == nil then
+                CS = style[1]
+            end
         end
     end
+    check_theme(C)
+else
+    CS = ""
 end
-check_theme(C)
+
 --[[ local function check_themes(theme)
     for i, k in pairs(styles) do
         if i == theme then
@@ -80,3 +83,51 @@ local function check_style(theme)
     end
 end
 check_style(C) ]]
+-- LSP
+
+if LSP.bash == nil then
+    LSP.bash = false
+elseif LSP.clangd == nil then
+    LSP.clangd = false
+elseif LSP.css == nil then
+    LSP.css = false
+elseif LSP.emmet == nil then
+    LSP.emmet = false
+elseif LSP.json == nil then
+    LSP.json = false
+elseif LSP.lua == nil then
+    LSP.lua = false
+elseif LSP.python == nil then
+    LSP.python = false
+elseif LSP.tsserver == nil then
+    LSP.tsserver = false
+end
+
+-- Completion
+if Completion.enabled == nil then
+    Completion.enabled = true
+end
+
+if Completion.snippets == nil or Completion.snippets == true then
+    Completion.snippets = {kind = " ﬌ "}
+end
+
+if Completion.lsp == nil or Completion.lsp == true then
+    Completion.lsp = {kind = "  "}
+end
+
+if Completion.buffer == nil or Completion.buffer == true then
+    Completion.buffer = {kind = "  "}
+end
+
+if Completion.path == nil or Completion.path == true then
+    Completion.path = {kind = "  "}
+end
+
+if Completion.calc == nil or Completion.calc == true then
+    Completion.calc = {kind = "   "}
+end
+
+if Completion.spell == nil or Completion.spell == true then
+    Completion.spell = {kind = "  "}
+end

@@ -9,7 +9,6 @@ require("main/colorscheme")
 
 -- LSP
 require("lsp")
-require("lsp/completion")
 
 -- Plugins
 require("plugins/general")
