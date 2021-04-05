@@ -1,6 +1,6 @@
 local vim = vim
-local i = require("plugins.statusline.icons")
-local u = require("plugins.statusline.utils")
+local i = require("plugins.statusline.galaxy.icons")
+local u = require("plugins.statusline.galaxy.utils")
 
 local M = {}
 

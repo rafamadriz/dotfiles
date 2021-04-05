@@ -4,11 +4,12 @@ vim.g.mapleader = " "
 
 -- Basics
 u.map("n", "<leader>w", ":update<CR>")
-u.map("n", "<leader>q", ":BufferClose<CR>")
-u.map("n", "<C-w>", ":BufferClose<CR>")
+u.map("n", "<leader>q", ":bdelete<CR>")
+u.map("n", "<C-w>", ":bdelete<CR>")
 u.map("i", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
+u.map("n", "nh", ":noh<CR>")
 
 -- Move selected line / block of text in visual mode
 u.map("x", "K", ":move '<-2<CR>gv-gv")
@@ -43,18 +44,8 @@ u.map("n", "<leader>gb", ":Telescope git_branches<CR>")
 u.map("n", "<leader>gs", ":Telescope git_status<CR>")
 
 -- buffer navigation
-u.map("n", "<TAB>", ":BufferNext<CR>")
-u.map("n", "<S-TAB>", ":BufferPrevious<CR>")
-u.map("n", "<A-1>", ":BufferGoto 1<CR>")
-u.map("n", "<A-2>", ":BufferGoto 2<CR>")
-u.map("n", "<A-3>", ":BufferGoto 3<CR>")
-u.map("n", "<A-4>", ":BufferGoto 4<CR>")
-u.map("n", "<A-5>", ":BufferGoto 5<CR>")
-u.map("n", "<A-6>", ":BufferGoto 6<CR>")
-u.map("n", "<A-7>", ":BufferGoto 7<CR>")
-u.map("n", "<A-8>", ":BufferGoto 8<CR>")
-u.map("n", "<A-9>", ":BufferGoto 9<CR>")
-u.map("n", "<A-l>", ":BufferLast<CR>")
+u.map("n", "<TAB>", ":bn<CR>")
+u.map("n", "<S-TAB>", ":bp<CR>")
 
 -- File manager
 u.map("n", "<leader>e", ":NvimTreeToggle<CR>")

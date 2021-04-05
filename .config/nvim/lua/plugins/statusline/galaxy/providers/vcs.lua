@@ -1,8 +1,8 @@
 local vim = vim
-local i = require("plugins.statusline.icons")
-local u = require("plugins.statusline.utils")
+local i = require("plugins.statusline.galaxy.icons")
+local u = require("plugins.statusline.galaxy.utils")
 local git = require("utils.extra")
-local diagnostic = require("plugins.statusline.providers.diagnostic")
+local diagnostic = require("plugins.statusline.galaxy.providers.diagnostic")
 local M = {}
 
 -- get diff datas

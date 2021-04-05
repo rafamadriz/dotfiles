@@ -1,5 +1,5 @@
 local vim, lsp, api = vim, vim.lsp, vim.api
-local i = require("plugins.statusline.icons")
+local i = require("plugins.statusline.galaxy.icons")
 
 local M = {}
 
