@@ -28,6 +28,7 @@ export FZF_ALT_C_COMMAND='fd --type d . --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 export MYVIMRC="$HOME/.config/nvim/init.lua"
 export ANDROID_HOME="$XDG_DATA_HOME"/android
+export GPG_TTY=$(tty)
 
 # aliases
 source ~/.config/zsh/aliasrc

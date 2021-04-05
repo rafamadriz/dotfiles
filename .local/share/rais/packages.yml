@@ -7,6 +7,9 @@
 - Description: Daemon that runs specified programs at scheduled times and related tools
   name: cronie
 
+- Description: the fast distributed version control system
+  name: git
+
 - Description: Fast and flexible source code highlighter (CLI version)
   name: highlight
 

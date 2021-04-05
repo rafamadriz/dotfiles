@@ -1,47 +1,103 @@
 """"""""""""""""""""""
 "  General Settings  "
 """"""""""""""""""""""
+filetype plugin indent on
 syntax on
-filetype plugin on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent smartindent
+set backspace=indent,eol,start
+set hidden
+set path+=.,**
+set colorcolumn=80
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab
+set autoindent smartindent
 set incsearch ignorecase smartcase nohlsearch
 set numberwidth=1 relativenumber nu title
 set viminfo+=n$HOME/.config/nvim/viminfo
 set completeopt=menuone,longest,noselect
 set omnifunc=syntaxcomplete#Complete
-set undodir=~/.config/nvim/undodir
 set noswapfile nobackup undofile
-set backspace=indent,eol,start
 set clipboard+=unnamedplus
 set showcmd noshowmode
-set complete+=kspell
+set complete+=k,kspell complete-=w complete-=b complete-=u complete-=t
 set updatetime=50
 set scrolloff=10
 set termguicolors
 set encoding=UTF-8
 set noerrorbells
 set shortmess+=c
-set path+=**
 set nowrap
 set showmatch
+set wildmode=list,full
 set wildmenu
 set cursorline
 set nocompatible
 set mouse=a
-set hidden
-set splitbelow
+set splitbelow splitright
+
+colorscheme tender
 
 " jump to the last position when reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-colorscheme tender
-highlight Comment gui=italic
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Automatically deletes all trailing whitespace and newlines at end of file on save.
+au BufWritePre * %s/\s\+$//e
+au BufWritePre * %s/\n\+\%$//e
+au BufWritePre *.[ch] %s/\%$/\r/e
+
+"--------------------- Mappings -------------------
+" AUTOCOMPLETE
+" - ^n - autocomplete suggestions (next)
+" - ^p - autocomplete suggestions (previous)
+" - ^x^f - for filenames
+" - ^x^] - tags only
+
+let mapleader = " "
+
+inoremap jk <ESC>
+nnoremap Q <Nop>
+nmap <leader>w :update<CR>
+nmap <leader>q :bdelete<CR>
+nnoremap <leader>b :buffers<CR>:buffer<Space>
+
+" Better Window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Move selected line / block of text in visual mode
+xmap K :move '<-2<CR>gv-gv
+xmap J :move '>+1<CR>gv-gv
+
+" Check file in shellcheck
+nmap <leader>s :!clear && shellcheck %<CR>
+
+"""""""""""""""""""""""
+"  Autocomplete Menu  "
+"""""""""""""""""""""""
+set omnifunc=htmlcomplete#CompleteTags
+set omnifunc=csscomplete#CompleteCSS
+set omnifunc=javascriptcomplete#CompleteJS
+
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+" Tweaks for browsing files
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  " open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 """"""""""""""""
 "  Statusline  "
 """"""""""""""""
-set laststatus=2
-set statusline=
+highlight Comment gui=italic
+
 let g:currentmode={
        \ 'n'  : 'NORMAL ',
        \ 'v'  : 'VISUAL ',
@@ -52,87 +108,92 @@ let g:currentmode={
        \ 'Rv' : 'V·Replace ',
        \ 'c'  : 'Command ',
        \}
-set statusline+=%1*\ %{toupper(g:currentmode[mode()])}
-set statusline+=%#PmenuSel#
-set statusline+=%2*\ %f
-set statusline+=%m
+set laststatus=2
+
+set statusline=
+set statusline+=%4*
+set statusline+=[%n]
+set statusline+=%1*
+" Show current mode
+set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=%{&spell?'[SPELL]':''}
+
+set statusline+=%#WarningMsg#
+set statusline+=%{&paste?'[PASTE]':''}
+
+set statusline+=%2*
+" File path, as typed or relative to current directory
+set statusline+=\ %F
+
+set statusline+=%{&modified?'\ [+]':''}
+set statusline+=%{&readonly?'\ []':''}
+
+" Truncate line here
+set statusline+=%<
+
+" Separation point between left and right aligned items.
 set statusline+=%=
-set statusline+=%y
-set statusline+=%3*\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=%3*\[%{&fileformat}\]\ |
-set statusline+=%4*\ %p%%
-set statusline+=%4*\ %l/%L
-set statusline+=%4*\ col:%c\ |
 
-hi user1 guifg=#1d1d1d ctermfg=234 guibg=#666666 ctermbg=242 gui=Bold cterm=Bold
-hi user2 guifg=#999999 ctermfg=246 guibg=#444444 ctermbg=238 gui=NONE cterm=NONE
-hi user3 guifg=NONE ctermfg=NONE guibg=#444444 ctermbg=238 gui=NONE cterm=NONE
-hi user4 guifg=#c9d05c ctermfg=185 guibg=NONE ctermbg=NONE gui=Bold cterm=Bold
+set statusline+=%{&filetype!=#''?&filetype.'\ ':'none\ '}
 
-hi PMenu guifg=#dadada ctermfg=253 guibg=#335261 ctermbg=239 gui=NONE cterm=NONE
-hi PMenuSel guifg=#335261 ctermfg=239 guibg=#c9d05c ctermbg=185 gui=NONE cterm=NONE
-hi PmenuSbar guifg=#335261 ctermfg=239 guibg=#335261 ctermbg=239 gui=NONE cterm=NONE
-hi PmenuThumb guifg=#c9d05c ctermfg=185 guibg=#c9d05c ctermbg=185 gui=NONE cterm=NONE
+" Encoding & Fileformat
+set statusline+=%#WarningMsg#
+set statusline+=%{&fileencoding!='utf-8'?'['.&fileencoding.']':''}
+
+set statusline+=%2*
+
+" Warning about byte order
+set statusline+=%#WarningMsg#
+set statusline+=%{&bomb?'[BOM]':''}
+
+set statusline+=%3*
+" Location of cursor line
+set statusline+=[%l/%L]
+
+set statusline+=%1*
+" Column number
+set statusline+=\ col:%2c
+
+" Warning about trailing spaces.
+set statusline+=%#WarningMsg#
+set statusline+=%{StatuslineTabWarning()}
+
+" Find if they are mixed indentings.
+function! StatuslineTabWarning()
+    if !exists('b:statusline_tab_warning')
+        " If the file is unmodifiable, do not warn this.
+        if !&modifiable
+            let b:statusline_trailing_space_warning = ''
+            return b:statusline_trailing_space_warning
+        endif
+
+        let has_leading_tabs = search('^\t\+', 'nw') != 0
+        let has_leading_spaces = search('^ \+', 'nw') != 0
+
+        if has_leading_tabs && has_leading_spaces
+            let b:statusline_tab_warning = ' [mixed-indenting]'
+        elseif has_leading_tabs
+            let b:statusline_tab_warning = ' [tabbed-indenting]'
+        else
+            let b:statusline_tab_warning = ''
+        endif
+    endif
+
+    return b:statusline_tab_warning
+endfunction
+
+hi user1 guifg=#1d1d1d guibg=#8ec07c
+hi user2 guifg=#fff guibg=#3c3836
+hi user3 guifg=#fff guibg=#504945
+hi user4 guifg=#fff guibg=#282828
 
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
-    hi User1 guibg=White ctermfg=6 guifg=Black ctermbg=0
+    hi User1 guibg=#83a598
   else
-    hi User1 guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
+    hi User1 guibg=#8ec07c
   endif
 endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
-au InsertLeave * hi User1 guibg=#778c82 ctermfg=8 guifg=Black ctermbg=15
-
-"""""""""""""""""""""""
-"  Autocomplete Menu  "
-"""""""""""""""""""""""
-set omnifunc=htmlcomplete#CompleteTags
-set omnifunc=csscomplete#CompleteCSS
-
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
-" Trim any trailing white space
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup MYVIMRC
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup END
-
-" Tweaks for browsing files
-let g:netrw_banner=0        " disable annoying banner
-let g:netrw_browse_split=4  " open in prior window
-let g:netrw_altv=1          " open splits to the right
-let g:netrw_liststyle=3     " tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-
-let mapleader = " "
-
-"--------------------- Useful Commands -------------------
-" AUTOCOMPLETE
-" - ^n - autocomplete suggestions (next)
-" - ^p - autocomplete suggestions (previous)
-" - ^x^f - for filenames
-" - ^x^] - tags only
-
-inoremap jk <ESC>
-inoremap kj <ESC>
-nnoremap Q <Nop>
-nmap <leader>w :w<CR>
-nmap <leader>q :bdelete<CR>
-nnoremap <leader>b :buffers<CR>:buffer<Space>
-
-" Better Window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+au InsertLeave * hi User1 guibg=#8ec07c
