@@ -9,7 +9,16 @@ local function has_width_gt(cols)
 end
 
 local gls = gl.section
-gl.short_line_list = {"defx", "packager", "vista", "NvimTree", "coc-explorer"}
+gl.short_line_list = {
+    "diff",
+    "undotree",
+    "vista",
+    "vista_markdown",
+    "NvimTree",
+    "packer",
+    "packager",
+    "FloaTerm"
+}
 
 local colors = {
     bg = "#32302f",

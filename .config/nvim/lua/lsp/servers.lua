@@ -13,19 +13,19 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
 local nvim_lsp = require "lspconfig"
 
 -- npm i -g bash-language-server
-nvim_lsp.bashls.setup {}
+nvim_lsp.bashls.setup {autostart = LSP.bash}
 
 -- npm i -g typescript typescript-language-server
-nvim_lsp.tsserver.setup {}
+nvim_lsp.tsserver.setup {autostart = LSP.tsserver}
 
 -- npm i -g vscode-css-languageserver-bin
-nvim_lsp.cssls.setup {}
+nvim_lsp.cssls.setup {autostart = LSP.css}
 
 -- npm i -g pyright
-nvim_lsp.pyright.setup {}
+nvim_lsp.pyright.setup {autostart = LSP.python}
 
 -- npm i -g vscode-json-languageserver
-nvim_lsp.jsonls.setup {}
+nvim_lsp.jsonls.setup {autostart = LSP.json}
 
 -- npm i -g emmet-ls
 local configs = require "lspconfig/configs"
@@ -40,10 +40,10 @@ configs.emmet_ls = {
         settings = {}
     }
 }
-nvim_lsp.emmet_ls.setup {}
+nvim_lsp.emmet_ls.setup {autostart = LSP.emmet}
 
 -- pacman -S clang
-nvim_lsp.clangd.setup {}
+nvim_lsp.clangd.setup {autostart = LSP.clangd}
 
 -- lua  https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 -- install instructions:
@@ -60,6 +60,7 @@ local luabin = luapath .. "/bin/Linux/lua-language-server"
 
 nvim_lsp.sumneko_lua.setup {
     cmd = {luabin, "-E", luapath .. "/main.lua"},
+    autostart = LSP.lua,
     settings = {
         Lua = {
             runtime = {
@@ -70,7 +71,7 @@ nvim_lsp.sumneko_lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {"vim", "use", "run", "Theming"}
+                globals = {"vim", "use", "run", "Theming", "LSP", "Completion"}
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files

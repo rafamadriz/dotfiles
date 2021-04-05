@@ -145,12 +145,15 @@ local space = printer(" ")
 	 */
 --]]
 galaxyline.short_line_list = {
-    "dbui",
     "diff",
-    "peekaboo",
     "undotree",
     "vista",
-    "vista_markdown"
+    "vista_markdown",
+    "NvimTree",
+    "startify",
+    "packer",
+    "packager",
+    "FloaTerm"
 }
 
 section.left = {
