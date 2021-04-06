@@ -47,8 +47,6 @@ dependencies_aur=$(sed -n 's/^[ \t]*//;/aur/p' ./packages.yml | cut -d' ' -f2)
 pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.yml"
 aur_repo="https://aur.archlinux.org/paru.git"
 dotfiles="https://github.com/rafamadriz/dotfiles.git"
-plugin_manager="https://github.com/wbthomason/packer.nvim"
-plugin_dir="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
 
 # Utils
 get_pkg_list() {
@@ -143,16 +141,6 @@ setup_dotfiles() {
   #betterlockscreen -u "$HOME"/.local/share/wall/firewatch.jpg
 }
 
-neovim() {
-  check_net
-
-  # wbthomason/packer.nvim for managin plugins
-  git clone $plugin_manager "$plugin_dir"
-
-  # install neovim's plugins
-  nvim --headless +PackerInstall +qall
-}
-
 final_touches() {
   info "Almost done, some final settings :)"
   # Make pacman and paru colorful and adds eye candy on the progress bar.
@@ -176,7 +164,6 @@ main() {
   aur_helper_install
   aur_depend
   setup_dotfiles
-  neovim
   final_touches
 }
 main
