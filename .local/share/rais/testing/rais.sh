@@ -41,19 +41,19 @@ if [ "$(id -u)" = 0 ]; then
   exit 1
 fi
 
-# Variables
-dependencies=$(sed -n 's/^[ \t]*//;/name/p' ./packages.yml | cut -d' ' -f2)
-dependencies_aur=$(sed -n 's/^[ \t]*//;/aur/p' ./packages.yml | cut -d' ' -f2)
-pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.yml"
-aur_repo="https://aur.archlinux.org/paru.git"
-dotfiles="https://github.com/rafamadriz/dotfiles.git"
-
-# Utils
 get_pkg_list() {
+  pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.yml"
   info "Getting list of dependencies to install"
   curl -OL $pkgs_list
 }
 
+# Variables
+dependencies=$(sed -n 's/^[ \t]*//;/name/p' ./packages.yml | cut -d' ' -f2)
+dependencies_aur=$(sed -n 's/^[ \t]*//;/aur/p' ./packages.yml | cut -d' ' -f2)
+aur_repo="https://aur.archlinux.org/paru.git"
+dotfiles="https://github.com/rafamadriz/dotfiles.git"
+
+# Utils
 wait() {
   sudo -v
   while true; do
@@ -71,7 +71,7 @@ sync() {
   warn "sudo password is needed for installind dependencies"
   info "Sycning repositories"
   wait
-  sudo pacman -Syy
+  sudo pacman -Syy || exit
 }
 
 pacman_install() {
