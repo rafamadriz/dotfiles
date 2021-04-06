@@ -4,8 +4,8 @@ u.define_augroups(
     {
         trim_whitespaces = {
             {"BufWritePre", "*", [[%s/\s\+$//e]]},
-            {"BufWritePre", "*", [[%s/\n\+\%$//e]]},
-            {"BufWritePre", "*.[ch]", [[*.[ch] %s/\%$/\r/e]]}
+            {"BufWritePre", "*", [[%s/\n\+\%$//e]]}
+            -- {"BufWritePre", "*.[ch]", [[*.[ch] %s/\%$/\r/e]]}
         },
         jump_last = {
             {"BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]}
@@ -21,7 +21,8 @@ u.define_augroups(
             {"BufNewFile,BufRead", "*.ejs", "set filetype=html"},
             {"FileType", "markdown", "setlocal wrap"},
             {"FileType", "markdown", "setlocal spell"},
-            {"FileType", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"}
+            {"FileType", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"},
+            {"FileType", "toggleterm", "setlocal nonumber norelativenumber"}
         },
         cursor = {
             {"CursorHold", "*", "lua vim.lsp.diagnostic.show_line_diagnostics()"},

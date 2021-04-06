@@ -6,13 +6,12 @@ local vcs = require("galaxyline.provider_vcs")
 gl.short_line_list = {
     "diff",
     "undotree",
-    "vista",
-    "vista_markdown",
     "NvimTree",
     "startify",
     "packer",
     "packager",
-    "FloaTerm"
+    "FloaTerm",
+    "toggleterm"
 }
 
 -- Gruvbox

@@ -27,9 +27,11 @@ nvim_lsp.pyright.setup {autostart = LSP.python}
 -- npm i -g vscode-json-languageserver
 nvim_lsp.jsonls.setup {autostart = LSP.json}
 
+-- pacman -S clang
+nvim_lsp.clangd.setup {autostart = LSP.clangd}
+
 -- npm i -g emmet-ls
 local configs = require "lspconfig/configs"
-
 configs.emmet_ls = {
     default_config = {
         cmd = {"emmet-ls", "--stdio"},
@@ -41,9 +43,6 @@ configs.emmet_ls = {
     }
 }
 nvim_lsp.emmet_ls.setup {autostart = LSP.emmet}
-
--- pacman -S clang
-nvim_lsp.clangd.setup {autostart = LSP.clangd}
 
 -- lua  https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 -- install instructions:
@@ -71,7 +70,7 @@ nvim_lsp.sumneko_lua.setup {
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {"vim", "use", "run", "Theming", "LSP", "Completion"}
+                globals = {"vim", "use", "run", "Theming", "LSP", "Completion", "Treesitter"}
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
