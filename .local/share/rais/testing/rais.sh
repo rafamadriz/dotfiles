@@ -46,6 +46,7 @@ get_pkg_list() {
   info "Getting list of dependencies to install"
   curl -OL $pkgs_list
 }
+get_pkg_list
 
 # Variables
 dependencies=$(sed -n 's/^[ \t]*//;/name/p' ./packages.yml | cut -d' ' -f2)
@@ -84,7 +85,6 @@ aur_install() {
 
 install_depend() {
   check_net
-  get_pkg_list
   sync
 
   info "Installing dependencies from official repository"
@@ -159,11 +159,8 @@ final_touches() {
   [ "$SHELL" != "/usr/bin/zsh" ] && chsh -s /usr/bin/zsh
 }
 
-main() {
-  install_depend
-  aur_helper_install
-  aur_depend
-  setup_dotfiles
-  final_touches
-}
-main
+install_depend
+aur_helper_install
+aur_depend
+setup_dotfiles
+final_touches
