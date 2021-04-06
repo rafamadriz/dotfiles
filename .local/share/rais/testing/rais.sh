@@ -149,7 +149,7 @@ final_touches() {
   sudo grep -q "^ILoveCandy" /etc/pacman.conf || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
 
   # better root defaults
-  [ ! -d /root/.config/nvim ] && mkdir -p /root/.config/nvim/colors
+  [ ! -d /root/.config/nvim ] && sudo mkdir -p /root/.config/nvim/colors
   sudo ln -s --force "$HOME"/.local/share/misc/root/init.vim /root/.config/nvim/init.vim
   sudo ln -s --force "$HOME"/.local/share/misc/root/tender.vim /root/.config/nvim/colors/tender.vim
   sudo ln -s --force "$HOME"/.local/share/misc/root/bashrc /root/.bashrc
