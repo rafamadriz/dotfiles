@@ -9,7 +9,7 @@ u.map("n", "<C-w>", ":bdelete<CR>")
 u.map("i", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
-u.map("n", "nh", ":noh<CR>")
+u.map("n", "<leader>nh", ":noh<CR>")
 
 -- Move selected line / block of text in visual mode
 u.map("x", "K", ":move '<-2<CR>gv-gv")
@@ -52,6 +52,7 @@ u.map("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 -- Telescope
 u.map("n", "<leader>ff", ":Telescope find_files<CR>")
+u.map("n", "<leader>fo", ":Telescope oldfiles<CR>")
 u.map("n", "<leader>fg", ":Telescope live_grep<CR>")
 u.map("n", "<leader>fm", ":Telescope media_files<CR>")
 u.map("n", "<leader>fh", ":Telescope help_tags<CR>")

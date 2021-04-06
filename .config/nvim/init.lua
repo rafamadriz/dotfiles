@@ -4,8 +4,8 @@ require("utils/handlers")
 require("main/options")
 require("main/mappings")
 require("main/autocmds")
-require("plugins")
 require("main/colorscheme")
+require("plugins")
 
 -- LSP
 require("lsp")

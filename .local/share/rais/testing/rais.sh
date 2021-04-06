@@ -120,7 +120,8 @@ setup_dotfiles() {
   git_dir="dotfiles"
   dir_tmp="tmp"
 
-  # make directory for fonts
+  # make directory
+  mkdir -p "$HOME"/.config
   mkdir -p "$HOME"/.local/share/fonts
 
   # clone repository

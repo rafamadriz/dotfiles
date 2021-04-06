@@ -12,12 +12,11 @@ local gls = gl.section
 gl.short_line_list = {
     "diff",
     "undotree",
-    "vista",
-    "vista_markdown",
     "NvimTree",
     "packer",
     "packager",
-    "FloaTerm"
+    "FloaTerm",
+    "toggleterm"
 }
 
 local colors = {

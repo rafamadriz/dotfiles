@@ -8,7 +8,7 @@ Theming = {
       For @sonokai = default, atlantis, andromeda, shusia, maia ]]
     colorscheme_style = "",
     -- Choose a stulusline:
-    -- Options: galaxy, airline, eviline, gruvbox, minimal
+    -- Options: galaxy, airline, eviline, gruvbox, minimal, rounded
     statusline = "eviline"
 }
 
@@ -22,7 +22,7 @@ LSP = {
     css = true,
     emmet = true,
     json = true,
-    lua = true,
+    lua = false,
     python = true,
     tsserver = true
 }
@@ -31,6 +31,7 @@ Completion = {
     -- values: true, false
     -- Enable or disable completion globally
     enabled = true,
+    items = 15,
     -- Choose sources of completion
     snippets = true,
     lsp = true,
@@ -38,4 +39,9 @@ Completion = {
     path = true,
     calc = true,
     spell = true
+}
+
+Treesitter = {
+    -- Treesitter has big performance issues, choose to enable or not
+    enabled = true
 }

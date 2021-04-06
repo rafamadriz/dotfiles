@@ -1,7 +1,15 @@
 local gl = require("galaxyline")
 local condition = require("galaxyline.condition")
 local gls = gl.section
-gl.short_line_list = {"NvimTree", "vista", "dbui", "packer", "packager", "undotree", "startify", "FloaTerm"}
+gl.short_line_list = {
+    "NvimTree",
+    "packer",
+    "packager",
+    "undotree",
+    "startify",
+    "FloaTerm",
+    "toggleterm"
+}
 local i = require("plugins.statusline.galaxy.icons")
 local c = require("plugins.statusline.galaxy.colors")
 local u = require("plugins.statusline.galaxy.utils")
