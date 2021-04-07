@@ -3,15 +3,6 @@
 # By Rafael Madriz
 
 # Some colors
-# BLACK=$(tput setaf 0)
-# LIME_YELLOW=$(tput setaf 190)
-# POWDER_BLUE=$(tput setaf 153)
-# MAGENTA=$(tput setaf 5)
-# CYAN=$(tput setaf 6)
-# WHITE=$(tput setaf 7)
-# BLINK=$(tput blink)
-# REVERSE=$(tput smso)
-# UNDERLINE=$(tput smul)
 RED=$(tput setaf 1)
 GREEN=$(tput setaf 2)
 YELLOW=$(tput setaf 3)
@@ -21,19 +12,23 @@ NORMAL=$(tput sgr0)
 
 # Messages
 error() {
-  printf "${BOLD}${RED}[ERROR] %s${NORMAL}\n" "$@" >&2
+  printf "${BOLD}${RED}[✘] %s${NORMAL}\n" "$@" >&2
 }
 
 info() {
-  printf "${BOLD}${BLUE}[INFO] %s${NORMAL}\n" "$@" >&2
+  printf "${BOLD}${BLUE}[➭] %s${NORMAL}\n" "$@" >&2
 }
 
 warn() {
-  printf "${BOLD}${YELLOW}[WARNING] %s${NORMAL}\n" "$@" >&2
+  printf "${BOLD}${YELLOW}[⚠] %s${NORMAL}\n" "$@" >&2
 }
 
 succces() {
-  printf "${BOLD}${GREEN}[SUCESS] %s${NORMAL}\n" "$@" >&2
+  printf "${BOLD}${GREEN}[✔] %s${NORMAL}\n" "$@" >&2
+}
+
+print_with_color(){
+  printf '%b\n' "$1$2$NORMAL"
 }
 
 if [ "$(id -u)" = 0 ]; then
@@ -44,19 +39,11 @@ fi
 get_pkg_list() {
   pkgs_list="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/packages.yml"
   info "Getting list of dependencies to install"
-  curl -OL $pkgs_list
+  curl -OL $pkgs_list >/dev/null 2>&1
 }
-get_pkg_list
-
-# Variables
-dependencies=$(sed -n 's/^[ \t]*//;/name/p' ./packages.yml | cut -d' ' -f2)
-dependencies_aur=$(sed -n 's/^[ \t]*//;/aur/p' ./packages.yml | cut -d' ' -f2)
-aur_repo="https://aur.archlinux.org/paru.git"
-dotfiles="https://github.com/rafamadriz/dotfiles.git"
 
 # Utils
-wait() {
-  sudo -v
+wait_sudo() {
   while true; do
     sudo -n true
     sleep 60
@@ -65,52 +52,56 @@ wait() {
 }
 
 check_net() {
-  ping -q -c 1 example.org >/dev/null || error "Check your network connection" exit
+  ping -q -c 1 example.org >/dev/null || error "Check your network connection." exit
 }
 
 sync() {
-  warn "sudo password is needed for installind dependencies"
-  info "Sycning repositories"
-  wait
-  sudo pacman -Syy || exit
+  warn "sudo password is needed for installind dependencies."
+  info "Sycning repositories."
+  sudo pacman -Syy >/dev/null 2>&1 || exit
 }
 
 pacman_install() {
-  sudo pacman -S --noconfirm --needed "$pkg"
+  sudo pacman -S --noconfirm --needed "$pkg" >/dev/null 2>&1
 }
 
 aur_install() {
-  paru -S --aur --noconfirm --removemake --needed "$pkg"
+  paru -S --aur --noconfirm --removemake --needed "$pkg_aur" >/dev/null 2>&1
 }
 
 install_depend() {
   check_net
   sync
 
-  info "Installing dependencies from official repository"
+  info "Installing dependencies from official repository."
+  dependencies=$(sed -n 's/^[ \t]*//;/name/p' ./packages.yml | cut -d' ' -f2)
   for pkg in ${dependencies}; do
-    pacman_install "$pkg" || error "Something went wrong during installation" exit
+    pacman_install "$pkg" || error "Something went wrong during installation." exit
   done
-  succces "Dependencies from official repository have been installed"
+  succces "Dependencies from official repository have been installed."
 }
 
 aur_helper_install() {
   check_net
+  aur_repo="https://aur.archlinux.org/paru.git"
   directory="tmp"
 
-  git clone "$aur_repo" "$directory"
-  (cd "$directory" && makepkg -sri --noconfirm)
+  info "Installing AUR helper."
+  git clone "$aur_repo" "$directory" >/dev/null 2>&1
+  (cd "$directory" && makepkg -sri --noconfirm) >/dev/null 2>&1
   rm -rf "$directory"
-  succces "Dependencies from AUR repository have been installed"
+  succces "AUR helper installed."
 }
 
 aur_depend() {
   check_net
 
-  info "Installing dependencies from AUR repository "
+  info "Installing dependencies from AUR repository."
+  dependencies_aur=$(sed -n 's/^[ \t]*//;/aur/p' ./packages.yml | cut -d' ' -f2)
   for pkg_aur in ${dependencies_aur}; do
-    aur_install "$pkg_aur" || error "Something went wrong during installation" exit
+    aur_install "$pkg_aur" || error "Something went wrong during installation." exit
   done
+  succces "Dependencies from AUR repository have been installed."
 }
 
 setup_dotfiles() {
@@ -118,6 +109,7 @@ setup_dotfiles() {
 
   info "Installing Dotfiles"
   git_dir="dotfiles"
+  dotfiles="https://github.com/rafamadriz/dotfiles.git"
   dir_tmp="tmp"
 
   # make directory
@@ -125,11 +117,10 @@ setup_dotfiles() {
   mkdir -p "$HOME"/.local/share/fonts
 
   # clone repository
-  git clone --recurse-submodules --separate-git-dir="$HOME"/.config/$git_dir $dotfiles "$dir_tmp"
+  git clone --recurse-submodules --separate-git-dir="$HOME"/.config/$git_dir $dotfiles "$dir_tmp" >/dev/null 2>&1
 
   # copy all dotfiles to $HOME (this will overwrite any existing destination file)
-  mkdir "$HOME"/backup
-  rsync --backup --backup-dir="$HOME"/backup --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/
+  rsync --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/
   rm --force --recursive "$dir_tmp"
 
   # git set-up for dotfiles
@@ -145,8 +136,8 @@ setup_dotfiles() {
 final_touches() {
   info "Almost done, some final settings :)"
   # Make pacman and paru colorful and adds eye candy on the progress bar.
-  sudo grep -q "^Color" /etc/pacman.conf || sed -i "s/^#Color$/Color/" /etc/pacman.conf
-  sudo grep -q "^ILoveCandy" /etc/pacman.conf || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
+  su root -c 'grep -q "^Color" /etc/pacman.conf || sed -i "s/^#Color$/Color/" /etc/pacman.conf'
+  su root -c 'grep -q "^ILoveCandy" /etc/pacman.conf || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf'
 
   # better root defaults
   [ ! -d /root/.config/nvim ] && sudo mkdir -p /root/.config/nvim/colors
@@ -157,11 +148,43 @@ final_touches() {
   rm -f ./packages.yml
 
   # change shell to zsh
+  info "Changing shell to zsh."
   [ "$SHELL" != "/usr/bin/zsh" ] && chsh -s /usr/bin/zsh
 }
 
-install_depend
-aur_helper_install
-aur_depend
-setup_dotfiles
-final_touches
+printf "\n"
+print_with_color "${BLUE}" "      ██████╗  ██████╗ ████████╗███████╗██╗██╗     ███████╗███████╗"
+print_with_color "${BLUE}" "      ██╔══██╗██╔═══██╗╚══██╔══╝██╔════╝██║██║     ██╔════╝██╔════╝"
+print_with_color "${BLUE}" "      ██║  ██║██║   ██║   ██║   █████╗  ██║██║     █████╗  ███████╗"
+print_with_color "${BLUE}" "      ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║"
+print_with_color "${BLUE}" "      ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║"
+print_with_color "${BLUE}" "      ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝"
+print_with_color "${BLUE}" "                         by Rafael Madriz                          "
+printf "\n"
+
+warn "This script will replace configutation files if they already exist!"
+while true; do
+  # (1) prompt user, and read command line argument
+  printf "%sDo you want to continue ?[y/n] ${NORMAL}" "${YELLOW}"
+  read -r answer
+
+  # (2) handle the input we were given
+  case $answer in
+  [yY]*)
+
+    get_pkg_list
+    install_depend
+    wait_sudo
+    aur_helper_install
+    aur_depend
+    setup_dotfiles
+    final_touches
+
+    break
+    ;;
+
+  [nN]*) exit ;;
+
+  *) error "Dude, just enter Y or N, please." ;;
+  esac
+done
