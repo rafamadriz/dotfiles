@@ -27,7 +27,7 @@ succces() {
   printf "${BOLD}${GREEN}[✔] %s${NORMAL}\n" "$@" >&2
 }
 
-print_with_color(){
+print_with_color() {
   printf '%b\n' "$1$2$NORMAL"
 }
 
@@ -107,27 +107,23 @@ aur_depend() {
 setup_dotfiles() {
   check_net
 
-  info "Installing Dotfiles"
   git_dir="dotfiles"
   dotfiles="https://github.com/rafamadriz/dotfiles.git"
   dir_tmp="tmp"
 
   # make directory
-  mkdir -p "$HOME"/.config
   mkdir -p "$HOME"/.local/share/fonts
 
   # clone repository
-  git clone --recurse-submodules --separate-git-dir="$HOME"/.config/$git_dir $dotfiles "$dir_tmp" >/dev/null 2>&1
+  info "Installing Dotfiles"
+  git clone --recurse-submodules --separate-git-dir="$HOME"/$git_dir $dotfiles "$dir_tmp" >/dev/null 2>&1 ||
+    error "Something went wrong downloading dotfiles" exit
 
   # copy all dotfiles to $HOME (this will overwrite any existing destination file)
   rsync --recursive --exclude '.git' "$dir_tmp"/ "$HOME"/
   rm --force --recursive "$dir_tmp"
-
-  # git set-up for dotfiles
-  dot() {
-    /usr/bin/git --git-dir="$HOME"/$git_dir/ --work-tree="$HOME" "$@"
-  }
-  dot config status.showUntrackedFiles no
+  rm --force --recursive "$git_dir"
+  succces "Dotfiles have been installed"
 
   # setting up betterlockscreen
   #betterlockscreen -u "$HOME"/.local/share/wall/firewatch.jpg

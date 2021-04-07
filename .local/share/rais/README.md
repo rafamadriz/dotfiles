@@ -2,8 +2,8 @@
 
 ```sh
 
-curl -LO https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/install.sh
+curl -LO https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/rais.sh
 
-sudo bash ./install.sh
+sh ./rais.sh
 
 ```
