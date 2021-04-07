@@ -1,3 +1,6 @@
+# Path
+export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
@@ -10,6 +13,7 @@ export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
 export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
+export ANDROID_HOME="$XDG_DATA_HOME"/android
 
 # Disable files
 export LESSHISTFILE=-
@@ -23,12 +27,24 @@ export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export KDEHOME="$XDG_CONFIG_HOME"/kde
 export GOPATH="$XDG_DATA_HOME"/go
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GPG_TTY=$(tty)
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+
+# FZF
+export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+export FZF_ALT_C_COMMAND='fd --type d . --hidden'
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
+# MYVIMRC
+export MYVIMRC="$HOME/.config/nvim/init.lua"
 
 # ZSH
 export ZDOTDIR=$HOME/.config/zsh
