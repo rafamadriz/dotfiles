@@ -155,7 +155,7 @@ print_with_color "${BLUE}" "      ██║  ██║██║   ██║   �
 print_with_color "${BLUE}" "      ██║  ██║██║   ██║   ██║   ██╔══╝  ██║██║     ██╔══╝  ╚════██║"
 print_with_color "${BLUE}" "      ██████╔╝╚██████╔╝   ██║   ██║     ██║███████╗███████╗███████║"
 print_with_color "${BLUE}" "      ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝"
-print_with_color "${BLUE}" "                         by Rafael Madriz                          "
+print_with_color "${BLUE}" "       by Rafael Madriz    https://github.com/rafamadriz/dotfiles  "
 printf "\n"
 
 warn "This script will replace configutation files if they already exist!"
