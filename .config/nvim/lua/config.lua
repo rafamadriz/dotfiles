@@ -43,5 +43,7 @@ Completion = {
 
 Treesitter = {
     -- Treesitter has big performance issues, choose to enable or not
-    enabled = true
+    enabled = true,
+    rainbow = true,
+    autotag = true
 }
