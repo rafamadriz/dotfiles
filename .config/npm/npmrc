@@ -1,4 +1,163 @@
+;;;;
+; npm userconfig file: /home/rafa/.config/npm/npmrc
+; this is a simple ini-formatted file
+; lines that start with semi-colons are comments
+; run `npm help 7 config` for documentation of the various options
+;
+; Configs like `@scope:registry` map a scope to a given registry url.
+;
+; Configs like `//<hostname>/:_authToken` are auth that is restricted
+; to the registry host specified.
+
 cache=/home/rafa/.cache/npm
-tmp=/run/user/1000/npm
 init-module=/home/rafa/.config/npm/config/npm-init.js
 package-lock=false
+tmp=/run/user/1000/npm
+
+;;;;
+; all available options shown below with default values
+;;;;
+
+
+; _auth=null
+; access=null
+; all=false
+; allow-same-version=false
+; also=null
+; always-auth=false
+; audit=true
+; audit-level=null
+; auth-type=legacy
+; before=null
+; bin-links=true
+; browser=null
+; ca=null
+; cache=~/.npm
+; cache-max=null
+; cache-min=0
+; cafile=null
+; call=
+; cert=null
+; ci-name=null
+; cidr=null
+; color=true
+; commit-hooks=true
+; depth=null
+; description=true
+; dev=false
+; 
+; diff-ignore-all-space=false
+; diff-name-only=false
+; diff-no-prefix=false
+; diff-dst-prefix=b/
+; diff-src-prefix=a/
+; diff-text=false
+; diff-unified=3
+; dry-run=false
+; editor=/usr/bin/nvim
+; engine-strict=false
+; fetch-retries=2
+; fetch-retry-factor=10
+; fetch-retry-maxtimeout=60000
+; fetch-retry-mintimeout=10000
+; fetch-timeout=300000
+; force=false
+; foreground-scripts=false
+; format-package-lock=true
+; fund=true
+; git=git
+; git-tag-version=true
+; global=false
+; global-style=false
+; globalconfig=
+; heading=npm
+; https-proxy=null
+; if-present=false
+; ignore-scripts=false
+; 
+; include-staged=false
+; init-author-email=
+; init-author-name=
+; init-author-url=
+; init-license=ISC
+; init-module=~/.npm-init.js
+; init-version=1.0.0
+; init.author.email=
+; init.author.name=
+; init.author.url=
+; init.license=ISC
+; init.module=~/.npm-init.js
+; init.version=1.0.0
+; json=false
+; key=null
+; legacy-bundling=false
+; legacy-peer-deps=false
+; link=false
+; local-address=null
+; loglevel=notice
+; logs-max=10
+; long=false
+; maxsockets=15
+; message=%s
+; node-options=null
+; node-version=v15.13.0
+; noproxy=
+; npm-version=7.8.0
+; offline=false
+; 
+; only=null
+; optional=null
+; otp=null
+; 
+; package-lock=true
+; package-lock-only=false
+; parseable=false
+; prefer-offline=false
+; prefer-online=false
+; prefix=
+; preid=
+; production=null
+; progress=true
+; proxy=null
+; read-only=false
+; rebuild-bundle=true
+; registry=https://registry.npmjs.org/
+; save=true
+; save-bundle=false
+; save-dev=false
+; save-exact=false
+; save-optional=false
+; save-peer=false
+; save-prefix=^
+; save-prod=false
+; scope=
+; script-shell=null
+; searchexclude=
+; searchlimit=20
+; searchopts=
+; searchstaleness=900
+; shell=/usr/bin/zsh
+; shrinkwrap=true
+; sign-git-commit=false
+; sign-git-tag=false
+; sso-poll-frequency=500
+; sso-type=oauth
+; strict-peer-deps=false
+; strict-ssl=true
+; tag=latest
+; tag-version-prefix=v
+; timing=false
+; tmp=/tmp
+; umask=0
+; unicode=true
+; update-notifier=true
+; usage=false
+; user-agent=npm/{npm-version} node/{node-version} {platform} {arch} {ci}
+; userconfig=~/.npmrc
+; version=false
+; versions=false
+; viewer=man
+; which=null
+; 
+; workspaces=false
+; yes=null
