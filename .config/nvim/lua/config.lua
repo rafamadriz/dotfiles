@@ -1,12 +1,12 @@
 Theming = {
     -- Press <space>fc to see all available themes
-    colorscheme = "onebuddy",
+    colorscheme = "edge",
     --[[ Some colorscheme have multiple styles to choose from.
       here are the available options:
       For @gruvbox = medium, soft, hard
       For @edge = default, aura, neon
       For @sonokai = default, atlantis, andromeda, shusia, maia ]]
-    colorscheme_style = "",
+    colorscheme_style = "aura",
     -- Choose a stulusline:
     -- Options: galaxy, airline, eviline, gruvbox, minimal, rounded
     statusline = "eviline"
@@ -31,7 +31,7 @@ Completion = {
     -- values: true, false
     -- Enable or disable completion globally
     enabled = true,
-    items = 15,
+    items = 10,
     -- Choose sources of completion
     snippets = true,
     lsp = true,

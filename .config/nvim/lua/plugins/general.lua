@@ -46,7 +46,7 @@ require("gitsigns").setup {
 
 -- Emmet
 vim.g.user_emmet_mode = "inv"
-vim.g.user_emmet_expandabbr_key = ",,"
+vim.g.user_emmet_expandabbr_key = "<C-y>,"
 vim.g.user_emmet_expandword_key = "<C-y>;"
 vim.g.user_emmet_update_tag = "<C-y>u"
 vim.g.user_emmet_balancetaginward_key = "<C-y>d"

@@ -2,6 +2,8 @@ local u = require("utils.core")
 
 vim.g.mapleader = " "
 
+-- NOTE: C-6 to jump between last two files
+
 -- Basics
 u.map("n", "<leader>w", ":update<CR>")
 u.map("n", "<leader>q", ":bdelete<CR>")
@@ -12,8 +14,8 @@ u.map("n", "ss", ":luafile %<CR>", {silent = false})
 u.map("n", "<leader>nh", ":noh<CR>")
 
 -- Move selected line / block of text in visual mode
-u.map("x", "K", ":move '<-2<CR>gv-gv")
-u.map("x", "J", ":move '>+1<CR>gv-gv")
+u.map("x", "K", ":move '<-2<CR>gv=gv")
+u.map("x", "J", ":move '>+1<CR>gv=gv")
 
 -- Better window navigation
 u.map("n", "<C-h>", "<C-w>h")
