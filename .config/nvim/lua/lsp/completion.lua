@@ -1,6 +1,5 @@
 local u = require("utils.core")
 
--- TODO figure out why this don't work
 vim.fn.sign_define(
     "LspDiagnosticsSignError",
     {
@@ -55,7 +54,7 @@ require "compe".setup {
         nvim_lsp = Completion.lsp,
         nvim_lua = {kind = "  "},
         spell = Completion.spell,
-        tags = true,
+        tags = false,
         -- treesitter = true,
         emoji = {kind = " ﲃ "}
     }
@@ -63,31 +62,31 @@ require "compe".setup {
 
 -- symbols for autocomplete
 vim.lsp.protocol.CompletionItemKind = {
-    "   ",
-    "  ",
-    "  ",
-    "  ",
-    " ﴲ ",
-    "  ",
-    "  ",
-    "  ",
-    "  ",
-    " 襁 ",
-    "  ",
-    "  ",
-    "  ",
-    "  ",
-    " ",
-    "  ",
-    "  ",
-    "  ",
-    "  ",
-    "  ",
-    " ﲀ ",
-    " ﳤ ",
-    "  ",
-    "  ",
-    "  "
+    "  (Text) ",
+    "  (Method)",
+    "  (Function)",
+    "  (Constructor)",
+    " ﴲ (Field)",
+    "  (Variable)",
+    "  (Class)",
+    " ﰮ (Interface)",
+    "  (Module)",
+    " 襁(Property)",
+    "  (Unit)",
+    "  (Value)",
+    " 練(Enum)",
+    "  (Keyword)",
+    " ﬌ (Snippet)",
+    "  (Color)",
+    "  (File)",
+    "  (Reference)",
+    "  (Folder)",
+    "  (EnumMember)",
+    " ﲀ (Constant)",
+    " ﳤ (Struct)",
+    "  (Event)",
+    "  (Operator)",
+    "  (TypeParameter)"
 }
 
 local t = function(str)

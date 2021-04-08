@@ -125,7 +125,7 @@ if Completion.enabled == nil then
 end
 
 if Completion.snippets == nil or Completion.snippets == true then
-    Completion.snippets = {kind = " ﬌ "}
+    Completion.snippets = {kind = " ﬌ (Snippet)"}
 end
 
 if Completion.lsp == nil or Completion.lsp == true then
@@ -133,17 +133,17 @@ if Completion.lsp == nil or Completion.lsp == true then
 end
 
 if Completion.buffer == nil or Completion.buffer == true then
-    Completion.buffer = {kind = "  "}
+    Completion.buffer = {kind = "  (Buffer)"}
 end
 
 if Completion.path == nil or Completion.path == true then
-    Completion.path = {kind = "  "}
+    Completion.path = {kind = "  (Path)"}
 end
 
 if Completion.calc == nil or Completion.calc == true then
-    Completion.calc = {kind = "   "}
+    Completion.calc = {kind = "  (Calc)"}
 end
 
 if Completion.spell == nil or Completion.spell == true then
-    Completion.spell = {kind = "  "}
+    Completion.spell = {kind = "  (Spell)"}
 end

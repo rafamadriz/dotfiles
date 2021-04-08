@@ -143,43 +143,42 @@ gls.left[12] = {
     }
 }
 
---gls.left[13] = {
---    GitBranch = {
---        provider = 'GitBranch',
---        condition = condition.check_git_workspace,
---        separator = ' ',
---        separator_highlight = {'NONE', c.Color('bg')},
---        highlight = {c.Color('grey'), c.Color('bg')}
---    }
---}
+gls.left[13] = {
+    GitBranch = {
+        provider = "GitBranch",
+        condition = condition.check_git_workspace,
+        separator = " ",
+        separator_highlight = {"NONE", c.Color("bg")},
+        highlight = {c.Color("grey"), c.Color("bg")}
+    }
+}
 
---gls.left[14] = {
---    DiffAdd = {
---        provider = 'DiffAdd',
---        condition = condition.hide_in_width,
---        icon = '  ',
---        highlight = {c.Color('green'), c.Color('bg')}
---    }
---}
---
---gls.left[15] = {
---    DiffModified = {
---        provider = 'DiffModified',
---        condition = condition.hide_in_width,
---        icon = ' 柳',
---        highlight = {c.Color('blue'), c.Color('bg')}
---    }
---}
---
---gls.left[16] = {
---    DiffRemove = {
---        provider = 'DiffRemove',
---        condition = condition.hide_in_width,
---        icon = '  ',
---        highlight = {c.Color('red'), c.Color('bg')}
---    }
---}
---
+gls.left[14] = {
+    DiffAdd = {
+        provider = "DiffAdd",
+        condition = condition.hide_in_width,
+        icon = "  ",
+        highlight = {c.Color("green"), c.Color("bg")}
+    }
+}
+
+gls.left[15] = {
+    DiffModified = {
+        provider = "DiffModified",
+        condition = condition.hide_in_width,
+        icon = " 柳",
+        highlight = {c.Color("blue"), c.Color("bg")}
+    }
+}
+
+gls.left[16] = {
+    DiffRemove = {
+        provider = "DiffRemove",
+        condition = condition.hide_in_width,
+        icon = "  ",
+        highlight = {c.Color("red"), c.Color("bg")}
+    }
+}
 
 gls.left[12] = {
     GitBranch = {
