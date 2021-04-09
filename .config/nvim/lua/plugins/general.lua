@@ -1,3 +1,6 @@
+-- kommentary
+require("kommentary.config").use_extended_mappings()
+
 -- Colorizer
 require "colorizer".setup(
     {"*"},
@@ -12,11 +15,33 @@ require "colorizer".setup(
     }
 )
 
--- kommentary
-require("kommentary.config").use_extended_mappings()
-
 -- Autopairs
-require("nvim-autopairs").setup()
+if Completion.autopairs == nil or Completion.autopairs == true then
+    require("nvim-autopairs").setup()
+    local remap = vim.api.nvim_set_keymap
+    local npairs = require("nvim-autopairs")
+
+    -- skip it, if you use another global object
+    _G.MUtils = {}
+
+    vim.g.completion_confirm_key = ""
+    MUtils.completion_confirm = function()
+        if vim.fn.pumvisible() ~= 0 then
+            if vim.fn.complete_info()["selected"] ~= -1 then
+                vim.fn["compe#confirm"]()
+                return npairs.esc("")
+            else
+                vim.api.nvim_select_popupmenu_item(0, false, false, {})
+                vim.fn["compe#confirm"]()
+                return npairs.esc("<c-n>")
+            end
+        else
+            return npairs.check_break_line_char()
+        end
+    end
+
+    remap("i", "<CR>", "v:lua.MUtils.completion_confirm()", {expr = true, noremap = true})
+end
 
 -- Git signs
 require("gitsigns").setup {
@@ -43,21 +68,3 @@ require("gitsigns").setup {
     status_formatter = nil, -- Use default
     use_decoration_api = false
 }
-
--- Emmet
-vim.g.user_emmet_mode = "inv"
-vim.g.user_emmet_expandabbr_key = "<C-y>,"
-vim.g.user_emmet_expandword_key = "<C-y>;"
-vim.g.user_emmet_update_tag = "<C-y>u"
-vim.g.user_emmet_balancetaginward_key = "<C-y>d"
-vim.g.user_emmet_balancetagoutward_key = "<C-y>D"
-vim.g.user_emmet_next_key = "<C-y>n"
-vim.g.user_emmet_prev_key = "<C-y>N"
-vim.g.user_emmet_imagesize_key = "<C-y>i"
-vim.g.user_emmet_togglecomment_key = "<C-y>/"
-vim.g.user_emmet_splitjointag_key = "<C-y>j"
-vim.g.user_emmet_removetag_key = "<C-y>k"
-vim.g.user_emmet_anchorizeurl_key = "<C-y>a"
-vim.g.user_emmet_anchorizesummary_key = "<C-y>A"
-vim.g.user_emmet_mergelines_key = "<C-y>m"
-vim.g.user_emmet_codepretty_key = "<C-y>c"
