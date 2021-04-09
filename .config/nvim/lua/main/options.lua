@@ -32,7 +32,7 @@ u.opt("w", "cursorline", true)
 u.opt("w", "conceallevel", 0)
 
 -- Buffer
-local indent = 2
+local indent = Formatting.indent_size
 u.opt("b", "tabstop", indent)
 u.opt("b", "softtabstop", indent)
 u.opt("b", "shiftwidth", indent)
