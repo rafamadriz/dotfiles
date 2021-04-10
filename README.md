@@ -33,7 +33,7 @@ I have a very rudimentary install script that can:
 
 - Install all my dotfiles in the correct file structure.
 - Install all necessary dependencies.
-- Install configuration files that give some sane defaults for `root`, like for example a decent `.bashrc` with a colored prompt and settings for `nvim` including a colorscheme. I did this mainly to have sane nvim defaults and a decent prompt for whenever I was doing something as root, like editing files that are not in `~/`
+- Install configuration files that give some sane defaults for `root`, like for example a decent `.bashrc` with a colored prompt and settings for `nvim` including a colorscheme. I did this mainly to have sane nvim defaults and a decent prompt for whenever I'm doing something as root, like editing files that are not in `~/`
 
 ###### NOTE: The install script may overwrite files that you don't want to be overwritten, this script is mainly to be used in a clean new install of Arch Linux.
 
