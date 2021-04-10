@@ -7,7 +7,6 @@ vim.g.mapleader = " "
 -- Basics
 u.map("n", "<leader>w", ":update<CR>")
 u.map("n", "<leader>q", ":bdelete<CR>")
-u.map("n", "<C-w>", ":bdelete<CR>")
 u.map("i", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
