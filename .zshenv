@@ -69,8 +69,8 @@ export PAGER="less"
 export WM="bspwm"
 
 ### choose a manpager #
-export MANPAGER="nvim -c 'set ft=man' -"
-# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="nvim -c 'set ft=man' -"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export LF_ICONS="\
 di=:\
