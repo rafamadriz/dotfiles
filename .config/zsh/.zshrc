@@ -31,8 +31,8 @@ source ~/.config/zsh/menu.zsh
 # Plugins
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-source ~/.config/zsh/plugins/colored-man-pages/colored-man-pages.plugin.zsh
+source ~/.config/zsh/plugins/substring-search.zsh
+source ~/.config/zsh/plugins/colored-man-pages.zsh
 source ~/.config/zsh/plugins/fzf/key-bindings.zsh
 source ~/.config/zsh/plugins/fzf/completion.zsh
 
