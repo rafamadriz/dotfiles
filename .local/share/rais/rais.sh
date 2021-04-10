@@ -158,7 +158,7 @@ print_with_color "${BLUE}" "      ╚═════╝  ╚═════╝  
 print_with_color "${BLUE}" "       by Rafael Madriz    https://github.com/rafamadriz/dotfiles  "
 printf "\n"
 
-warn "This script will replace configutation files if they already exist!"
+warn "This script may overwrite files that you don’t want to be overwritten!"
 while true; do
   # (1) prompt user, and read command line argument
   printf "%sDo you want to continue ?[y/n] ${NORMAL}" "${YELLOW}"
