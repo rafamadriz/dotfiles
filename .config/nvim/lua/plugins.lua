@@ -36,7 +36,6 @@ return require("packer").startup(
 
         -- Markdown
         use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install"}
-        use "junegunn/goyo.vim"
 
         -- Statusline
         use "glepnir/galaxyline.nvim"
