@@ -11,6 +11,8 @@ u.map("i", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
 u.map("n", "<leader>nh", ":noh<CR>")
+u.map("n", "<BS>", "<C-^>")
+u.map("t", "<C-o>", [[<C-\><C-n>]])
 
 -- Move selected line / block of text in visual mode
 u.map("x", "K", ":move '<-2<CR>gv=gv")

@@ -16,12 +16,7 @@ local nvim_lsp = require "lspconfig"
 nvim_lsp.bashls.setup {autostart = LSP.bash}
 
 -- npm i -g typescript typescript-language-server
-nvim_lsp.tsserver.setup {
-    autostart = LSP.tsserver,
-    root_dir = function()
-        return vim.loop.cwd()
-    end
-}
+nvim_lsp.tsserver.setup {autostart = LSP.tsserver}
 
 -- npm i -g vscode-css-languageserver-bin
 nvim_lsp.cssls.setup {autostart = LSP.css}

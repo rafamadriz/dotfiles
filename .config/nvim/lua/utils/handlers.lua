@@ -7,6 +7,7 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     execute "packadd packer.nvim"
+    execute "PackerSync"
 end
 
 -- Theming
@@ -97,22 +98,12 @@ end
 check_style(C) ]]
 -- LSP
 
-if LSP.bash == nil then
-    LSP.bash = false
-elseif LSP.clangd == nil then
-    LSP.clangd = false
-elseif LSP.css == nil then
-    LSP.css = false
-elseif LSP.emmet == nil then
-    LSP.emmet = false
-elseif LSP.json == nil then
-    LSP.json = false
-elseif LSP.lua == nil then
-    LSP.lua = false
-elseif LSP.python == nil then
-    LSP.python = false
-elseif LSP.tsserver == nil then
-    LSP.tsserver = false
+local servers = {"bash", "clangd", "css", "emmet", "json", "lua", "python", "tsserver"}
+
+for _, v in pairs(servers) do
+    if LSP[v] == nil then
+        LSP[v] = false
+    end
 end
 
 -- Completion
