@@ -1,6 +1,6 @@
 Theming = {
     -- Press <space>fc to see all available themes
-    colorscheme = "edge",
+    colorscheme = "onebuddy",
     --[[ Some colorscheme have multiple styles to choose from.
       Available options:
       @gruvbox = medium, soft, hard
