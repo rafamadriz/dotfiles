@@ -25,16 +25,14 @@ source ~/.zshenv
 source ~/.config/zsh/aliasrc
 source ~/.config/zsh/devour.sh
 
-# completion menu
-source ~/.config/zsh/menu.zsh
-
 # Plugins
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/.config/zsh/plugins/substring-search.zsh
 source ~/.config/zsh/plugins/colored-man-pages.zsh
 source ~/.config/zsh/plugins/fzf/key-bindings.zsh
 source ~/.config/zsh/plugins/fzf/completion.zsh
+source ~/.config/zsh/plugins/menu.zsh
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
