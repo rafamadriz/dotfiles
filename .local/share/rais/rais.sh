@@ -116,7 +116,7 @@ setup_dotfiles() {
 
   # clone repository
   info "Installing Dotfiles"
-  git clone --recurse-submodules --separate-git-dir="$HOME"/$git_dir $dotfiles "$dir_tmp" >/dev/null 2>&1 ||
+  git clone --separate-git-dir="$HOME"/$git_dir $dotfiles "$dir_tmp" >/dev/null 2>&1 ||
     error "Something went wrong downloading dotfiles" exit
 
   # copy all dotfiles to $HOME (this will overwrite any existing destination file)
