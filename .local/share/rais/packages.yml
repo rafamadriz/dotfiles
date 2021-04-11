@@ -46,6 +46,9 @@
 - Description: the better shell
   name: zsh
 
+- Description: Fish-like autosuggestions for zsh
+  name: zsh-autosuggestions
+
 - Description: fuzzy finder
   name: fzf
 
@@ -172,3 +175,8 @@
 
 - Description: Sxiv fork which opens all files in the input file's directory, with some custom bindings.
   aur: sxiv-bachoseven-git
+
+- Description: Optimized and extended zsh-syntax-highlighting
+  aur: zsh-fast-syntax-highlighting
+
+- Description:
