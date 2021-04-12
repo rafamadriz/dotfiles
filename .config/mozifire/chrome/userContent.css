@@ -1,5 +1,5 @@
 /*================ IMPORT COLORS ================*/
-@import "userColors.css";
+@import "colorGruvbox.css";
 
 /*================== FIREFOX BG COLOR ==================*/
 @-moz-document url("about:newtab"), url("about:home"), url("about:blank"), url("about:support"), url("about:config") {
