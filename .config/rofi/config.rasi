@@ -13,7 +13,7 @@ configuration {
     display-combi:  "";
 }
 
-@import "./colors/nord.rasi"
+@import "./colors/gruvbox.rasi"
 
 window {
     transparency:                   "real";
@@ -48,11 +48,11 @@ entry {
 
 inputbar {
     children: 						[ prompt, entry ];
-    background-color:               #4c566a;
+    background-color:               @pg;
     text-color:                     @bg;
     expand:                         false;
     border:							0% 0% 0% 0%;
-    border-radius:                  0px;
+    border-radius:                  5px;
     border-color:					@ac;
     margin:                         0% 0% 0% 0%;
     padding:                        1.5%;
