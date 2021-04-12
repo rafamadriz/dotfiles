@@ -8,4 +8,4 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! Colors
-#include "./xthemes/onedark"
+#include "./xthemes/gruvbox"
