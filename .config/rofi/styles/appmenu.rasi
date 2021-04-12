@@ -1,4 +1,4 @@
-@import "../colors/nord.rasi"
+@import "../colors/gruvbox.rasi"
 
 window {
     transparency:                   "real";
@@ -33,7 +33,7 @@ entry {
 
 inputbar {
 	children: 						[ prompt, entry ];
-    background-color:               #4c566a;
+    background-color:               @pg;
     text-color:                     @bg;
     expand:                         false;
 	border:							0% 0% 0% 0%;
@@ -46,7 +46,7 @@ inputbar {
 listview {
     background-color:               @al;
     padding:                        10px;
-    columns:                        2;
+    columns:                        1;
     lines:                          10;
     spacing:                        0%;
     cycle:                          true;
@@ -87,9 +87,7 @@ element-text {
 element selected {
     background-color:               @ac;
     text-color:                     @bg;
-	border:							0% 0% 0% 0%;
+	  border:							0% 0% 0% 0%;
     border-radius:                  5px;
     border-color:                  	@bg;
 }
-
-
