@@ -4,7 +4,7 @@ vim.fn.sign_define(
     "LspDiagnosticsSignError",
     {
         texthl = "LspDiagnosticsSignError",
-        text = "",
+        text = "",
         numhl = "LspDiagnosticsSignError"
     }
 )

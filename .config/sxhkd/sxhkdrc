@@ -6,6 +6,9 @@
 super + Return
 	$TERMINAL
 
+super + shift + Return
+	bspwmfloat $TERMINAL
+
 # Browser
 super + w
 	$BROWSER
@@ -13,6 +16,14 @@ super + w
 # file manager
 super + e
 	$TERMINAL -e lf
+
+# Notes
+super + n
+	bspwmfloat $TERMINAL -e ~/.local/bin/scripts/notetaker
+
+# music player
+super + p
+  bspwmfloat $TERMINAL -e ncmpcpp
 
 # RSS feed
 super + r
@@ -60,6 +71,7 @@ super + a
 alt + Tab
 	rofi -show
 
+# turn off compositor
 super + shift + p
 	toggleprogram "picom" "--experimental-backends"
 

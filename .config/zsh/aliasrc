@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # add color to commands
 alias \
@@ -13,7 +13,7 @@ alias \
 
 # shortcuts
 alias \
-  startx="startx $HOME/.config/X11/xinitrc" \
+  startx='startx $HOME/.config/X11/xinitrc' \
   sysinfo="inxi -Fxz" \
   untar="tar -xvf" \
   vim="nvim" \
@@ -28,19 +28,18 @@ alias \
 
 # search for all scripts and dotfiles, then open them with editor of choice
 sc() {
-  find ~/ ~/.config ~/.local/bin ~/.local/share/rais -type f |
+  find ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh} \
+    ~/.local/bin/{scripts,cron,statusbar} ~/.local/share/rais -type f |
     fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
 }
 
 # fd - cd into any hidden directory of the current folder
 fcd() {
-  local dir
-  dir=$(find "${1:-.}" -type d 2>/dev/null | fzf +m) && cd "$dir"
+  dir=$(find "${1:-.}" -type d 2>/dev/null | fzf +m) && cd "$dir" || exit
 }
 
 # fkill - kill process
 fkill() {
-  local pid
   pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
   if [ "x$pid" != "x" ]; then
@@ -50,7 +49,5 @@ fkill() {
 
 # cdf - cd into the directory of the selected file
 cdf() {
-  local file
-  local dir
-  file=$(find "${1:-.}" -type f | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+  file=$(find "${1:-.}" -type f | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
 }
