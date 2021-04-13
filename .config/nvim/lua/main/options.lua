@@ -24,11 +24,11 @@ u.opt("o", "splitright", true)
 u.opt("o", "completeopt", "menuone,noselect")
 
 -- Window
-u.opt("w", "relativenumber", true)
+u.opt("w", "relativenumber", Opts.relativenumber)
 u.opt("w", "number", true)
 u.opt("w", "numberwidth", 1)
-u.opt("w", "wrap", false)
-u.opt("w", "cursorline", true)
+u.opt("w", "wrap", Opts.wrap)
+u.opt("w", "cursorline", Opts.cursorline)
 u.opt("w", "conceallevel", 0)
 
 -- Buffer
@@ -50,12 +50,14 @@ cmd("set iskeyword+=-")
 cmd("set path+=.,**")
 cmd("filetype plugin on")
 -- listchars
-cmd("set list")
-cmd("set listchars=eol:↴")
-cmd("set listchars+=tab:│⋅")
-cmd("set listchars+=trail:•")
-cmd("set listchars+=extends:❯")
-cmd("set listchars+=precedes:❮")
-cmd("set listchars+=nbsp:_")
-cmd("set listchars+=space:⋅")
-cmd("set showbreak=↳⋅")
+if Opts.listchars == true then
+    cmd("set list")
+    cmd("set listchars=eol:↴")
+    cmd("set listchars+=tab:│⋅")
+    cmd("set listchars+=trail:•")
+    cmd("set listchars+=extends:❯")
+    cmd("set listchars+=precedes:❮")
+    cmd("set listchars+=nbsp:_")
+    cmd("set listchars+=space:⋅")
+    cmd("set showbreak=↳⋅")
+end
