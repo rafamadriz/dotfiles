@@ -1,6 +1,15 @@
+Opts = {
+    jump_last_pos = true,
+    highlight_yank = true,
+    relativenumber = true,
+    wrap = false,
+    cursorline = true,
+    listchars = true
+}
+
 Theming = {
     -- Press <space>fc to see all available themes
-    colorscheme = "onebuddy",
+    colorscheme = "gruvbox",
     --[[ Some colorscheme have multiple styles to choose from.
       Available options:
       @gruvbox = medium, soft, hard
@@ -9,7 +18,7 @@ Theming = {
     colorscheme_style = "aura",
     -- Choose a stulusline:
     -- Options: galaxy, airline, eviline, gruvbox, minimal, rounded
-    statusline = "eviline"
+    statusline = "gruvbox"
 }
 
 LSP = {
@@ -19,12 +28,14 @@ LSP = {
     -- Choose which servers to start automatically
     bash = true,
     clangd = true,
-    css = true,
-    emmet = true,
     json = true,
     lua = false,
     python = true,
-    tsserver = true
+    -- WebDev
+    html = true,
+    css = true,
+    tsserver = true,
+    emmet = true
 }
 
 Completion = {

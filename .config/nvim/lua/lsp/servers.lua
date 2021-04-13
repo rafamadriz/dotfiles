@@ -10,16 +10,12 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     }
 )
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 local nvim_lsp = require "lspconfig"
 
 -- npm i -g bash-language-server
 nvim_lsp.bashls.setup {autostart = LSP.bash}
-
--- npm i -g typescript typescript-language-server
-nvim_lsp.tsserver.setup {autostart = LSP.tsserver}
-
--- npm i -g vscode-css-languageserver-bin
-nvim_lsp.cssls.setup {autostart = LSP.css}
 
 -- npm i -g pyright
 nvim_lsp.pyright.setup {autostart = LSP.python}
@@ -29,6 +25,18 @@ nvim_lsp.jsonls.setup {autostart = LSP.json}
 
 -- pacman -S clang
 nvim_lsp.clangd.setup {autostart = LSP.clangd}
+
+-- npm i -g typescript typescript-language-server
+nvim_lsp.tsserver.setup {autostart = LSP.tsserver}
+
+-- npm i -g vscode-html-languageserver-bin
+nvim_lsp.html.setup {
+    autostart = LSP.html,
+    capabilities = capabilities
+}
+
+-- npm i -g vscode-css-languageserver-bin
+nvim_lsp.cssls.setup {autostart = LSP.css}
 
 -- npm i -g emmet-ls
 local configs = require "lspconfig/configs"
@@ -86,7 +94,3 @@ nvim_lsp.sumneko_lua.setup {
         }
     }
 }
-
--- no need for hmtl server having emmet-ls and snippets working
--- npm i -g vscode-html-languageserver-bin
--- nvim_lsp.html.setup {}
