@@ -6,7 +6,6 @@ if Treesitter.enabled == nil or Treesitter.enabled == true then
             use_languagetree = true
         },
         indent = {enable = true},
-        rainbow = {enable = Treesitter.rainbow},
-        autotag = {enable = Completion.autotag}
+        rainbow = {enable = Treesitter.rainbow}
     }
 end

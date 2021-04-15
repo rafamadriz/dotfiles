@@ -43,20 +43,11 @@ function utils.map(mode, key, result, opts)
 end
 
 -- Telescope
-function utils.search_dotfiles()
-    require("telescope.builtin").find_files(
-        {
-            prompt_title = "Dotfiles",
-            cwd = "$HOME/.config/"
-        }
-    )
-end
-
 function utils.search_nvim()
     require("telescope.builtin").find_files(
         {
             prompt_title = "Neovim Config",
-            cwd = "$HOME/.config/nvim"
+            cwd = "$HOME/.config/nvim/lua"
         }
     )
 end

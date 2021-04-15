@@ -17,14 +17,13 @@ return require("packer").startup(
             requires = {
                 {"nvim-lua/popup.nvim"},
                 {"nvim-lua/plenary.nvim"},
-                {"nvim-telescope/telescope-media-files.nvim"}
+                {"nvim-telescope/telescope-fzy-native.nvim"}
             }
         }
 
         -- Treesitter
         use {
             {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
-            "windwp/nvim-ts-autotag",
             "p00f/nvim-ts-rainbow"
         }
 
@@ -57,7 +56,6 @@ return require("packer").startup(
         use {
             "sainnhe/sonokai",
             "christianchiarulli/nvcode-color-schemes.vim",
-            "Th3Whit3Wolf/space-nvim",
             "sainnhe/edge",
             "Iron-E/nvim-highlite",
             {"Th3Whit3Wolf/onebuddy", requires = "tjdevries/colorbuddy.vim"},
