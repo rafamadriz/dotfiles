@@ -8,7 +8,7 @@ return require("packer").startup(
             "hrsh7th/nvim-compe",
             "sbdchd/neoformat",
             "hrsh7th/vim-vsnip",
-            "~/Repos/friendly-snippets"
+            "~/repos/friendly-snippets"
         }
 
         -- Telescope

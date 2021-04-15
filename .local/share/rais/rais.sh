@@ -170,7 +170,6 @@ while true; do
 
     get_pkg_list
     install_depend
-    wait_sudo
     aur_helper_install
     aur_depend
     setup_dotfiles

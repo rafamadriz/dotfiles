@@ -1,5 +1,7 @@
 -- General settings
 require("config")
+-- vim.cmd("luafile ~/.config/nvim/config.lua")
+require("utils/lsp")
 require("utils/handlers")
 require("main/options")
 require("main/mappings")
