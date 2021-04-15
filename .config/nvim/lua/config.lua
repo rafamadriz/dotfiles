@@ -2,6 +2,7 @@ Opts = {
     jump_last_pos = true,
     highlight_yank = true,
     relativenumber = true,
+    scrolloff = 10,
     wrap = false,
     cursorline = true,
     listchars = true
@@ -17,7 +18,7 @@ Theming = {
       @sonokai = default, atlantis, andromeda, shusia, maia ]]
     colorscheme_style = "",
     -- Choose a stulusline:
-    -- Options: galaxy, airline, eviline, gruvbox, minimal, rounded, lunar
+    -- Options: galaxy, airline, eviline, gruvbox, minimal, rounded
     statusline = "gruvbox"
 }
 
@@ -43,7 +44,6 @@ Completion = {
     -- Enable or disable completion globally
     enabled = true,
     autopairs = true,
-    autotag = true,
     items = 10,
     -- Choose sources of completion
     snippets = true,
