@@ -188,3 +188,14 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# change window gap at run time
+super + plus
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 5 ))
+
+super + minus
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 5 ))
+
+# Restore original gap
+super + equal
+    bspc config top_padding 32; bspc config -d focused window_gap 15
