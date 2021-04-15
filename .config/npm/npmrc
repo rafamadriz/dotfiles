@@ -9,8 +9,8 @@
 ; Configs like `//<hostname>/:_authToken` are auth that is restricted
 ; to the registry host specified.
 
-cache=/home/rafa/.cache/npm
-init-module=/home/rafa/.config/npm/config/npm-init.js
+cache=${XDG_CACHE_HOME}/npm
+init-module=${XDG_CONFIG_HOME}/npm/config/npm-init.js
 package-lock=false
 tmp=/run/user/1000/npm
 
@@ -45,7 +45,7 @@ tmp=/run/user/1000/npm
 ; depth=null
 ; description=true
 ; dev=false
-; 
+;
 ; diff-ignore-all-space=false
 ; diff-name-only=false
 ; diff-no-prefix=false
@@ -74,7 +74,7 @@ tmp=/run/user/1000/npm
 ; https-proxy=null
 ; if-present=false
 ; ignore-scripts=false
-; 
+;
 ; include-staged=false
 ; init-author-email=
 ; init-author-name=
@@ -104,11 +104,11 @@ tmp=/run/user/1000/npm
 ; noproxy=
 ; npm-version=7.8.0
 ; offline=false
-; 
+;
 ; only=null
 ; optional=null
 ; otp=null
-; 
+;
 ; package-lock=true
 ; package-lock-only=false
 ; parseable=false
@@ -158,6 +158,6 @@ tmp=/run/user/1000/npm
 ; versions=false
 ; viewer=man
 ; which=null
-; 
+;
 ; workspaces=false
 ; yes=null
