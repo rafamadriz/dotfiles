@@ -1,42 +1,51 @@
--- Stop lsp diagnostics from showing virtual text
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        virtual_text = false,
-        update_in_insert = false,
-        underline = true,
-        signs = true
-    }
-)
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 local nvim_lsp = require "lspconfig"
+local capabilities = require "utils.lsp".capabilities
+local common_on_attach = require "utils.lsp".common_on_attach
 
 -- npm i -g bash-language-server
-nvim_lsp.bashls.setup {autostart = LSP.bash}
+nvim_lsp.bashls.setup {
+    autostart = LSP.bash,
+    on_attach = common_on_attach,
+    filetypes = {"sh", "zsh"}
+}
 
 -- npm i -g pyright
-nvim_lsp.pyright.setup {autostart = LSP.python}
+nvim_lsp.pyright.setup {
+    autostart = LSP.python,
+    on_attach = common_on_attach
+}
 
 -- npm i -g vscode-json-languageserver
-nvim_lsp.jsonls.setup {autostart = LSP.json}
+nvim_lsp.jsonls.setup {
+    autostart = LSP.json,
+    on_attach = common_on_attach
+}
 
 -- pacman -S clang
-nvim_lsp.clangd.setup {autostart = LSP.clangd}
+nvim_lsp.clangd.setup {
+    autostart = LSP.clangd,
+    on_attach = common_on_attach
+}
 
 -- npm i -g typescript typescript-language-server
-nvim_lsp.tsserver.setup {autostart = LSP.tsserver}
+nvim_lsp.tsserver.setup {
+    autostart = LSP.tsserver,
+    on_attach = common_on_attach,
+    filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
+}
 
 -- npm i -g vscode-html-languageserver-bin
 nvim_lsp.html.setup {
     autostart = LSP.html,
+    on_attach = common_on_attach,
     capabilities = capabilities
 }
 
 -- npm i -g vscode-css-languageserver-bin
-nvim_lsp.cssls.setup {autostart = LSP.css}
+nvim_lsp.cssls.setup {
+    autostart = LSP.css,
+    on_attach = common_on_attach
+}
 
 -- npm i -g emmet-ls
 local configs = require "lspconfig/configs"
@@ -68,6 +77,7 @@ local luabin = luapath .. "/bin/Linux/lua-language-server"
 nvim_lsp.sumneko_lua.setup {
     cmd = {luabin, "-E", luapath .. "/main.lua"},
     autostart = LSP.lua,
+    on_attach = common_on_attach,
     settings = {
         Lua = {
             runtime = {

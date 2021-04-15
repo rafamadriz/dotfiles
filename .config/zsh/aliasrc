@@ -28,7 +28,7 @@ alias \
 
 # search for all scripts and dotfiles, then open them with editor of choice
 sc() {
-  find ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh} \
+  find ~/.zshenv ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh} \
     ~/.local/bin/{scripts,cron,statusbar} ~/.local/share/rais -type f |
     fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
 }
@@ -50,4 +50,9 @@ fkill() {
 # cdf - cd into the directory of the selected file
 cdf() {
   file=$(find "${1:-.}" -type f | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
+}
+
+# search for a package and installed if needed
+search() {
+  pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed
 }

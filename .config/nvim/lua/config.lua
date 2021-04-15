@@ -15,14 +15,14 @@ Theming = {
       @gruvbox = medium, soft, hard
       @edge = default, aura, neon
       @sonokai = default, atlantis, andromeda, shusia, maia ]]
-    colorscheme_style = "aura",
+    colorscheme_style = "",
     -- Choose a stulusline:
-    -- Options: galaxy, airline, eviline, gruvbox, minimal, rounded
+    -- Options: galaxy, airline, eviline, gruvbox, minimal, rounded, lunar
     statusline = "gruvbox"
 }
 
 LSP = {
-    -- values: true, false
+    -- @values: true, false
     -- Enable or disable LSP globally
     enabled = true,
     -- Choose which servers to start automatically
@@ -39,7 +39,7 @@ LSP = {
 }
 
 Completion = {
-    -- values: true, false
+    -- @values: true, false
     -- Enable or disable completion globally
     enabled = true,
     autopairs = true,

@@ -34,6 +34,9 @@ export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
