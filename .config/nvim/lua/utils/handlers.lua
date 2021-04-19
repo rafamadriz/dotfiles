@@ -97,7 +97,7 @@ end
 check_style(C) ]]
 -- LSP
 
-local servers = {"bash", "clangd", "css", "emmet", "json", "lua", "python", "tsserver"}
+local servers = {"bash", "clangd", "css", "emmet", "json", "lua", "python", "tsserver", "html"}
 
 for _, v in pairs(servers) do
     if LSP[v] == nil then
