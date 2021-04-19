@@ -21,7 +21,7 @@ u.opt("o", "mouse", "a")
 u.opt("o", "hidden", true)
 u.opt("o", "splitbelow", true)
 u.opt("o", "splitright", true)
-u.opt("o", "completeopt", "menuone,noselect")
+u.opt("o", "completeopt", "menuone,noinsert,noselect")
 
 -- Window
 u.opt("w", "relativenumber", Opts.relativenumber)

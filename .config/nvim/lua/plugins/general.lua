@@ -18,6 +18,7 @@ require "colorizer".setup(
 -- Autopairs
 if Completion.autopairs == nil or Completion.autopairs == true then
     require("nvim-autopairs").setup()
+
     local remap = vim.api.nvim_set_keymap
     local npairs = require("nvim-autopairs")
 
@@ -28,15 +29,12 @@ if Completion.autopairs == nil or Completion.autopairs == true then
     MUtils.completion_confirm = function()
         if vim.fn.pumvisible() ~= 0 then
             if vim.fn.complete_info()["selected"] ~= -1 then
-                vim.fn["compe#confirm"]()
-                return npairs.esc("")
+                return vim.fn["compe#confirm"](npairs.esc("<c-r>"))
             else
-                vim.api.nvim_select_popupmenu_item(0, false, false, {})
-                vim.fn["compe#confirm"]()
-                return npairs.esc("<c-n>")
+                return npairs.esc("<cr>")
             end
         else
-            return npairs.check_break_line_char()
+            return npairs.autopairs_cr()
         end
     end
 
