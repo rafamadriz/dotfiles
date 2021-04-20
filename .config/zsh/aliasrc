@@ -53,6 +53,10 @@ cdf() {
 }
 
 # search for a package and installed if needed
-search() {
+sah() {
   pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed
+}
+
+sahur() {
+  paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed
 }
