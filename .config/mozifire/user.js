@@ -19,6 +19,9 @@ user_pref("svg.context-properties.content.enabled", true);
 
 // PRIVACY
 
+// Snippets
+user_pref("browser.newtabpage.activity-stream.feeds.snippets", false);
+
 // PREF: Disable Location-Aware Browsing (geolocation)
 user_pref("geo.enabled", false);
 
