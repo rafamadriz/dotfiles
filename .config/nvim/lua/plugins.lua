@@ -45,6 +45,7 @@ return require("packer").startup(
         -- General plugins
         use {
             "kyazdani42/nvim-web-devicons",
+            {"turbio/bracey.vim", run = "npm install --prefix server"},
             "mhinz/vim-startify",
             "mbbill/undotree",
             "b3nj5m1n/kommentary",
