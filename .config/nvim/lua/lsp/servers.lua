@@ -1,9 +1,11 @@
 local nvim_lsp = require "lspconfig"
 local capabilities = require "utils.lsp".capabilities
 local common_on_attach = require "utils.lsp".common_on_attach
+local cmds = require "utils.lsp".cmds
 
 -- npm i -g bash-language-server
 nvim_lsp.bashls.setup {
+    cmd = cmds.bash,
     autostart = LSP.bash,
     on_attach = common_on_attach,
     filetypes = {"sh", "zsh"}
@@ -11,24 +13,28 @@ nvim_lsp.bashls.setup {
 
 -- npm i -g pyright
 nvim_lsp.pyright.setup {
+    cmd = cmds.python,
     autostart = LSP.python,
     on_attach = common_on_attach
 }
 
 -- npm i -g vscode-json-languageserver
 nvim_lsp.jsonls.setup {
+    cmd = cmds.python,
     autostart = LSP.json,
     on_attach = common_on_attach
 }
 
 -- pacman -S clang
 nvim_lsp.clangd.setup {
+    cmd = cmds.clangd,
     autostart = LSP.clangd,
     on_attach = common_on_attach
 }
 
 -- npm i -g typescript typescript-language-server
 nvim_lsp.tsserver.setup {
+    cmd = cmds.tsserver,
     autostart = LSP.tsserver,
     on_attach = common_on_attach,
     filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
@@ -36,6 +42,7 @@ nvim_lsp.tsserver.setup {
 
 -- npm i -g vscode-html-languageserver-bin
 nvim_lsp.html.setup {
+    cmd = cmds.html,
     autostart = LSP.html,
     on_attach = common_on_attach,
     capabilities = capabilities
@@ -43,8 +50,15 @@ nvim_lsp.html.setup {
 
 -- npm i -g vscode-css-languageserver-bin
 nvim_lsp.cssls.setup {
+    cmd = cmds.css,
     autostart = LSP.css,
     on_attach = common_on_attach
+}
+
+nvim_lsp.texlab.setup {
+    cmd = cmds.texlab,
+    on_attach = common_on_attach,
+    autostart = LSP.latex
 }
 
 -- npm i -g emmet-ls
@@ -71,8 +85,8 @@ nvim_lsp.emmet_ls.setup {autostart = LSP.emmet}
 -- cd ../..
 -- ./3rd/luamake/luamake rebuild
 
-local luapath = "/home/" .. os.getenv("USER") .. "/.local/share/nvim/lua/sumneko_lua"
-local luabin = luapath .. "/bin/Linux/lua-language-server"
+local luapath = vim.fn.stdpath("data") .. "/lspinstall/lua"
+local luabin = luapath .. "/sumneko-lua-language-server"
 
 nvim_lsp.sumneko_lua.setup {
     cmd = {luabin, "-E", luapath .. "/main.lua"},

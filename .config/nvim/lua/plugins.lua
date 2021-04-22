@@ -8,6 +8,7 @@ return require("packer").startup(
             "hrsh7th/nvim-compe",
             "sbdchd/neoformat",
             "hrsh7th/vim-vsnip",
+            "kabouzeid/nvim-lspinstall",
             "~/repos/friendly-snippets"
         }
 

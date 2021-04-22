@@ -24,12 +24,14 @@ Theming = {
 
 LSP = {
     -- @values: true, false
-    -- Enable or disable LSP globally
     enabled = true,
-    -- Choose which servers to start automatically
+    ---------------
+    -- Autostart --
+    ---------------
     bash = true,
     clangd = true,
     json = true,
+    latex = true,
     lua = false,
     python = true,
     -- WebDev
@@ -41,11 +43,12 @@ LSP = {
 
 Completion = {
     -- @values: true, false
-    -- Enable or disable completion globally
     enabled = true,
     autopairs = true,
     items = 10,
-    -- Choose sources of completion
+    -------------
+    -- Sources --
+    -------------
     snippets = true,
     lsp = true,
     buffer = true,
@@ -62,10 +65,11 @@ Formatting = {
 }
 
 Treesitter = {
-    -- Treesitter can have performance issues, choose to enable or not
     enabled = true,
     rainbow = true,
-    -- Set the parsers for Treesitter
+    -------------
+    -- Parsers --
+    -------------
     parsers = {
         "javascript",
         "typescript",
