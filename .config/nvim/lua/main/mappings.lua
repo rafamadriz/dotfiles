@@ -8,7 +8,6 @@ vim.g.mapleader = " "
 u.map("n", "<leader>w", ":update<CR>")
 u.map("n", "<leader>q", ":bdelete<CR>")
 u.map("i", "jk", "<ESC>")
-u.map("x", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
 u.map("n", "<leader>nh", ":noh<CR>")

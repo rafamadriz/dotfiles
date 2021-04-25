@@ -1,12 +1,11 @@
-local styles = {"galaxy", "airline", "eviline", "gruvbox", "minimal"}
+local status = {"classic", "slant"}
 
 if Theming.statusline == nil or Theming.statusline:gsub("%s+", "") == "" then
-    require("plugins/statusline/" .. styles[1])
+    require("plugins/statusline/styles" .. status[1])
 else
-    local statusline = Theming.statusline:gsub("%s+", "")
-    for _, v in pairs(styles) do
-        if v == statusline then
-            require("plugins/statusline/" .. v)
+    for _, v in pairs(status) do
+        if Theming.statusline:gsub("%s+", "") == v then
+            require("plugins/statusline/styles/" .. v)
         end
     end
 end

@@ -38,7 +38,7 @@ return require("packer").startup(
         use {"iamcco/markdown-preview.nvim", run = "cd app && yarn install"}
 
         -- Statusline
-        use "glepnir/galaxyline.nvim"
+        use "famiu/feline.nvim"
 
         -- Terminal
         use {"akinsho/nvim-toggleterm.lua", "voldikss/vim-floaterm"}
@@ -60,7 +60,7 @@ return require("packer").startup(
             "christianchiarulli/nvcode-color-schemes.vim",
             "sainnhe/edge",
             "Iron-E/nvim-highlite",
-            {"Th3Whit3Wolf/onebuddy", requires = "tjdevries/colorbuddy.vim"},
+            "GustavoPrietoP/doom-one.vim",
             {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
         }
     end
