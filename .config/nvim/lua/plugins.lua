@@ -59,7 +59,6 @@ return require("packer").startup(
             "sainnhe/sonokai",
             "christianchiarulli/nvcode-color-schemes.vim",
             "sainnhe/edge",
-            "Iron-E/nvim-highlite",
             "GustavoPrietoP/doom-one.vim",
             {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
         }
