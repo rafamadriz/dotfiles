@@ -20,6 +20,7 @@ Theming = {
     -- Choose a stulusline:
     -- Options: classic, slant
     statusline = "slant",
+    -- Options: gruvbox, nord
     statusline_color = "gruvbox"
 }
 
