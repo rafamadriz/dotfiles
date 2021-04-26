@@ -1,6 +1,5 @@
 -- General settings
 require("config")
-require("utils/lsp")
 require("utils/handlers")
 require("main/options")
 require("main/mappings")

@@ -40,84 +40,79 @@ require("feline").setup(
             NONE = "orange"
         },
         components = {
-            ----------
-            -- Left --
-            ----------
             left = {
                 active = {
                     {
-                        provider = u.mode,
+                        provider = u.icons.block,
                         hl = function()
-                            return {
-                                name = u.vi_mode_utils.get_mode_highlight_name(),
-                                fg = "bg",
-                                bg = u.vi_mode_utils.get_mode_color(),
-                                style = "bold"
-                            }
-                        end
+                            local val = {}
+                            val.fg = u.vi_mode_utils.get_mode_color()
+                            return val
+                        end,
+                        right_sep = " "
                     },
                     {
                         provider = "file_info",
                         file_modified_icon = "",
-                        hl = {style = "bold", fg = "oceanblue"},
-                        left_sep = " "
+                        hl = {fg = "magenta", style = "bold"}
                     },
                     {
-                        provider = u.icons.locker,
-                        hl = {fg = "red"},
-                        enabled = function()
-                            return vim.bo.readonly
-                        end
+                        provider = function()
+                            local line = vim.fn.line(".")
+                            local col = vim.fn.col(".")
+                            return string.format(" %s %s:%s ", u.icons.line_number, line, col)
+                        end,
+                        hl = {style = "bold"}
                     },
                     {
                         provider = "git_branch",
                         icon = "  ",
-                        hl = {fg = "white", bg = "fore", style = "bold"}
+                        hl = {fg = "cyan"}
                     },
                     {
                         provider = "git_diff_added",
                         icon = " +",
-                        hl = {
-                            fg = "cyan",
-                            bg = "fore",
-                            style = "bold"
-                        }
+                        hl = {fg = "green"}
                     },
                     {
                         provider = "git_diff_changed",
                         icon = " ~",
-                        hl = {
-                            fg = "yellow",
-                            bg = "fore",
-                            style = "bold"
-                        }
+                        hl = {fg = "yellow"}
                     },
                     {
                         provider = "git_diff_removed",
                         icon = " -",
-                        hl = {
-                            fg = "red",
-                            bg = "fore",
-                            style = "bold"
-                        },
-                        right_sep = " "
+                        hl = {fg = "red"}
                     }
                 },
                 inactive = {
                     {
+                        provider = u.icons.block,
+                        hl = function()
+                            local val = {}
+                            val.fg = u.vi_mode_utils.get_mode_color()
+                            return val
+                        end,
+                        right_sep = " "
+                    },
+                    {
                         provider = "file_type",
                         hl = {
-                            bg = "bg",
-                            fg = "white",
+                            fg = "magenta",
                             style = "bold"
                         }
+                    },
+                    {
+                        provider = function()
+                            local line = vim.fn.line(".")
+                            local col = vim.fn.col(".")
+                            return string.format(" %s %s:%s ", u.icons.line_number, line, col)
+                        end,
+                        hl = {style = "bold"}
                     }
                 }
             },
             mid = {active = {}, inactive = {}},
-            -----------
-            -- Right --
-            -----------
             right = {
                 active = {
                     {
@@ -126,7 +121,7 @@ require("feline").setup(
                             return not vim.tbl_isempty(vim.lsp.buf_get_clients(0))
                         end,
                         hl = {fg = "#b8bb26"},
-                        right_sep = " "
+                        right_sep = "  "
                     },
                     {
                         provider = "diagnostic_errors",
@@ -156,43 +151,61 @@ require("feline").setup(
                         end,
                         hl = {fg = "cyan", bg = "bg"}
                     },
-                    u.encodign_component_classic,
                     {
-                        provider = "file_type",
-                        hl = {bg = "fore", fg = "cyan", style = "bold"},
-                        right_sep = {str = " ", hl = {bg = "fore"}}
-                    },
-                    u.spaces_component_classic,
-                    u.position_component_classic,
-                    {
-                        provider = " " .. u.icons.page,
-                        left_sep = {str = u.icons.left, hl = {fg = "bg", bg = "back"}},
-                        right_sep = {str = " ", hl = {bg = "back"}},
-                        hl = {fg = "bg", bg = "back"}
+                        provider = function()
+                            return string.format("  %s", vim.bo.fileencoding)
+                        end,
+                        hl = function()
+                            local val = {}
+                            val.fg = u.vi_mode_utils.get_mode_color()
+                            return val
+                        end
                     },
                     {
-                        provider = "line_percentage",
-                        right_sep = {str = " ", hl = {bg = "back"}},
-                        hl = {
-                            fg = "bg",
-                            bg = "back",
-                            style = "bold"
-                        }
+                        provider = function()
+                            local spaces = vim.api.nvim_buf_get_option(0, "shiftwidth")
+                            return string.format("TAB: %s", spaces)
+                        end,
+                        hl = function()
+                            local val = {}
+                            val.fg = u.vi_mode_utils.get_mode_color()
+                            val.style = "bold"
+                            return val
+                        end,
+                        left_sep = "   ",
+                        right_sep = "   "
                     },
                     {
-                        provider = "scroll_bar",
-                        hl = {
-                            bg = "back",
-                            fg = "yellow",
-                            style = "bold"
-                        }
+                        provider = function()
+                            local total = vim.fn.line("$")
+                            return string.format("%s %s", u.icons.mathematical_L, total)
+                        end,
+                        hl = function()
+                            local val = {}
+                            val.fg = u.vi_mode_utils.get_mode_color()
+                            val.style = "bold"
+                            return val
+                        end,
+                        right_sep = " "
                     }
                 },
                 inactive = {
-                    u.position_component_classic
+                    {
+                        provider = function()
+                            local total = vim.fn.line("$")
+                            return string.format("%s %s", u.icons.mathematical_L, total)
+                        end,
+                        hl = function()
+                            local val = {}
+                            val.fg = u.vi_mode_utils.get_mode_color()
+                            val.style = "bold"
+                            return val
+                        end,
+                        right_sep = " "
+                    }
                 }
-            }
-        },
-        properties = u.properties
+            },
+            properties = u.properties
+        }
     }
 )

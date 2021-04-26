@@ -21,14 +21,14 @@ color.gruvbox = {
 }
 
 color.nord = {
-    default_fg = "#8FBCBB",
-    default_bg = "#2E3440",
+    default_fg = "#d8dee9",
+    default_bg = "#2e3440",
     colors = {
         fore = "#4c566a",
         back = "#88C0D0",
         dark = "#434C5E",
         white = "#ECEFF4",
-        skyblue = "#d8dee9",
+        skyblue = "#8FBCBB",
         cyan = "#a3be8c",
         green = "#88C0D0",
         oceanblue = "#5E81AC",

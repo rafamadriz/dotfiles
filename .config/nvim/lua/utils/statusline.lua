@@ -37,6 +37,7 @@ M.icons = {
     dos = "", -- e70f
     unix = "", -- f17c
     mac = "", -- f179
+    mathematical_L = "𝑳",
     vertical_bar = "┃",
     vertical_bar_thin = "│",
     left = "",
@@ -94,16 +95,16 @@ end
 -------------
 M.encodign_component_classic = {
     provider = function()
-        local icon = M.icons[vim.bo.fileformat] or ""
-        return string.format(" %s %s ", icon, vim.bo.fileencoding)
+        local os = M.icons[vim.bo.fileformat] or ""
+        return string.format(" %s %s ", os, vim.bo.fileencoding)
     end,
-    left_sep = {str = " ", hl = {bg = "dark"}},
+    left_sep = {str = " ", hl = {bg = "bg"}},
     hl = {fg = "white", bg = "fore"}
 }
 M.spaces_component_classic = {
     provider = function()
         local spaces = vim.api.nvim_buf_get_option(0, "shiftwidth")
-        return string.format(" SP: %s ", spaces)
+        return string.format(" TAB: %s ", spaces)
     end,
     hl = {style = "bold"}
 }
@@ -122,8 +123,8 @@ M.position_component_classic = {
 -----------
 M.encodign_component_slant = {
     provider = function()
-        local icon = M.icons[vim.bo.fileformat] or ""
-        return string.format(" %s %s ", icon, vim.bo.fileencoding)
+        local os = M.icons[vim.bo.fileformat] or ""
+        return string.format(" %s %s ", os, vim.bo.fileencoding)
     end,
     hl = {fg = "white", bg = "fore"},
     left_sep = {str = M.icons.left_filled, hl = {fg = "fore", bg = "bg"}}
@@ -132,7 +133,7 @@ M.encodign_component_slant = {
 M.spaces_component_slant = {
     provider = function()
         local spaces = vim.api.nvim_buf_get_option(0, "shiftwidth")
-        return string.format(" SP: %s ", spaces)
+        return string.format(" TAB: %s ", spaces)
     end,
     hl = {style = "bold"},
     left_sep = {str = M.icons.left_filled, hl = {fg = "bg", bg = "fore"}}
