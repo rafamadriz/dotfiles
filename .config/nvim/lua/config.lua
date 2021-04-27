@@ -18,7 +18,7 @@ Theming = {
       @sonokai = default, atlantis, andromeda, shusia, maia ]]
     colorscheme_style = "",
     -- Choose a stulusline:
-    -- Options: classic, slant
+    -- Options: classic, slant, minimal, default
     statusline = "slant",
     -- Options: gruvbox, nord
     statusline_color = "gruvbox"
