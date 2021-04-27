@@ -10,94 +10,33 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Theming
-local styles = {
-    edge = {
-        "default",
-        "aura",
-        "neon"
-    },
-    gruvbox = {
-        "medium",
-        "soft",
-        "hard"
-    },
-    sonokai = {
-        "default",
-        "atlantis",
-        "andromeda",
-        "shusia",
-        "maia"
-    }
-}
+local default = "edge"
 
-if Theming.colorscheme == nil or Theming.colorscheme:gsub("%s+", "") == "" then
-    C = "edge"
-else
-    C = Theming.colorscheme:gsub("%s+", "")
+local function default_theme(v)
+    if v == nil or v:gsub("%s+", "") == "" then
+        v = default
+    else
+        v = v:gsub("%s+", "")
+    end
+    return v
 end
 
-if Theming.colorscheme_style ~= nil then
-    CS = Theming.colorscheme_style:gsub("%s+", "")
-    local function check_theme(theme)
-        local style
-        if theme == "edge" then
-            style = styles.edge
-        elseif theme == "gruvbox" then
-            style = styles.gruvbox
-        elseif theme == "sonokai" then
-            style = styles.sonokai
-        end
-        if style ~= nil then
-            if CS == "" or CS == nil then
-                CS = style[1]
-            end
-        end
+local function fellback_CS(check)
+    local v
+    if check ~= nil then
+        v = check:gsub("%s+", "")
+    else
+        v = ""
     end
-    check_theme(C)
-else
-    CS = ""
+    return v
 end
 
---[[ local function check_themes(theme)
-    for i, k in pairs(styles) do
-        if i == theme then
-            table = styles[i]
-        end
-    end
-    print(table)
-    local default_style
-    default_style = table[1]
-    if default_style ~= nil then
-        if CS == "" or CS == nil then
-            CS = default_style
-        end
-    end
-end
-check_themes(C) ]]
---[[ local function has_style(index, theme)
-    if index == theme then
-        Style = true
-    end
-    return Style
-end
+C = default_theme(Theming.colorscheme)
+CS = fellback_CS(Theming.colorscheme_style)
 
-local function check_style(theme)
-    for i, k in pairs(styles) do
-        has_style(i, theme)
-        if Style == true then
-            table = styles[i]
-            local default_style
-            default_style = table[1]
-            if CS == "" or CS == nil then
-                CS = default_style
-            end
-        end
-    end
-end
-check_style(C) ]]
 -- LSP
 
-local servers = {"bash", "clangd", "css", "emmet", "json", "lua", "python", "tsserver", "html"}
+local servers = {"bash", "clangd", "css", "emmet", "json", "lua", "python", "tsserver", "html", "latex"}
 
 for _, v in pairs(servers) do
     if LSP[v] == nil then
