@@ -3,14 +3,9 @@ local u = require("utils.core")
 local autocmds = {
     filetypes = {
         {"BufNewFile,BufRead", "*.ejs", "set filetype=html"},
-        {"FileType", "markdown", "setlocal wrap"},
-        {"FileType", "markdown", "setlocal spell"},
+        {"FileType", "markdown", "setlocal wrap spell"},
         {"FileType", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"},
         {"FileType", "toggleterm", "setlocal nonumber norelativenumber"}
-    },
-    cursor = {
-        {"CursorHold", "*", "lua vim.lsp.diagnostic.show_line_diagnostics()"},
-        {"CursorHoldI", "*", "silent! lua vim.lsp.buf.signature_help()"}
     }
 }
 
