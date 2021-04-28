@@ -10,15 +10,21 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Theming
-local default = "edge"
+local default = "gruvbox"
+local colors = vim.fn.getcompletion("", "color")
 
-local function default_theme(v)
-    if v == nil or v:gsub("%s+", "") == "" then
-        v = default
+local function default_theme(t, s)
+    if s == nil or s:gsub("%s+", "") == "" then
+        return default
     else
-        v = v:gsub("%s+", "")
+        s = s:gsub("%s+", "")
     end
-    return v
+    for _, v in pairs(t) do
+        if v == s then
+            return s
+        end
+    end
+    return "default"
 end
 
 local function fellback_CS(check)
@@ -31,7 +37,7 @@ local function fellback_CS(check)
     return v
 end
 
-C = default_theme(Theming.colorscheme)
+C = default_theme(colors, Theming.colorscheme)
 CS = fellback_CS(Theming.colorscheme_style)
 
 -- LSP

@@ -42,6 +42,22 @@ function utils.map(mode, key, result, opts)
     vim.api.nvim_set_keymap(mode, key, result, options)
 end
 
+-- Terminal
+local Terminal = require("toggleterm.terminal").Terminal
+
+local lazygit =
+    Terminal:new(
+    {
+        cmd = "lazygit",
+        direction = "float",
+        hidden = true
+    }
+)
+
+function utils._lazygit_toggle()
+    lazygit:toggle()
+end
+
 -- Telescope
 function utils.search_nvim()
     require("telescope.builtin").find_files(
