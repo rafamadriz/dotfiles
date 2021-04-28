@@ -13,6 +13,8 @@ u.map("n", "ss", ":luafile %<CR>", {silent = false})
 u.map("n", "<leader>nh", ":noh<CR>")
 u.map("n", "<BS>", "<C-^>")
 u.map("t", "<C-o>", [[<C-\><C-n>]])
+u.map("n", "<A-t>", ":ToggleTerm<CR>")
+u.map("t", "<A-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
 -- u.map("i", "{<Enter>", "{<Enter>}<Esc>O")
 
 -- Move selected line / block of text in visual mode
@@ -41,7 +43,7 @@ u.map("n", "<leader>tk", ":FloatermKill<CR>")
 u.map("n", "<leader>u", ":UndotreeToggle<CR>")
 
 -- Git
-u.map("n", "<leader>gg", ":FloatermNew lazygit<CR>")
+u.map("n", "<F5>", ":lua require('utils.core')._lazygit_toggle()<CR>")
 u.map("n", "<leader>gf", ":Telescope git_files<CR>")
 u.map("n", "<leader>gc", ":Telescope git_commits<CR>")
 u.map("n", "<leader>gb", ":Telescope git_branches<CR>")

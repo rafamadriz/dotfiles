@@ -41,25 +41,25 @@ return require("packer").startup(
         use "famiu/feline.nvim"
 
         -- Terminal
-        use {"akinsho/nvim-toggleterm.lua", "voldikss/vim-floaterm"}
+        use "akinsho/nvim-toggleterm.lua"
 
         -- General plugins
         use {
-            "kyazdani42/nvim-web-devicons",
-            {"turbio/bracey.vim", run = "npm install --prefix server"},
-            "mhinz/vim-startify",
             "mbbill/undotree",
+            "mhinz/vim-startify",
             "b3nj5m1n/kommentary",
             "windwp/nvim-autopairs",
-            "norcalli/nvim-colorizer.lua"
+            "norcalli/nvim-colorizer.lua",
+            "kyazdani42/nvim-web-devicons",
+            {"turbio/bracey.vim", run = "npm install --prefix server"}
         }
 
         -- Themes
         use {
             "sainnhe/sonokai",
-            "christianchiarulli/nvcode-color-schemes.vim",
             "sainnhe/edge",
             "GustavoPrietoP/doom-one.vim",
+            "christianchiarulli/nvcode-color-schemes.vim",
             {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
         }
     end
