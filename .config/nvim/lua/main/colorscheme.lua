@@ -4,18 +4,15 @@ local cmd = vim.cmd
 vim.g.gruvbox_italic = 1
 vim.g.gruvbox_contrast_dark = "" .. CS
 
--- sonokai
-vim.g.sonokai_style = "" .. CS
-vim.g.sonokai_enable_italic = 1
-vim.g.sonokai_better_performance = 1
-
--- spacevim
-vim.g.space_vim_italic = 1
-
--- edge
-vim.g.edge_style = "" .. CS
-vim.g.edge_enable_italic = 1
-vim.g.edge_better_performance = 1
+-- material
+vim.g.material_style = "" .. CS
+vim.g.material_italic_comments = true
+vim.g.material_italic_keywords = true
+vim.g.material_italic_functions = true
+vim.g.material_italic_variables = false
+vim.g.material_contrast = true
+vim.g.material_borders = false
+vim.g.material_disable_background = false
 
 -- Colorscheme
 cmd("colorscheme " .. C)
