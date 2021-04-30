@@ -14,12 +14,11 @@ Theming = {
     --[[ Some colorscheme have multiple styles to choose from.
       Available options:
       @gruvbox = medium, soft, hard
-      @edge = default, aura, neon
-      @sonokai = default, atlantis, andromeda, shusia, maia ]]
-    colorscheme_style = "",
+      @material = oceanic, palenight, darker, lighter ]]
+    colorscheme_style = "darker",
     -- Choose a stulusline:
     -- Options: classic, slant, minimal, default
-    statusline = "slant",
+    statusline = "minimal",
     -- Options: gruvbox, nord
     statusline_color = "gruvbox"
 }

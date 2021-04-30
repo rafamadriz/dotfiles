@@ -27,7 +27,7 @@ local function default_theme(t, s)
     return "default"
 end
 
-local function fellback_CS(check)
+local function color_style_or_empty(check)
     local v
     if check ~= nil then
         v = check:gsub("%s+", "")
@@ -38,7 +38,7 @@ local function fellback_CS(check)
 end
 
 C = default_theme(colors, Theming.colorscheme)
-CS = fellback_CS(Theming.colorscheme_style)
+CS = color_style_or_empty(Theming.colorscheme_style)
 
 -- LSP
 
