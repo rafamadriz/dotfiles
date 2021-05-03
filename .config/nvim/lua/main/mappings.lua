@@ -28,7 +28,7 @@ u.map("n", "<C-k>", "<C-w>k")
 u.map("n", "<C-l>", "<C-w>l")
 
 -- Check file in shellcheck
-u.map("n", "<leader>s", ":!clear && shellcheck -x %<CR>")
+u.map("n", "<leader>x", ":!clear && shellcheck -x %<CR>")
 
 -- Resize windows
 u.map("n", "<S-k>", ":resize -2<CR>")
