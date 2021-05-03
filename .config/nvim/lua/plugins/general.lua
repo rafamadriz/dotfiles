@@ -1,6 +1,3 @@
--- kommentary
-require("kommentary.config").use_extended_mappings()
-
 -- Toggleterm
 require "toggleterm".setup {
     size = 20,

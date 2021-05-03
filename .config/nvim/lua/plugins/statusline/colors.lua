@@ -40,4 +40,24 @@ color.nord = {
     }
 }
 
+color.dark = {
+    default_fg = "#e1e0e6",
+    default_bg = "#1c1b21",
+    colors = {
+        fore = "#33313c",
+        back = "#635d73",
+        dark = "#33313c",
+        white = "#e1e0e6",
+        skyblue = "#8FBCBB",
+        cyan = "#878492",
+        green = "#a3be8c",
+        oceanblue = "#56abe4",
+        magenta = "#9059ff",
+        orange = "#D08770",
+        red = "#EC5F67",
+        violet = "#332e56",
+        yellow = "#EBCB8B"
+    }
+}
+
 return color

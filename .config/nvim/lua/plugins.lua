@@ -5,11 +5,12 @@ return require("packer").startup(
         -- LSP, Autocomplete and snippets
         use {
             "neovim/nvim-lspconfig",
+            "glepnir/lspsaga.nvim",
             "hrsh7th/nvim-compe",
             "sbdchd/neoformat",
             "hrsh7th/vim-vsnip",
             "kabouzeid/nvim-lspinstall",
-            "~/repos/friendly-snippets"
+            "rafamadriz/friendly-snippets"
         }
 
         -- Telescope
@@ -48,6 +49,7 @@ return require("packer").startup(
             "mbbill/undotree",
             "mhinz/vim-startify",
             "b3nj5m1n/kommentary",
+            "folke/which-key.nvim",
             "windwp/nvim-autopairs",
             "norcalli/nvim-colorizer.lua",
             "kyazdani42/nvim-web-devicons",
@@ -57,7 +59,6 @@ return require("packer").startup(
         -- Themes
         use {
             "marko-cerovac/material.nvim",
-            "GustavoPrietoP/doom-one.vim",
             "christianchiarulli/nvcode-color-schemes.vim",
             {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
         }
