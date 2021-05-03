@@ -97,7 +97,7 @@ local mappings = {
         S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"}
     },
     j = {
-        name = "Jump Between Windows",
+        name = "Jump Windows",
         h = {"<cmd>wincmd h<cr>", "Left"},
         j = {"<cmd>wincmd j<cr>", "Down"},
         k = {"<cmd>wincmd k<cr>", "Up"},
