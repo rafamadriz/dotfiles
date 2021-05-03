@@ -127,6 +127,13 @@ local mappings = {
         bb = {"<cmd>Bracey<cr>", "Start"},
         bs = {"<cmd>BraceyStop<cr>", "Stop"},
         br = {"<cmd>BraceyReload<cr>", "Reload"}
+    },
+    p = {
+        name = "Plugins",
+        u = {"<cmd>PackerUpdate<cr>", "Update"},
+        s = {"<cmd>PackerSync<cr>", "Sync"},
+        c = {"<cmd>PackerClean<cr>", "Clean"},
+        S = {"<cmd>PackerStatus<cr>", "Status"}
     }
 }
 
