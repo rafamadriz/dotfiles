@@ -37,7 +37,8 @@ _move_dunst() {
 if [ "$chosen" = "Gruvbox" ]; then
   # nvim
   sed -i '\|colorscheme = | s|".*"\(.*$\)|"gruvbox"\1|' "$NVIM"
-  sed -i '\|statusline = | s|".*"\(.*$\)|"gruvbox"\1|' "$NVIM"
+  sed -i '\|statusline = | s|".*"\(.*$\)|"slant"\1|' "$NVIM"
+  sed -i '\|statusline_color = | s|".*"\(.*$\)|"gruvbox"\1|' "$NVIM"
   # kitty
   sed -i 's/\/themes\/.*$/\/themes\/gruvbox_dark\.conf/' ~/.config/kitty/kitty.conf
   # rofi
@@ -65,8 +66,9 @@ if [ "$chosen" = "Gruvbox" ]; then
 
 elif [ "$chosen" = "Nord" ]; then
   # nvim
-  sed -i '\|colorscheme = | s|".*"\(.*$\)|"edge"\1|' "$NVIM"
-  sed -i '\|statusline = | s|".*"\(.*$\)|"eviline"\1|' "$NVIM"
+  sed -i '\|colorscheme = | s|".*"\(.*$\)|"palenight"\1|' "$NVIM"
+  sed -i '\|statusline = | s|".*"\(.*$\)|"slant"\1|' "$NVIM"
+  sed -i '\|statusline_color = | s|".*"\(.*$\)|"nord"\1|' "$NVIM"
   # kitty
   sed -i 's/\/themes\/.*$/\/themes\/OneDark\.conf/' ~/.config/kitty/kitty.conf
   # rofi
