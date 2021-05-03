@@ -10,7 +10,7 @@ u.map("n", "<leader>q", ":bdelete<CR>")
 u.map("i", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
-u.map("n", "<leader>nh", ":noh<CR>")
+u.map("n", "<leader>h", ":noh<CR>")
 u.map("n", "<BS>", "<C-^>")
 u.map("t", "<C-o>", [[<C-\><C-n>]])
 u.map("n", "<A-t>", ":ToggleTerm<CR>")
@@ -28,16 +28,13 @@ u.map("n", "<C-k>", "<C-w>k")
 u.map("n", "<C-l>", "<C-w>l")
 
 -- Check file in shellcheck
-u.map("n", "<leader>sc", ":!clear && shellcheck -x %<CR>")
+u.map("n", "<leader>s", ":!clear && shellcheck -x %<CR>")
 
 -- Resize windows
 u.map("n", "<S-k>", ":resize -2<CR>")
 u.map("n", "<S-j>", ":resize +2<CR>")
 u.map("n", "<S-h>", ":vertical resize -2<CR>")
 u.map("n", "<S-l>", ":vertical resize +2<CR>")
-
--- Floaterm
-u.map("n", "<leader>tk", ":FloatermKill<CR>")
 
 -- Undotree
 u.map("n", "<leader>u", ":UndotreeToggle<CR>")
@@ -70,10 +67,10 @@ u.map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
 u.map("n", "gd", ":Telescope lsp_definitions<CR>")
 u.map("n", "gy", ":lua vim.lsp.buf.type_definition()<CR>")
 u.map("n", "gr", ":Telescope lsp_references<CR>")
-u.map("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
+u.map("n", "gh", ":Lspsaga hover_doc<CR>")
 u.map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
-u.map("n", "<leader>dd", ":Telescope lsp_document_diagnostics<CR>")
-u.map("n", "<leader>dw", ":Telescope lsp_workspace_diagnostics<CR>")
-u.map("n", "<space>rn", ":lua vim.lsp.buf.rename()<CR>")
-u.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
-u.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
+u.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
+u.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
+u.map("n", "<leader>lr", ":Lspsaga rename<CR>")
+u.map("n", "<c-p>", ":Lspsaga diagnostic_jump_prev<CR>")
+u.map("n", "<c-n>", ":Lspsaga diagnostic_jump_next<CR>")
