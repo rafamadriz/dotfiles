@@ -8,6 +8,7 @@ local autocmds = {
         {"FileType", "toggleterm", "setlocal nonumber norelativenumber"}
     }
 }
+vim.cmd([[autocmd ColorScheme * lua require("utils.lsp").fix("ColorScheme")]])
 
 -- define tables to insert
 local hl_yank = {
