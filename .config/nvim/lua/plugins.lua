@@ -58,7 +58,7 @@ return require("packer").startup(
 
         -- Themes
         use {
-            "marko-cerovac/material.nvim",
+            "rakr/vim-one",
             "christianchiarulli/nvcode-color-schemes.vim",
             {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
         }

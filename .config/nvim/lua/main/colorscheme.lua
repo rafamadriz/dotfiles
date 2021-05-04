@@ -4,15 +4,8 @@ local cmd = vim.cmd
 vim.g.gruvbox_italic = 1
 vim.g.gruvbox_contrast_dark = "" .. CS
 
--- material
-vim.g.material_style = "" .. CS
-vim.g.material_italic_comments = true
-vim.g.material_italic_keywords = true
-vim.g.material_italic_functions = true
-vim.g.material_italic_variables = false
-vim.g.material_contrast = true
-vim.g.material_borders = false
-vim.g.material_disable_background = false
+-- one
+vim.g.one_allow_italics = 1
 
 -- Colorscheme
 cmd("colorscheme " .. C)
