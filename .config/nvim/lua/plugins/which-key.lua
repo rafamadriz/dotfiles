@@ -131,9 +131,10 @@ local mappings = {
     p = {
         name = "Plugins",
         u = {"<cmd>PackerUpdate<cr>", "Update"},
-        s = {"<cmd>PackerSync<cr>", "Sync"},
+        i = {"<cmd>PackerInstall<cr>", "Install"},
+        S = {"<cmd>PackerSync<cr>", "Sync"},
         c = {"<cmd>PackerClean<cr>", "Clean"},
-        S = {"<cmd>PackerStatus<cr>", "Status"}
+        s = {"<cmd>PackerStatus<cr>", "Status"}
     }
 }
 

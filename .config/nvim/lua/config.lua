@@ -10,17 +10,16 @@ Opts = {
 
 Theming = {
     -- Press <space>fc to see all available themes
-    colorscheme = "material",
+    colorscheme = "one",
     --[[ Some colorscheme have multiple styles to choose from.
       Available options:
-      @gruvbox = medium, soft, hard
-      @material = oceanic, palenight, darker, lighter ]]
-    colorscheme_style = "darker",
+      @gruvbox = medium, soft, hard ]]
+    colorscheme_style = "",
     -- Choose a stulusline:
     -- Options: classic, slant, minimal, default
-    statusline = "slant",
+    statusline = "classic",
     -- Options: gruvbox, nord, dark
-    statusline_color = "dark"
+    statusline_color = "nord"
 }
 
 LSP = {
