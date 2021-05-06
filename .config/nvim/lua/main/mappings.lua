@@ -6,6 +6,7 @@ vim.g.mapleader = " "
 
 -- Basics
 u.map("n", "<leader>w", ":update<CR>")
+u.map("n", "<leader>W", ":wa<CR>")
 u.map("n", "<leader>q", ":bdelete<CR>")
 u.map("i", "jk", "<ESC>")
 u.map("n", "Q", "<Nop>")
@@ -16,6 +17,18 @@ u.map("t", "<C-o>", [[<C-\><C-n>]])
 u.map("n", "<A-t>", ":ToggleTerm<CR>")
 u.map("t", "<A-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
 -- u.map("i", "{<Enter>", "{<Enter>}<Esc>O")
+
+-- Remap for dealing with word wrap in Normal mode
+u.map("n", "k", 'v:count == 0 ? "gk" : "k"', {expr = true})
+u.map("n", "j", 'v:count == 0 ? "gj" : "j"', {expr = true})
+-- same for visual mode
+u.map("x", "k", '(v:count == 0 && mode() !=# "V") ? "gk" : "k"', {expr = true})
+u.map("x", "j", '(v:count == 0 && mode() !=# "V") ? "gj" : "j"', {expr = true})
+
+-- Automatically jump to the end of pasted text
+u.map("v", "y", "y`]")
+u.map("v", "p", "p`]")
+u.map("n", "p", "p`]")
 
 -- Move selected line / block of text in visual mode
 u.map("x", "K", ":move '<-2<CR>gv=gv")
