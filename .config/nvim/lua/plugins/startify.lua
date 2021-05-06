@@ -17,7 +17,7 @@ vim.api.nvim_exec(
     true
 )
 
-vim.g.startify_session_dir = "~/.config/nvim/session"
+vim.g.startify_session_dir = vim.fn.stdpath("data") .. "/startify_session"
 
 -- start Vim in a directory that contains a Session.vim, that session will be loaded automatically
 vim.g.startify_session_autoload = 1
