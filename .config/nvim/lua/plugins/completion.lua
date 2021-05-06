@@ -1,5 +1,3 @@
-local u = require("utils.core")
-
 require "compe".setup {
     enabled = Completion.enabled,
     autocomplete = true,

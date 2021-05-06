@@ -12,6 +12,7 @@ require("lsp")
 
 -- Plugins
 require("plugins/general")
+require("plugins/completion")
 require("plugins/which-key")
 require("plugins/nvim-tree")
 require("plugins/statusline")
