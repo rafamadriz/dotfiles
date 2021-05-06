@@ -1,5 +1,5 @@
 if LSP.enabled == nil or LSP.enabled == false then
-    return false
+    return
 elseif LSP.enabled == true then
     require("lsp/servers")
 end
