@@ -13,7 +13,6 @@ alias \
 
 # shortcuts
 alias \
-  startx='startx $HOME/.config/X11/xinitrc' \
   sysinfo="inxi -Fxz" \
   untar="tar -xvf" \
   vim="nvim" \
@@ -25,6 +24,10 @@ alias \
   mv="mv -iv" \
   media="cd /media/rafa/Media" \
   dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+sx() {
+  startx $HOME/.config/X11/xinitrc
+}
 
 # search for all scripts and dotfiles, then open them with editor of choice
 sc() {
