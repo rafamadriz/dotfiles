@@ -10,6 +10,9 @@ require "toggleterm".setup {
     direction = "horizontal"
 }
 
+-- undotree
+vim.g.undotree_WindowLayout = 2
+
 -- Colorizer
 require "colorizer".setup(
     {"*"},
