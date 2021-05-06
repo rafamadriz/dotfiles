@@ -6,9 +6,9 @@ vim.g.mapleader = " "
 
 -- Basics
 u.map("n", "<leader>w", ":update<CR>")
-u.map("n", "<leader>W", ":wa<CR>")
+u.map("n", "<leader>*", ":wa<CR>")
 u.map("n", "<leader>q", ":bdelete<CR>")
-u.map("i", "jk", "<ESC>")
+u.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
 u.map("n", "<leader>h", ":noh<CR>")
@@ -28,10 +28,21 @@ u.map("x", "j", '(v:count == 0 && mode() !=# "V") ? "gj" : "j"', {expr = true})
 -- Visually select the text that was last edited/pasted
 u.map("n", "gV", "`[v`]", {noremap = false})
 
+-- new files
+u.map("n", "<leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
+u.map("n", "<leader>ns", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
+u.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
+
+-- Lsp Stop
+u.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
+
 -- Automatically jump to the end of pasted text
 u.map("v", "y", "y`]")
 u.map("v", "p", "p`]")
 u.map("n", "p", "p`]")
+
+-- close all buffers but current
+u.map("n", "<leader>!", [[<cmd>w <bar> %bd <bar> e#<CR>]])
 
 -- Move selected line / block of text in visual mode
 u.map("x", "K", ":move '<-2<CR>gv=gv")
@@ -42,9 +53,6 @@ u.map("n", "<C-h>", "<C-w>h")
 u.map("n", "<C-j>", "<C-w>j")
 u.map("n", "<C-k>", "<C-w>k")
 u.map("n", "<C-l>", "<C-w>l")
-
--- Check file in shellcheck
-u.map("n", "<leader>x", ":!clear && shellcheck -x %<CR>")
 
 -- Resize windows
 u.map("n", "<S-k>", ":resize -2<CR>")

@@ -81,7 +81,7 @@ if Completion.enabled == nil then
 end
 
 if Completion.snippets == nil or Completion.snippets == true then
-    Completion.snippets = {kind = " ﬌ (Snippet)"}
+    Completion.snippets = {priority = 1500, kind = " ﬌ (Snippet)"}
 end
 
 if Completion.lsp == nil or Completion.lsp == true then
