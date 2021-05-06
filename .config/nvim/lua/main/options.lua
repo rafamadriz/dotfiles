@@ -21,6 +21,7 @@ u.opt("o", "mouse", "a")
 u.opt("o", "hidden", true)
 u.opt("o", "splitbelow", true)
 u.opt("o", "splitright", true)
+u.opt("o", "timeoutlen", 400)
 u.opt("o", "completeopt", "menuone,noinsert,noselect")
 
 -- Window
@@ -30,6 +31,7 @@ u.opt("w", "numberwidth", 1)
 u.opt("w", "wrap", Opts.wrap)
 u.opt("w", "cursorline", Opts.cursorline)
 u.opt("w", "conceallevel", 0)
+u.opt("w", "signcolumn", "yes")
 
 -- Buffer
 local indent = Formatting.indent_size

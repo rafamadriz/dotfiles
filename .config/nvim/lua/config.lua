@@ -2,6 +2,7 @@ Opts = {
     jump_last_pos = true,
     highlight_yank = true,
     relativenumber = true,
+    timeoutlen = 400,
     scrolloff = 10,
     wrap = false,
     cursorline = true,
