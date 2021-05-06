@@ -49,7 +49,7 @@ local opts = {
 
 local mappings = {
     ["<leader>"] = {
-        ["!"] = "close buffers but current",
+        ["!"] = "close all buffers but current",
         ["*"] = "save all buffers",
         ["b"] = "show buffers",
         ["q"] = "quit buffer",
