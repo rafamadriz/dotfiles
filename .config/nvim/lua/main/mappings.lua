@@ -25,6 +25,9 @@ u.map("n", "j", 'v:count == 0 ? "gj" : "j"', {expr = true})
 u.map("x", "k", '(v:count == 0 && mode() !=# "V") ? "gk" : "k"', {expr = true})
 u.map("x", "j", '(v:count == 0 && mode() !=# "V") ? "gj" : "j"', {expr = true})
 
+-- Visually select the text that was last edited/pasted
+u.map("n", "gV", "`[v`]", {noremap = false})
+
 -- Automatically jump to the end of pasted text
 u.map("v", "y", "y`]")
 u.map("v", "p", "p`]")
