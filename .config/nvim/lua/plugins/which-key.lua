@@ -66,7 +66,15 @@ local mappings = {
             g = {"<cmd>Telescope live_grep<cr>", "grep text"},
             h = {"<cmd>Telescope help_tags<cr>", "vim tags"},
             n = {"<cmd>lua require('utils.core').search_nvim()<cr>", "nvim dotfiles"},
-            o = {"<cmd>Telescope oldfiles<cr>", "recent files"}
+            o = {"<cmd>Telescope oldfiles<cr>", "recent files"},
+            p = "personal config",
+            pc = {"<cmd>e ~/.config/nvim/lua/config.lua<cr>", "config"},
+            pi = {"<cmd>e ~/.config/nvim/lua/init.lua<cr>", "init"},
+            pp = {"<cmd>e ~/.config/nvim/lua/plugins.lua<cr>", "plugins"},
+            ps = {"split"},
+            psc = {"<cmd>vsp ~/.config/nvim/lua/config.lua<cr>", "split config"},
+            psi = {"<cmd>vsp ~/.config/nvim/lua/init.lua<cr>", "split init"},
+            psp = {"<cmd>vsp ~/.config/nvim/lua/plugins.lua<cr>", "split plugins"}
         },
         n = {
             name = "new",
@@ -124,11 +132,21 @@ local mappings = {
             k = {"<cmd>wincmd k<cr>", "Up"},
             l = {"<cmd>wincmd l<cr>", "Right"}
         },
-        t = {
+        T = {
             name = "tabs",
             n = {"<cmd>tabnext<cr>", "next"},
             p = {"<cmd>tabprevious<cr>", "previous"},
             q = {"<cmd>tabclose<cr>", "quit tab"}
+        },
+        t = {
+            name = "text",
+            [")"] = "wrap with parens",
+            ["}"] = "wrap with braces",
+            ['"'] = "wrap with double quotes",
+            ["'"] = "wrap with single quotes",
+            ["`"] = "wrap with back ticks",
+            u = "lowercase",
+            U = "uppercase"
         },
         s = {
             name = "session",

@@ -36,6 +36,15 @@ u.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent 
 -- Lsp Stop
 u.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
 
+-- text
+u.map("n", [[<leader>t"]], [[ciw"<c-r>""<esc>]])
+u.map("n", [[<leader>t`]], [[ciw`<c-r>"`<esc>]])
+u.map("n", [[<leader>t']], [[ciw'<c-r>"'<esc>]])
+u.map("n", [[<leader>t)]], [[ciw(<c-r>")<esc>]])
+u.map("n", [[<leader>t}]], [[ciw{<c-r>"}<esc>]])
+u.map("n", [[<leader>tu]], [[guw]])
+u.map("n", [[<leader>tU]], [[gUw]])
+
 -- Automatically jump to the end of pasted text
 u.map("v", "y", "y`]")
 u.map("v", "p", "p`]")
