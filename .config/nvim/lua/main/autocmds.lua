@@ -6,6 +6,10 @@ local autocmds = {
         {"FileType", "markdown", "setlocal wrap spell"},
         {"FileType", "*", "setlocal formatoptions-=c formatoptions-=r formatoptions-=o"},
         {"FileType", "toggleterm", "setlocal nonumber norelativenumber"}
+    },
+    terminal = {
+        {"TermOpen", "*", [[tnoremap <buffer> <Esc> <c-\><c-n>]]},
+        {"TermOpen", "*", "set nonu"}
     }
 }
 vim.cmd([[autocmd ColorScheme * lua require("utils.lsp").fix("ColorScheme")]])
