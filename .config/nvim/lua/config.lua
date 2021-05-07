@@ -1,12 +1,14 @@
 Opts = {
-    jump_last_pos = true,
+    preserve_cursor = true,
     highlight_yank = true,
     relativenumber = true,
-    timeoutlen = 500,
-    scrolloff = 10,
-    wrap = false,
     cursorline = true,
-    listchars = true
+    listchars = true,
+    wrap = false,
+    timeoutlen = 500,
+    updatetime = 300,
+    scrolloff = 10,
+    explorer_side = "right"
 }
 
 Theming = {
@@ -47,9 +49,9 @@ Completion = {
     enabled = true,
     autopairs = true,
     items = 10,
-    -------------
-    -- Sources --
-    -------------
+    ---------------------------
+    -- Sources of Completion --
+    ---------------------------
     snippets = true,
     lsp = true,
     buffer = true,

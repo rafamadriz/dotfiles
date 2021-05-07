@@ -19,7 +19,7 @@ local hl_yank = {
     {"TextYankPost", "*", 'lua require"vim.highlight".on_yank()'}
 }
 
-local jump_last = {
+local preserve_cursor = {
     {"BufReadPost", "*", [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]}
 }
 
@@ -38,8 +38,8 @@ local trim_whitespaces = {
 }
 
 -- insert tables if true or nil
-if Opts.jump_last_pos == true or Opts.jump_last_pos == nil then
-    table.insert(autocmds, jump_last)
+if Opts.preserve_cursor == true or Opts.preserve_cursor == nil then
+    table.insert(autocmds, preserve_cursor)
 end
 
 if Opts.highlight_yank == true or Opts.highlight_yank == nil then

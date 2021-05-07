@@ -71,6 +71,10 @@ if Opts.cursorline == nil then
     Opts.cursorline = true
 end
 
+if Opts.explorer_side == nil then
+    Opts.explorer_side = "left"
+end
+
 -- Completion
 if Completion.items < 1 or Completion.items == nil then
     Completion.items = 15
