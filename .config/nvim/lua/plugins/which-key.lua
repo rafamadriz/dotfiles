@@ -146,7 +146,10 @@ local mappings = {
             ["'"] = "wrap with single quotes",
             ["`"] = "wrap with back ticks",
             u = "lowercase",
-            U = "uppercase"
+            U = "uppercase",
+            [","] = "add comma to end of line",
+            [";"] = "add semicolon to end of line",
+            [":"] = "add colon to end of line"
         },
         s = {
             name = "session",

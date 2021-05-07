@@ -7,7 +7,7 @@ vim.g.mapleader = " "
 -- Basics
 u.map("n", "<leader>w", ":update<CR>")
 u.map("n", "<leader>*", ":wa<CR>")
-u.map("n", "<leader>q", ":bdelete<CR>")
+u.map("n", "<leader>q", ":update | bdelete<CR>")
 u.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
 u.map("n", "Q", "<Nop>")
 u.map("n", "ss", ":luafile %<CR>", {silent = false})
@@ -44,6 +44,9 @@ u.map("n", [[<leader>t)]], [[ciw(<c-r>")<esc>]])
 u.map("n", [[<leader>t}]], [[ciw{<c-r>"}<esc>]])
 u.map("n", [[<leader>tu]], [[guw]])
 u.map("n", [[<leader>tU]], [[gUw]])
+u.map("n", "<leader>t,", "A,<ESC>")
+u.map("n", "<leader>t;", "A;<ESC>")
+u.map("n", "<leader>t:", "A:<ESC>")
 
 -- Automatically jump to the end of pasted text
 u.map("v", "y", "y`]")
