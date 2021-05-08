@@ -10,6 +10,9 @@ require "toggleterm".setup {
     direction = "horizontal"
 }
 
+-- sorround
+require "surround".setup {}
+
 -- undotree
 vim.g.undotree_WindowLayout = 2
 
