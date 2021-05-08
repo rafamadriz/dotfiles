@@ -13,7 +13,7 @@ Opts = {
 
 Theming = {
     -- Press <space>fc to see all available themes
-    colorscheme = "one",
+    colorscheme = "neon",
     --[[ Some colorscheme have multiple styles to choose from.
       Available options:
       @gruvbox = medium, soft, hard ]]
