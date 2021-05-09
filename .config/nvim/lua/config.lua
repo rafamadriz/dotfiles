@@ -19,10 +19,10 @@ Theming = {
       @gruvbox = medium, soft, hard ]]
     colorscheme_style = "",
     -- Choose a stulusline:
-    -- Options: classic, slant, minimal, default
-    statusline = "classic",
+    -- Options: classic, slant, minimal, vscode, default
+    statusline = "vscode",
     -- Options: gruvbox, nord, dark
-    statusline_color = "nord"
+    statusline_color = "dark"
 }
 
 LSP = {
