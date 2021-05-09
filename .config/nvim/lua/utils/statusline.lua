@@ -31,6 +31,7 @@ M.properties.force_inactive.buftypes = {
 
 M.icons = {
     locker = "", -- #f023
+    confirm = "✓",
     page = "☰", -- 2630
     line_number = "", -- e0a1
     connected = "", -- f817
