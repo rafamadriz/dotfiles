@@ -1,4 +1,4 @@
-local status = {"classic", "default", "slant", "minimal"}
+local status = {"classic", "default", "slant", "minimal", "vscode"}
 
 if Theming.statusline == nil or Theming.statusline:gsub("%s+", "") == "" then
     require("plugins/statusline/styles/" .. status[1])
