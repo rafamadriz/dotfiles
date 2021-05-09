@@ -37,16 +37,20 @@ require("feline").setup(
                         provider = function()
                             local dir = vim.fn.expand("%:p:h:t")
                             local file = vim.fn.expand("%:t")
-                            local fileinfo = string.format("%s/%s", dir, file)
-                            if vim.bo.modifiable then
-                                if vim.bo.modified then
-                                    return fileinfo .. " "
-                                end
-                            end
-                            return fileinfo
+                            return string.format("%s/%s", dir, file)
                         end,
                         hl = {style = "bold"},
-                        right_sep = " "
+                        right_sep = function()
+                            local val = {hl = {fg = "#56abe4"}}
+                            if vim.bo.modifiable then
+                                if vim.bo.modified then
+                                    val.str = "  "
+                                else
+                                    val.str = " "
+                                end
+                                return val
+                            end
+                        end
                     },
                     {
                         provider = u.icons.locker,
@@ -59,14 +63,34 @@ require("feline").setup(
                     {
                         provider = "git_branch",
                         icon = "  ",
-                        hl = {fg = "#DB8E73", style = "bold"},
-                        right_sep = " "
+                        hl = {fg = "#DB8E73", style = "bold"}
+                    },
+                    {
+                        provider = "git_diff_added",
+                        hl = {fg = "#B5CEA8"}
+                    },
+                    {
+                        provider = "git_diff_changed",
+                        hl = {fg = "#D9DAA2"}
+                    },
+                    {
+                        provider = "git_diff_removed",
+                        hl = {fg = "#C586C0"}
                     },
                     {
                         provider = function()
                             local line = vim.fn.line(".")
                             local col = vim.fn.col(".")
                             return string.format("%s %s:%s ", u.icons.line_number, line, col)
+                        end,
+                        left_sep = function()
+                            local val = {hl = {fg = "fg"}}
+                            if u.b.gitsigns_status_dict then
+                                val.str = "  "
+                            else
+                                val.str = " "
+                            end
+                            return val
                         end
                     },
                     {
