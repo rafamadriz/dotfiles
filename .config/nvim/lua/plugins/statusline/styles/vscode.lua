@@ -135,15 +135,13 @@ require("feline").setup(
                     {
                         provider = function()
                             return string.upper(string.format("  %s", vim.bo.fileencoding))
-                        end,
-                        hl = {style = "bold"}
+                        end
                     },
                     {
                         provider = function()
                             local spaces = vim.api.nvim_buf_get_option(0, "shiftwidth")
                             return string.format("TAB: %s", spaces)
                         end,
-                        hl = {style = "bold"},
                         left_sep = "  ",
                         right_sep = "  "
                     },
