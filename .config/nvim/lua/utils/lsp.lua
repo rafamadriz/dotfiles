@@ -24,7 +24,11 @@ local function documentHighlight(client, bufnr)
 end
 
 function lsp_config.common_on_attach(client, bufnr)
-    documentHighlight(client, bufnr)
+    if LSP.highlight_word == nil or LSP.highlight_word == true then
+        documentHighlight(client, bufnr)
+    elseif LSP.highlight_word == false then
+        return nil
+    end
 end
 
 lsp_config.cmds = {
