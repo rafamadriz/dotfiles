@@ -31,6 +31,8 @@ function lsp_config.common_on_attach(client, bufnr)
     end
 end
 
+-- LSP commands
+-- ==================================================
 lsp_config.cmds = {
     bash = {DATA_PATH .. "/lspinstall/bash/node_modules/.bin/bash-language-server", "start"},
     css = {
@@ -55,6 +57,7 @@ lsp_config.cmds = {
 }
 
 -- Add LSP colors to colorschemes that don't support it yet
+-- =========================================================
 local defaults = {
     Error = "#db4b4b",
     Warning = "#e0af68",

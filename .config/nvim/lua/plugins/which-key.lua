@@ -140,11 +140,6 @@ local mappings = {
         },
         t = {
             name = "text",
-            [")"] = "wrap with parens",
-            ["}"] = "wrap with braces",
-            ['"'] = "wrap with double quotes",
-            ["'"] = "wrap with single quotes",
-            ["`"] = "wrap with back ticks",
             [","] = "add comma to end of line",
             [";"] = "add semicolon to end of line",
             [":"] = "add colon to end of line",
@@ -182,6 +177,13 @@ local mappings = {
         ["h"] = "LSP doc",
         ["c"] = "comment text",
         ["cc"] = "comment line"
+    },
+    ["s"] = {
+        a = "add surrounding",
+        d = "delete surrounding",
+        db = "automatically seearch and delete",
+        r = "replace surrounding",
+        rb = "automatically search and select to replace"
     }
 }
 

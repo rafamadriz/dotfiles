@@ -63,19 +63,23 @@ require("feline").setup(
                     {
                         provider = "git_branch",
                         icon = "  ",
-                        hl = {fg = "#DB8E73", style = "bold"}
+                        hl = {fg = "#C586C0", style = "bold"},
+                        right_sep = " "
                     },
                     {
                         provider = "git_diff_added",
-                        hl = {fg = "#B5CEA8"}
+                        icon = " " .. u.icons.circle,
+                        hl = {fg = "#579C4C"}
                     },
                     {
                         provider = "git_diff_changed",
-                        hl = {fg = "#D9DAA2"}
+                        icon = " " .. u.icons.circle,
+                        hl = {fg = "#D7BA7D"}
                     },
                     {
                         provider = "git_diff_removed",
-                        hl = {fg = "#C586C0"}
+                        icon = " " .. u.icons.circle,
+                        hl = {fg = "#D16969"}
                     },
                     {
                         provider = function()
