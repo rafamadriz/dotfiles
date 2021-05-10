@@ -37,11 +37,6 @@ u.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent 
 u.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
 
 -- text
-u.map("n", [[<leader>t"]], [[ciw"<c-r>""<esc>]])
-u.map("n", [[<leader>t`]], [[ciw`<c-r>"`<esc>]])
-u.map("n", [[<leader>t']], [[ciw'<c-r>"'<esc>]])
-u.map("n", [[<leader>t)]], [[ciw(<c-r>")<esc>]])
-u.map("n", [[<leader>t}]], [[ciw{<c-r>"}<esc>]])
 u.map("n", [[<leader>tu]], [[guw]])
 u.map("n", [[<leader>tU]], [[gUw]])
 u.map("n", "<leader>t,", "A,<ESC>")
