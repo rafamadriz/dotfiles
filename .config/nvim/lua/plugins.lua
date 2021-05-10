@@ -10,7 +10,7 @@ return require("packer").startup(
             "sbdchd/neoformat",
             "hrsh7th/vim-vsnip",
             "kabouzeid/nvim-lspinstall",
-            "rafamadriz/friendly-snippets"
+            "~/repos/friendly-snippets"
         }
 
         -- Telescope

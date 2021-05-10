@@ -14,11 +14,9 @@ Opts = {
 Theming = {
     -- Press <space>fc to see all available themes
     colorscheme = "neon",
-    --[[ Some colorscheme have multiple styles to choose from.
-      Available options:
+    --[[ Some colorscheme have multiple styles to choose from:
       @gruvbox = medium, soft, hard ]]
     colorscheme_style = "",
-    -- Choose a stulusline:
     -- Options: classic, slant, minimal, vscode, default
     statusline = "vscode",
     -- Options: gruvbox, nord, dark
@@ -28,6 +26,8 @@ Theming = {
 LSP = {
     -- @values: true, false
     enabled = true,
+    virtual_text = false,
+    highlight_word = true,
     ---------------
     -- Autostart --
     ---------------
