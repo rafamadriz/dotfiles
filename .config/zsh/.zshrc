@@ -17,6 +17,7 @@ source ~/.config/zsh/prompt.zsh
 
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
+kitty + complete setup zsh | source /dev/stdin
 
 # Exports
 source ~/.zshenv
