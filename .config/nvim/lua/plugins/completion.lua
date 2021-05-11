@@ -17,11 +17,9 @@ require "compe".setup {
         calc = Completion.calc,
         vsnip = Completion.snippets,
         nvim_lsp = Completion.lsp,
-        nvim_lua = {kind = "  "},
         spell = Completion.spell,
-        tags = false,
-        -- treesitter = true,
-        emoji = {kind = " ﲃ "}
+        emoji = Completion.emoji,
+        nvim_lua = {menu = "[]"}
     }
 }
 
@@ -99,3 +97,5 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("i", "<S-l>", [[vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<S-l>']], {expr = true})
 vim.api.nvim_set_keymap("s", "<S-l>", [[vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<S-l>']], {expr = true})
+vim.api.nvim_set_keymap("i", "<S-j>", [[vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<S-j>']], {expr = true})
+vim.api.nvim_set_keymap("s", "<S-j>", [[vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<S-j>']], {expr = true})
