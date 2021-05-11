@@ -15,6 +15,7 @@ alias \
 alias \
   sysinfo="inxi -Fxz" \
   untar="tar -xvf" \
+  icat="kitty +kitten icat" \
   vim="nvim" \
   v="nvim" \
   rm="rm -vI" \
