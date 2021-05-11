@@ -84,26 +84,25 @@ if Completion.enabled == nil then
     Completion.enabled = true
 end
 
-if Completion.snippets == nil or Completion.snippets == true then
-    Completion.snippets = {priority = 1500, kind = " ﬌ (Snippet)"}
+local function compe_menu(source, str, src, prio, ft)
+    if source == nil or source == true then
+        if ft == nil then
+            return {kind = str, menu = src, priority = prio}
+        elseif prio == nil and ft == nil then
+            return {kind = str, menu = src}
+        elseif str == nil and prio == nil then
+            return {menu = src, filetypes = ft}
+        elseif str == nil and prio == nil and ft == nil then
+            return {menu = str}
+        end
+    end
+    return false
 end
 
-if Completion.lsp == nil or Completion.lsp == true then
-    Completion.lsp = {kind = "  "}
-end
-
-if Completion.buffer == nil or Completion.buffer == true then
-    Completion.buffer = {kind = "  (Buffer)"}
-end
-
-if Completion.path == nil or Completion.path == true then
-    Completion.path = {kind = "  (Path)"}
-end
-
-if Completion.calc == nil or Completion.calc == true then
-    Completion.calc = {kind = "  (Calc)"}
-end
-
-if Completion.spell == nil or Completion.spell == true then
-    Completion.spell = {kind = "  (Spell)"}
-end
+Completion.buffer = compe_menu(Completion.buffer, "  (Buffer)", "[B]", nil, nil)
+Completion.spell = compe_menu(Completion.spell, "  (Spell)", "[E]", nil, nil)
+Completion.path = compe_menu(Completion.path, "  (Path)", nil, nil, nil)
+Completion.calc = compe_menu(Completion.calc, "  (Calc)", "[C]", nil, nil)
+Completion.snippets = compe_menu(Completion.snippets, " ﬌  (Snippet)", "[S]", 1500, nil)
+Completion.emoji = compe_menu(Completion.emoji, nil, "[ ﲃ ]", nil, {"markdown", "text"})
+Completion.lsp = compe_menu(Completion.lsp, nil, "[L]", nil, nil)
