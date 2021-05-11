@@ -29,6 +29,7 @@ export GOPATH="$XDG_DATA_HOME"/go
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GPG_TTY=$(tty)
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
