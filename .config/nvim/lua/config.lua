@@ -57,7 +57,8 @@ Completion = {
     buffer = true,
     path = true,
     calc = true,
-    spell = true
+    spell = true,
+    emoji = true
 }
 
 Formatting = {
