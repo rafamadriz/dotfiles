@@ -10,7 +10,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Theming
-local default = "gruvbox"
+local default = "neon"
 local colors = vim.fn.getcompletion("", "color")
 
 local function default_theme(t, s)
@@ -103,6 +103,6 @@ Completion.buffer = compe_menu(Completion.buffer, "  (Buffer)", "[B]", nil, n
 Completion.spell = compe_menu(Completion.spell, "  (Spell)", "[E]", nil, nil)
 Completion.path = compe_menu(Completion.path, "  (Path)", nil, nil, nil)
 Completion.calc = compe_menu(Completion.calc, "  (Calc)", "[C]", nil, nil)
-Completion.snippets = compe_menu(Completion.snippets, " ﬌ (Snippet)", "[S]", 1500, nil)
+Completion.snippets = compe_menu(Completion.snippets, " ﬌  (Snippet)", "[S]", 1500, nil)
 Completion.emoji = compe_menu(Completion.emoji, nil, "[ ﲃ ]", nil, {"markdown", "text"})
 Completion.lsp = compe_menu(Completion.lsp, nil, "[L]", nil, nil)

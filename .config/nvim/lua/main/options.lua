@@ -21,6 +21,7 @@ u.opt("o", "mouse", "a")
 u.opt("o", "hidden", true)
 u.opt("o", "splitbelow", true)
 u.opt("o", "splitright", true)
+u.opt("o", "inccommand", "nosplit")
 u.opt("o", "timeoutlen", Opts.timeoutlen)
 u.opt("o", "completeopt", "menuone,noinsert,noselect")
 
