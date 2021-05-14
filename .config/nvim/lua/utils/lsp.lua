@@ -4,6 +4,13 @@ local lspinstall = DATA_PATH .. "/lspinstall/"
 
 lsp_config.capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp_config.capabilities.textDocument.completion.completionItem.snippetSupport = true
+lsp_config.capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+        "documentation",
+        "detail",
+        "additionalTextEdits"
+    }
+}
 
 local function documentHighlight(client, bufnr)
     -- Set autocommands conditional on server_capabilities
