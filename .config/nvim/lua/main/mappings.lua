@@ -25,9 +25,6 @@ u.map("n", "j", 'v:count == 0 ? "gj" : "j"', {expr = true})
 u.map("x", "k", '(v:count == 0 && mode() !=# "V") ? "gk" : "k"', {expr = true})
 u.map("x", "j", '(v:count == 0 && mode() !=# "V") ? "gj" : "j"', {expr = true})
 
--- Visually select the text that was last edited/pasted
-u.map("n", "gV", "`[v`]", {noremap = false})
-
 -- new files
 u.map("n", "<leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 u.map("n", "<leader>ns", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})

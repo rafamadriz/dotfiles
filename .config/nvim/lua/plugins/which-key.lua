@@ -173,7 +173,6 @@ local mappings = {
         }
     },
     ["g"] = {
-        ["V"] = "visually select last edited/pasted text",
         ["d"] = "LSP definition",
         ["D"] = "LSP declaration",
         ["r"] = "LSP declaration",

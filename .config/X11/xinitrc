@@ -4,7 +4,6 @@ sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 xrdb ~/.config/X11/Xresources
-xmodmap ~/.config/X11/xmodmap
 setxkbmap -layout es -variant winkeys &
 xsetroot -cursor_name left_ptr
 xset r rate 200 40 &
