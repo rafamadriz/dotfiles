@@ -68,4 +68,16 @@ function utils.search_nvim()
     )
 end
 
+local t = require("telescope.themes")
+local a = require("telescope.builtin")
+local options = {width = 55, results_height = 10}
+local theme = t.get_dropdown(options)
+
+function utils.code_actions()
+    a.lsp_code_actions(theme)
+end
+function utils.range_code_actions()
+    a.lsp_range_code_actions(theme)
+end
+
 return utils

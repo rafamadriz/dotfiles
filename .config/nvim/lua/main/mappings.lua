@@ -4,19 +4,17 @@ vim.g.mapleader = " "
 
 -- NOTE: C-6 to jump between last two files
 
--- Basics
-u.map("n", "<leader>w", ":update<CR>")
-u.map("n", "<leader>*", ":wa<CR>")
-u.map("n", "<leader>q", ":update | bdelete<CR>")
 u.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
 u.map("n", "Q", "<Nop>")
-u.map("n", "<leader>tS", ":luafile %<CR>", {silent = false})
-u.map("n", "<leader>h", ":noh<CR>")
 u.map("n", "<BS>", "<C-^>")
 u.map("t", "<C-o>", [[<C-\><C-n>]])
 u.map("n", "<A-t>", ":ToggleTerm<CR>")
 u.map("t", "<A-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
 -- u.map("i", "{<Enter>", "{<Enter>}<Esc>O")
+
+-- Move selected line / block of text in visual mode
+u.map("x", "K", ":move '<-2<CR>gv=gv")
+u.map("x", "J", ":move '>+1<CR>gv=gv")
 
 -- Remap for dealing with word wrap in Normal mode
 u.map("n", "k", 'v:count == 0 ? "gk" : "k"', {expr = true})
@@ -25,32 +23,10 @@ u.map("n", "j", 'v:count == 0 ? "gj" : "j"', {expr = true})
 u.map("x", "k", '(v:count == 0 && mode() !=# "V") ? "gk" : "k"', {expr = true})
 u.map("x", "j", '(v:count == 0 && mode() !=# "V") ? "gj" : "j"', {expr = true})
 
--- new files
-u.map("n", "<leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
-u.map("n", "<leader>ns", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
-u.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
-
--- Lsp Stop
-u.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
-
--- text
-u.map("n", [[<leader>tu]], [[guw]])
-u.map("n", [[<leader>tU]], [[gUw]])
-u.map("n", "<leader>t,", "A,<ESC>")
-u.map("n", "<leader>t;", "A;<ESC>")
-u.map("n", "<leader>t:", "A:<ESC>")
-
 -- Automatically jump to the end of pasted text
 u.map("v", "y", "y`]")
 u.map("v", "p", "p`]")
 u.map("n", "p", "p`]")
-
--- close all buffers but current
-u.map("n", "<leader>!", [[<cmd>w <bar> %bd <bar> e#<CR>]])
-
--- Move selected line / block of text in visual mode
-u.map("x", "K", ":move '<-2<CR>gv=gv")
-u.map("x", "J", ":move '>+1<CR>gv=gv")
 
 -- Better window navigation
 u.map("n", "<C-h>", "<C-w>h")
@@ -64,41 +40,95 @@ u.map("n", "<S-j>", ":resize +2<CR>")
 u.map("n", "<S-h>", ":vertical resize -2<CR>")
 u.map("n", "<S-l>", ":vertical resize +2<CR>")
 
--- Undotree
-u.map("n", "<leader>u", ":UndotreeToggle<CR>")
+-- File manager
+u.map("n", "<leader>e", ":NvimTreeToggle<CR>")
 
--- Git
-u.map("n", "<F5>", ":lua require('utils.core')._lazygit_toggle()<CR>")
-u.map("n", "<leader>gf", ":Telescope git_files<CR>")
-u.map("n", "<leader>gc", ":Telescope git_commits<CR>")
-u.map("n", "<leader>gb", ":Telescope git_branches<CR>")
-u.map("n", "<leader>gs", ":Telescope git_status<CR>")
+-- new files
+u.map("n", "<leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
+u.map("n", "<leader>ns", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
+u.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 
 -- buffer navigation
 u.map("n", "<TAB>", ":bn<CR>")
 u.map("n", "<S-TAB>", ":bp<CR>")
+-- buffers
+u.map("n", "<leader>bb", ":Telescope buffers<CR>") -- all buffers
+u.map("n", "<leader>bs", ":update<CR>") -- save buffer
+u.map("n", "<leader>bS", ":wa<CR>") -- save all buffers
+u.map("n", "<leader>bq", ":update | bdelete<CR>") -- quit buffer
+u.map("n", "<leader>bQ", [[<cmd>w <bar> %bd <bar> e#<CR>]]) -- quit all buffers but current
+u.map("n", "<leader>bu", ":luafile %<CR>", {silent = false}) -- source buffer
+u.map("n", "<leader>bh", ":noh<CR>") -- No highlight
+u.map("n", "<leader>b]", ":bn<CR>") -- buffer next
+u.map("n", "<leader>b[", ":bp<CR>") -- buffer previous
 
--- File manager
-u.map("n", "<leader>e", ":NvimTreeToggle<CR>")
+-- windows
+u.map("n", "<leader>wq", "<C-w>q") -- quit window
+u.map("n", "<leader>ws", "<C-w>s") -- split window
+u.map("n", "<leader>wv", "<C-w>v") -- vertical split
+u.map("n", "<leader>wh", "<C-w>h") -- jump to left window
+u.map("n", "<leader>wj", "<C-w>j") -- jump to the down window
+u.map("n", "<leader>wk", "<C-w>k") -- jump to the up window
+u.map("n", "<leader>wl", "<C-w>l") -- jump to right window
+u.map("n", "<leader>wm", "<C-w>|") -- max out to fullscreen
+u.map("n", "<leader>w=", "<C-w>=") -- equally high and width
+u.map("n", "<leader>wT", "<C-w>T") -- break out into a new tab
+u.map("n", "<leader>wr", "<C-w>x") -- replace current with next
+u.map("n", "<leader>w<", ":vertical resize -10<CR>") -- decrease width
+u.map("n", "<leader>w>", ":vertical resize +10<CR>") -- increase width
+u.map("n", "<leader>w-", ":resize -15<CR>") -- decrease height
+u.map("n", "<leader>w+", ":resize +15<CR>") -- increase height
+
+-- Lsp Stop
+-- u.map("n", "<leader>l-s", [[:LspStop <C-R>=<CR>]], {silent = false})
+
+-- Undotree
+u.map("n", "<leader>u", ":UndotreeToggle<CR>")
+
+-- Git
+u.map("n", "<F5>", ":lua require('utils.core')._lazygit_toggle()<CR>") -- lazygit
+u.map("n", "<leader>gf", ":Telescope git_files<CR>") -- git files
+u.map("n", "<leader>gc", ":Telescope git_commits<CR>") -- git commits
+u.map("n", "<leader>gb", ":Telescope git_branches<CR>") -- git branches
+u.map("n", "<leader>gs", ":Telescope git_status<CR>") -- git status
+u.map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>") -- preview hunk
+u.map("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>") -- toggle line blame
+u.map("n", "<leader>gr", ":Gitsigns reset_hunk<CR>") -- reset hunk
+u.map("n", "<leader>gR", ":Gitsigns reset_buffer<CR>") -- reset buffer
+u.map("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>") -- undo last stage hunk
+u.map("n", "<leader>gI", ":Gitsigns reset_buffer_index<CR>") -- reset buffer index
+u.map("n", "<leader>gt", ":Gitsigns stage_hunk<CR>") -- git stage hunk
+u.map("n", "<leader>gT", ":Gitsigns stage_buffer<CR>") -- git stage buffer
+u.map("n", "<leader>g[", ":Gitsigns prev_hunk<CR>") -- previous hunk
+u.map("n", "<leader>g]", ":Gitsigns next_hunk<CR>") -- next hunk
 
 -- Telescope
 u.map("n", "<leader>ff", ":Telescope find_files<CR>")
-u.map("n", "<leader>fo", ":Telescope oldfiles<CR>")
+u.map("n", "<leader>fr", ":Telescope oldfiles<CR>")
 u.map("n", "<leader>fg", ":Telescope live_grep<CR>")
-u.map("n", "<leader>fh", ":Telescope help_tags<CR>")
-u.map("n", "<leader>fc", ":Telescope colorscheme<CR>")
+u.map("n", "<leader>fb", ":Telescope current_buffer_fuzzy_find<CR>")
+u.map("n", "<leader>fv", ":Telescope help_tags<CR>")
+u.map("n", "<leader>ft", ":Telescope colorscheme<CR>")
+u.map("n", "<leader>fc", ":Telescope command_history<CR>")
+u.map("n", "<leader>fs", ":Telescope search_history<CR>")
 u.map("n", "<leader>fn", ":lua require('utils.core').search_nvim()<CR>")
-u.map("n", "<leader>b", ":Telescope buffers<CR>")
 
 -- LSP
 u.map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
-u.map("n", "gd", ":Telescope lsp_definitions<CR>")
+u.map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
 u.map("n", "gy", ":lua vim.lsp.buf.type_definition()<CR>")
 u.map("n", "gr", ":Telescope lsp_references<CR>")
-u.map("n", "gh", ":Lspsaga hover_doc<CR>")
+u.map("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
+u.map("n", "gK", ":lua vim.lsp.buf.signature_help()<CR>")
 u.map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
+u.map("n", "<leader>la", ":lua require('utils.core').code_actions()<CR>")
+u.map("n", "<leader>lA", ":lua require('utils.core').range_code_actions()<CR>")
 u.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
 u.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
-u.map("n", "<leader>lr", ":Lspsaga rename<CR>")
-u.map("n", "<c-p>", ":Lspsaga diagnostic_jump_prev<CR>")
-u.map("n", "<c-n>", ":Lspsaga diagnostic_jump_next<CR>")
+u.map("n", "<leader>ll", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+u.map("n", "<leader>li", ":LspInfo")
+u.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
+u.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
+u.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
+u.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
+u.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")

@@ -13,6 +13,7 @@ alias \
 
 # shortcuts
 alias \
+  sx="$HOME/.config/X11/xinitrc" \
   sysinfo="inxi -Fxz" \
   untar="tar -xvf" \
   icat="kitty +kitten icat" \
@@ -26,14 +27,11 @@ alias \
   media="cd /media/rafa/Media" \
   dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
-sx() {
-  startx $HOME/.config/X11/xinitrc
-}
-
 # search for all scripts and dotfiles, then open them with editor of choice
-sc() {
-  find ~/.zshenv ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh} \
-    ~/.local/bin/{scripts,cron,statusbar} ~/.local/share/rais -type f |
+files=(~/.zshenv ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh}
+  ~/.local/bin/{scripts,cron,statusbar} ~/.local/share/rais)
+dotf() {
+  find $files -type f |
     fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
 }
 
@@ -57,10 +55,6 @@ cdf() {
 }
 
 # search for a package and installed if needed
-sah() {
-  pacman -Slq | fzf --multi --preview 'pacman -Si {1}' | xargs -ro sudo pacman -S --needed
-}
-
-sahur() {
-  paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed
+pacfind() {
+  paru -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed
 }

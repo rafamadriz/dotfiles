@@ -5,7 +5,6 @@ if Treesitter.enabled == nil or Treesitter.enabled == true then
             enable = true, -- false will disable the whole extension
             use_languagetree = true
         },
-        indent = {enable = true},
-        rainbow = {enable = Treesitter.rainbow}
+        indent = {enable = true}
     }
 end

@@ -15,12 +15,13 @@ Theming = {
     -- Press <space>fc to see all available themes
     colorscheme = "neon",
     --[[ Some colorscheme have multiple styles to choose from:
-      @gruvbox = medium, soft, hard ]]
+      @gruvbox = medium, soft, hard.
+      @neon = default, dark, light.]]
     colorscheme_style = "",
     -- Options: classic, slant, minimal, vscode, default
-    statusline = "vscode",
+    statusline = "slant",
     -- Options: gruvbox, nord, dark
-    statusline_color = "dark"
+    statusline_color = "nord"
 }
 
 LSP = {
@@ -70,7 +71,6 @@ Formatting = {
 
 Treesitter = {
     enabled = true,
-    rainbow = true,
     -------------
     -- Parsers --
     -------------
