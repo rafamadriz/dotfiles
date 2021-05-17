@@ -43,7 +43,11 @@ u.map("n", "<S-l>", ":vertical resize +2<CR>")
 -- File manager
 u.map("n", "<leader>e", ":NvimTreeToggle<CR>")
 
+-- Undotree
+u.map("n", "<leader>u", ":UndotreeToggle<CR>")
+
 -- new files
+u.map("n", "<leader>nb", [[:enew<CR>]], {silent = false})
 u.map("n", "<leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 u.map("n", "<leader>ns", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 u.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
@@ -57,12 +61,13 @@ u.map("n", "<leader>bs", ":update<CR>") -- save buffer
 u.map("n", "<leader>bS", ":wa<CR>") -- save all buffers
 u.map("n", "<leader>bq", ":update | bdelete<CR>") -- quit buffer
 u.map("n", "<leader>bQ", [[<cmd>w <bar> %bd <bar> e#<CR>]]) -- quit all buffers but current
-u.map("n", "<leader>bu", ":luafile %<CR>", {silent = false}) -- source buffer
+u.map("n", "<leader>b%", ":luafile %<CR>", {silent = false}) -- source buffer
 u.map("n", "<leader>bh", ":noh<CR>") -- No highlight
 u.map("n", "<leader>b]", ":bn<CR>") -- buffer next
 u.map("n", "<leader>b[", ":bp<CR>") -- buffer previous
 
 -- windows
+u.map("n", "<leader>ww", "<C-w>q") -- cycle through window
 u.map("n", "<leader>wq", "<C-w>q") -- quit window
 u.map("n", "<leader>ws", "<C-w>s") -- split window
 u.map("n", "<leader>wv", "<C-w>v") -- vertical split
@@ -78,12 +83,6 @@ u.map("n", "<leader>w<", ":vertical resize -10<CR>") -- decrease width
 u.map("n", "<leader>w>", ":vertical resize +10<CR>") -- increase width
 u.map("n", "<leader>w-", ":resize -15<CR>") -- decrease height
 u.map("n", "<leader>w+", ":resize +15<CR>") -- increase height
-
--- Lsp Stop
--- u.map("n", "<leader>l-s", [[:LspStop <C-R>=<CR>]], {silent = false})
-
--- Undotree
-u.map("n", "<leader>u", ":UndotreeToggle<CR>")
 
 -- Git
 u.map("n", "<F5>", ":lua require('utils.core')._lazygit_toggle()<CR>") -- lazygit
@@ -103,6 +102,7 @@ u.map("n", "<leader>g[", ":Gitsigns prev_hunk<CR>") -- previous hunk
 u.map("n", "<leader>g]", ":Gitsigns next_hunk<CR>") -- next hunk
 
 -- Telescope
+u.map("n", "<leader><space>", ":Telescope find_files<CR>")
 u.map("n", "<leader>ff", ":Telescope find_files<CR>")
 u.map("n", "<leader>fr", ":Telescope oldfiles<CR>")
 u.map("n", "<leader>fg", ":Telescope live_grep<CR>")
@@ -112,6 +112,7 @@ u.map("n", "<leader>ft", ":Telescope colorscheme<CR>")
 u.map("n", "<leader>fc", ":Telescope command_history<CR>")
 u.map("n", "<leader>fs", ":Telescope search_history<CR>")
 u.map("n", "<leader>fn", ":lua require('utils.core').search_nvim()<CR>")
+u.map("n", "<leader>fm", ":Telescope man_pages<CR>")
 
 -- LSP
 u.map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
@@ -126,9 +127,12 @@ u.map("n", "<leader>lA", ":lua require('utils.core').range_code_actions()<CR>")
 u.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
 u.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
 u.map("n", "<leader>ll", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-u.map("n", "<leader>li", ":LspInfo")
+u.map("n", "<leader>li", ":LspInfo<cr>")
 u.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
 u.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
 u.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
+u.map("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>")
 u.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
 u.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
+-- Lsp Stop
+u.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
