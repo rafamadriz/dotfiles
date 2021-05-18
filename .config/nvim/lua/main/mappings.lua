@@ -4,12 +4,13 @@ vim.g.mapleader = " "
 
 -- NOTE: C-6 to jump between last two files
 
-u.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
 u.map("n", "Q", "<Nop>")
 u.map("n", "<BS>", "<C-^>")
+u.map("n", "Y", "y$")
 u.map("t", "<C-o>", [[<C-\><C-n>]])
 u.map("n", "<A-t>", ":ToggleTerm<CR>")
 u.map("t", "<A-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
+u.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
 -- u.map("i", "{<Enter>", "{<Enter>}<Esc>O")
 
 -- Move selected line / block of text in visual mode
@@ -51,6 +52,10 @@ u.map("n", "<leader>nb", [[:enew<CR>]], {silent = false})
 u.map("n", "<leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 u.map("n", "<leader>ns", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 u.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
+
+-- help
+u.map("n", "<leader>hv", ":Telescope help_tags<CR>")
+u.map("n", "<leader>hm", ":Telescope man_pages<CR>")
 
 -- buffer navigation
 u.map("n", "<TAB>", ":bn<CR>")
@@ -107,32 +112,7 @@ u.map("n", "<leader>ff", ":Telescope find_files<CR>")
 u.map("n", "<leader>fr", ":Telescope oldfiles<CR>")
 u.map("n", "<leader>fg", ":Telescope live_grep<CR>")
 u.map("n", "<leader>fb", ":Telescope current_buffer_fuzzy_find<CR>")
-u.map("n", "<leader>fv", ":Telescope help_tags<CR>")
 u.map("n", "<leader>ft", ":Telescope colorscheme<CR>")
 u.map("n", "<leader>fc", ":Telescope command_history<CR>")
 u.map("n", "<leader>fs", ":Telescope search_history<CR>")
 u.map("n", "<leader>fn", ":lua require('utils.core').search_nvim()<CR>")
-u.map("n", "<leader>fm", ":Telescope man_pages<CR>")
-
--- LSP
-u.map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
-u.map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-u.map("n", "gy", ":lua vim.lsp.buf.type_definition()<CR>")
-u.map("n", "gr", ":Telescope lsp_references<CR>")
-u.map("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
-u.map("n", "gK", ":lua vim.lsp.buf.signature_help()<CR>")
-u.map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
-u.map("n", "<leader>la", ":lua require('utils.core').code_actions()<CR>")
-u.map("n", "<leader>lA", ":lua require('utils.core').range_code_actions()<CR>")
-u.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
-u.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
-u.map("n", "<leader>ll", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-u.map("n", "<leader>li", ":LspInfo<cr>")
-u.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
-u.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
-u.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
-u.map("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>")
-u.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
-u.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
--- Lsp Stop
-u.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})

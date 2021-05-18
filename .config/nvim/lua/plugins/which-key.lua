@@ -57,6 +57,7 @@ local mappings = {
         ["/"] = {"<cmd>Telescope live_grep<cr>", "search project"},
         ["e"] = "explorer",
         ["u"] = "undotree",
+        h = {name = "help", v = "vim help", m = "man pages"},
         b = {
             name = "buffers",
             h = "no highlight",
@@ -96,9 +97,7 @@ local mappings = {
             t = "theme",
             f = "file",
             g = "grep text",
-            v = "vim options",
             n = "nvim dotfiles",
-            m = "man pages",
             r = "recent files"
         },
         n = {
@@ -127,16 +126,6 @@ local mappings = {
         },
         l = {
             name = "LSP",
-            a = {"code action"},
-            A = {"range code action"},
-            d = {"document diagnostics"},
-            D = {"workspace diagnostics"},
-            l = {"line diagnostics"},
-            i = {"LSP info"},
-            f = {"format"},
-            r = {"rename"},
-            s = {"document symbols"},
-            S = {"workspace symbols"},
             ["'"] = "LSP start",
             ["'t"] = {"<cmd>LspStart TsServer<cr>", "javascript, typescript"},
             ["'e"] = {"<cmd>LspStart emmet_ls<cr>", "emmet"},
@@ -147,10 +136,7 @@ local mappings = {
             ["'p"] = {"<cmd>LspStart pyright<cr>", "python"},
             ["'L"] = {"<cmd>LspStart texlab<cr>", "latex"},
             ["'h"] = {"<cmd>LspStart html<cr>", "HTML"},
-            ["'C"] = {"<cmd>LspStart cssls<cr>", "CSS"},
-            ["."] = {"LSP stop"},
-            [".a"] = {"<cmd>LspStop<cr>", "stop all"},
-            [".s"] = {"select"}
+            ["'C"] = {"<cmd>LspStart cssls<cr>", "CSS"}
         },
         s = {
             name = "session",
@@ -177,13 +163,6 @@ local mappings = {
         }
     },
     ["g"] = {
-        ["d"] = "LSP definition",
-        ["D"] = "LSP declaration",
-        ["K"] = "LSP signature help",
-        ["r"] = "LSP references",
-        ["y"] = "LSP type definition",
-        ["h"] = "LSP documentation",
-        ["i"] = "LSP implementation",
         ["c"] = "comment text",
         ["cc"] = "comment line"
     },

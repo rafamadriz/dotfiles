@@ -42,7 +42,18 @@ CS = color_style_or_empty(Theming.colorscheme_style)
 
 -- LSP
 
-local servers = {"bash", "clangd", "css", "emmet", "json", "lua", "python", "tsserver", "html", "latex"}
+local servers = {
+    "bash",
+    "clangd",
+    "css",
+    "emmet",
+    "json",
+    "lua",
+    "python",
+    "tsserver",
+    "html",
+    "latex"
+}
 
 for _, v in pairs(servers) do
     if LSP[v] == nil then
