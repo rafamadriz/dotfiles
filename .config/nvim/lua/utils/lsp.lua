@@ -1,6 +1,7 @@
 local lsp_config = {}
 DATA_PATH = vim.fn.stdpath("data")
 local lspinstall = DATA_PATH .. "/lspinstall/"
+local u = require("utils.core")
 
 lsp_config.capabilities = vim.lsp.protocol.make_client_capabilities()
 lsp_config.capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -34,9 +35,71 @@ end
 function lsp_config.common_on_attach(client, bufnr)
     if LSP.highlight_word == nil or LSP.highlight_word == true then
         documentHighlight(client, bufnr)
-    elseif LSP.highlight_word == false then
-        return nil
     end
+
+    -- mappings
+    u.map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
+    u.map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+    u.map("n", "gy", ":lua vim.lsp.buf.type_definition()<CR>")
+    u.map("n", "gr", ":Telescope lsp_references<CR>")
+    u.map("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
+    u.map("n", "gK", ":lua vim.lsp.buf.signature_help()<CR>")
+    u.map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
+    u.map("n", "<leader>la", ":lua require('utils.core').code_actions()<CR>")
+    u.map("n", "<leader>lA", ":lua require('utils.core').range_code_actions()<CR>")
+    u.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
+    u.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
+    u.map("n", "<leader>ll", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    u.map("n", "<leader>li", ":LspInfo<cr>")
+    u.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
+    u.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
+    u.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
+    u.map("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>")
+    u.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
+    u.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
+    -- Lsp Stop
+    u.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
+
+    local opts = {
+        mode = "n", -- NORMAL mode
+        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use `silent` when creating keymaps
+        noremap = true, -- use `noremap` when creating keymaps
+        nowait = false -- use `nowait` when creating keymaps
+    }
+
+    local mappings = {
+        ["<leader>"] = {
+            l = {
+                name = "LSP",
+                a = {"code action"},
+                A = {"range code action"},
+                d = {"document diagnostics"},
+                D = {"workspace diagnostics"},
+                l = {"line diagnostics"},
+                i = {"LSP info"},
+                f = {"format"},
+                r = {"rename"},
+                s = {"document symbols"},
+                S = {"workspace symbols"},
+                ["."] = {"LSP stop"},
+                [".a"] = {"<cmd>LspStop<cr>", "stop all"},
+                [".s"] = {"select"}
+            }
+        },
+        ["g"] = {
+            ["d"] = "LSP definition",
+            ["D"] = "LSP declaration",
+            ["K"] = "LSP signature help",
+            ["r"] = "LSP references",
+            ["y"] = "LSP type definition",
+            ["h"] = "LSP documentation",
+            ["i"] = "LSP implementation"
+        }
+    }
+
+    local wk = require("which-key")
+    wk.register(mappings, opts)
 end
 
 -- LSP commands
@@ -65,6 +128,7 @@ lsp_config.cmds = {
 }
 
 -- Add LSP colors to colorschemes that don't support it yet
+-- Taken from https://github.com/folke/lsp-colors.nvim
 -- =========================================================
 local defaults = {
     Error = "#db4b4b",

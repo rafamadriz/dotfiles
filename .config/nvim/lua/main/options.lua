@@ -32,11 +32,11 @@ u.opt("w", "numberwidth", 1)
 u.opt("w", "wrap", Opts.wrap)
 u.opt("w", "cursorline", Opts.cursorline)
 u.opt("w", "conceallevel", 0)
-u.opt("w", "signcolumn", "yes")
+u.opt("w", "signcolumn", "yes:1")
 
 -- Buffer
 local indent = Formatting.indent_size
-u.opt("b", "tabstop", indent)
+u.opt("b", "tabstop", 8)
 u.opt("b", "softtabstop", indent)
 u.opt("b", "shiftwidth", indent)
 u.opt("b", "expandtab", true)
