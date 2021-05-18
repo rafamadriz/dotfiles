@@ -60,7 +60,7 @@ require("feline").setup(
                         provider = function()
                             local line = vim.fn.line(".")
                             local col = vim.fn.col(".")
-                            return string.format(" %s %s:%s ", u.icons.line_number, line, col)
+                            return string.format(" %s %3s:%-2s", u.icons.line_number, line, col)
                         end,
                         hl = {style = "bold"}
                     },
@@ -106,7 +106,7 @@ require("feline").setup(
                         provider = function()
                             local line = vim.fn.line(".")
                             local col = vim.fn.col(".")
-                            return string.format(" %s %s:%s ", u.icons.line_number, line, col)
+                            return string.format(" %s %3s:%-2s", u.icons.line_number, line, col)
                         end,
                         hl = {style = "bold"}
                     }

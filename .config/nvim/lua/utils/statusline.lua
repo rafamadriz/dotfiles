@@ -113,7 +113,7 @@ M.position_component_classic = {
     provider = function()
         local line = vim.fn.line(".")
         local col = vim.fn.col(".")
-        return string.format(" %s %s:%s", M.icons.line_number, line, col)
+        return string.format(" %s %3s:%-2s", M.icons.line_number, line, col)
     end,
     right_sep = {str = " ", hl = {bg = "back"}},
     hl = {fg = "bg", bg = "back", style = "bold"}
@@ -144,7 +144,7 @@ M.position_component_slant = {
     provider = function()
         local line = vim.fn.line(".")
         local col = vim.fn.col(".")
-        return string.format(" %s %s:%s", M.icons.line_number, line, col)
+        return string.format(" %s %3s:%-2s", M.icons.line_number, line, col)
     end,
     left_sep = {str = M.icons.left_filled, hl = {fg = "back", bg = "bg"}},
     right_sep = {str = " ", hl = {bg = "back"}},
