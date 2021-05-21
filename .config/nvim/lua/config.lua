@@ -12,16 +12,16 @@ Opts = {
 }
 
 Theming = {
-    -- Press <space>fc to see all available themes
+    -- Press <space>ft to see all available themes
     colorscheme = "neon",
     --[[ Some colorscheme have multiple styles to choose from:
       @gruvbox = medium, soft, hard.
       @neon = default, dark, light.]]
     colorscheme_style = "",
-    -- Options: classic, slant, minimal, vscode, default
+    -- Options: classic, arrow, slant
     statusline = "slant",
-    -- Options: gruvbox, nord, dark
-    statusline_color = "nord"
+    -- Options: nord, neon, gruvbox, wombat
+    statusline_color = "neon"
 }
 
 LSP = {

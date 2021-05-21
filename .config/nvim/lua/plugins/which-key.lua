@@ -21,6 +21,13 @@ require("which-key").setup {
     -- add operators that will trigger motion and text object completion
     -- to enable all native operators, set the preset / operators plugin above
     operators = {gc = "Comments"},
+    key_labels = {
+        -- override the label used to display some keys. It doesn't effect WK in any other way.
+        -- For example:
+        ["<space>"] = "SPC",
+        ["<cr>"] = "RET",
+        ["<tab>"] = "TAB"
+    },
     icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "➜", -- symbol used between a key and it's label
@@ -111,12 +118,17 @@ local mappings = {
             name = "git",
             ["]"] = "next hunk",
             ["["] = "previous hunk",
+            a = "git add current file",
+            d = "diff show",
+            C = "commit changes",
+            L = "log",
             b = "branches",
             c = "commits",
             f = "files",
             s = "status",
             p = "preview hunk",
             l = "line blame",
+            B = "blame sidebar",
             r = "reset hunk",
             R = "reset buffer",
             I = "reset buffer index",
@@ -144,14 +156,16 @@ local mappings = {
             c = {"<cmd>SClose<cr>", "session close"},
             d = {"<cmd>SDelete<cr>", "session delete"},
             l = {"<cmd>SLoad<cr>", "session load"},
-            r = {"<cmd>lua require('utils.reload').Reload()<cr>", "session reload"}
+            r = {"<cmd>lua as.Reload()<cr>", "session reload"}
         },
         o = {
             name = "open",
+            H = {"<cmd>Startify<cr>", "Home"},
             t = {"<cmd>ToggleTerm<cr>", "terminal"},
             f = {"<cmd>NvimTreeFindFile<cr>", "find current file"},
             e = {"<cmd>NvimTreetoggle<cr>", "explorer"},
-            u = {"<cmd>UndotreeToggle<cr>", "undotree"}
+            u = {"<cmd>UndotreeToggle<cr>", "undotree"},
+            c = {"<cmd>vsp ~/.config/nvim/lua/config.lua<cr>", "neovim config"}
         },
         p = {
             name = "plugins",
@@ -159,10 +173,20 @@ local mappings = {
             i = {"<cmd>PackerInstall<cr>", "install"},
             S = {"<cmd>PackerSync<cr>", "sync"},
             c = {"<cmd>PackerClean<cr>", "clean"},
+            C = {"<cmd>PackerCompile<cr>", "compile"},
             s = {"<cmd>PackerStatus<cr>", "status"}
+        },
+        z = {
+            name = "zen mode",
+            f = "focus",
+            c = "centered",
+            m = "minimalist",
+            a = "ataraxis",
+            q = {"<cmd>close<cr>", "quit zen mode"}
         }
     },
     ["g"] = {
+        ["p"] = "select last pasted text",
         ["c"] = "comment text",
         ["cc"] = "comment line"
     },

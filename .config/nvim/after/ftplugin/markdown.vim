@@ -1,17 +1,9 @@
 lua << EOF
-local opts = {
-    mode = "n", -- NORMAL mode
-    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false -- use `nowait` when creating keymaps
-}
-
+vim.cmd [[packadd markdown-preview.nvim]]
 local mappings = {
     ["<leader>"] = {
         o = {
-            name = "Open",
-            m = "Markdown",
+            m = "markdown",
             mp = {"<cmd>MarkdownPreviewToggle<cr>", "preview"},
             ms = {"<cmd>MarkdownPreviewStop<cr>", "preview stop"},
         }
