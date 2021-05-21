@@ -1,17 +1,17 @@
 -- General settings
 require "config"
+require "utils.core"
 require "utils.handlers"
 require "main.options"
 require "main.mappings"
 require "main.autocmds"
 require "main.colorscheme"
-require "plugins"
+require "pack"
 
 -- LSP
 require "lsp"
 
 -- Plugins
-require "plugins.general"
 require "plugins.completion"
 require "plugins.which-key"
 require "plugins.nvim-tree"
