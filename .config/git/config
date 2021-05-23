@@ -1,8 +1,16 @@
 [user]
-	email = rafaelcontacto@pm.me
-	name = rafamadriz
-	signingkey = F5302DA7C6F2F5FD
+  email = rafaelcontacto@pm.me
+  name = Rafael Madriz
+  signingkey = F5302DA7C6F2F5FD
+
+[core]
+  editor = nvim
+
 [commit]
-	gpgsign = true
+  gpgsign = true
+
 [gpg]
-	program = /usr/bin/gpg
+  program = /usr/bin/gpg
+
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
