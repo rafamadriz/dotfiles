@@ -1,13 +1,15 @@
 Opts = {
-    preserve_cursor = true,
-    highlight_yank = true,
-    relativenumber = true,
-    cursorline = true,
-    listchars = true,
-    wrap = false,
-    timeoutlen = 500,
+    timeoutlen = 400,
+    cmdheight = 1,
     updatetime = 300,
     scrolloff = 10,
+    relativenumber = true,
+    cursorline = true,
+    word_wrap = false,
+    preserve_cursor = true,
+    highlight_yank = true,
+    listchars = false,
+    indent_guides = true,
     explorer_side = "right"
 }
 
@@ -17,7 +19,7 @@ Theming = {
     --[[ Some colorscheme have multiple styles to choose from:
       @gruvbox = medium, soft, hard.
       @neon = default, dark, light.]]
-    colorscheme_style = "",
+    colorscheme_style = "doom",
     -- Options: classic, arrow, slant
     statusline = "slant",
     -- Options: nord, neon, gruvbox, wombat
@@ -28,28 +30,29 @@ LSP = {
     -- @values: true, false
     enabled = true,
     virtual_text = false,
-    highlight_word = true,
-    ---------------
-    -- Autostart --
-    ---------------
-    bash = true,
-    clangd = true,
-    json = true,
-    latex = true,
-    lua = false,
-    python = true,
-    -- WebDev
-    html = true,
-    css = true,
-    tsserver = true,
-    emmet = true
+    document_highlight = false,
+    diagnostic_signs = true,
+    diagnostic_underline = true,
+    autostart = {
+        bash = false,
+        clangd = true,
+        json = false,
+        latex = true,
+        lua = false,
+        python = true,
+        -- WebDev
+        html = true,
+        css = true,
+        tsserver = true,
+        emmet = true
+    }
 }
 
 Completion = {
     -- @values: true, false
     enabled = true,
     autopairs = true,
-    items = 10,
+    items = 8,
     ---------------------------
     -- Sources of Completion --
     ---------------------------

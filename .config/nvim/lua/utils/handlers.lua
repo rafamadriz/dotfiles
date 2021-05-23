@@ -29,61 +29,6 @@ end
 C = default_theme(colors, Theming.colorscheme)
 CS = color_style_or_empty(Theming.colorscheme_style)
 
--- LSP
-
-local servers = {
-    "bash",
-    "clangd",
-    "css",
-    "emmet",
-    "json",
-    "lua",
-    "python",
-    "tsserver",
-    "html",
-    "latex"
-}
-
-for _, v in pairs(servers) do
-    if LSP[v] == nil then
-        LSP[v] = false
-    end
-end
-
--- Options
-if Opts.relativenumber == nil then
-    Opts.relativenumber = true
-end
-
-if Opts.timeoutlen == nil or Opts.timeoutlen < 0 then
-    Opts.timeoutlen = 500
-end
-
-if Opts.scrolloff == nil or Opts.scrolloff < 0 then
-    Opts.scrolloff = 10
-end
-
-if Opts.wrap == nil then
-    Opts.wrap = false
-end
-
-if Opts.cursorline == nil then
-    Opts.cursorline = true
-end
-
-if Opts.explorer_side == nil then
-    Opts.explorer_side = "left"
-end
-
--- Completion
-if Completion.items < 1 or Completion.items == nil then
-    Completion.items = 15
-end
-
-if Completion.enabled == nil then
-    Completion.enabled = true
-end
-
 local function compe_menu(source, str, src, prio, ft)
     if source == nil or source == true then
         if ft == nil then

@@ -6,7 +6,7 @@ local cmds = require "lsp.config".cmds
 -- npm i -g bash-language-server
 lsp.bashls.setup {
     cmd = cmds.bash,
-    autostart = LSP.bash,
+    autostart = as._lsp_auto("bash"),
     on_attach = common_on_attach,
     filetypes = {"sh", "zsh"}
 }
@@ -14,28 +14,28 @@ lsp.bashls.setup {
 -- npm i -g pyright
 lsp.pyright.setup {
     cmd = cmds.python,
-    autostart = LSP.python,
+    autostart = as._lsp_auto("python"),
     on_attach = common_on_attach
 }
 
 -- npm i -g vscode-json-languageserver
 lsp.jsonls.setup {
-    cmd = cmds.python,
-    autostart = LSP.json,
+    cmd = cmds.json,
+    autostart = as._lsp_auto("json"),
     on_attach = common_on_attach
 }
 
 -- pacman -S clang
 lsp.clangd.setup {
     cmd = cmds.clangd,
-    autostart = LSP.clangd,
+    autostart = as._lsp_auto("clangd"),
     on_attach = common_on_attach
 }
 
 -- npm i -g typescript typescript-language-server
 lsp.tsserver.setup {
     cmd = cmds.tsserver,
-    autostart = LSP.tsserver,
+    autostart = as._lsp_auto("tsserver"),
     on_attach = common_on_attach,
     filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
 }
@@ -43,7 +43,7 @@ lsp.tsserver.setup {
 -- npm i -g vscode-html-languageserver-bin
 lsp.html.setup {
     cmd = cmds.html,
-    autostart = LSP.html,
+    autostart = as._lsp_auto("html"),
     on_attach = common_on_attach,
     capabilities = capabilities
 }
@@ -51,13 +51,13 @@ lsp.html.setup {
 -- npm i -g vscode-css-languageserver-bin
 lsp.cssls.setup {
     cmd = cmds.css,
-    autostart = LSP.css,
+    autostart = as._lsp_auto("css"),
     on_attach = common_on_attach
 }
 lsp.texlab.setup {
     cmd = cmds.texlab,
     on_attach = common_on_attach,
-    autostart = LSP.latex
+    autostart = as._lsp_auto("latex")
 }
 
 -- npm i -g emmet-ls
@@ -72,7 +72,7 @@ configs.emmet_ls = {
         settings = {}
     }
 }
-lsp.emmet_ls.setup {autostart = LSP.emmet}
+lsp.emmet_ls.setup {autostart = as._lsp_auto("emmet")}
 
 -- lua  https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 -- install instructions:
@@ -93,7 +93,7 @@ table.insert(path, "lua/?.lua")
 table.insert(path, "lua/?/init.lua")
 lsp.sumneko_lua.setup {
     cmd = {luabin, "-E", luapath .. "/main.lua"},
-    autostart = LSP.lua,
+    autostart = as._lsp_auto("lua"),
     on_attach = common_on_attach,
     settings = {
         Lua = {

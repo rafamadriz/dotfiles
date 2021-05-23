@@ -51,6 +51,7 @@ return require("packer").startup(
             "~/repos/statusline",
             "kyazdani42/nvim-web-devicons",
             {"windwp/nvim-autopairs", opt = true},
+            {"lukas-reineke/indent-blankline.nvim", branch = "lua"},
             {"nvim-treesitter/nvim-treesitter", opt = true, run = ":TSUpdate"},
             {"turbio/bracey.vim", opt = true, run = "npm install --prefix server"},
             {"iamcco/markdown-preview.nvim", opt = true, run = "cd app && yarn install"}
@@ -74,62 +75,70 @@ return require("packer").startup(
         use {
             "folke/zen-mode.nvim",
             cmd = "ZenMode",
-            config = require("zen-mode").setup {
-                plugins = {
-                    gitsigns = {enabled = true}
+            config = function()
+                require("zen-mode").setup {
+                    plugins = {
+                        gitsigns = {enabled = true}
+                    }
                 }
-            }
+            end
         }
         use {
             "norcalli/nvim-colorizer.lua",
-            config = require "colorizer".setup(
-                {"*"},
-                {
-                    RRGGBBAA = true,
-                    rgb_fn = true,
-                    hsl_fn = true,
-                    css = true,
-                    css_fn = true
-                }
-            )
+            config = function()
+                require "colorizer".setup(
+                    {"*"},
+                    {
+                        RRGGBBAA = true,
+                        rgb_fn = true,
+                        hsl_fn = true,
+                        css = true,
+                        css_fn = true
+                    }
+                )
+            end
         }
         use {
             "akinsho/nvim-toggleterm.lua",
-            config = require "toggleterm".setup {
-                size = 20,
-                open_mapping = [[<a-t>]],
-                shade_filetypes = {},
-                shade_terminals = true,
-                shading_factor = "1",
-                start_in_insert = true,
-                persist_size = true,
-                direction = "horizontal"
-            }
+            config = function()
+                require "toggleterm".setup {
+                    size = 20,
+                    open_mapping = [[<a-t>]],
+                    shade_filetypes = {},
+                    shade_terminals = true,
+                    shading_factor = "1",
+                    start_in_insert = true,
+                    persist_size = true,
+                    direction = "horizontal"
+                }
+            end
         }
         use {
             "lewis6991/gitsigns.nvim",
-            config = require("gitsigns").setup {
-                signs = {
-                    add = {hl = "GitSignsAdd", text = "┃"},
-                    change = {hl = "GitSignsChange", text = "┃"},
-                    delete = {hl = "GitSignsDelete", text = "契"},
-                    topdelete = {hl = "GitSignsDelete", text = "契"},
-                    changedelete = {hl = "GitSignsChange", text = "~"}
-                },
-                numhl = false,
-                linehl = false,
-                keymaps = {
-                    noremap = true,
-                    buffer = true
-                },
-                watch_index = {
-                    interval = 1000
-                },
-                sign_priority = 6,
-                update_debounce = 200,
-                status_formatter = nil,
-                use_decoration_api = false
-            }
+            config = function()
+                require("gitsigns").setup {
+                    signs = {
+                        add = {hl = "GitSignsAdd", text = "┃"},
+                        change = {hl = "GitSignsChange", text = "┃"},
+                        delete = {hl = "GitSignsDelete", text = "契"},
+                        topdelete = {hl = "GitSignsDelete", text = "契"},
+                        changedelete = {hl = "GitSignsChange", text = "~"}
+                    },
+                    numhl = false,
+                    linehl = false,
+                    keymaps = {
+                        noremap = true,
+                        buffer = true
+                    },
+                    watch_index = {
+                        interval = 1000
+                    },
+                    sign_priority = 6,
+                    update_debounce = 200,
+                    status_formatter = nil,
+                    use_decoration_api = false
+                }
+            end
         }
     end
 )
