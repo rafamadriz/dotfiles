@@ -1,15 +1,12 @@
-local function nvim_set_au(au_type, where, dispatch)
-    vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
-end
+local nvim_set_au = as.nvim_set_au
 
 -- check if option to set autocommand
-local function check_and_set(option, au_type, where, dispatch)
-    if option == nil or option == true then
+local function check_and_set(option, au_type, where, dispatch, boolean)
+    if as._default(option, boolean) == true then
         nvim_set_au(au_type, where, dispatch)
     end
 end
 
-nvim_set_au("InsertLeave,BufWrite,BufEnter", "<buffer>", "lua vim.lsp.diagnostic.set_loclist({open_loclist = false})")
 nvim_set_au("ColorScheme", "*", [[lua require("lsp.config").fix("ColorScheme")]])
 nvim_set_au("BufWritePost", "pack.lua", "PackerCompile")
 nvim_set_au("BufNewFile,BufRead", "*.ejs", "set filetype=html")

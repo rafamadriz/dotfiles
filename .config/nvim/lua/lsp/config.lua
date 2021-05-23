@@ -30,34 +30,45 @@ local function documentHighlight(client, bufnr)
 end
 
 function M.common_on_attach(client, bufnr)
-    if LSP.highlight_word == nil or LSP.highlight_word == true then
+    if as._default(LSP.document_highlight) == true then
         documentHighlight(client, bufnr)
     end
-
-    local map = as.map
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     -- mappings
-    map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
-    map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-    map("n", "gy", ":lua vim.lsp.buf.type_definition()<CR>")
-    map("n", "gr", ":Telescope lsp_references<CR>")
-    map("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
-    map("n", "gK", ":lua vim.lsp.buf.signature_help()<CR>")
-    map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
-    map("n", "<leader>la", ":lua as.code_actions()<CR>")
-    map("n", "<leader>lA", ":lua as.range_code_actions()<CR>")
-    map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
-    map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
-    map("n", "<leader>ll", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-    map("n", "<leader>li", ":LspInfo<cr>")
-    map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
-    map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
-    map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
-    map("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>")
-    map("n", "<leader>lp", ":lua as.PeekDefinition()<CR>")
-    map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
-    map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
-    -- Lsp Stop
-    map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
+    as.map("n", "gD", ":lua vim.lsp.buf.declaration()<CR>")
+    as.map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
+    as.map("n", "gy", ":lua vim.lsp.buf.type_definition()<CR>")
+    as.map("n", "gr", ":Telescope lsp_references<CR>")
+    as.map("n", "gh", ":lua vim.lsp.buf.hover()<CR>")
+    as.map("n", "gK", ":lua vim.lsp.buf.signature_help()<CR>")
+    as.map("n", "gi", ":lua vim.lsp.buf.implementation()<CR>")
+    as.map("n", "<leader>lgD", ":lua vim.lsp.buf.declaration()<CR>")
+    as.map("n", "<leader>lgd", ":lua vim.lsp.buf.definition()<CR>")
+    as.map("n", "<leader>lgy", ":lua vim.lsp.buf.type_definition()<CR>")
+    as.map("n", "<leader>lgr", ":Telescope lsp_references<CR>")
+    as.map("n", "<leader>lgh", ":lua vim.lsp.buf.hover()<CR>")
+    as.map("n", "<leader>lgK", ":lua vim.lsp.buf.signature_help()<CR>")
+    as.map("n", "<leader>lgi", ":lua vim.lsp.buf.implementation()<CR>")
+    as.map("n", "<leader>la", ":lua as.code_actions()<CR>")
+    as.map("n", "<leader>lA", ":lua as.range_code_actions()<CR>")
+    as.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
+    as.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
+    as.map("n", "<leader>ll", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
+    as.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
+    as.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
+    as.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
+    as.map("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>")
+    as.map("n", "<leader>lp", ":lua as.PeekDefinition()<CR>")
+    as.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
+    as.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
+    as.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
+    as.map("n", "<leader>lt", ":lua _G.toggle_diagnostics()<CR>")
+
+    as.nvim_set_au(
+        "InsertLeave,BufWrite,BufEnter",
+        "<buffer>",
+        "lua vim.lsp.diagnostic.set_loclist({open_loclist = false})"
+    )
 
     local mappings = {
         ["<leader>"] = {
@@ -74,6 +85,15 @@ function M.common_on_attach(client, bufnr)
                 p = {"peek definition"},
                 s = {"document symbols"},
                 S = {"workspace symbols"},
+                t = "toggle diagnostics",
+                g = {name = "go to"},
+                gd = "definition",
+                gD = "declaration",
+                gy = "type definition",
+                gr = "references",
+                gh = "documentation",
+                gK = "signature help",
+                gi = "implementation",
                 ["."] = {"LSP stop"},
                 [".a"] = {"<cmd>LspStop<cr>", "stop all"},
                 [".s"] = {"select"}
@@ -118,28 +138,6 @@ M.cmds = {
     texlab = {cmd_path .. "latex/texlab"},
     tsserver = {cmd_path .. "typescript/node_modules/.bin/typescript-language-server", "--stdio"}
 }
-
-vim.g.diagnostics_active = true
-function _G.toggle_diagnostics()
-    if vim.g.diagnostics_active then
-        vim.g.diagnostics_active = false
-        vim.lsp.diagnostic.clear(0)
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = function()
-        end
-    else
-        vim.g.diagnostics_active = true
-        vim.lsp.handlers["textDocument/publishDiagnostics"] =
-            vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics,
-            {
-                virtual_text = false,
-                signs = true,
-                underline = true,
-                update_in_insert = false
-            }
-        )
-    end
-end
 
 -- Add LSP colors to colorschemes that don't support it yet
 -- Taken from https://github.com/folke/lsp-colors.nvim

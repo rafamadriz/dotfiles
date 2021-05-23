@@ -1,7 +1,7 @@
 vim.cmd [[packadd nvim-compe]]
 vim.cmd [[packadd vim-vsnip]]
 require "compe".setup {
-    enabled = Completion.enabled,
+    enabled = as._default(Completion.enabled),
     autocomplete = true,
     debug = false,
     min_length = 2,
@@ -102,7 +102,7 @@ map("i", "<C-l>", [[vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-l
 map("s", "<C-l>", [[vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-l>']], {expr = true})
 
 -- Autopairs
-if Completion.autopairs == nil or Completion.autopairs == true then
+if as._default(Completion.autopairs) == true then
     vim.cmd [[packadd nvim-autopairs]]
     require("nvim-autopairs").setup()
 

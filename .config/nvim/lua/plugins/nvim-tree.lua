@@ -6,9 +6,9 @@ vim.g.nvim_tree_auto_close = 1
 vim.g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 vim.g.nvim_tree_lsp_diagnostics = 1
 vim.g.nvim_tree_auto_ignore_ft = "startify"
-vim.g.nvim_tree_side = Opts.explorer_side
 vim.g.nvim_tree_quit_on_open = 0
 vim.g.nvim_tree_tab_open = 0
+vim.g.nvim_tree_side = Opts.explorer_side or "right"
 
 vim.g.nvim_tree_icons = {
     default = "",

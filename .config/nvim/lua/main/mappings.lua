@@ -96,18 +96,20 @@ map("n", "<F5>", ":lua as.lazygit_toggle()<CR>") -- lazygit
 map("n", "<leader>ga", ":Git add %<CR>") -- add current file
 map("n", "<leader>gd", ":Git diff %<CR>") -- show diff
 map("n", "<leader>gC", ":Git commit %<CR>") -- commit
-map("n", "<leader>gL", ":Git log %<CR>") -- log
+map("n", "<leader>gl", ":Git log %<CR>") -- log
 map("n", "<leader>gf", ":Telescope git_files<CR>") -- git files
 map("n", "<leader>gc", ":Telescope git_commits<CR>") -- git commits
 map("n", "<leader>gb", ":Telescope git_branches<CR>") -- git branches
 map("n", "<leader>gs", ":Telescope git_status<CR>") -- git status
 map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>") -- preview hunk
-map("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>") -- toggle line blame
+map("n", "<leader>gL", ":Gitsigns toggle_current_line_blame<CR>") -- toggle line blame
 map("n", "<leader>gB", ":Git blame<CR>") -- git blame
 map("n", "<leader>gr", ":Gitsigns reset_hunk<CR>") -- reset hunk
 map("n", "<leader>gR", ":Gitsigns reset_buffer<CR>") -- reset buffer
 map("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>") -- undo last stage hunk
 map("n", "<leader>gI", ":Gitsigns reset_buffer_index<CR>") -- reset buffer index
+map("n", "<leader>gP", ":Git push<CR>") -- push
+map("n", "<leader>gi", ":Git init<CR>") -- init
 map("n", "<leader>gt", ":Gitsigns stage_hunk<CR>") -- git stage hunk
 map("n", "<leader>gT", ":Gitsigns stage_buffer<CR>") -- git stage buffer
 map("n", "<leader>g[", ":Gitsigns prev_hunk<CR>") -- previous hunk
