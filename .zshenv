@@ -74,6 +74,7 @@ export WM="bspwm"
 ### choose a manpager #
 # export MANPAGER="nvim -c 'set ft=man' -"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export PAGER="bat --paging=always"
 
 export LF_ICONS="\
 di=:\
