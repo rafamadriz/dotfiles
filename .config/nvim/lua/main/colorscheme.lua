@@ -1,8 +1,8 @@
-local cmd = vim.cmd
+local style = Theming.colorscheme_style or ""
 
 -- gruvbox
 vim.g.gruvbox_italic = true
-vim.g.gruvbox_contrast_dark = "" .. CS
+vim.g.gruvbox_contrast_dark = "" .. style
 
 -- one
 vim.g.one_allow_italics = true
@@ -11,9 +11,7 @@ vim.g.one_allow_italics = true
 vim.g.neon_italic_keyword = true
 vim.g.neon_italic_boolean = true
 vim.g.neon_bold = true
+vim.g.neon_style = "" .. style
 
 -- Colorscheme
-cmd("colorscheme " .. C)
-
--- TODO: neon breaks if set before colorscheme, only in specific setups
-vim.g.neon_style = "" .. CS
+vim.cmd("colorscheme " .. as.select_theme(Theming.colorscheme))

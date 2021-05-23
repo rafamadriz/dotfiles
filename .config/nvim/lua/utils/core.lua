@@ -59,12 +59,27 @@ function as._lsp_auto(server)
     return false
 end
 
--- TODO
 function as._compe(source, component)
     if as._default(source) == true then
-        return true
+        return component
     end
     return false
+end
+
+function as.select_theme(theme)
+    local all_colors = vim.fn.getcompletion("", "color")
+    local default = "neon"
+    for _, v in pairs(all_colors) do
+        if theme == v then
+            return theme
+        end
+    end
+    for _, v in pairs(all_colors) do
+        if default == v then
+            return default
+        end
+    end
+    return "default"
 end
 
 -- Terminal
