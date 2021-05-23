@@ -14,13 +14,13 @@ require "compe".setup {
     max_menu_width = 100,
     documentation = true,
     source = {
-        path = Completion.path,
-        buffer = Completion.buffer,
-        calc = Completion.calc,
-        vsnip = Completion.snippets,
-        nvim_lsp = Completion.lsp,
-        spell = Completion.spell,
-        emoji = Completion.emoji,
+        path = as._compe(Completion.path, {menu = "[P]", kind = "  (Path)"}),
+        buffer = as._compe(Completion.buffer, {menu = "[B]", kind = "  (Buffer)"}),
+        calc = as._compe(Completion.calc, {menu = "[C]", kind = "  (Calc)"}),
+        vsnip = as._compe(Completion.snippets, {menu = "[S]", priority = 1500, kind = " ﬌  (Snippet)"}),
+        nvim_lsp = as._compe(Completion.lsp, {menu = "[L]"}),
+        spell = as._compe(Completion.spell, {menu = "[E]", kind = "  (Spell)"}),
+        emoji = as._compe(Completion.emoji, {menu = "[ ﲃ ]"}),
         nvim_lua = {menu = "[]"}
     }
 }

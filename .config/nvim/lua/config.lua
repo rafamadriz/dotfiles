@@ -69,7 +69,7 @@ Formatting = {
     -- if format_on_save is enable it will always trim trailing white spaces
     format_on_save = true,
     trim_trailing_space = true,
-    indent_size = 2
+    indent_size = 4
 }
 
 Treesitter = {
