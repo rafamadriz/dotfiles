@@ -1,5 +1,4 @@
 lua << EOF
-vim.cmd [[packadd markdown-preview.nvim]]
 local mappings = {
     ["<leader>"] = {
         o = {
