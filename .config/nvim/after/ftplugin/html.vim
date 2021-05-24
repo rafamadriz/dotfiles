@@ -4,7 +4,6 @@ setlocal ts=2 sw=2 sts=2
 " Fix quirkiness in indentation
 setlocal indentkeys-=*<Return>
 
-packadd bracey.vim
 lua << EOF
 local mappings = {
     ["<leader>"] = {

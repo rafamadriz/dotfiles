@@ -1,17 +1,14 @@
 local actions = require("telescope.actions")
--- Global remapping
-------------------------------
--- '--color=never',
 require("telescope").setup {
     defaults = {
         vimgrep_arguments = {"rg", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case"},
-        prompt_position = "bottom",
+        prompt_position = "top",
         prompt_prefix = " ",
         selection_caret = " ",
         entry_prefix = "  ",
         initial_mode = "insert",
         selection_strategy = "reset",
-        sorting_strategy = "descending",
+        sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_defaults = {horizontal = {mirror = false}, vertical = {mirror = false}},
         file_sorter = require("telescope.sorters").get_fzy_sorter,

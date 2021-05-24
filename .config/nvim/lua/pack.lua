@@ -13,12 +13,24 @@ return require("packer").startup(
         use "wbthomason/packer.nvim"
 
         -- LSP, Autocomplete and snippets
+        use "neovim/nvim-lspconfig"
+        use {"~/repos/friendly-snippets", after = "vim-vsnip"}
         use {
-            "neovim/nvim-lspconfig",
-            {"~/repos/friendly-snippets", after = "vim-vsnip"},
-            {"hrsh7th/nvim-compe", opt = true, event = "InsertEnter *"},
-            {"hrsh7th/vim-vsnip", opt = true, event = "InsertEnter *"},
-            {"kabouzeid/nvim-lspinstall", cmd = {"LspInstall", "LspUninstall"}}
+            "hrsh7th/nvim-compe",
+            opt = true,
+            event = "InsertEnter *",
+            config = [[require("plugins.compe")]]
+        }
+        use {
+            "hrsh7th/vim-vsnip",
+            opt = true,
+            event = "InsertEnter *",
+            config = [[require("plugins.completion")]]
+        }
+        use {
+            "kabouzeid/nvim-lspinstall",
+            opt = true,
+            cmd = {"LspInstall", "LspUninstall"}
         }
         -- ====================================
 
@@ -29,32 +41,51 @@ return require("packer").startup(
                 "nvim-lua/popup.nvim",
                 "nvim-lua/plenary.nvim",
                 "nvim-telescope/telescope-fzy-native.nvim"
-            }
+            },
+            config = [[require("plugins.telescope")]]
         }
         -- ====================================
 
         -- Utils
         use {
             "tpope/vim-fugitive",
-            "folke/which-key.nvim",
             "kevinhwang91/nvim-bqf",
             "machakann/vim-sandwich",
-            "kyazdani42/nvim-tree.lua",
-            {"b3nj5m1n/kommentary", keys = {"gcc", "gc"}}
+            {"b3nj5m1n/kommentary", keys = {"gcc", "gc"}},
+            {"folke/which-key.nvim", config = [[require("plugins.which-key")]]},
+            {"kyazdani42/nvim-tree.lua", config = [[require("plugins.nvim-tree")]]}
         }
         -- ====================================
 
         -- General plugins
         use {
             "sbdchd/neoformat",
-            "mhinz/vim-startify",
-            "~/repos/statusline",
             "kyazdani42/nvim-web-devicons",
             {"windwp/nvim-autopairs", opt = true},
-            {"lukas-reineke/indent-blankline.nvim", branch = "lua"},
-            {"nvim-treesitter/nvim-treesitter", opt = true, run = ":TSUpdate"},
-            {"turbio/bracey.vim", opt = true, run = "npm install --prefix server"},
-            {"iamcco/markdown-preview.nvim", opt = true, run = "cd app && yarn install"}
+            {"mhinz/vim-startify", config = [[require("plugins.startify")]]},
+            {"~/repos/statusline", config = [[require("plugins.statusline")]]}
+        }
+        use {
+            "nvim-treesitter/nvim-treesitter",
+            run = ":TSUpdate",
+            config = [[require("plugins.treesitter")]]
+        }
+        use {
+            "turbio/bracey.vim",
+            opt = true,
+            ft = "html",
+            run = "npm install --prefix server"
+        }
+        use {
+            "iamcco/markdown-preview.nvim",
+            opt = true,
+            ft = "markdown",
+            run = "cd app && yarn install"
+        }
+        use {
+            "lukas-reineke/indent-blankline.nvim",
+            branch = "lua",
+            config = [[require("plugins.indent-guides")]]
         }
         -- ====================================
 

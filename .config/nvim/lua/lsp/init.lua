@@ -31,25 +31,32 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         update_in_insert = false
     }
 )
--- toggle diagnostics, FIXME: very hacky, find a better way
-vim.g.diagnostics_active = true
-function _G.toggle_diagnostics()
-    if vim.g.diagnostics_active then
-        vim.g.diagnostics_active = false
-        vim.lsp.diagnostic.clear(0)
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = function()
-        end
-    else
-        vim.g.diagnostics_active = true
-        vim.lsp.handlers["textDocument/publishDiagnostics"] =
-            vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics,
-            {
-                virtual_text = as._default(LSP.virtual_text, false),
-                signs = as._default(LSP.signs),
-                underline = as._default(LSP.diagnostic_underline),
-                update_in_insert = false
-            }
-        )
-    end
-end
+
+-- symbols for autocomplete
+vim.lsp.protocol.CompletionItemKind = {
+    "   (Text) ",
+    "   (Method)",
+    "   (Function)",
+    "   (Constructor)",
+    " ﴲ  (Field)",
+    "[] (Variable)",
+    "   (Class)",
+    " ﰮ  (Interface)",
+    "   (Module)",
+    " 襁 (Property)",
+    "   (Unit)",
+    "   (Value)",
+    " 練 (Enum)",
+    "   (Keyword)",
+    " ﬌  (Snippet)",
+    "   (Color)",
+    "   (File)",
+    "   (Reference)",
+    "   (Folder)",
+    "   (EnumMember)",
+    " ﲀ  (Constant)",
+    " ﳤ  (Struct)",
+    "   (Event)",
+    "   (Operator)",
+    "   (TypeParameter)"
+}

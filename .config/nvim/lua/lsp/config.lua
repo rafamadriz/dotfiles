@@ -62,7 +62,6 @@ function M.common_on_attach(client, bufnr)
     as.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
     as.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
     as.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
-    as.map("n", "<leader>lt", ":lua _G.toggle_diagnostics()<CR>")
 
     as.nvim_set_au(
         "InsertLeave,BufWrite,BufEnter",
@@ -85,7 +84,6 @@ function M.common_on_attach(client, bufnr)
                 p = {"peek definition"},
                 s = {"document symbols"},
                 S = {"workspace symbols"},
-                t = "toggle diagnostics",
                 g = {name = "go to"},
                 gd = "definition",
                 gD = "declaration",
