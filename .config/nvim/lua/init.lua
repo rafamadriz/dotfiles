@@ -1,10 +1,8 @@
 -- General settings
 require "config"
-require "utils.core"
+require "utils"
 require "main.options"
 require "main.mappings"
 require "main.autocmds"
 require "main.colorscheme"
 require "pack"
--- LSP
-require "lsp"

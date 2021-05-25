@@ -160,7 +160,7 @@ local mappings = {
             c = {"<cmd>SClose<cr>", "session close"},
             d = {"<cmd>SDelete<cr>", "session delete"},
             l = {"<cmd>SLoad<cr>", "session load"},
-            r = {"<cmd>lua as.Reload()<cr>", "session reload"}
+            r = {"<cmd>lua require('utils.extra').Reload()<cr>", "session reload"}
         },
         o = {
             name = "open",
