@@ -92,7 +92,7 @@ map("n", "<leader>w-", ":resize -15<CR>") -- decrease height
 map("n", "<leader>w+", ":resize +15<CR>") -- increase height
 
 -- Git
-map("n", "<F5>", ":lua as.lazygit_toggle()<CR>") -- lazygit
+map("n", "<F5>", ":lua require('utils.extra').lazygit_toggle()<CR>") -- lazygit
 map("n", "<leader>ga", ":Git add %<CR>") -- add current file
 map("n", "<leader>gd", ":Git diff %<CR>") -- show diff
 map("n", "<leader>gC", ":Git commit %<CR>") -- commit
@@ -125,10 +125,10 @@ map("n", "<leader>ft", ":Telescope colorscheme<CR>")
 map("n", "<leader>fC", ":Telescope command_history<CR>")
 map("n", "<leader>fc", ":Telescope commands<CR>")
 map("n", "<leader>fs", ":Telescope search_history<CR>")
-map("n", "<leader>fn", ":lua as.search_nvim()<CR>")
+map("n", "<leader>fn", ":lua require('utils.extra').search_nvim()<CR>")
 
 -- Zen Mode
 map("n", "<leader>zf", [[:lua require("zen-mode").toggle({window = {width = 1}})<CR>]])
 map("n", "<leader>zc", [[:lua require("zen-mode").toggle({window = {width = .75}})<CR>]])
-map("n", "<leader>zm", [[:lua as.minimal()<CR>]])
-map("n", "<leader>za", [[:lua as.ataraxis()<CR>]])
+map("n", "<leader>zm", [[:lua require('utils.extra').minimal()<CR>]])
+map("n", "<leader>za", [[:lua require('utils.extra').ataraxis()<CR>]])

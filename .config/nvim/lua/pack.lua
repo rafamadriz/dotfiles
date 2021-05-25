@@ -13,7 +13,7 @@ return require("packer").startup(
         use "wbthomason/packer.nvim"
 
         -- LSP, Autocomplete and snippets
-        use "neovim/nvim-lspconfig"
+        use {"neovim/nvim-lspconfig", config = [[require("lsp")]]}
         use {"~/repos/friendly-snippets", after = "vim-vsnip"}
         use {
             "hrsh7th/nvim-compe",

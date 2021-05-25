@@ -1,86 +1,7 @@
--- idea from https://github.com/akinsho/dotfiles
---- store all callbacks in one global table so they are able to survive re-requiring this file
-_AsGlobalCallbacks = _AsGlobalCallbacks or {}
-DATA_PATH = vim.fn.stdpath("data")
+local M = {}
 
-_G.as = {
-    _store = _AsGlobalCallbacks
-}
-
-local fn = vim.fn
 local cmd = vim.cmd
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-
--- options
-function as.opt(scope, key, value)
-    scopes[scope][key] = value
-    if scope ~= "o" then
-        scopes["o"][key] = value
-    end
-end
-
--- mappings
-function as.map(mode, key, result, opts)
-    local options = {noremap = true, silent = true}
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, key, result, options)
-end
-
--- autocommands
-function as.nvim_set_au(au_type, where, dispatch)
-    vim.cmd(string.format("au! %s %s %s", au_type, where, dispatch))
-end
-
--- default option
-function as._default(option, boolean)
-    if option == true or option == nil and boolean == nil then
-        return true
-    elseif option == false and boolean == nil then
-        return false
-    end
-    return boolean
-end
-
-function as._default_num(option, int)
-    if option == nil or not tonumber(option) or option <= 0 then
-        return int
-    end
-    return option
-end
-
-function as._lsp_auto(server)
-    for i, v in pairs(LSP.autostart) do
-        if server == i then
-            return v
-        end
-    end
-    return false
-end
-
-function as._compe(source, component)
-    if as._default(source) == true then
-        return component
-    end
-    return false
-end
-
-function as.select_theme(theme)
-    local all_colors = vim.fn.getcompletion("", "color")
-    local default = "neon"
-    for _, v in pairs(all_colors) do
-        if theme == v then
-            return theme
-        end
-    end
-    for _, v in pairs(all_colors) do
-        if default == v then
-            return default
-        end
-    end
-    return "default"
-end
+local fn = vim.fn
 
 -- Terminal
 local Terminal = require("toggleterm.terminal").Terminal
@@ -94,12 +15,12 @@ local lazygit =
     }
 )
 
-function as.lazygit_toggle()
+function M.lazygit_toggle()
     lazygit:toggle()
 end
 
 -- Telescope
-function as.search_nvim()
+function M.search_nvim()
     require("telescope.builtin").find_files(
         {
             prompt_title = "Neovim Config",
@@ -114,10 +35,10 @@ local a = require("telescope.builtin")
 local options = {width = 55, results_height = 10}
 local theme = t.get_dropdown(options)
 
-function as.code_actions()
+function M.code_actions()
     a.lsp_code_actions(theme)
 end
-function as.range_code_actions()
+function M.range_code_actions()
     a.lsp_range_code_actions(theme)
 end
 
@@ -128,7 +49,7 @@ local function preview_location_callback(_, _, result)
     vim.lsp.util.preview_location(result[1])
 end
 
-function as.PeekDefinition()
+function M.PeekDefinition()
     local params = vim.lsp.util.make_position_params()
     return vim.lsp.buf_request(0, "textDocument/definition", params, preview_location_callback)
 end
@@ -140,11 +61,11 @@ local nu = {number = false, relativenumber = false}
 local min = {window = {width = 1, options = nu}}
 local ata = {window = {width = .75, options = nu}}
 
-function as.minimal()
+function M.minimal()
     zen.toggle(min)
 end
 
-function as.ataraxis()
+function M.ataraxis()
     zen.toggle(ata)
 end
 
@@ -155,20 +76,20 @@ local Path = require("plenary.path")
 local scan_dir = require("plenary.scandir").scan_dir
 
 -- Paths to unload Lua modules from
-as.lua_reload_dirs = {fn.stdpath("config")}
+M.lua_reload_dirs = {fn.stdpath("config")}
 
 -- Paths to reload Vim files from
-as.vim_reload_dirs = {fn.stdpath("config"), fn.stdpath("data") .. "/site/pack/*/start/*"}
+M.vim_reload_dirs = {fn.stdpath("config"), fn.stdpath("data") .. "/site/pack/*/start/*"}
 
 -- External files outside the runtimepaths to source
-as.files_reload_external = {}
+M.files_reload_external = {}
 
 -- External Lua modules outside the runtimepaths to unload
-as.modules_reload_external = {}
+M.modules_reload_external = {}
 
 -- Pre-reload hook
-as.pre_reload_hook = nil
-as.post_reload_hook = nil
+M.pre_reload_hook = nil
+M.post_reload_hook = nil
 
 local viml_subdirs = {
     "compiler",
@@ -257,8 +178,8 @@ end
 -- aseload all start plugins
 local function reload_runtime_files()
     -- Search each runtime path for files
-    for _, runtimepath_suffix in ipairs(as.vim_reload_dirs) do
-        -- Expand the globs and get the result as a list
+    for _, runtimepath_suffix in ipairs(M.vim_reload_dirs) do
+        -- Expand the globs and get the result M a list
         local paths = fn.glob(runtimepath_suffix, 0, 1)
 
         for _, path in ipairs(paths) do
@@ -270,7 +191,7 @@ local function reload_runtime_files()
         end
     end
 
-    for _, file in ipairs(as.files_reload_external) do
+    for _, file in ipairs(M.files_reload_external) do
         cmd("source " .. file)
     end
 end
@@ -278,7 +199,7 @@ end
 -- Unload all loaded Lua modules
 local function unload_lua_modules()
     -- Search each runtime path for modules
-    for _, runtimepath_suffix in ipairs(as.lua_reload_dirs) do
+    for _, runtimepath_suffix in ipairs(M.lua_reload_dirs) do
         local paths = fn.glob(runtimepath_suffix, 0, 1)
 
         for _, path in ipairs(paths) do
@@ -290,16 +211,16 @@ local function unload_lua_modules()
         end
     end
 
-    for _, module in ipairs(as.modules_reload_external) do
+    for _, module in ipairs(M.modules_reload_external) do
         package.loaded[module] = nil
     end
 end
 
 -- aseload Vim configuration
-function as.Reload()
+function M.Reload()
     -- asun pre-reload hook
-    if type(as.pre_reload_hook) == "function" then
-        as.pre_reload_hook()
+    if type(M.pre_reload_hook) == "function" then
+        M.pre_reload_hook()
     end
 
     -- Clear highlights
@@ -324,10 +245,12 @@ function as.Reload()
     reload_runtime_files()
 
     -- asun post-reload hook
-    if type(as.post_reload_hook) == "function" then
-        as.post_reload_hook()
+    if type(M.post_reload_hook) == "function" then
+        M.post_reload_hook()
     end
 end
-as.post_reload_hook = function()
+M.post_reload_hook = function()
     require("feline").reset_highlights()
 end
+
+return M
