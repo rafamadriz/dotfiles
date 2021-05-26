@@ -30,7 +30,7 @@ alias \
 # git
 alias \
     ga="git add" \
-    gcl = "git clone" \
+    gcl="git clone" \
     gaa="git add --all" \
     gb="git branch -a" \
     gcm="git commit -m" \
