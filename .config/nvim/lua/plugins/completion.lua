@@ -46,7 +46,7 @@ map("i", "<C-l>", [[vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-l
 map("s", "<C-l>", [[vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<C-l>']], {expr = true})
 
 -- Autopairs
-if as._default(Completion.autopairs) == true then
+if as._default(vim.g.neon_compe_autopairs) == true then
     vim.cmd [[packadd nvim-autopairs]]
     require("nvim-autopairs").setup()
 

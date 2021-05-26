@@ -1,5 +1,5 @@
 require "compe".setup {
-    enabled = as._default(Completion.enabled),
+    enabled = as._default(vim.g.neon_compe_enabled),
     autocomplete = true,
     debug = false,
     min_length = 2,
@@ -12,13 +12,44 @@ require "compe".setup {
     max_menu_width = 100,
     documentation = true,
     source = {
-        path = as._compe(Completion.path, {menu = "[P]", kind = "  (Path)"}),
-        buffer = as._compe(Completion.buffer, {menu = "[B]", kind = "   (Buffer)"}),
-        calc = as._compe(Completion.calc, {menu = "[C]", kind = "  (Calc)"}),
-        vsnip = as._compe(Completion.snippets, {menu = "[S]", priority = 1500, kind = " ﬌  (Snippet)"}),
-        nvim_lsp = as._compe(Completion.lsp, {menu = "[L]"}),
-        spell = as._compe(Completion.spell, {menu = "[E]", kind = "  (Spell)"}),
-        emoji = as._compe(Completion.emoji, {menu = "[ ﲃ ]"}),
+        path = as._compe(
+            "path",
+            {
+                menu = "[P]",
+                kind = "  (Path)"
+            }
+        ),
+        buffer = as._compe(
+            "buffer",
+            {
+                menu = "[B]",
+                kind = "   (Buffer)"
+            }
+        ),
+        calc = as._compe(
+            "calc",
+            {
+                menu = "[C]",
+                kind = "  (Calc)"
+            }
+        ),
+        vsnip = as._compe(
+            "snippets",
+            {
+                menu = "[S]",
+                priority = 1500,
+                kind = " ﬌  (Snippet)"
+            }
+        ),
+        spell = as._compe(
+            "spell",
+            {
+                menu = "[E]",
+                kind = "  (Spell)"
+            }
+        ),
+        nvim_lsp = as._compe("lsp", {menu = "[L]"}),
+        emoji = as._compe("emoji", {menu = "[ ﲃ ]"}),
         nvim_lua = {menu = "[]"}
     }
 }

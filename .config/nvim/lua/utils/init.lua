@@ -51,24 +51,34 @@ function as._default_num(option, int)
 end
 
 function as._lsp_auto(server)
-    for i, v in pairs(LSP.autostart) do
-        if server == i then
-            return v
+    local blacklist = vim.g.neon_lsp_autostart_blacklist
+    if blacklist == nil or #blacklist < 1 then
+        return true
+    end
+    for _, v in pairs(blacklist) do
+        if server == v then
+            return false
         end
     end
-    return false
+    return true
 end
 
 function as._compe(source, component)
-    if as._default(source) == true then
-        return component
+    local blacklist = vim.g.neon_compe_sources_blacklist
+    if blacklist ~= nil then
+        for _, v in pairs(blacklist) do
+            if source == v then
+                return false
+            end
+        end
     end
-    return false
+    return component
 end
 
 function as.select_theme(theme)
     local all_colors = vim.fn.getcompletion("", "color")
     local default = "neon"
+    local fmt = string.format
     for _, v in pairs(all_colors) do
         if theme == v then
             return theme
@@ -76,6 +86,7 @@ function as.select_theme(theme)
     end
     for _, v in pairs(all_colors) do
         if default == v then
+            print(fmt([[colorscheme "%s" doesn't exist, using default]], theme))
             return default
         end
     end

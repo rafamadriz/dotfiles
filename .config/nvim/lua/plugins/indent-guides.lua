@@ -1,4 +1,4 @@
-vim.g.indent_blankline_enabled = as._default(Opts.indent_guides)
+vim.g.indent_blankline_enabled = as._default(vim.g.neon_indent_guides)
 vim.g.indent_blankline_char = "│"
 vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
 vim.g.indent_blankline_space_char_blankline = " "
