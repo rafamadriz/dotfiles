@@ -13,6 +13,7 @@ return require("packer").startup(
         use "wbthomason/packer.nvim"
 
         -- LSP, Autocomplete and snippets
+        use "kabouzeid/nvim-lspinstall"
         use {"neovim/nvim-lspconfig", config = [[require("lsp")]]}
         use {"~/repos/friendly-snippets", after = "vim-vsnip"}
         use {
@@ -27,11 +28,7 @@ return require("packer").startup(
             event = "InsertEnter *",
             config = [[require("plugins.completion")]]
         }
-        use {
-            "kabouzeid/nvim-lspinstall",
-            opt = true,
-            cmd = {"LspInstall", "LspUninstall"}
-        }
+
         -- ====================================
 
         -- Telescope
@@ -93,6 +90,7 @@ return require("packer").startup(
         use {
             "~/repos/neon",
             "rakr/vim-one",
+            "~/repos/one",
             {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
         }
         -- ====================================

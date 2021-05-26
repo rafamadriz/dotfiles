@@ -1,93 +1,70 @@
-Opts = {
-    timeoutlen = 400,
-    cmdheight = 1,
-    updatetime = 300,
-    scrolloff = 10,
-    relativenumber = true,
-    cursorline = true,
-    word_wrap = false,
-    preserve_cursor = true,
-    highlight_yank = true,
-    listchars = false,
-    indent_guides = true,
-    explorer_side = "right"
-}
+local g = vim.g
 
-Theming = {
-    -- Press <space>ft to see all available themes
-    colorscheme = "neon",
-    --[[ Some colorscheme have multiple styles to choose from:
-      @gruvbox = medium, soft, hard.
-      @neon = default, dark, light.]]
-    colorscheme_style = "doom",
-    -- Options: classic, arrow, slant
-    statusline = "slant",
-    -- Options: nord, neon, gruvbox, wombat
-    statusline_color = "neon"
-}
+-- =====================
+--- General Settings ---
+-- =====================
+g.neon_timeoutlen = 400
+g.neon_cmdheight = 1
+g.neon_updatetime = 300
+g.neon_scrolloff = 10
+g.neon_relativenumber = true
+g.neon_cursorline = true
+g.neon_word_wrap = false
+g.neon_preserve_cursor = true
+g.neon_highlight_yank = true
+g.neon_listchars = false
+g.neon_indent_guides = true
+g.neon_explorer_side = "right"
+g.neon_format_on_save = true
+g.neon_trim_trailing_space = true
+g.neon_indent_size = 4
 
-LSP = {
-    -- @values: true, false
-    enabled = true,
-    virtual_text = false,
-    document_highlight = false,
-    diagnostic_signs = true,
-    diagnostic_underline = true,
-    autostart = {
-        bash = false,
-        clangd = true,
-        json = false,
-        latex = true,
-        lua = false,
-        python = true,
-        -- WebDev
-        html = true,
-        css = true,
-        tsserver = true,
-        emmet = true
-    }
-}
+-- =================
+--- Colors/Style ---
+-- =================
+-- Press <space>ft to see all available themes
+g.neon_colorscheme = "neon"
+-- Options:
+-- @gruvbox = medium, soft, hard.
+-- @neon = default, doom, dark, light.
+g.neon_colorscheme_style = "doom"
+-- Options: classic, arrow, slant
+g.neon_statusline = "slant"
+-- Options: nord, neon, gruvbox, wombat
+g.neon_statusline_color = "neon"
 
-Completion = {
-    -- @values: true, false
-    enabled = true,
-    autopairs = true,
-    items = 8,
-    ---------------------------
-    -- Sources of Completion --
-    ---------------------------
-    snippets = true,
-    lsp = true,
-    buffer = true,
-    path = true,
-    calc = true,
-    spell = true,
-    emoji = true
-}
+-- ================
+---     LSP     ---
+-- ================
+g.neon_lsp_enabled = true
+g.neon_lsp_virtual_text = false
+g.neon_lsp_diagnostic_signs = true
+g.neon_lsp_document_highlight = false
+g.neon_lsp_diagnostic_underline = true
+g.neon_lsp_autostart_blacklist = {"lua", "bash", "json"}
 
-Formatting = {
-    -- if format_on_save is enable it will always trim trailing white spaces
-    format_on_save = true,
-    trim_trailing_space = true,
-    indent_size = 4
-}
+-- ===============
+--- Completion ---
+-- ===============
+g.neon_compe_enabled = true
+g.neon_compe_autopairs = true
+g.neon_compe_items = 10
+g.neon_compe_sources_blacklist = {}
 
-Treesitter = {
-    enabled = true,
-    -------------
-    -- Parsers --
-    -------------
-    parsers = {
-        "javascript",
-        "typescript",
-        "tsx",
-        "html",
-        "css",
-        "c",
-        "lua",
-        "bash",
-        "python",
-        "json",
-        "yaml"
-    }
+-- ===============
+--- Treesitter ---
+-- ===============
+g.neon_treesitter_enabled = true
+g.neon_treesitter_parsers = {
+    "javascript",
+    "typescript",
+    "tsx",
+    "html",
+    "css",
+    "c",
+    "lua",
+    "bash",
+    "python",
+    "json",
+    "yaml"
 }

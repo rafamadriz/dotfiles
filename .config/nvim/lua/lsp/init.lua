@@ -1,7 +1,6 @@
-if as._default(LSP.enabled) == true then
-    require("lsp/servers")
+if as._default(vim.g.neon_lsp_enabled) == true then
+    require("lsp.servers")
 end
-
 -- LSP Diagnostics
 -- ================================================
 vim.fn.sign_define(
@@ -25,9 +24,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
-        virtual_text = as._default(LSP.virtual_text, false),
-        underline = as._default(LSP.diagnostic_underline),
-        signs = as._default(LSP.diagnostic_signs),
+        virtual_text = as._default(vim.g.neon_lsp_virtual_text, false),
+        underline = as._default(vim.g.neon_lsp_diagnostic_underline),
+        signs = as._default(vim.g.neon_lsp_diagnostic_signs),
         update_in_insert = false
     }
 )

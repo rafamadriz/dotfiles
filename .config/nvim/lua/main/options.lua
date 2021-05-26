@@ -1,9 +1,9 @@
 -- Global
-as.opt("o", "timeoutlen", as._default_num(Opts.timeoutlen, 500))
-as.opt("o", "pumheight", as._default_num(Completion.items, 10))
-as.opt("o", "updatetime", as._default_num(Opts.updatetime, 300))
-as.opt("o", "scrolloff", as._default_num(Opts.scrolloff, 10))
-as.opt("o", "cmdheight", as._default_num(Opts.cmdheight, 2))
+as.opt("o", "timeoutlen", as._default_num(vim.g.neon_timeoutlen, 500))
+as.opt("o", "pumheight", as._default_num(vim.g.neon_compe_items, 10))
+as.opt("o", "updatetime", as._default_num(vim.g.neon_updatetime, 300))
+as.opt("o", "scrolloff", as._default_num(vim.g.neon_scrolloff, 10))
+as.opt("o", "cmdheight", as._default_num(vim.g.neon_cmdheight, 2))
 as.opt("o", "incsearch", true)
 as.opt("o", "ignorecase", true)
 as.opt("o", "smartcase", true)
@@ -24,16 +24,16 @@ as.opt("o", "completeopt", "menuone,noinsert,noselect")
 as.opt("o", "guifont", "JetBrainsMono Nerd Font:h14")
 
 -- Window
-as.opt("w", "relativenumber", as._default(Opts.relativenumber))
-as.opt("w", "cursorline", as._default(Opts.cursorline))
-as.opt("w", "wrap", as._default(Opts.word_wrap, false))
+as.opt("w", "relativenumber", as._default(vim.g.neon_relativenumber))
+as.opt("w", "cursorline", as._default(vim.g.neon_cursorline))
+as.opt("w", "wrap", as._default(vim.g.neon_word_wrap, false))
 as.opt("w", "number", true)
 as.opt("w", "numberwidth", 1)
 as.opt("w", "conceallevel", 0)
 as.opt("w", "signcolumn", "yes:1")
 
 -- Buffer
-local indent = as._default_num(Formatting.indent_size, 2)
+local indent = as._default_num(vim.g.neon_indent_size, 2)
 as.opt("b", "tabstop", 8)
 as.opt("b", "softtabstop", indent)
 as.opt("b", "shiftwidth", indent)
@@ -54,7 +54,7 @@ cmd("filetype plugin on")
 cmd("set list")
 cmd("set listchars+=trail:•")
 -- listchars
-if as._default(Opts.listchars, false) == true then
+if as._default(vim.g.neon_listchars, false) == true then
     cmd("set listchars=eol:↴")
     cmd("set listchars+=tab:│⋅")
     cmd("set listchars+=extends:❯")
