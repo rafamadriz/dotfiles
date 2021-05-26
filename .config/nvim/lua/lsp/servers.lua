@@ -129,13 +129,7 @@ local lua_settings = {
                 "as",
                 "DATA_PATH",
                 "use",
-                "run",
-                "Theming",
-                "LSP",
-                "Completion",
-                "Opts",
-                "Formatting",
-                "Treesitter"
+                "run"
             }
         },
         workspace = {
