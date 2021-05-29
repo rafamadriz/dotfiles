@@ -9,7 +9,9 @@
 
 > There's no place like ~/
 
-This is my personal repository for configuration files of all the programs I use on a daily basis. This setup aims to be minimal while being pleasing to the eye and functional. The current colorscheme is based on [Nord](https://www.nordtheme.com/), but I plan to add more colorschemes (next is [Gruvbox](https://github.com/morhetz/gruvbox#dark-mode-1)) to my setup and maybe create an script to easily apply the new selected theme to all programs (polybar, terminal, rofi, firefox, GTK theme, etc).
+This is my personal repository for configuration files of all the programs I
+use on a daily basis. This setup aims to be minimal while being pleasing to the
+eye and functional.
 
 | Program            | Name                                                           |
 | :----------------- | :------------------------------------------------------------- |
@@ -25,29 +27,9 @@ This is my personal repository for configuration files of all the programs I use
 | Music Player       | [ncmpcpp/mpd](https://github.com/ncmpcpp/ncmpcpp)              |
 | RSS reader         | [newsboat](https://newsboat.org/)                              |
 
-I try to have a very clean `$HOME` folder so all configs that can be in `~/.config/` are, and some environmental variables have been set in `~/.zshenv` to move configs into `~/.config/`
-
-### Install dotfiles with all dependencies.
-
-I have a very rudimentary install script that can:
-
-- Install all my dotfiles in the correct file structure.
-- Install all necessary dependencies.
-- Install configuration files that give some sane defaults for `root`, like for example a decent `.bashrc` with a colored prompt and settings for `nvim` including a colorscheme. I did this mainly to have sane nvim defaults and a decent prompt for whenever I'm doing something as root, like editing files that are not in `~/`
-
-###### NOTE: The install script may overwrite files that you don't want to be overwritten, this script is mainly to be used in a clean new install of Arch Linux.
-
-To download the script:
-
-```sh
-curl -LO https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/rais.sh
-```
-
-And then run the script with.
-
-```sh
-sh rais.sh
-```
+I try to have a very clean `$HOME` folder so all configs that can be in
+`~/.config/` are, and some environmental variables have been set in `~/.zshenv`
+to move configs into `~/.config/`
 
 ### Gallery
 
