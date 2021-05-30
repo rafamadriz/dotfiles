@@ -45,20 +45,32 @@ local function common_on_attach(client, bufnr)
     as.map("n", "<leader>lgy", ":lua vim.lsp.buf.type_definition()<CR>")
     as.map("n", "<leader>lgr", ":Telescope lsp_references<CR>")
     as.map("n", "<leader>lgh", ":lua vim.lsp.buf.hover()<CR>")
-    as.map("n", "<leader>lgK", ":lua vim.lsp.buf.signature_help()<CR>")
+    as.map("n", "<leader>lgk", ":lua vim.lsp.buf.signature_help()<CR>")
     as.map("n", "<leader>lgi", ":lua vim.lsp.buf.implementation()<CR>")
     as.map("n", "<leader>la", ":lua require('utils.extra').code_actions()<CR>")
     as.map("n", "<leader>lA", ":lua require('utils.extra').range_code_actions()<CR>")
     as.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
     as.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
-    as.map("n", "<leader>ll", ":lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
     as.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
     as.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
     as.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
     as.map("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>")
     as.map("n", "<leader>lp", ":lua require('utils.extra').PeekDefinition()<CR>")
-    as.map("n", "<c-p>", ":lua vim.lsp.diagnostic.goto_prev()<CR>")
-    as.map("n", "<c-n>", ":lua vim.lsp.diagnostic.goto_next()<CR>")
+    as.map(
+        "n",
+        "<leader>ll",
+        ":lua vim.lsp.diagnostic.show_line_diagnostics({border = as._lsp_borders(vim.g.neon_lsp_win_borders)})<CR>"
+    )
+    as.map(
+        "n",
+        "<c-p>",
+        ":lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = as._lsp_borders(vim.g.neon_lsp_win_borders)' }})<CR>"
+    )
+    as.map(
+        "n",
+        "<c-n>",
+        ":lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = as._lsp_borders(vim.g.neon_lsp_win_borders) }})<CR>"
+    )
     as.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
 
     as.nvim_set_au(
@@ -88,7 +100,7 @@ local function common_on_attach(client, bufnr)
                 gy = "type definition",
                 gr = "references",
                 gh = "documentation",
-                gK = "signature help",
+                gk = "signature help",
                 gi = "implementation",
                 ["."] = {"LSP stop"},
                 [".a"] = {"<cmd>LspStop<cr>", "stop all"},

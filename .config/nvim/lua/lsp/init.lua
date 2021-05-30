@@ -31,31 +31,44 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     }
 )
 
+local borders = as._lsp_borders(vim.g.neon_lsp_win_borders)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = borders})
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = borders})
+
 -- symbols for autocomplete
-vim.lsp.protocol.CompletionItemKind = {
-    "   (Text) ",
-    "   (Method)",
-    "   (Function)",
-    "   (Constructor)",
-    " ﴲ  (Field)",
-    "[] (Variable)",
-    "   (Class)",
-    " ﰮ  (Interface)",
-    "   (Module)",
-    " 襁 (Property)",
-    "   (Unit)",
-    "   (Value)",
-    " 練 (Enum)",
-    "   (Keyword)",
-    " ﬌  (Snippet)",
-    "   (Color)",
-    "   (File)",
-    "   (Reference)",
-    "   (Folder)",
-    "   (EnumMember)",
-    " ﲀ  (Constant)",
-    " ﳤ  (Struct)",
-    "   (Event)",
-    "   (Operator)",
-    "   (TypeParameter)"
+local lsp_symbols = {
+    Class = "   (Class)",
+    Color = "   (Color)",
+    Constant = "   (Constant)",
+    Constructor = "   (Constructor)",
+    Enum = " 練 (Enum)",
+    EnumMember = "   (EnumMember)",
+    Field = " ﴲ  (Field)",
+    File = "   (File)",
+    Folder = "   (Folder)",
+    Function = "   (Function)",
+    Interface = " ﰮ  (Interface)",
+    Keyword = "   (Keyword)",
+    Method = "   (Method)",
+    Module = "   (Module)",
+    Property = " 襁 (Property)",
+    Snippet = " ﬌  (Snippet)",
+    Struct = " ﳤ  (Struct)",
+    Text = "   (Text) ",
+    Unit = "   (Unit)",
+    Value = "   (Value)",
+    Variable = "[] (Variable)",
+    Reference = "   (Reference)",
+    Event = " ﲀ  (Event)",
+    Operator = "   (Operator)",
+    TypeParameter = "   (TypeParameter)"
 }
+
+for kind, symbol in pairs(lsp_symbols) do
+    local kinds = vim.lsp.protocol.CompletionItemKind
+    local index = kinds[kind]
+
+    if index ~= nil then
+        kinds[index] = symbol
+    end
+end

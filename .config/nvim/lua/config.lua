@@ -24,20 +24,17 @@ g.neon_indent_size = 4
 -- =================
 -- Press <space>ft to see all available themes
 g.neon_colorscheme = "neon"
--- Options:
--- @gruvbox = medium, soft, hard.
--- @neon = default, doom, dark, light.
 g.neon_colorscheme_style = "doom"
--- Options: classic, arrow, slant
-g.neon_statusline = "slant"
--- Options: nord, neon, gruvbox, wombat
+g.neon_statusline = "classic"
 g.neon_statusline_color = "neon"
+g.neon_rainbow_parentheses = true
 
 -- ================
 ---     LSP     ---
 -- ================
 g.neon_lsp_enabled = true
 g.neon_lsp_virtual_text = false
+g.neon_lsp_win_borders = "double"
 g.neon_lsp_diagnostic_signs = true
 g.neon_lsp_document_highlight = false
 g.neon_lsp_diagnostic_underline = true
