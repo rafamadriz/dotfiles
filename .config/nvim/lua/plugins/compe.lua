@@ -30,7 +30,7 @@ require "compe".setup {
             "calc",
             {
                 menu = "[C]",
-                kind = "  (Calc)"
+                kind = "   (Calc)"
             }
         ),
         vsnip = as._compe(
@@ -38,18 +38,24 @@ require "compe".setup {
             {
                 menu = "[S]",
                 priority = 1500,
-                kind = " ﬌  (Snippet)"
+                kind = "   (Snippet)"
             }
         ),
         spell = as._compe(
             "spell",
             {
                 menu = "[E]",
-                kind = "  (Spell)"
+                kind = "   (Spell)"
+            }
+        ),
+        emoji = as._compe(
+            "emoji",
+            {
+                menu = "[ ﲃ ]",
+                filetypes = {"markdown", "text"}
             }
         ),
         nvim_lsp = as._compe("lsp", {menu = "[L]"}),
-        emoji = as._compe("emoji", {menu = "[ ﲃ ]"}),
         nvim_lua = {menu = "[]"}
     }
 }

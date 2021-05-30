@@ -1,6 +1,9 @@
 -- NOTE: in telescope use <C-q> to send all results to quickfix
 -- and <M-q> | <A-q> to send selected items
 
+-- NOTE: you can use a regex pattern as part of a range in command mode, E.g.
+-- :3,/stop/s/hello/world/g
+
 vim.g.mapleader = " "
 
 as.map("n", "Q", "<Nop>")
@@ -10,6 +13,7 @@ as.map("t", "<C-o>", [[<C-\><C-n>]])
 as.map("n", "<A-t>", ":ToggleTerm<CR>")
 as.map("t", "<A-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
 as.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
+as.map("n", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", {expr = true})
 
 -- Move selected line / block of text in visual mode
 as.map("x", "K", ":move '<-2<CR>gv=gv")
@@ -63,7 +67,7 @@ as.map("n", "<S-TAB>", ":bp<CR>")
 -- buffers
 as.map("n", "<leader>bb", ":Telescope buffers<CR>") -- all buffers
 as.map("n", "<leader>bs", ":update<CR>") -- save buffer
-as.map("n", "<leader>bS", ":wa<CR>") -- save all buffers
+as.map("n", "<leader>bS", ":silent! wa<CR>") -- save all buffers
 as.map("n", "<leader>bq", ":update | bdelete<CR>") -- quit buffer
 as.map("n", "<leader>bQ", [[<cmd>w <bar> %bd <bar> e#<CR>]]) -- quit all buffers but current
 as.map("n", "<leader>b%", ":luafile %<CR>", {silent = false}) -- source buffer

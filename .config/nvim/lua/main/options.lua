@@ -22,6 +22,9 @@ as.opt("o", "splitright", true)
 as.opt("o", "inccommand", "nosplit")
 as.opt("o", "completeopt", "menuone,noinsert,noselect")
 as.opt("o", "guifont", "JetBrainsMono Nerd Font:h14")
+if vim.fn.executable("rg") == 1 then
+    as.opt("o", "grepprg", "rg --vimgrep --no-heading --smart-case")
+end
 
 -- Window
 as.opt("w", "relativenumber", as._default(vim.g.neon_relativenumber))

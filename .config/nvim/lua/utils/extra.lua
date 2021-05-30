@@ -43,10 +43,11 @@ function M.range_code_actions()
 end
 
 local function preview_location_callback(_, _, result)
+    local borders = as._lsp_borders(vim.g.neon_lsp_win_borders)
     if result == nil or vim.tbl_isempty(result) then
         return nil
     end
-    vim.lsp.util.preview_location(result[1])
+    vim.lsp.util.preview_location(result[1], {border = borders})
 end
 
 function M.PeekDefinition()

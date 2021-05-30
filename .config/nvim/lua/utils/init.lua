@@ -7,9 +7,7 @@ _G.as = {
     _store = _AsGlobalCallbacks
 }
 
-local fn = vim.fn
-local cmd = vim.cmd
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+local scopes = {o = vim.go, b = vim.bo, w = vim.wo}
 
 -- options
 function as.opt(scope, key, value)
@@ -61,6 +59,18 @@ function as._lsp_auto(server)
         end
     end
     return true
+end
+
+function as._lsp_borders(value)
+    local opt = {"single", "double"}
+    if value ~= nil then
+        for _, v in pairs(opt) do
+            if value == v then
+                return v
+            end
+        end
+    end
+    return nil
 end
 
 function as._compe(source, component)

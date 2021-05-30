@@ -6,30 +6,32 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     execute "packadd packer.nvim"
+    require "packer".sync()
 end
 
 return require("packer").startup(
     function()
         use "wbthomason/packer.nvim"
 
+        -- Themes
+        use "~/dev/themes.nvim"
+
         -- LSP, Autocomplete and snippets
         use "kabouzeid/nvim-lspinstall"
-        use {"neovim/nvim-lspconfig", config = [[require("lsp")]]}
+        use {"neovim/nvim-lspconfig", config = "require('lsp')"}
         use {"~/repos/friendly-snippets", after = "vim-vsnip"}
         use {
             "hrsh7th/nvim-compe",
             opt = true,
             event = "InsertEnter *",
-            config = [[require("plugins.compe")]]
+            config = "require('plugins.compe')"
         }
         use {
             "hrsh7th/vim-vsnip",
             opt = true,
             event = "InsertEnter *",
-            config = [[require("plugins.completion")]]
+            config = "require('plugins.completion')"
         }
-
-        -- ====================================
 
         -- Telescope
         use {
@@ -39,9 +41,8 @@ return require("packer").startup(
                 "nvim-lua/plenary.nvim",
                 "nvim-telescope/telescope-fzy-native.nvim"
             },
-            config = [[require("plugins.telescope")]]
+            config = "require('plugins.telescope')"
         }
-        -- ====================================
 
         -- Utils
         use {
@@ -49,23 +50,23 @@ return require("packer").startup(
             "kevinhwang91/nvim-bqf",
             "machakann/vim-sandwich",
             {"b3nj5m1n/kommentary", keys = {"gcc", "gc"}},
-            {"folke/which-key.nvim", config = [[require("plugins.which-key")]]},
-            {"kyazdani42/nvim-tree.lua", config = [[require("plugins.nvim-tree")]]}
+            {"folke/which-key.nvim", config = "require('plugins.which-key')"},
+            {"kyazdani42/nvim-tree.lua", config = "require('plugins.nvim-tree')"}
         }
-        -- ====================================
 
         -- General plugins
         use {
             "sbdchd/neoformat",
+            "p00f/nvim-ts-rainbow",
             "kyazdani42/nvim-web-devicons",
             {"windwp/nvim-autopairs", opt = true},
-            {"mhinz/vim-startify", config = [[require("plugins.startify")]]},
-            {"~/repos/statusline", config = [[require("plugins.statusline")]]}
+            {"mhinz/vim-startify", config = "require('plugins.startify')"},
+            {"~/dev/statusline", config = "require('plugins.statusline')"}
         }
         use {
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
-            config = [[require("plugins.treesitter")]]
+            config = "require('plugins.treesitter')"
         }
         use {
             "turbio/bracey.vim",
@@ -77,23 +78,15 @@ return require("packer").startup(
             "iamcco/markdown-preview.nvim",
             opt = true,
             ft = "markdown",
-            run = "cd app && yarn install"
+            run = function()
+                vim.fn["mkdp#util#install"]()
+            end
         }
         use {
             "lukas-reineke/indent-blankline.nvim",
             branch = "lua",
-            config = [[require("plugins.indent-guides")]]
+            config = "require('plugins.indent-guides')"
         }
-        -- ====================================
-
-        -- Themes
-        use {
-            "~/repos/neon",
-            "rakr/vim-one",
-            "~/repos/one",
-            {"npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim"}
-        }
-        -- ====================================
 
         -- plugins with config
         use {
