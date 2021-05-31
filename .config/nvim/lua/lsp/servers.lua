@@ -64,12 +64,12 @@ local function common_on_attach(client, bufnr)
     as.map(
         "n",
         "<c-p>",
-        ":lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = as._lsp_borders(vim.g.neon_lsp_win_borders)' }})<CR>"
+        ":lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_win_borders)}})<CR>"
     )
     as.map(
         "n",
         "<c-n>",
-        ":lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = as._lsp_borders(vim.g.neon_lsp_win_borders) }})<CR>"
+        ":lua vim.lsp.diagnostic.goto_next({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_win_borders)}})<CR>"
     )
     as.map("n", "<leader>l.s", [[:LspStop <C-R>=<CR>]], {silent = false})
 
