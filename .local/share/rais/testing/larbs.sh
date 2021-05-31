@@ -20,7 +20,7 @@ while getopts ":a:r:b:p:h" o; do case "${o}" in
     esac; done
 
 [ -z "$dotfilesrepo" ] && dotfilesrepo="https://github.com/rafamadriz/dotfiles"
-[ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/LukeSmithxyz/LARBS/master/progs.csv"
+[ -z "$progsfile" ] && progsfile="https://raw.githubusercontent.com/rafamadriz/dotfiles/main/.local/share/rais/testing/progs.csv"
 [ -z "$aurhelper" ] && aurhelper="paru"
 [ -z "$repobranch" ] && repobranch="main"
 
