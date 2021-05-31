@@ -95,6 +95,7 @@ as.map("n", "<leader>w+", ":resize +15<CR>") -- increase height
 
 -- Git
 as.map("n", "<F5>", ":lua require('utils.extra').lazygit_toggle()<CR>") -- lazygit
+as.map("n", "<leader>gg", ":Git<CR>") -- Git
 as.map("n", "<leader>ga", ":Git add %<CR>") -- add current file
 as.map("n", "<leader>gd", ":Git diff %<CR>") -- show diff
 as.map("n", "<leader>gC", ":Git commit %<CR>") -- commit
@@ -121,8 +122,8 @@ as.map("n", "<leader>g]", ":Gitsigns next_hunk<CR>") -- next hunk
 as.map("n", "<leader><space>", ":Telescope find_files<CR>")
 as.map("n", "<leader>ff", ":Telescope find_files<CR>")
 as.map("n", "<leader>fr", ":Telescope oldfiles<CR>")
-as.map("n", "<leader>fg", ":Telescope live_grep<CR>")
-as.map("n", "<leader>fb", ":Telescope current_buffer_fuzzy_find<CR>")
+as.map("n", "<leader>fg", ":Telescope live_grep theme=get_ivy<CR>")
+as.map("n", "<leader>fb", ":Telescope current_buffer_fuzzy_find theme=get_ivy<CR>")
 as.map("n", "<leader>ft", ":Telescope colorscheme<CR>")
 as.map("n", "<leader>fC", ":Telescope command_history<CR>")
 as.map("n", "<leader>fc", ":Telescope commands<CR>")
