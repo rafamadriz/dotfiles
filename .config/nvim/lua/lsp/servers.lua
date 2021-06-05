@@ -204,7 +204,6 @@ local function setup_servers()
         require "lspconfig"[server].setup(config)
     end
 end
-
 setup_servers()
 
 -- npm i -g emmet-ls
@@ -221,3 +220,9 @@ configs.emmet_ls = {
     }
 }
 require("lspconfig").emmet_ls.setup {capabilities = capabilities}
+
+-- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+require "lspinstall".post_install_hook = function()
+    setup_servers() -- reload installed servers
+    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+end
