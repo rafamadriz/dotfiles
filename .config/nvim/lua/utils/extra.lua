@@ -56,7 +56,6 @@ function M.PeekDefinition()
 end
 
 -- zen mode
-cmd [[packadd zen-mode.nvim]]
 local zen = require("zen-mode")
 local nu = {number = false, relativenumber = false}
 local min = {window = {width = 1, options = nu}}

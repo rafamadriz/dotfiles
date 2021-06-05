@@ -41,9 +41,9 @@ local pack_use = function()
     -- General plugins
     use {
         "sbdchd/neoformat",
-        "p00f/nvim-ts-rainbow",
         "kyazdani42/nvim-web-devicons",
         {"windwp/nvim-autopairs", opt = true},
+        {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"},
         {"mhinz/vim-startify", config = "require('plugins.startify')"},
         {"~/dev/statusline", config = "require('plugins.statusline')"}
     }
@@ -79,7 +79,6 @@ local pack_use = function()
     }
     use {
         "folke/zen-mode.nvim",
-        cmd = "ZenMode",
         config = function()
             require("zen-mode").setup {
                 plugins = {
