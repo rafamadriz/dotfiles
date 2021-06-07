@@ -2,7 +2,7 @@
 
 # add color to commands
 alias \
-    ls="exa --color=always" \
+    ls="exa -F --color=always" \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
     dir='dir --color=auto' \
@@ -21,11 +21,19 @@ alias \
     v="nvim" \
     rm="rm -vI" \
     cp="cp -iv" \
-    ..="cd .." \
-    mv="mv -iv" \
     mv="mv -iv" \
     media="cd /media/rafa/Media" \
-    dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+    dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
+    ..="cd .." \
+    ...="cd ../.." \
+    ....="cd ../../.."
+
+# devour
+alias \
+    mpv="devour mpv" \
+    zathura="devour zathura" \
+    sxiv="devour sxiv" \
+    firefox="devour firefox"
 
 # git
 alias \
