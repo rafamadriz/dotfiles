@@ -1,5 +1,5 @@
 # Path
-export PATH="$PATH:${$(find ~/.local/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:${$(find ~/.local/bin ~/.local/share/npm/bin -type d -printf %p:)%%:}"
 
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
@@ -21,7 +21,9 @@ export LESSHISTFILE=-
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
+export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export NVM_DIR="$XDG_DATA_HOME"/nvm
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export KDEHOME="$XDG_CONFIG_HOME"/kde
 export GOPATH="$XDG_DATA_HOME"/go
@@ -37,6 +39,9 @@ export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
+export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
 
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type f --hidden'
