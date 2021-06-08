@@ -1,8 +1,9 @@
 if as._default(vim.g.neon_lsp_enabled) == true then
     require("lsp.servers")
 end
+-----------------------------------------------------------------------------//
 -- LSP Diagnostics
--- ================================================
+-----------------------------------------------------------------------------//
 vim.fn.sign_define(
     "LspDiagnosticsSignError",
     {texthl = "LspDiagnosticsSignError", text = " ", numhl = "LspDiagnosticsSignError"}
@@ -35,7 +36,9 @@ local borders = as._lsp_borders(vim.g.neon_lsp_win_borders)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = borders})
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {border = borders})
 
+-----------------------------------------------------------------------------//
 -- symbols for autocomplete
+-----------------------------------------------------------------------------//
 local lsp_symbols = {
     Class = "   (Class)",
     Color = "   (Color)",
