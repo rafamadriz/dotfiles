@@ -1,11 +1,17 @@
--- NOTE: in telescope use <C-q> to send all results to quickfix
--- and <M-q> | <A-q> to send selected items
+-----------------------------------------------------------------------------//
+--[[ NOTE: 
+In telescope use <C-q> to send all results to quickfix and <M-q> or 
+<A-q> to send selected items
 
--- NOTE: you can use a regex pattern as part of a range in command mode, E.g.
--- :3,/stop/s/hello/world/g
+ You can use a regex pattern as part of a range in command mode, E.g.
+ :3,/stop/s/hello/world/g ]]
+-----------------------------------------------------------------------------//
 
 vim.g.mapleader = " "
 
+-----------------------------------------------------------------------------//
+-- Basics
+-----------------------------------------------------------------------------//
 as.map("n", "Q", "<Nop>")
 as.map("n", "<BS>", "<C-^>")
 as.map("n", "Y", "y$")
@@ -14,18 +20,15 @@ as.map("n", "<A-t>", ":ToggleTerm<CR>")
 as.map("t", "<A-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
 as.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
 as.map("n", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", {expr = true})
-
 -- Move selected line / block of text in visual mode
 as.map("x", "K", ":move '<-2<CR>gv=gv")
 as.map("x", "J", ":move '>+1<CR>gv=gv")
-
 -- Remap for dealing with word wrap in Normal mode
 as.map("n", "k", 'v:count == 0 ? "gk" : "k"', {expr = true})
 as.map("n", "j", 'v:count == 0 ? "gj" : "j"', {expr = true})
 -- same for visual mode
 as.map("x", "k", '(v:count == 0 && mode() !=# "V") ? "gk" : "k"', {expr = true})
 as.map("x", "j", '(v:count == 0 && mode() !=# "V") ? "gj" : "j"', {expr = true})
-
 -- Automatically jump to the end of pasted text
 as.map("v", "y", "y`]")
 as.map("v", "p", "p`]")
@@ -33,38 +36,43 @@ as.map("n", "p", "p`]")
 -- Select last pasted text
 as.map("n", "gp", "'`[' . strpart(getregtype(), 0, 1) . '`]'", {expr = true})
 
--- Better window navigation
+-----------------------------------------------------------------------------//
+-- Windows
+-----------------------------------------------------------------------------//
 as.map("n", "<C-h>", "<C-w>h")
 as.map("n", "<C-j>", "<C-w>j")
 as.map("n", "<C-k>", "<C-w>k")
 as.map("n", "<C-l>", "<C-w>l")
-
--- Resize windows
 as.map("n", "<S-k>", ":resize -2<CR>")
 as.map("n", "<S-j>", ":resize +2<CR>")
 as.map("n", "<S-h>", ":vertical resize -2<CR>")
 as.map("n", "<S-l>", ":vertical resize +2<CR>")
 
--- File manager
+-----------------------------------------------------------------------------//
+-- File manager, undotree
+-----------------------------------------------------------------------------//
 as.map("n", "<leader>e", ":NvimTreeToggle<CR>")
-
--- undotree
 as.map("n", "<leader>u", ":UndotreeToggle<CR>")
 
+-----------------------------------------------------------------------------//
 -- new files
+-----------------------------------------------------------------------------//
 as.map("n", "<leader>nb", [[:enew<CR>]], {silent = false})
 as.map("n", "<leader>nf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 as.map("n", "<leader>ns", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 as.map("n", "<leader>nt", [[:tabedit <C-R>=expand("%:p:h") . "/" <CR>]], {silent = false})
 
+-----------------------------------------------------------------------------//
 -- help
+-----------------------------------------------------------------------------//
 as.map("n", "<leader>hv", ":Telescope help_tags<CR>")
 as.map("n", "<leader>hm", ":Telescope man_pages<CR>")
 
--- buffer navigation
+-----------------------------------------------------------------------------//
+-- buffers
+-----------------------------------------------------------------------------//
 as.map("n", "<TAB>", ":bn<CR>")
 as.map("n", "<S-TAB>", ":bp<CR>")
--- buffers
 as.map("n", "<leader>bb", ":Telescope buffers<CR>") -- all buffers
 as.map("n", "<leader>bs", ":update<CR>") -- save buffer
 as.map("n", "<leader>bS", ":silent! wa<CR>") -- save all buffers
@@ -75,7 +83,9 @@ as.map("n", "<leader>bh", ":noh<CR>") -- No highlight
 as.map("n", "<leader>b]", ":bn<CR>") -- buffer next
 as.map("n", "<leader>b[", ":bp<CR>") -- buffer previous
 
+-----------------------------------------------------------------------------//
 -- windows
+-----------------------------------------------------------------------------//
 as.map("n", "<leader>ww", "<C-w>q") -- cycle through window
 as.map("n", "<leader>wq", "<C-w>q") -- quit window
 as.map("n", "<leader>ws", "<C-w>s") -- split window
@@ -93,7 +103,9 @@ as.map("n", "<leader>w>", ":vertical resize +10<CR>") -- increase width
 as.map("n", "<leader>w-", ":resize -15<CR>") -- decrease height
 as.map("n", "<leader>w+", ":resize +15<CR>") -- increase height
 
+-----------------------------------------------------------------------------//
 -- Git
+-----------------------------------------------------------------------------//
 as.map("n", "<F5>", ":lua require('utils.extra').lazygit_toggle()<CR>") -- lazygit
 as.map("n", "<leader>gg", ":Git<CR>") -- Git
 as.map("n", "<leader>ga", ":Git add %<CR>") -- add current file
@@ -118,7 +130,9 @@ as.map("n", "<leader>gT", ":Gitsigns stage_buffer<CR>") -- git stage buffer
 as.map("n", "<leader>g[", ":Gitsigns prev_hunk<CR>") -- previous hunk
 as.map("n", "<leader>g]", ":Gitsigns next_hunk<CR>") -- next hunk
 
+-----------------------------------------------------------------------------//
 -- Telescope
+-----------------------------------------------------------------------------//
 as.map("n", "<leader><space>", ":Telescope find_files<CR>")
 as.map("n", "<leader>ff", ":Telescope find_files<CR>")
 as.map("n", "<leader>fr", ":Telescope oldfiles<CR>")
@@ -130,7 +144,9 @@ as.map("n", "<leader>fc", ":Telescope commands<CR>")
 as.map("n", "<leader>fs", ":Telescope search_history<CR>")
 as.map("n", "<leader>fn", ":lua require('utils.extra').search_nvim()<CR>")
 
+-----------------------------------------------------------------------------//
 -- Zen Mode
+-----------------------------------------------------------------------------//
 as.map("n", "<leader>zf", [[:lua require("zen-mode").toggle({window = {width = 1}})<CR>]])
 as.map("n", "<leader>zc", [[:lua require("zen-mode").toggle({window = {width = .75}})<CR>]])
 as.map("n", "<leader>zm", [[:lua require('utils.extra').minimal()<CR>]])

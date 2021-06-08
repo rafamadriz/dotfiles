@@ -44,10 +44,10 @@ export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
 
 # FZF
-export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!{node_modules,.git}"'
 export FZF_DEFAULT_OPTS='--no-height --color=bg+:#343d46,gutter:-1,pointer:#ff3c3c,info:#0dbc79,hl:#0dbc79,hl+:#23d18b'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+export FZF_CTRL_T_OPTS="--preview 'bat --theme=OneHalfDark --color=always --line-range :50 {}'"
 export FZF_ALT_C_COMMAND='fd --type d . --hidden'
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
@@ -73,11 +73,10 @@ export VIDEO="mpv"
 export IMAGE="sxiv"
 export COLORTERM="truecolor"
 export OPENER="xdg-open"
-export PAGER="less"
 export WM="bspwm"
 
-### choose a manpager #
-# export MANPAGER="nvim -c 'set ft=man' -"
+### choose a manpager
+# export MANPAGER="nvim -u NORC -c 'set ft=man' -"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export PAGER="bat --paging=always"
 

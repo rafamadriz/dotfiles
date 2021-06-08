@@ -7,16 +7,6 @@ _G.as = {
     _store = _AsGlobalCallbacks
 }
 
-local scopes = {o = vim.go, b = vim.bo, w = vim.wo}
-
--- options
-function as.opt(scope, key, value)
-    scopes[scope][key] = value
-    if scope ~= "o" then
-        scopes["o"][key] = value
-    end
-end
-
 -- mappings
 function as.map(mode, key, result, opts)
     local options = {noremap = true, silent = true}

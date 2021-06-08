@@ -2,8 +2,10 @@ local pack_use = function()
     local use = require("packer").use
     use "wbthomason/packer.nvim"
     -- Themes
-    use "~/dev/themes.nvim"
+    use "~/code/themes.nvim"
+    -----------------------------------------------------------------------------//
     -- LSP, Autocomplete and snippets
+    -----------------------------------------------------------------------------//
     use "kabouzeid/nvim-lspinstall"
     use {"neovim/nvim-lspconfig", config = "require('lsp')"}
     use {"~/repos/friendly-snippets", after = "vim-vsnip"}
@@ -19,7 +21,9 @@ local pack_use = function()
         event = "InsertEnter *",
         config = "require('plugins.completion')"
     }
+    -----------------------------------------------------------------------------//
     -- Telescope
+    -----------------------------------------------------------------------------//
     use {
         "nvim-telescope/telescope.nvim",
         requires = {
@@ -29,7 +33,9 @@ local pack_use = function()
         },
         config = "require('plugins.telescope')"
     }
+    -----------------------------------------------------------------------------//
     -- Utils
+    -----------------------------------------------------------------------------//
     use {
         "tpope/vim-fugitive",
         "kevinhwang91/nvim-bqf",
@@ -38,14 +44,16 @@ local pack_use = function()
         {"folke/which-key.nvim", config = "require('plugins.which-key')"},
         {"kyazdani42/nvim-tree.lua", config = "require('plugins.nvim-tree')"}
     }
+    -----------------------------------------------------------------------------//
     -- General plugins
+    -----------------------------------------------------------------------------//
     use {
         "sbdchd/neoformat",
         "kyazdani42/nvim-web-devicons",
         {"windwp/nvim-autopairs", opt = true},
         {"p00f/nvim-ts-rainbow", after = "nvim-treesitter"},
         {"mhinz/vim-startify", config = "require('plugins.startify')"},
-        {"~/dev/statusline", config = "require('plugins.statusline')"}
+        {"~/code/statusline", config = "require('plugins.statusline')"}
     }
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -71,7 +79,9 @@ local pack_use = function()
         branch = "lua",
         config = "require('plugins.indent-guides')"
     }
+    -----------------------------------------------------------------------------//
     -- plugins with config
+    -----------------------------------------------------------------------------//
     use {
         "mbbill/undotree",
         cmd = "UndotreeToggle",

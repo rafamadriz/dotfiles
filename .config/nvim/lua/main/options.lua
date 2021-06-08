@@ -1,63 +1,145 @@
--- Global
-as.opt("o", "timeoutlen", as._default_num(vim.g.neon_timeoutlen, 500))
-as.opt("o", "pumheight", as._default_num(vim.g.neon_compe_items, 10))
-as.opt("o", "updatetime", as._default_num(vim.g.neon_updatetime, 300))
-as.opt("o", "scrolloff", as._default_num(vim.g.neon_scrolloff, 10))
-as.opt("o", "cmdheight", as._default_num(vim.g.neon_cmdheight, 2))
-as.opt("o", "incsearch", true)
-as.opt("o", "ignorecase", true)
-as.opt("o", "smartcase", true)
-as.opt("o", "smarttab", true)
-as.opt("o", "title", true)
-as.opt("o", "backup", false)
-as.opt("o", "writebackup", false)
-as.opt("o", "clipboard", "unnamedplus")
-as.opt("o", "showmode", false)
-as.opt("o", "showtabline", 2)
-as.opt("o", "termguicolors", true)
-as.opt("o", "mouse", "a")
-as.opt("o", "hidden", true)
-as.opt("o", "splitbelow", true)
-as.opt("o", "splitright", true)
-as.opt("o", "inccommand", "nosplit")
-as.opt("o", "completeopt", "menuone,noinsert,noselect")
-as.opt("o", "guifont", "JetBrainsMono Nerd Font:h14")
+-- Timing {{{
+vim.opt.timeoutlen = as._default_num(vim.g.neon_timeoutlen, 500)
+vim.opt.updatetime = as._default_num(vim.g.neon_updatetime, 300)
+vim.opt.ttimeoutlen = 10
+-- }}}
+-- Window splitting and buffers {{{
+vim.opt.hidden = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.switchbuf = "useopen,uselast"
+vim.opt.fillchars = {
+    vert = "▕", -- alternatives │
+    fold = " ",
+    eob = " ", -- suppress ~ at EndOfBuffer
+    diff = "╱", -- alternatives = ⣿ ░ ─
+    msgsep = "‾",
+    foldopen = "▾",
+    foldsep = "│",
+    foldclose = "▸"
+}
+-- }}}
+-- Diff {{{
+vim.opt.diffopt:append {
+    "vertical",
+    "iwhite",
+    "hiddenoff",
+    "foldcolumn:0",
+    "context:4",
+    "algorithm:histogram",
+    "indent-heuristic"
+}
+-- }}}
+-- Grep program {{{
 if vim.fn.executable("rg") == 1 then
-    as.opt("o", "grepprg", "rg --vimgrep --no-heading --smart-case")
+    vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 end
-
--- Window
-as.opt("w", "relativenumber", as._default(vim.g.neon_relativenumber))
-as.opt("w", "cursorline", as._default(vim.g.neon_cursorline))
-as.opt("w", "wrap", as._default(vim.g.neon_word_wrap, false))
-as.opt("w", "number", true)
-as.opt("w", "numberwidth", 1)
-as.opt("w", "conceallevel", 0)
-as.opt("w", "signcolumn", "yes:1")
-
--- Buffer
-local indent = as._default_num(vim.g.neon_indent_size, 2)
-as.opt("b", "tabstop", 8)
-as.opt("b", "softtabstop", indent)
-as.opt("b", "shiftwidth", indent)
-as.opt("b", "expandtab", true)
-as.opt("b", "autoindent", true)
-as.opt("b", "smartindent", true)
-as.opt("b", "swapfile", false)
-as.opt("b", "undofile", true)
-as.opt("b", "fileencoding", "utf-8")
-as.opt("b", "syntax", "on")
-
--- others
-local opt = vim.opt
-opt.shortmess:append("c")
-opt.iskeyword:append("-")
-opt.path:append(".,**")
-opt.list = true
-opt.listchars = {trail = "•"}
-vim.cmd("filetype plugin on")
--- listchars
+-- }}}
+-- Display {{{
+vim.opt.colorcolumn = {as._default_num(vim.g.neon_colorcolumn, 0)}
+vim.opt.cmdheight = as._default_num(vim.g.neon_cmdheight, 2)
+vim.opt.scrolloff = as._default_num(vim.g.neon_scrolloff, 10)
+vim.opt.conceallevel = 0
+vim.opt.signcolumn = "yes:1"
+vim.opt.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
+vim.opt.showtabline = 2
+vim.opt.termguicolors = true
+vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
+vim.opt.relativenumber = as._default(vim.g.neon_relativenumber)
+vim.opt.cursorline = as._default(vim.g.neon_cursorline)
+vim.opt.title = true
+vim.opt.number = true
+vim.opt.numberwidth = 1
+vim.opt.confirm = true -- make vim prompt to save before doing destructive things
+vim.opt.fileencoding = "utf-8"
+vim.opt.showmode = false
+-- }}}
+-- List Chars {{{
+vim.opt.list = true
+vim.opt.listchars = {trail = "•"}
 if as._default(vim.g.neon_listchars, false) == true then
-    opt.listchars = {eol = "↴", tab = "│⋅", extends = "❯", precedes = "❮", nbsp = "_", space = "⋅"}
-    opt.showbreak = "↳⋅"
+    vim.opt.listchars = {eol = "↴", tab = "│⋅", extends = "❯", precedes = "❮", nbsp = "_", space = "⋅"}
 end
+-- }}}
+-- Indentation {{{
+local indent = as._default_num(vim.g.neon_indent_size, 2)
+vim.opt.wrap = as._default(vim.g.neon_word_wrap, false)
+vim.opt.tabstop = 8
+vim.opt.softtabstop = indent
+vim.opt.shiftwidth = indent
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.smarttab = true
+-- }}}
+-- Search and Complete {{{
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "nosplit"
+vim.opt.pumheight = as._default_num(vim.g.neon_compe_items, 10)
+vim.opt.completeopt = "menuone,noinsert,noselect"
+-- }}}
+-- Utils {{{
+vim.opt.shortmess:append("c")
+vim.opt.iskeyword:append("-")
+vim.opt.path:append(".,**")
+vim.opt.foldmethod = "marker"
+vim.opt.clipboard = "unnamedplus"
+vim.opt.mouse = "a"
+-- }}}
+-- BACKUP AND SWAP {{{
+vim.opt.swapfile = false
+vim.opt.undofile = true
+vim.opt.backup = false
+vim.opt.writebackup = false
+-- }}}
+-- Wild and file globbing stuff in command mode {{{
+vim.opt.wildignorecase = true -- Ignore case when completing file names and directories
+vim.opt.wildmode = "full"
+vim.opt.wildignore = {
+    "*.aux",
+    "*.out",
+    "*.toc",
+    "*.o",
+    "*.obj",
+    "*.dll",
+    "*.jar",
+    "*.pyc",
+    "*.rbc",
+    "*.class",
+    "*.gif",
+    "*.ico",
+    "*.jpg",
+    "*.jpeg",
+    "*.png",
+    "*.avi",
+    "*.wav",
+    "*.webm",
+    "*.eot",
+    "*.otf",
+    "*.ttf",
+    "*.woff",
+    "*.doc",
+    "*.pdf",
+    "*.zip",
+    "*.tar.gz",
+    "*.tar.bz2",
+    "*.rar",
+    "*.tar.xz",
+    -- Cache
+    ".sass-cache",
+    "*/vendor/gems/*",
+    "*/vendor/cache/*",
+    "*/.bundle/*",
+    "*.gem",
+    -- Temp/System
+    "*.*~",
+    "*~ ",
+    "*.swp",
+    ".lock",
+    ".DS_Store",
+    "._*",
+    "tags.lock"
+}
+-- }}}
