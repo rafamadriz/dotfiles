@@ -3,6 +3,7 @@
 # add color to commands
 alias \
     ls="exa -F --color=always" \
+    ll="exa -Fl --color=always" \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
     dir='dir --color=auto' \
@@ -72,7 +73,17 @@ files=(~/.zshenv ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,hto
     ~/.local/bin/{scripts,cron,statusbar} ~/.local/share/rais)
 dotf() {
     find $files -type f |
-        fzf --preview 'bat --theme=OneHalfDark --color=always --line-range :50 {}' | xargs -r "$EDITOR"
+        fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
+}
+
+notes() {
+    rg --files "$HOME"/*ocuments/notes |
+        fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
+}
+
+live_search_notes() {
+    cd "$HOME"/*ocuments/notes && ag --nobreak --nonumbers --noheading --hidden . | fzf | awk '{print $1}' |
+        sed 's/:/ /' | cut -d " " -f 1 | xargs -r $EDITOR
 }
 
 # fd - cd into any hidden directory of the current folder

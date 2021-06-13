@@ -36,6 +36,9 @@ source ~/.config/zsh/plugins/menu.zsh
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+bindkey -s '^n' 'notes\n'
+bindkey -s '^p' 'dotf\n'
+bindkey -s '^e' 'live_search_notes\n'
 
 # add title to terminal to display state,currently executing command, current directory...
 autoload -Uz add-zsh-hook
