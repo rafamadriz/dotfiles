@@ -55,6 +55,9 @@
 - Description: A search tool that combines the usability of ag with the raw speed of grep
   name: ripgrep
 
+- Description: Code searching tool similar to Ack, but faster
+  name: the_silver_searcher
+
 - Description: Command line trashcan (recycle bin) interface
   name: trash-cli
 
