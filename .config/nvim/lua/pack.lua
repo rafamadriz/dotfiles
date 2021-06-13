@@ -29,7 +29,7 @@ local pack_use = function()
         requires = {
             "nvim-lua/popup.nvim",
             "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope-fzy-native.nvim"
+            {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
         },
         config = "require('plugins.telescope')"
     }

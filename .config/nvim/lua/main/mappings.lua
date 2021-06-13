@@ -71,9 +71,9 @@ as.map("n", "<leader>hm", ":Telescope man_pages<CR>")
 -----------------------------------------------------------------------------//
 -- buffers
 -----------------------------------------------------------------------------//
-as.map("n", "<TAB>", ":bn<CR>")
-as.map("n", "<S-TAB>", ":bp<CR>")
-as.map("n", "<leader>bb", ":Telescope buffers<CR>") -- all buffers
+as.map("n", "<TAB>", ":bnext<CR>") -- buffer next
+as.map("n", "<S-TAB>", ":bprevious<CR>") -- buffer previous
+as.map("n", "<leader>bb", ":Telescope buffers theme=get_dropdown<CR>") -- all buffers
 as.map("n", "<leader>bs", ":update<CR>") -- save buffer
 as.map("n", "<leader>bS", ":silent! wa<CR>") -- save all buffers
 as.map("n", "<leader>bq", ":update | bdelete<CR>") -- quit buffer
