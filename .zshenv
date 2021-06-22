@@ -8,11 +8,9 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
 # Android
 export ANDROID_SDK_ROOT="$XDG_CONFIG_HOME"/android
-export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
+export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
-export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
-export ANDROID_HOME="$XDG_DATA_HOME"/android
 
 # Disable files
 export LESSHISTFILE=-
@@ -20,15 +18,13 @@ export LESSHISTFILE=-
 # Fixing Paths
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
-export XAUTHORITY="$XDG_CACHE_HOME"/Xauthority
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export KDEHOME="$XDG_CONFIG_HOME"/kde
 export GOPATH="$XDG_DATA_HOME"/go
-export GNUPGHOME="$XDG_DATA_HOME"/gnupg
-export GPG_TTY=$(tty)
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:/bin/java::")
 export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
@@ -42,6 +38,11 @@ export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
+
+# GPG/SSH
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GPG_TTY=$(tty)
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!{node_modules,.git}"'
