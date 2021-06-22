@@ -2,8 +2,8 @@
 
 # add color to commands
 alias \
-    ls="exa -F --color=always" \
-    ll="exa -Fl --color=always" \
+    ls='exa -F --color=always' \
+    ll='exa -Fl --color=always' \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
     dir='dir --color=auto' \
@@ -14,59 +14,60 @@ alias \
 
 # shortcuts
 alias \
-    sx="startx $HOME/.config/X11/xinitrc" \
+    sx='startx $HOME/.config/X11/xinitrc' \
     sysinfo="inxi -Fxz" \
-    untar="tar -xvf" \
-    icat="kitty +kitten icat" \
-    vim="nvim" \
-    v="nvim" \
-    rm="rm -vI" \
-    cp="cp -iv" \
-    mv="mv -iv" \
-    media="cd /media/rafa/Media" \
+    untar='tar -xvf' \
+    icat='kitty +kitten icat' \
+    vim='nvim' \
+    v='nvim' \
+    rm='rm -vI' \
+    cp='cp -iv' \
+    mv='mv -iv' \
+    media='cd /media/rafa/Media' \
     dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
-    ..="cd .." \
-    ...="cd ../.." \
-    ....="cd ../../.."
+    weather='curl https://wttr.in/Buenos_Aires' \
+    ..='cd ..' \
+    ...='cd ../..' \
+    ....='cd ../../..'
 
 # devour
 alias \
-    mpv="devour mpv" \
-    zathura="devour zathura" \
-    sxiv="devour sxiv" \
-    firefox="devour firefox"
+    mpv='devour mpv' \
+    zathura='devour zathura' \
+    sxiv='devour sxiv' \
+    firefox='devour firefox'
 
 # git
 alias \
-    ga="git add" \
-    gcl="git clone" \
-    gaa="git add --all" \
-    gb="git branch -a" \
-    gcm="git commit -m" \
-    gd="git diff" \
-    gp="git push" \
-    gl="git pull" \
-    gll="git log" \
-    gs="git status" \
-    gr="git remote -v" \
-    grm="git rm" \
-    grmc="git rm --cached" \
-    gmv="git mv"
+    ga='git add' \
+    gcl='git clone' \
+    gaa='git add --all' \
+    gb='git branch -a' \
+    gcm='git commit -m' \
+    gd='git diff' \
+    gp='git push' \
+    gl='git pull' \
+    gll='git log' \
+    gs='git status' \
+    gr='git remote -v' \
+    grm='git rm' \
+    grmc='git rm --cached' \
+    gmv='git mv'
 
 alias \
-    dota="dot add" \
-    dotaa="dot add --all" \
-    dotb="dot branch -a" \
-    dotcm="dot commit -m" \
-    dotd="dot diff" \
-    dotp="dot push" \
-    dotl="dot pull" \
-    dotll="dot log" \
-    dots="dot status" \
-    dotr="dot remote -v" \
-    dotrm="dot rm" \
-    dotrmc="dot rm --cached" \
-    dotmv="dot mv"
+    dota='dot add' \
+    dotaa='dot add --all' \
+    dotb='dot branch -a' \
+    dotcm='dot commit -m' \
+    dotd='dot diff' \
+    dotp='dot push' \
+    dotl='dot pull' \
+    dotll='dot log' \
+    dots='dot status' \
+    dotr='dot remote -v' \
+    dotrm='dot rm' \
+    dotrmc='dot rm --cached' \
+    dotmv='dot mv'
 
 # search for all scripts and dotfiles, then open them with editor of choice
 files=(~/.zshenv ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh}
