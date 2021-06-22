@@ -3,6 +3,12 @@ SAVEHIST=10000
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
+# SOURCES: 
+# https://stackoverflow.com/questions/44250002/how-to-solve-sign-and-send-pubkey-signing-failed-agent-refused-operation
+# https://wiki.archlinux.org/title/GnuPG#SSH_agent
+gpgconf --launch gpg-agent > /dev/null
+gpg-connect-agent updatestartuptty /bye > /dev/null
+
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
