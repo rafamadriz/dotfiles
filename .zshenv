@@ -38,6 +38,7 @@ export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export PYLINTHOME=${XDG_DATA_HOME:-$HOME/.local/share}/pylint
 export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/config.py
 
 # GPG/SSH
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
