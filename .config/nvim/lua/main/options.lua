@@ -3,6 +3,9 @@ vim.opt.timeoutlen = as._default_num(vim.g.neon_timeoutlen, 500)
 vim.opt.updatetime = as._default_num(vim.g.neon_updatetime, 300)
 vim.opt.ttimeoutlen = 10
 -- }}}
+-- Theme {{{
+vim.cmd("colorscheme " .. as.select_theme(vim.g.neon_colorscheme))
+-- }}}
 -- Window splitting and buffers {{{
 vim.opt.hidden = true
 vim.opt.splitbelow = true

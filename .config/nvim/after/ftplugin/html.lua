@@ -1,10 +1,8 @@
-" Set indent width to two spaces
-setlocal ts=2 sw=2 sts=2
+-- Set indent width to two spaces
+vim.opt_local.tabstop = 2
+vim.opt_local.shiftwidth = 2
+vim.opt_local.softtabstop = 2
 
-" Fix quirkiness in indentation
-setlocal indentkeys-=*<Return>
-
-lua << EOF
 local mappings = {
     ["<leader>"] = {
         o = {
@@ -18,4 +16,3 @@ local mappings = {
 
 local wk = require("which-key")
 wk.register(mappings, opts)
-EOF

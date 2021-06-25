@@ -12,13 +12,13 @@ vim.g.mapleader = " "
 -----------------------------------------------------------------------------//
 -- Basics
 -----------------------------------------------------------------------------//
-as.map("n", "Q", "<Nop>")
-as.map("n", "<BS>", "<C-^>")
 as.map("n", "Y", "y$")
+as.map("n", "Q", "<Nop>")
+as.map("i", "jk", "<ESC>")
+as.map("n", "<BS>", "<C-^>")
 as.map("t", "<C-o>", [[<C-\><C-n>]])
 as.map("n", "<A-t>", ":ToggleTerm<CR>")
 as.map("t", "<A-t>", [[<C-\><C-n>:ToggleTerm<CR>]])
-as.map("i", "jk", [[col('.') == 1 ? '<esc>' : '<esc>l']], {expr = true})
 as.map("n", "0", "getline('.')[0 : col('.') - 2] =~# '^\\s\\+$' ? '0' : '^'", {expr = true})
 -- Move selected line / block of text in visual mode
 as.map("x", "K", ":move '<-2<CR>gv=gv")
