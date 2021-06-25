@@ -1,4 +1,3 @@
-lua << EOF
 local mappings = {
     ["<leader>"] = {
         o = {
@@ -11,6 +10,5 @@ local mappings = {
 
 local wk = require("which-key")
 wk.register(mappings, opts)
-EOF
 
-set norelativenumber
+vim.opt_local.relativenumber = false

@@ -45,7 +45,8 @@ require "compe".setup {
             "spell",
             {
                 menu = "[E]",
-                kind = "   (Spell)"
+                kind = "   (Spell)",
+                filetypes = {"markdown"}
             }
         ),
         emoji = as._compe(

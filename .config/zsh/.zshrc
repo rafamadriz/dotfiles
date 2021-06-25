@@ -6,8 +6,8 @@ setopt HIST_IGNORE_ALL_DUPS
 # SOURCES: 
 # https://stackoverflow.com/questions/44250002/how-to-solve-sign-and-send-pubkey-signing-failed-agent-refused-operation
 # https://wiki.archlinux.org/title/GnuPG#SSH_agent
-gpgconf --launch gpg-agent > /dev/null
-gpg-connect-agent updatestartuptty /bye > /dev/null
+gpgconf --launch gpg-agent > /dev/null 2>&1
+gpg-connect-agent updatestartuptty /bye > /dev/null 2>&1
 
 # vi mode
 bindkey -v
@@ -16,8 +16,7 @@ export KEYTIMEOUT=1
 # prompt
 source ~/.config/zsh/prompt.zsh
 
-# these directories are necessary for zsh, to
-# create history file, etc... Create them if don't exist
+# these directories are necessary for zsh.
 [[ ! -d ~/.cache/zsh ]] && mkdir -p ~/.cache/zsh
 [[ ! -d ~/.local/share/zsh ]] && mkdir -p ~/.local/share/zsh
 

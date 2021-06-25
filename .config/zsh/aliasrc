@@ -15,6 +15,7 @@ alias \
 # shortcuts
 alias \
     sx='startx $HOME/.config/X11/xinitrc' \
+    nuke='rm -rf' \
     sysinfo="inxi -Fxz" \
     untar='tar -xvf' \
     icat='kitty +kitten icat' \

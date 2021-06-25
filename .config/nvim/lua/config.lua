@@ -23,9 +23,16 @@ g.neon_indent_size = 4
 --- Colors/Style
 -----------------------------------------------------------------------------//
 -- Press <space>ft to see all available themes
-g.neon_colorscheme = "onepro"
-g.neon_colorscheme_style = ""
+g.neon_colorscheme = "neon"
+-- See :h themes-nvim for help
+g.themes_italic_comment = true
+g.themes_italic_keyword = true
+g.themes_italic_boolean = true
+g.themes_italic_function = true
+g.themes_italic_variable = false
+-- options: classic, arrow, slant
 g.neon_statusline = "classic"
+-- options: gruvbox, neon, nord, wombat
 g.neon_statusline_color = "neon"
 
 -----------------------------------------------------------------------------//
@@ -44,14 +51,14 @@ g.neon_lsp_autostart_blacklist = {"lua", "bash", "json"}
 -----------------------------------------------------------------------------//
 g.neon_compe_enabled = true
 g.neon_compe_autopairs = true
-g.neon_compe_items = 4
+g.neon_compe_items = 10
 g.neon_compe_sources_blacklist = {}
 
 -----------------------------------------------------------------------------//
 --- Treesitter
 -----------------------------------------------------------------------------//
 g.neon_treesitter_enabled = true
-g.neon_rainbow_parentheses = true
+g.neon_rainbow_parentheses = false
 g.neon_treesitter_parsers = {
     "javascript",
     "typescript",
