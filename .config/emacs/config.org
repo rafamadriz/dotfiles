@@ -11,6 +11,7 @@
 (tooltip-mode -1)           ; Disable tooltips
 (set-fringe-mode 10)        ; Give some breathing room
 (global-hl-line-mode 1)     ; cursor line
+(electric-pair-mode 1)      ; autopairs
 
 (menu-bar-mode -1)          ; Disable the menu bar
 
@@ -97,6 +98,7 @@
   :init (which-key-mode)
   :diminish which-key-mode
   :config
+  (setq which-key-add-column-padding 3)
   (setq which-key-idle-delay 0))
 #+end_src
 ** Ivy (search engine)
@@ -145,10 +147,7 @@
 #+begin_src emacs-lisp
 (use-package general
   :config
-  (general-evil-setup t)
-
-  (general-create-definer rune/leader-keys
-    :global-prefix "SPC"))
+  (general-evil-setup t))
 #+end_src
 ** Vim-mode
 Evil is an extensible 'vi' layer for Emacs. It emulates the main features of Vim, and provides facilities for writing custom extensions.  Evil Collection is also installed since it adds 'evil' bindings to parts of Emacs that the standard Evil package does not cover, such as: calenda, help-mode adn ibuffer.
@@ -212,6 +211,16 @@ Evil is an extensible 'vi' layer for Emacs. It emulates the main features of Vim
   :after evil
   :config
   (evil-collection-init))
+
+(use-package evil-commentary
+  :after evil
+  :config (evil-commentary-mode 1))
+
+(use-package evil-surround
+  :after evil
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
 #+end_src
 
 * Org
@@ -272,13 +281,89 @@ Evil is an extensible 'vi' layer for Emacs. It emulates the main features of Vim
 #+end_src
 * Mappings
 #+begin_src emacs-lisp
-(rune/leader-keys 'normal
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix "SPC"
+
+;; special keys
+"SPC" '(counsel-fzf :which-key "search file in project")
+"DEL" '(switch-to-prev-buffer :which-key "last buffer")
+":" '(counsel-M-x :which-key "M-x")
+"/" '(swiper :which-key "ripgrep")
+
+;; buffers
 "b" '(:ignore b :which-key "buffers")
+"b]" '(next-buffer :which-key "next buffer")
+"b[" '(previous-buffer :which-key "previous buffer")
 "bb" '(counsel-switch-buffer :which-key "all buffers")
 "bs" '(save-buffer :which-key "save buffer")
-"bq" '(kill-current-buffer :which-key "quit buffer")
-"/" '(swiper :which-key "search in buffer"))
+"bq" '(evil-quit :which-key "quit buffer")
+
+;; windows
+"w" '(:ignore w :which-key "windows")
+"wn" '(evil-window-next :which-key "next")
+"wh" '(windmove-left :which-key "left")
+"wj" '(windmove-down :which-key "down")
+"wk" '(windmove-up :which-key "up")
+"wl" '(windmove-right :which-key "right")
+"wq" '(evil-quit :which-key "quit")
+)
 #+end_src
+
+SOURCE: https://blog.meain.io/2017/how-emacs-took-over-my-vim-life/
+** As Vim users we wan't ESC to quit out of everything. And here is how you do it.
+#+begin_src emacs-lisp
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+        In Delete Selection mode, if the mark is active, just deactivate it;
+        then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
+#+end_src>
+** In Emacs you often get many prompts asking you for yes or no. Make then y or n
+#+begin_src emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+end_src>
+* LSP
+#+begin_src emacs-lisp
+(defun rune/lsp-mode-setup ()
+  (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+  (lsp-headerline-breadcrumb-mode))
+
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :hook (lsp-mode . rune/lsp-mode-setup)
+  :init
+  (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
+  :config
+  (lsp-enable-which-key-integration t))
+
+(use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom
+  (lsp-ui-doc-position 'bottom))
+#+end_src>
+
+** Typescript
+#+begin_src emacs-lisp
+(use-package typescript-mode
+  :mode "\\.ts\\'"
+  :hook (typescript-mode . lsp-deferred)
+  :config
+  (setq typescript-indent-level 2))
+#+end_src>
 * Startup Perfomance
   This section is where it make emacs faster to load.
 ** Garbage collection
