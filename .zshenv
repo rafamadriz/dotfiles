@@ -8,9 +8,11 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
 # Android
 export ANDROID_SDK_ROOT="$XDG_CONFIG_HOME"/android
-export ANDROID_AVD_HOME="$XDG_DATA_HOME"/android
+export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
+export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
+export ANDROID_HOME="$XDG_DATA_HOME"/android
 
 # Disable files
 export LESSHISTFILE=-
@@ -20,6 +22,7 @@ export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
