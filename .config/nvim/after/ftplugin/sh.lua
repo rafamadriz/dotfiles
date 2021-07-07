@@ -1,8 +1,7 @@
 local mappings = {
     ["<leader>"] = {
-        ["x"] = {":!clear && shellcheck -x %<CR>","shellcheck"},
-  }
+        ["x"] = { ":!clear && shellcheck -x %<CR>", "shellcheck" },
+    },
 }
-
-local wk = require("which-key")
+local wk = require "which-key"
 wk.register(mappings, opts)
