@@ -19,6 +19,7 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     use {
         "neovim/nvim-lspconfig",
+        event = "BuffAdd",
         requires = "kabouzeid/nvim-lspinstall",
         config = function()
             require "lsp"
@@ -33,10 +34,7 @@ local pack_use = function()
     }
     use {
         { "rafamadriz/friendly-snippets", after = "vim-vsnip" },
-        {
-            "hrsh7th/vim-vsnip",
-            event = "InsertEnter",
-        },
+        { "hrsh7th/vim-vsnip", event = "InsertEnter" },
     }
     use {
         "windwp/nvim-autopairs",
@@ -122,12 +120,8 @@ local pack_use = function()
             require("diffview").setup {
                 key_bindings = {
                     disable_defaults = false, -- Disable the default key bindings
-                    view = {
-                        ["q"] = ":DiffviewClose<cr>",
-                    },
-                    file_panel = {
-                        ["q"] = ":DiffviewClose<cr>",
-                    },
+                    view = { ["q"] = ":DiffviewClose<cr>" },
+                    file_panel = { ["q"] = ":DiffviewClose<cr>" },
                 },
             }
         end,
@@ -163,10 +157,7 @@ local pack_use = function()
                     topdelete = { hl = "GitSignsDelete", text = "契" },
                     changedelete = { hl = "GitSignsChange", text = "~" },
                 },
-                keymaps = {
-                    noremap = true,
-                    buffer = true,
-                },
+                keymaps = { noremap = true, buffer = true },
             }
         end,
     }
@@ -228,11 +219,7 @@ local pack_use = function()
         "folke/zen-mode.nvim",
         cmd = "ZenMode",
         config = function()
-            require("zen-mode").setup {
-                plugins = {
-                    gitsigns = { enabled = true },
-                },
-            }
+            require("zen-mode").setup { plugins = { gitsigns = { enabled = true } } }
         end,
     }
     use {
