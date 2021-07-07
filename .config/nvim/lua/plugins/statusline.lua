@@ -1,4 +1,4 @@
-local status = {"classic", "arrow", "slant"}
+local status = { "classic", "arrow", "slant" }
 
 if vim.g.neon_statusline == nil or vim.g.neon_statusline:gsub("%s+", "") == "" then
     require("feline.styles." .. status[1])

@@ -1,6 +1,5 @@
 require "config"
 require "utils"
-require "main.options"
-require "main.mappings"
-require "main.autocmds"
+require "options"
+require "mappings"
 require "pack"

@@ -2,17 +2,18 @@
 vim.opt_local.tabstop = 2
 vim.opt_local.shiftwidth = 2
 vim.opt_local.softtabstop = 2
+vim.opt_local.foldmethod = false
 
 local mappings = {
     ["<leader>"] = {
-        o = {
+        r = {
             l = "live server",
-            ll = {"<cmd>Bracey<cr>", "live start"},
-            ls = {"<cmd>BraceyStop<cr>", "stop"},
-            lr = {"<cmd>BraceyReload<cr>", "reload"}
-        }
-    }
+            ll = { "<cmd>Bracey<cr>", "live start" },
+            ls = { "<cmd>BraceyStop<cr>", "stop" },
+            lr = { "<cmd>BraceyReload<cr>", "reload" },
+        },
+    },
 }
 
-local wk = require("which-key")
+local wk = require "which-key"
 wk.register(mappings, opts)
