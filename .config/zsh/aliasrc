@@ -2,8 +2,6 @@
 
 # add color to commands
 alias \
-    ls='exa -F --color=always' \
-    ll='exa -Fl --color=always' \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
     dir='dir --color=auto' \
@@ -11,6 +9,14 @@ alias \
     grep='grep --color=auto' \
     fgrep='fgrep --color=auto' \
     egrep='egrep --color=auto'
+
+type "exa" >>/dev/null &&
+    alias \
+        ls='exa --icons -F --color=always' \
+        ll='exa --icons -Fl --color=always' ||
+    alias \
+        ls='ls -F --color=always' \
+        ll='ls -Fl --color=always'
 
 # shortcuts
 alias \
@@ -32,11 +38,12 @@ alias \
     ....='cd ../../..'
 
 # devour
-alias \
-    mpv='devour mpv' \
-    zathura='devour zathura' \
-    sxiv='devour sxiv' \
-    firefox='devour firefox'
+type "devour" >>/dev/null &&
+    alias \
+        mpv='devour mpv' \
+        zathura='devour zathura' \
+        sxiv='devour sxiv' \
+        firefox='devour firefox'
 
 # git
 alias \
@@ -73,13 +80,13 @@ alias \
 # search for all scripts and dotfiles, then open them with editor of choice
 files=(~/.zshenv ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh}
     ~/.local/bin/{scripts,cron,statusbar} ~/.local/share/rais)
-dotf() {
+cfg() {
     find $files -type f |
         fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
 }
 
 # search for all notes and open selected one in editor
-notes() {
+nt() {
     rg --files "$HOME"/*ocuments/notes |
         fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
 }
