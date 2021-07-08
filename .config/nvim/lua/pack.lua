@@ -1,6 +1,6 @@
 local pack_use = function()
     local use = require("packer").use
-    use { "wbthomason/packer.nvim", branch = "fix/no-overwrite-commands" }
+    use "wbthomason/packer.nvim"
     -- use "dstein64/vim-startuptime"
     -----------------------------------------------------------------------------//
     -- Required by others
@@ -19,7 +19,6 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     use {
         "neovim/nvim-lspconfig",
-        event = "BuffAdd",
         requires = "kabouzeid/nvim-lspinstall",
         config = function()
             require "lsp"

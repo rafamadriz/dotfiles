@@ -110,7 +110,7 @@ vim.opt.mouse = "a"
 -- Folds {{{
 vim.opt.foldlevelstart = 3
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldmethod = "expr"
+-- vim.opt.foldmethod = "expr" -- This is kinda buggy
 -- }}}
 -----------------------------------------------------------------------------//
 -- Disable some builtin plugins {{{
@@ -120,8 +120,8 @@ vim.g.loaded_tarPlugin = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.loaded_2html_plugin = 1
 vim.g.loaded_spec = 1
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- vim.g.loaded_matchit = 1
 -- vim.g.loaded_matchparen = 1
 -- }}}
