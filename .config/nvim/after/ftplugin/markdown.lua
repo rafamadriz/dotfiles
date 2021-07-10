@@ -1,7 +1,7 @@
 local mappings = {
     ["<leader>"] = {
         r = {
-            m = "markdown",
+            m = { name = "markdown" },
             mp = { "<cmd>MarkdownPreviewToggle<cr>", "preview" },
             ms = { "<cmd>MarkdownPreviewStop<cr>", "preview stop" },
         },

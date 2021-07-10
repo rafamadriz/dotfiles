@@ -2,7 +2,7 @@ local g = vim.g
 -----------------------------------------------------------------------------//
 --- General Settings
 -----------------------------------------------------------------------------//
-g.neon_timeoutlen = 400
+g.neon_timeoutlen = 300
 g.neon_colorcolumn = 0
 g.neon_cmdheight = 1
 g.neon_updatetime = 300
@@ -22,8 +22,8 @@ g.neon_indent_size = 4
 -----------------------------------------------------------------------------//
 --- Colors/Style
 -----------------------------------------------------------------------------//
--- Press <space>ft to see all available themes
-g.neon_colorscheme = "neon"
+-- Press <space>ht to see all available themes
+g.neon_colorscheme = "onepro"
 -- See :h themes-nvim for help
 g.themes_italic_comment = true
 g.themes_italic_keyword = true
@@ -40,7 +40,8 @@ g.neon_statusline_color = "neon"
 -----------------------------------------------------------------------------//
 g.neon_lsp_enabled = true
 g.neon_lsp_virtual_text = false
-g.neon_lsp_win_borders = "double"
+g.neon_lsp_window_borders = "single"
+g.neon_lsp_signature_help = true
 g.neon_lsp_diagnostic_signs = true
 g.neon_lsp_document_highlight = false
 g.neon_lsp_diagnostic_underline = true
@@ -50,7 +51,8 @@ g.neon_lsp_autostart_blacklist = { "lua" }
 --- Completion
 -----------------------------------------------------------------------------//
 g.neon_compe_enabled = true
-g.neon_compe_doc_window = "single"
+g.neon_compe_autocomplete = false
+g.neon_compe_doc_window_border = "single"
 g.neon_compe_autopairs = true
 g.neon_compe_items = 10
 g.neon_compe_sources_blacklist = {}
@@ -65,6 +67,7 @@ g.neon_treesitter_parsers_ignore = { "turtle", "verilog", "beancount" }
 -----------------------------------------------------------------------------//
 -- Startify
 -----------------------------------------------------------------------------//
+g.startify_footer = ""
 -- @options: center, pad
 g.startify_header_position = "center"
 -- set g.startify_header_ascii = "cowsay" for random quote and cow.
