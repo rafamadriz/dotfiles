@@ -1,6 +1,7 @@
 vim.g.nvim_tree_side = vim.g.neon_explorer_side or "right"
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
+-- vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_highlight_opened_files = 1
 vim.g.nvim_tree_add_trailing = 1
 vim.g.nvim_tree_gitignore = 1

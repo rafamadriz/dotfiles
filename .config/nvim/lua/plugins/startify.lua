@@ -38,8 +38,7 @@ vim.g.startify_padding_left = 3
 -- Sort sessions by modification time
 vim.g.startify_session_sort = 1
 -- Header and footer
-vim.g.startify_footer = { "Oops, wait what ?" }
-vim.g.startify_custom_footer = "startify#center(g:startify_footer)"
+vim.g.startify_custom_footer = "startify#center([g:startify_footer])"
 local posi = vim.g.startify_header_position or "center"
 if vim.g.startify_header_ascii == "cowsay" then
     vim.g.startify_custom_header = "startify#" .. posi .. "(startify#fortune#cowsay())"

@@ -28,8 +28,11 @@ local function documentHighlight(client, bufnr)
 end
 
 local function common_on_attach(client, bufnr)
-    if as._default(vim.g.neon_lsp_document_highlight) == true then
+    if as._default(vim.g.neon_lsp_document_highlight) then
         documentHighlight(client, bufnr)
+    end
+    if as._default(vim.g.neon_lsp_signature_help) then
+        require("lsp_signature").on_attach { max_width = 100 }
     end
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     -- mappings
@@ -60,17 +63,17 @@ local function common_on_attach(client, bufnr)
     as.map(
         "n",
         "<leader>ll",
-        ":lua vim.lsp.diagnostic.show_line_diagnostics({border = as._lsp_borders(vim.g.neon_lsp_win_borders)})<CR>"
+        ":lua vim.lsp.diagnostic.show_line_diagnostics({border = as._lsp_borders(vim.g.neon_lsp_window_borders)})<CR>"
     )
     as.map(
         "n",
         "<c-p>",
-        ":lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_win_borders)}})<CR>"
+        ":lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_window_borders)}})<CR>"
     )
     as.map(
         "n",
         "<c-n>",
-        ":lua vim.lsp.diagnostic.goto_next({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_win_borders)}})<CR>"
+        ":lua vim.lsp.diagnostic.goto_next({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_window_borders)}})<CR>"
     )
     as.map("n", "<leader>l,s", [[:LspStop <C-R>=<CR>]], { silent = false })
 
@@ -166,6 +169,7 @@ local function make_config()
         capabilities = capabilities,
         -- map buffer local keybindings when the language server attaches
         on_attach = common_on_attach,
+        flags = { debounce_text_changes = 150 },
     }
 end
 

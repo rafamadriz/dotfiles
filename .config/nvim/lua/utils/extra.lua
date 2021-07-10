@@ -16,7 +16,7 @@ function M.preview_location(location, context, before_context)
     if not vim.api.nvim_buf_is_loaded(bufnr) then
         fn.bufload(bufnr)
     end
-    local borders = as._lsp_borders(vim.g.neon_lsp_win_borders)
+    local borders = as._lsp_borders(vim.g.neon_lsp_window_borders)
     local range = location.targetRange or location.range
     local contents = vim.api.nvim_buf_get_lines(
         bufnr,

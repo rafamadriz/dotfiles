@@ -3,23 +3,12 @@ if as._default(vim.g.neon_lsp_enabled) == true then
 end
 -- LSP Diagnostics
 -- ================================================
-vim.fn.sign_define(
-    "LspDiagnosticsSignError",
-    { texthl = "LspDiagnosticsSignError", text = " ", numhl = "LspDiagnosticsSignError" }
-)
-vim.fn.sign_define(
-    "LspDiagnosticsSignWarning",
-    { texthl = "LspDiagnosticsSignWarning", text = " ", numhl = "LspDiagnosticsSignWarning" }
-)
-vim.fn.sign_define("LspDiagnosticsSignInformation", {
-    texthl = "LspDiagnosticsSignInformation",
-    text = "",
-    numhl = "LspDiagnosticsSignInformation",
-})
-vim.fn.sign_define(
-    "LspDiagnosticsSignHint",
-    { texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" }
-)
+local signs = { Error = " ", Warning = " ", Hint = " ", Information = " " }
+
+for type, icon in pairs(signs) do
+    local hl = "LspDiagnosticsSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
@@ -31,7 +20,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     }
 )
 
-local borders = as._lsp_borders(vim.g.neon_lsp_win_borders)
+local borders = as._lsp_borders(vim.g.neon_lsp_window_borders)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = borders })
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help,
@@ -42,7 +31,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 local lsp_symbols = {
     Class = "   (Class)",
     Color = "   (Color)",
-    Constant = "   (Constant)",
+    Constant = "   (Constant)",
     Constructor = "   (Constructor)",
     Enum = " 練 (Enum)",
     EnumMember = "   (EnumMember)",
@@ -62,8 +51,8 @@ local lsp_symbols = {
     Value = "   (Value)",
     Variable = "[] (Variable)",
     Reference = "   (Reference)",
-    Event = " ﲀ  (Event)",
-    Operator = "   (Operator)",
+    Event = "   (Event)",
+    Operator = "   (Operator)",
     TypeParameter = "   (TypeParameter)",
 }
 
