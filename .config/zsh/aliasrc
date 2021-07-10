@@ -13,12 +13,12 @@ alias \
 type "exa" >>/dev/null &&
     alias \
         ls='exa --icons -F --color=always' \
-        lla='exa --icons -Fla --color=always' \
-        ll='exa --icons -Fl --color=always' ||
+        ll='exa --icons -Fl --color=always' \
+        lla='exa --icons -Fla --color=always' ||
     alias \
         ls='ls -F --color=always' \
-        lla='ls -Fla --color=always' \
-        ll='ls -Fl --color=always'
+        ll='ls -Fl --color=always' \
+        lla='ls -Fla --color=always'
 
 # shortcuts
 alias \
