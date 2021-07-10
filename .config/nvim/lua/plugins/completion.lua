@@ -1,6 +1,6 @@
 require("compe").setup {
     enabled = as._default(vim.g.neon_compe_enabled),
-    autocomplete = true,
+    autocomplete = as._default(vim.g.neon_compe_autocomplete),
     debug = false,
     min_length = 2,
     preselect = "always",
@@ -11,7 +11,7 @@ require("compe").setup {
     max_kind_width = 100,
     max_menu_width = 100,
     documentation = {
-        border = as._lsp_borders(vim.g.neon_compe_doc_window), -- the border option is the same as `|help nvim_open_win|`
+        border = as._lsp_borders(vim.g.neon_compe_doc_window_border), -- the border option is the same as `|help nvim_open_win|`
         max_width = 60,
         min_width = 60,
     },
@@ -81,6 +81,9 @@ end
 
 local map = vim.api.nvim_set_keymap
 map("i", "<C-e>", "compe#close('<C-e>')", { expr = true })
+map("i", "<C-Space>", "compe#complete()", { expr = true })
+map("i", "<C-d>", "compe#scroll({ 'delta': +4 })", { expr = true })
+map("i", "<C-f>", "compe#scroll({ 'delta': -4 })", { expr = true })
 map("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
 map("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
 map("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })

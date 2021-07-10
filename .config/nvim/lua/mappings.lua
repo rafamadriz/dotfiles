@@ -1,6 +1,6 @@
 -----------------------------------------------------------------------------//
---[[ NOTE: 
-In telescope use <C-q> to send all results to quickfix and <M-q> or 
+--[[ NOTE:
+In telescope use <C-q> to send all results to quickfix and <M-q> or
 <A-q> to send selected items
 
  You can use a regex pattern as part of a range in command mode, E.g.
@@ -49,6 +49,13 @@ as.map("n", "c.", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]])
 -----------------------------------------------------------------------------//
 as.map("n", "<leader>e", ":NvimTreeToggle<CR>")
 as.map("n", "<leader>u", ":UndotreeToggle<CR>")
+-- change directory to current file
+as.map(
+    "n",
+    "cd",
+    ":lcd %:p:h<bar>lua print('current direcotry is ' .. vim.fn.getcwd())<CR>",
+    { silent = false }
+)
 
 -----------------------------------------------------------------------------//
 -- help
@@ -169,6 +176,7 @@ as.map("n", "<leader>fc", ":Telescope commands<CR>")
 as.map("n", "<leader>fs", ":Telescope search_history<CR>")
 as.map("n", "<leader>fq", ":Telescope quickfix<CR>")
 as.map("n", "<leader>fl", ":Telescope loclist<CR>")
+as.map("n", "<leader>fq", ":Telescope quickfix<CR>")
 as.map("n", "<leader>fn", ":Telescope fd cwd=$HOME/.config/nvim/<CR>")
 
 -----------------------------------------------------------------------------//
@@ -204,5 +212,8 @@ as.map("n", "<leader>ru", ":UndotreeToggle<CR>")
 as.map("n", "<leader>rn", ":vsp ~/.config/nvim/lua/config.lua<CR>")
 as.map("n", "<leader>rca", ":ColorizerAttachToBuffer<CR>")
 as.map("n", "<leader>rct", ":ColorizerToggle<CR>")
+as.map("n", "<leader>rg", ":Gitsigns refresh<CR>")
+as.map("n", "<leader>rq", ":cwindow<CR>")
+as.map("n", "<leader>rl", ":lwindow<CR>")
 as.map("n", "<leader>rJ", [[:<C-u>call append(line("."), repeat([""], v:count1))<CR>]]) -- append line down without insert mode
 as.map("n", "<leader>rK", [[:<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>]]) -- append line up without insert mode

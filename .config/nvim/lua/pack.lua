@@ -1,9 +1,9 @@
 local pack_use = function()
     local use = require("packer").use
     use "wbthomason/packer.nvim"
-    -- use "dstein64/vim-startuptime"
+    use { "dstein64/vim-startuptime", cmd = "StartupTime" }
     -----------------------------------------------------------------------------//
-    -- Required by others
+    -- Required by others {{{1
     -----------------------------------------------------------------------------//
     use { "nvim-lua/plenary.nvim", module = "plenary" }
     use { "nvim-lua/popup.nvim", module = "popup" }
@@ -15,11 +15,11 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- LSP, Autocomplete and snippets
+    -- LSP, Autocomplete and snippets {{{1
     -----------------------------------------------------------------------------//
     use {
         "neovim/nvim-lspconfig",
-        requires = "kabouzeid/nvim-lspinstall",
+        requires = { "kabouzeid/nvim-lspinstall", "ray-x/lsp_signature.nvim" },
         config = function()
             require "lsp"
         end,
@@ -33,7 +33,7 @@ local pack_use = function()
     }
     use {
         { "rafamadriz/friendly-snippets", after = "vim-vsnip" },
-        { "hrsh7th/vim-vsnip", event = "InsertEnter" },
+        { "hrsh7th/vim-vsnip", after = "nvim-compe" },
     }
     use {
         "windwp/nvim-autopairs",
@@ -49,7 +49,7 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- Telescope
+    -- Telescope {{{1
     -----------------------------------------------------------------------------//
     use {
         "nvim-telescope/telescope.nvim",
@@ -67,8 +67,9 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- Treesitter
+    -- Treesitter {{{1
     -----------------------------------------------------------------------------//
+    use { "nvim-treesitter/playground", after = "nvim-treesitter" }
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
@@ -78,7 +79,7 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- Utils
+    -- Utils {{{1
     -----------------------------------------------------------------------------//
     use {
         "kyazdani42/nvim-tree.lua",
@@ -95,7 +96,7 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- Text Objects and Editing
+    -- Text Objects and Editing {{{1
     -----------------------------------------------------------------------------//
     use { "machakann/vim-sandwich", keys = { { "n", "s" }, { "v", "s" } } }
     use {
@@ -108,7 +109,7 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- Git
+    -- Git {{{1
     -----------------------------------------------------------------------------//
     use {
         "sindrets/diffview.nvim",
@@ -170,9 +171,9 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- General plugins
+    -- General plugins {{{1
     -----------------------------------------------------------------------------//
-    use "rafamadriz/themes.nvim"
+    use "~/code/themes.nvim"
     use { "sbdchd/neoformat", event = "BufEnter" }
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
@@ -223,9 +224,10 @@ local pack_use = function()
     }
     use {
         "norcalli/nvim-colorizer.lua",
-        event = "BufRead",
+        ft = { "html", "css", "javascript" },
+        cmd = { "ColorizerToggle", "ColorizerAttachToBuffer" },
         config = function()
-            require("colorizer").setup({ "*" }, {
+            require("colorizer").setup({ "html", "javascript", "css" }, {
                 RRGGBBAA = true,
                 rgb_fn = true,
                 hsl_fn = true,
@@ -240,13 +242,14 @@ local pack_use = function()
         cmd = "ToggleTerm",
         config = function()
             require("toggleterm").setup {
-                size = 16,
+                size = 12,
                 direction = "horizontal",
                 open_mapping = [[<a-t>]],
             }
         end,
     }
 end
+-- }}}
 
 local fn, execute = vim.fn, vim.api.nvim_command
 local install_path = DATA_PATH .. "/site/pack/packer/start/packer.nvim"
@@ -269,3 +272,4 @@ if fn.empty(fn.glob(install_path)) > 0 then
 else
     load_plugins()
 end
+-- vim:foldmethod=marker:foldlevel=0
