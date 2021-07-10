@@ -7,13 +7,5 @@ if as._default(vim.g.neon_treesitter_enabled) then
             use_languagetree = true,
         },
         indent = { enable = true },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = "<C-n>",
-                node_incremental = "<C-n>",
-                scope_incremental = "<C-s>",
-            },
-        },
     }
 end
