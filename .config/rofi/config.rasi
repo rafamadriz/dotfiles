@@ -13,7 +13,7 @@ configuration {
     display-combi:  "";
 }
 
-@import "./colors/gruvbox.rasi"
+@import "./colors/nord.rasi"
 
 window {
     transparency:                   "real";

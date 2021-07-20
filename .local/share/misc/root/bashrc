@@ -9,10 +9,8 @@ umask 002
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
-
-[[ ! -d ~/.config/vim ]] && mkdir -p ~/.config/vim
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -62,12 +60,12 @@ PS1='\[\033[0;36m\](\[\033[01;31m\]ROOT@\[\033[01;32m\]\h\[\033[0;36m\]) \[\033[
 # force colour prompt
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
-    color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-    color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -77,20 +75,19 @@ source /usr/share/fzf/key-bindings.bash
 
 # fkill - kill process
 fkill() {
-  local pid
-  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+    local pid
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
-  if [ "x$pid" != "x" ]
-  then
-    echo "$pid" | xargs kill -"${1:-9}"
-  fi
+    if [ "x$pid" != "x" ]; then
+        echo "$pid" | xargs kill -"${1:-9}"
+    fi
 }
 
 # cdf - cd into the directory of the selected file
 cdf() {
-   local file
-   local dir
-   file=$(find "${1:-.}" | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+    local file
+    local dir
+    file=$(find "${1:-.}" | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
 # enable sudo completion
@@ -103,14 +100,15 @@ complete -cf sudo
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-   alias ls="exa -h --color=always"
-   alias grep="grep --color=auto"
-   alias diff="diff --color=auto"
-   alias dir='dir --color=auto'
-   alias vdir='vdir --color=auto'
-   alias grep='grep --color=auto'
-   alias fgrep='fgrep --color=auto'
-   alias egrep='egrep --color=auto'
+    alias ls="ls -Fh --color=always"
+    alias ls="ll -Fhl --color=always"
+    alias grep="grep --color=auto"
+    alias diff="diff --color=auto"
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
 fi
 
 alias vim="nvim"
