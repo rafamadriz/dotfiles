@@ -5,7 +5,8 @@ picom -b --experimental-backends &
 killall mpd
 mpd &
 "$HOME"/.config/polybar/launch.sh
-xwallpaper --zoom ~/.local/share/wall/sunset.png
+xwallpaper --zoom ~/.local/share/wall/wallhaven-1kjplv.jpg
+xmodmap ~/.config/X11/xmodmap
 killall "flameshot"
 flameshot & # screenshot utility
 killall "dunst"
@@ -22,11 +23,11 @@ bspc rule -a firefox desktop='^2' focus=on follow=on
 
 # Truncate a couple of common commands that are used herein.
 _bc() {
-  bspc config "$@"
+    bspc config "$@"
 }
 
 ### BSPWM configuration ###
-_bc top_padding 32
+_bc top_padding 36
 _bc border_width 4
 _bc window_gap 13
 _bc split_ratio 0.52
@@ -34,5 +35,5 @@ _bc borderless_monocle true
 _bc gapless_monocle true
 
 # Colors
-_bc normal_border_color "#fbf1c7"
-_bc focused_border_color "#665c54"
+_bc normal_border_color "#c8ccd4"
+_bc focused_border_color "#61afef"

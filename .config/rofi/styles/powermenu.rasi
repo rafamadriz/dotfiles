@@ -1,4 +1,4 @@
-@import "../colors/gruvbox.rasi"
+@import "../colors/nord.rasi"
 
 inputbar {
     children: [ textbox-prompt-colon, prompt ];
