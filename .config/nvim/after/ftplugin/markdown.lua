@@ -8,6 +8,7 @@ local mappings = {
     },
 }
 
+vim.cmd "packadd which-key.nvim"
 local wk = require "which-key"
 wk.register(mappings, opts)
 
