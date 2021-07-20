@@ -6,13 +6,13 @@ vim.opt_local.softtabstop = 2
 local mappings = {
     ["<leader>"] = {
         r = {
-            l = "live server",
-            ll = { "<cmd>Bracey<cr>", "live start" },
-            ls = { "<cmd>BraceyStop<cr>", "stop" },
-            lr = { "<cmd>BraceyReload<cr>", "reload" },
+            L = { name = "live server" },
+            Ll = { "<cmd>Bracey<cr>", "live start" },
+            Ls = { "<cmd>BraceyStop<cr>", "stop" },
+            Lr = { "<cmd>BraceyReload<cr>", "reload" },
         },
     },
 }
-
+vim.cmd "packadd which-key.nvim"
 local wk = require "which-key"
 wk.register(mappings, opts)

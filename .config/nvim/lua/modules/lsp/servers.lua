@@ -1,38 +1,13 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        "documentation",
-        "detail",
-        "additionalTextEdits",
-    },
-}
-
-local function documentHighlight(client, bufnr)
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
-      hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]],
-            false
-        )
-    end
+if not as._default(vim.g.code_lsp_enabled) then
+    return
 end
 
 local function common_on_attach(client, bufnr)
-    if as._default(vim.g.neon_lsp_document_highlight) then
-        documentHighlight(client, bufnr)
+    if as._default(vim.g.code_lsp_document_highlight) then
+        require("modules.lsp").documentHighlight(client, bufnr)
     end
-    if as._default(vim.g.neon_lsp_signature_help) then
-        require("lsp_signature").on_attach { max_width = 100 }
+    if as._default(vim.g.code_lsp_signature_help) then
+        require("lsp_signature").on_attach { max_width = 90, fix_pos = true, hint_prefix = " " }
     end
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     -- mappings
@@ -50,30 +25,30 @@ local function common_on_attach(client, bufnr)
     as.map("n", "<leader>lgi", ":lua vim.lsp.buf.implementation()<CR>")
     as.map("n", "<leader>lh", ":lua vim.lsp.buf.hover()<CR>")
     as.map("n", "<leader>lk", ":lua vim.lsp.buf.signature_help()<CR>")
-    as.map("n", "<leader>la", ":Telescope lsp_code_actions theme=get_dropdown<CR>")
+    as.map("n", "<leader>la", ":Telescope lsp_code_actions<CR>")
     as.map("n", "<leader>lc", ":lua vim.lsp.diagnostic.clear(0)<CR>")
-    as.map("n", "<leader>lA", ":Telescope lsp_range_code_actions theme=get_dropdown<CR>")
+    as.map("n", "<leader>lA", ":Telescope lsp_range_code_actions<CR>")
     as.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
     as.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
     as.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
     as.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
     as.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
     as.map("n", "<leader>lf", ":lua vim.lsp.buf.formatting()<CR>")
-    as.map("n", "<leader>lp", ":lua require('utils.extra').PeekDefinition()<CR>")
+    as.map("n", "<leader>lp", ":lua require('modules.lsp').PeekDefinition()<CR>")
     as.map(
         "n",
         "<leader>ll",
-        ":lua vim.lsp.diagnostic.show_line_diagnostics({border = as._lsp_borders(vim.g.neon_lsp_window_borders)})<CR>"
+        ":lua vim.lsp.diagnostic.show_line_diagnostics({border = as._lsp_borders(vim.g.code_lsp_window_borders)})<CR>"
     )
     as.map(
         "n",
         "<c-p>",
-        ":lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_window_borders)}})<CR>"
+        ":lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = as._lsp_borders(vim.g.code_lsp_window_borders)}})<CR>"
     )
     as.map(
         "n",
         "<c-n>",
-        ":lua vim.lsp.diagnostic.goto_next({popup_opts = {border = as._lsp_borders(vim.g.neon_lsp_window_borders)}})<CR>"
+        ":lua vim.lsp.diagnostic.goto_next({popup_opts = {border = as._lsp_borders(vim.g.code_lsp_window_borders)}})<CR>"
     )
     as.map("n", "<leader>l,s", [[:LspStop <C-R>=<CR>]], { silent = false })
 
@@ -166,7 +141,7 @@ local lua_settings = {
 local function make_config()
     return {
         -- enable snippet support
-        capabilities = capabilities,
+        capabilities = require("modules.lsp").capabilities,
         -- map buffer local keybindings when the language server attaches
         on_attach = common_on_attach,
         flags = { debounce_text_changes = 150 },
@@ -228,7 +203,7 @@ if not lspconfig.emmet_ls then
         },
     }
 end
-lspconfig.emmet_ls.setup { capabilities = capabilities }
+lspconfig.emmet_ls.setup { capabilities = require("modules.lsp").capabilities }
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 require("lspinstall").post_install_hook = function()

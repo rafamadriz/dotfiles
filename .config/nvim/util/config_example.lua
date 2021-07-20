@@ -78,7 +78,7 @@ local M = {
     -----------------------------------------------------------------------------//
     -- Press <space>ht to see all available themes.
     -- @value: string
-    colorscheme = "onepro",
+    colorscheme = "neon",
 
     -- These option only apply for themes available with themes-nvim.
     -- See :h themes-nvim for help.
@@ -93,7 +93,7 @@ local M = {
     -- @options: classic, arrow, slant
     statusline = "classic",
     -- @options: gruvbox, neon, nord, wombat
-    statusline_color = "nord",
+    statusline_color = "neon",
     -----------------------------------------------------------------------------//
     --- LSP {{{1
     -----------------------------------------------------------------------------//

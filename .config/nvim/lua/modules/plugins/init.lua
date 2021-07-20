@@ -1,104 +1,117 @@
 local pack_use = function()
     local use = require("packer").use
-    use "wbthomason/packer.nvim"
-    use { "dstein64/vim-startuptime", cmd = "StartupTime" }
+    use { "wbthomason/packer.nvim" }
     -----------------------------------------------------------------------------//
     -- Required by others {{{1
     -----------------------------------------------------------------------------//
     use { "nvim-lua/plenary.nvim", module = "plenary" }
     use { "nvim-lua/popup.nvim", module = "popup" }
-    use {
-        "kyazdani42/nvim-web-devicons",
-        module = "nvim-web-devicons",
-        config = function()
-            require("nvim-web-devicons").setup { default = true }
-        end,
-    }
+    use { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" }
     -----------------------------------------------------------------------------//
-    -- LSP, Autocomplete and snippets {{{1
+    -- LSP {{{1
     -----------------------------------------------------------------------------//
+    use { "ray-x/lsp_signature.nvim" }
     use {
         "neovim/nvim-lspconfig",
-        requires = { "kabouzeid/nvim-lspinstall", "ray-x/lsp_signature.nvim" },
         config = function()
-            require "lsp"
+            require "modules.lsp"
         end,
     }
+    use {
+        "kabouzeid/nvim-lspinstall",
+        after = "nvim-lspconfig",
+        config = function()
+            require "modules.lsp.servers"
+        end,
+    }
+    -----------------------------------------------------------------------------//
+    -- Completion and snippets {{{1
+    -----------------------------------------------------------------------------//
     use {
         "hrsh7th/nvim-compe",
         event = "InsertEnter",
         config = function()
-            require "plugins.completion"
+            require("modules.plugins.completion").compe()
         end,
     }
-    use {
-        { "rafamadriz/friendly-snippets", after = "vim-vsnip" },
-        { "hrsh7th/vim-vsnip", after = "nvim-compe" },
-    }
-    use {
-        "windwp/nvim-autopairs",
-        after = "nvim-compe",
-        config = function()
-            if as._default(vim.g.neon_compe_autopairs) then
-                require("nvim-autopairs").setup { check_ts = true }
-                require("nvim-autopairs.completion.compe").setup {
-                    map_cr = true, --  map <CR> on insert mode
-                    map_complete = true, -- it will auto insert `(` after select function or method item
-                }
-            end
-        end,
-    }
+    use { "hrsh7th/vim-vsnip", after = "nvim-compe" }
+    use { "rafamadriz/friendly-snippets", after = "vim-vsnip" }
     -----------------------------------------------------------------------------//
     -- Telescope {{{1
     -----------------------------------------------------------------------------//
     use {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        opt = true,
+        run = "make",
+    }
+    use {
         "nvim-telescope/telescope.nvim",
-        wants = { "plenary.nvim", "popup.nvim", "telescope-fzf-native.nvim" },
         cmd = "Telescope",
-        requires = {
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                opt = true,
-                run = "make",
-            },
-        },
         config = function()
-            require "plugins.telescope"
+            require("modules.plugins.telescope").config()
         end,
     }
+    -- use { { "junegunn/fzf", run = "./install --bin" }, "junegunn/fzf.vim" } -- just in case
     -----------------------------------------------------------------------------//
     -- Treesitter {{{1
     -----------------------------------------------------------------------------//
-    use { "nvim-treesitter/playground", after = "nvim-treesitter" }
+    use { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" }
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
         event = "BufRead",
         config = function()
-            require "plugins.treesitter"
+            require("modules.plugins.treesitter").config()
         end,
     }
     -----------------------------------------------------------------------------//
     -- Utils {{{1
     -----------------------------------------------------------------------------//
     use {
-        "kyazdani42/nvim-tree.lua",
-        wants = "nvim-web-devicons",
-        cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+        "folke/which-key.nvim",
+        event = "BufWinEnter",
         config = function()
-            require "plugins.tree"
+            require("modules.plugins.which-key").config()
         end,
     }
     use {
-        "folke/which-key.nvim",
+        "mhartington/formatter.nvim",
+        cmd = { "Format", "FormatWrite" },
         config = function()
-            require "plugins.which-key"
+            require("modules.plugins.formatter").config()
+        end,
+    }
+    use {
+        "kyazdani42/nvim-tree.lua",
+        requires = "nvim-web-devicons",
+        cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+        config = function()
+            require("modules.plugins.filetree").config()
+        end,
+    }
+    use {
+        "akinsho/nvim-toggleterm.lua",
+        keys = "<A-t>",
+        cmd = "ToggleTerm",
+        config = function()
+            require("toggleterm").setup {
+                size = 12,
+                direction = "horizontal",
+                open_mapping = [[<a-t>]],
+            }
         end,
     }
     -----------------------------------------------------------------------------//
-    -- Text Objects and Editing {{{1
+    -- Improve Editing {{{1
     -----------------------------------------------------------------------------//
-    use { "machakann/vim-sandwich", keys = { { "n", "s" }, { "v", "s" } } }
+    use { "machakann/vim-sandwich", event = "BufRead" }
+    use {
+        "windwp/nvim-autopairs",
+        after = "nvim-compe",
+        config = function()
+            require("modules.plugins.completion").autopairs()
+        end,
+    }
     use {
         "b3nj5m1n/kommentary",
         keys = { "gcc", "gc" },
@@ -112,82 +125,73 @@ local pack_use = function()
     -- Git {{{1
     -----------------------------------------------------------------------------//
     use {
-        "sindrets/diffview.nvim",
-        opt = true,
-        after = "neogit",
-        cmd = "DiffviewOpen",
+        "lewis6991/gitsigns.nvim",
+        event = "BufRead",
+        requires = "plenary.nvim",
         config = function()
-            require("diffview").setup {
-                key_bindings = {
-                    disable_defaults = false, -- Disable the default key bindings
-                    view = { ["q"] = ":DiffviewClose<cr>" },
-                    file_panel = { ["q"] = ":DiffviewClose<cr>" },
-                },
-            }
+            require("modules.plugins.git").gitsigns()
         end,
     }
     use {
         "TimUntersberger/neogit",
         cmd = "Neogit",
-        wants = { "plenary.nvim", "diffview.nvim" },
         config = function()
-            require("neogit").setup {
-                disable_context_highlighting = false,
-                disable_commit_confirmation = true,
-                integrations = { diffview = true },
-                signs = {
-                    -- { CLOSED, OPENED }
-                    section = { "", "" },
-                    item = { "", "" },
-                    hunk = { "", "" },
-                },
-            }
+            require("modules.plugins.git").neogit()
         end,
     }
     use {
-        "lewis6991/gitsigns.nvim",
-        event = "BufRead",
-        wants = "plenary.nvim",
+        "sindrets/diffview.nvim",
+        opt = true,
+        after = "neogit",
+        cmd = "DiffviewOpen",
         config = function()
-            require("gitsigns").setup {
-                signs = {
-                    add = { hl = "GitSignsAdd", text = "┃" },
-                    change = { hl = "GitSignsChange", text = "┃" },
-                    delete = { hl = "GitSignsDelete", text = "契" },
-                    topdelete = { hl = "GitSignsDelete", text = "契" },
-                    changedelete = { hl = "GitSignsChange", text = "~" },
-                },
-                keymaps = { noremap = true, buffer = true },
-            }
+            require("modules.plugins.git").diffview()
         end,
     }
     use {
         "ruifm/gitlinker.nvim",
         opt = true,
-        wants = "plenary.nvim",
+        requires = "plenary.nvim",
         keys = { "<leader>gy" },
         config = function()
-            require("gitlinker").setup()
+            require("modules.plugins.git").gitlinker()
+        end,
+    }
+    -----------------------------------------------------------------------------//
+    -- UI
+    -----------------------------------------------------------------------------//
+    use "rafamadriz/themes.nvim"
+    use {
+        "rafamadriz/statusline",
+        config = function()
+            require("modules.plugins.statusline").config()
+        end,
+    }
+    use {
+        "mhinz/vim-startify",
+        opt = true,
+        cmd = "Startify",
+        config = function()
+            require("modules.plugins.startify").config()
+        end,
+    }
+    use {
+        "lukas-reineke/indent-blankline.nvim",
+        cond = function()
+            return as._default(vim.g.code_indent_guides)
+        end,
+        config = function()
+            require("modules.plugins.indent-guides").config()
         end,
     }
     -----------------------------------------------------------------------------//
     -- General plugins {{{1
     -----------------------------------------------------------------------------//
-    use "~/code/themes.nvim"
-    use { "sbdchd/neoformat", event = "BufEnter" }
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
-        "mhinz/vim-startify",
-        event = "VimEnter",
-        config = function()
-            require "plugins.startify"
-        end,
-    }
-    use {
-        "rafamadriz/statusline",
-        config = function()
-            require "plugins.statusline"
-        end,
+        "airblade/vim-rooter",
+        event = "BufRead",
+        config = "vim.g.rooter_silent_chdir = 1",
     }
     use {
         "turbio/bracey.vim",
@@ -201,13 +205,6 @@ local pack_use = function()
         ft = "markdown",
         run = function()
             vim.fn["mkdp#util#install"]()
-        end,
-    }
-    use {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
-        config = function()
-            require "plugins.indent-guides"
         end,
     }
     use {
@@ -236,28 +233,18 @@ local pack_use = function()
             })
         end,
     }
-    use {
-        "akinsho/nvim-toggleterm.lua",
-        keys = "<A-t>",
-        cmd = "ToggleTerm",
-        config = function()
-            require("toggleterm").setup {
-                size = 12,
-                direction = "horizontal",
-                open_mapping = [[<a-t>]],
-            }
-        end,
-    }
 end
 -- }}}
 
 local fn, execute = vim.fn, vim.api.nvim_command
 local install_path = DATA_PATH .. "/site/pack/packer/start/packer.nvim"
-local compile_path = install_path .. "/plugin/packer_compiled.lua"
 
 local function load_plugins()
     local pack = require "packer"
-    pack.init { compile_path = compile_path }
+    pack.init {
+        compile_path = install_path .. "/plugin/packer_compiled.lua",
+        git = { clone_timeout = 600 },
+    }
     pack.startup {
         function()
             pack_use()
@@ -272,4 +259,4 @@ if fn.empty(fn.glob(install_path)) > 0 then
 else
     load_plugins()
 end
--- vim:foldmethod=marker:foldlevel=0
+-- vim:foldmethod=marker
