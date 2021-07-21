@@ -12,7 +12,7 @@ session=${1:-bspwm}
 
 case $session in
 bspwm) exec bspwm ;;
-kde) exec startplasma-x11 ;;
+awesome) exec awesome ;;
 # No known session, try to run it as command
 *) exec $1 ;;
 esac

@@ -5,7 +5,7 @@ picom -b --experimental-backends &
 killall mpd
 mpd &
 "$HOME"/.config/polybar/launch.sh
-xwallpaper --zoom ~/.local/share/wall/wallhaven-1kjplv.jpg
+xwallpaper --zoom ~/.local/share/wall/wallhaven-m9p3vm.jpg
 xmodmap ~/.config/X11/xmodmap
 killall "flameshot"
 flameshot & # screenshot utility
@@ -16,7 +16,7 @@ unclutter & # clean cursor when in idle
 killall "greenclip"
 greenclip daemon &
 
-bspc monitor -d 1 2 3 4 5
+bspc monitor -d 1 2 3 4 5 6 7
 
 # Rules
 bspc rule -a firefox desktop='^2' focus=on follow=on
@@ -27,9 +27,9 @@ _bc() {
 }
 
 ### BSPWM configuration ###
-_bc top_padding 36
-_bc border_width 4
-_bc window_gap 13
+_bc top_padding 40
+_bc border_width 0
+_bc window_gap 10
 _bc split_ratio 0.52
 _bc borderless_monocle true
 _bc gapless_monocle true
