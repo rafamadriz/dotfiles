@@ -10,8 +10,8 @@ chosen=$(cut -d ';' -f1 "$HOME"/.local/share/misc/unicode | rofi -dmenu -i -p ðŸ
 # If you run this command with an argument, it will automatically insert the
 # character. Otherwise, show a message that the emoji has been copied.
 if [ -n "$1" ]; then
-	xdotool type "$chosen"
+    xdotool type "$chosen"
 else
-	echo "$chosen" | tr -d '\n' | xclip -selection clipboard
-	notify-send "'$chosen' copied to clipboard." &
+    echo "$chosen" | tr -d '\n' | xclip -selection clipboard
+    notify-send "'$chosen' copied to clipboard." &
 fi

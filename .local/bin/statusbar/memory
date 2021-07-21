@@ -4,11 +4,10 @@
 # and display top 10 most intensive proceses when clicked
 
 case "$1" in
-    --popup)
-        notify-send "Memory (%)" "$(ps axch -o cmd:15,%mem --sort=-%mem | head)"
-        ;;
-    *)
-        echo " $(free -h --si | awk '/^Mem:/ {print $3}')"
-        ;;
+--popup)
+    notify-send "Memory (%)" "$(ps axch -o cmd:15,%mem --sort=-%mem | head)"
+    ;;
+*)
+    echo " $(free -h --si | awk '/^Mem:/ {print $3}')"
+    ;;
 esac
-

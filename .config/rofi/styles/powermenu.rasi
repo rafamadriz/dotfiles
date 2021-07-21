@@ -1,4 +1,4 @@
-@import "../colors/nord.rasi"
+@import "../colors/simple.rasi"
 
 inputbar {
     children: [ textbox-prompt-colon, prompt ];
@@ -8,7 +8,7 @@ inputbar {
 
 textbox-prompt-colon {
     padding: 0% 0% 0% 2%;
-	str: "  Syetem Uptime";
+    str: "  Syetem Uptime";
     background-color: @al;
     text-color: @fg;
 }
@@ -17,21 +17,21 @@ prompt {
     font: "Inter Bold 12";
     padding: 0% 4% 0% 2%;
     enabled: true;
-	background-color: @al;
-	text-color: @fg;
+    background-color: @al;
+    text-color: @fg;
 }
 
 listview {
-	cycle: true;
-	lines: 5;
-	margin: 0 0 0 0;
-	scrollbar: false;
-	background-color: @al;
+    cycle: true;
+    lines: 5;
+    margin: 0 0 0 0;
+    scrollbar: false;
+    background-color: @al;
 }
 
 element selected {
-	background-color: @ac;
-	text-color: @bg;
+    background-color: @ac;
+    text-color: @fg;
     border-radius:  5px;
 }
 
