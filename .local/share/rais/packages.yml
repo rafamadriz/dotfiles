@@ -7,11 +7,8 @@
 - Description: the fast distributed version control system
   name: git
 
-- Description: Fast and flexible source code highlighter (CLI version)
-  name: highlight
-
-- Description: Supplies technical and tag information about a video or audio file (CLI interface)
-  name: mediainfo
+- Description: git diff viewer
+  name: git-pistol
 
 - Description: Simple PDF text extraction
   name: python-pdftotext
@@ -19,8 +16,17 @@
 - Description: better ls command
   name: exa
 
+- Description: A search tool that combines the usability of ag with the raw speed of grep
+  name: ripgrep
+
+- Description: Cat clone with syntax highlighting and git integration
+  name: bat
+
 - Description: Simple, fast and user-friendly alternative to find
   name: fd
+
+- Description: A fast cd command that learns your habits
+  name: zoxide
 
 - Description: man pages
   name: man-db
@@ -28,14 +34,14 @@
 - Description: Library for sending desktop notifications
   name: libnotify
 
-- Description: Cat clone with syntax highlighting and git integration
-  name: bat
-
 - Description: clipboard
   name: xclip
 
 - Description: Utility for performing actions on windows in X
   name: xdo
+
+- Description: A command-line program to download videos from YouTube.com and a few more sites
+  name: youtube-dl
 
 - Description: Wallpaper setting utility for X
   name: xwallpaper
@@ -46,14 +52,8 @@
 - Description: the better shell
   name: zsh
 
-- Description: Fish-like autosuggestions for zsh
-  name: zsh-autosuggestions
-
 - Description: fuzzy finder
   name: fzf
-
-- Description: A search tool that combines the usability of ag with the raw speed of grep
-  name: ripgrep
 
 - Description: Code searching tool similar to Ack, but faster
   name: the_silver_searcher
