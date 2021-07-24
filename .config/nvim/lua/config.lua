@@ -78,7 +78,7 @@ local M = {
     -----------------------------------------------------------------------------//
     -- Press <space>ht to see all available themes.
     -- @value: string
-    colorscheme = "onepro",
+    colorscheme = "onedark",
 
     -- These option only apply for themes available with themes-nvim.
     -- See :h themes-nvim for help.

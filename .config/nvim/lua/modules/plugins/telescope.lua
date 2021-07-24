@@ -52,6 +52,8 @@ M.config = function()
                     ["<C-j>"] = actions.move_selection_next,
                     ["<C-k>"] = actions.move_selection_previous,
                     ["<CR>"] = actions.select_default + actions.center,
+                    ["<C-n>"] = actions.cycle_history_next,
+                    ["<C-p>"] = actions.cycle_history_prev,
                 },
                 n = {
                     ["<C-c>"] = actions.close,
@@ -102,16 +104,19 @@ M.config = function()
                 layout_strategy = "vertical",
             },
             find_files = {
-                layout_config = { height = 30, preview_width = 0.55 },
+                layout_config = { height = 35, preview_width = 0.55 },
+            },
+            help_tags = {
+                layout_config = { height = 35, preview_width = 0.65 },
             },
             git_files = {
-                layout_config = { height = 30, preview_width = 0.55 },
+                layout_config = { height = 35, preview_width = 0.55 },
             },
             fd = {
-                layout_config = { height = 30, preview_width = 0.55 },
+                layout_config = { height = 35, preview_width = 0.55 },
             },
             file_browser = {
-                layout_config = { height = 30, preview_width = 0.65 },
+                layout_config = { height = 35, preview_width = 0.65 },
             },
             lsp_document_symbols = { previewer = false },
             lsp_workspace_symbols = { previewer = false },
