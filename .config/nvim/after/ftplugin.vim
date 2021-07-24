@@ -10,6 +10,8 @@ augroup END
 augroup Terminal
     au!
     au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
+    au TermOpen * tnoremap <buffer> <C-o> <c-\><c-n>
+    au TermOpen * startinsert
     au TermOpen * set nonumber norelativenumber
 augroup END
 

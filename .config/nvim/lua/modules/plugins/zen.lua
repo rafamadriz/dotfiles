@@ -11,22 +11,22 @@ local cen = { window = { width = 0.70 } }
 local min = { window = { width = 1, options = nu } }
 
 function M.ataraxis()
-    cmd "packadd zen-mode.nvim"
+    cmd "PackerLoad zen-mode.nvim"
     require("zen-mode").toggle(ata)
 end
 
 function M.focus()
-    cmd "packadd zen-mode.nvim"
+    cmd "PackerLoad zen-mode.nvim"
     require("zen-mode").toggle(foc)
 end
 
 function M.centered()
-    cmd "packadd zen-mode.nvim"
+    cmd "PackerLoad zen-mode.nvim"
     require("zen-mode").toggle(cen)
 end
 
 function M.minimal()
-    cmd "packadd zen-mode.nvim"
+    cmd "PackerLoad zen-mode.nvim"
     require("zen-mode").toggle(min)
 end
 

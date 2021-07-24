@@ -51,7 +51,6 @@ local pack_use = function()
             require("modules.plugins.telescope").config()
         end,
     }
-    -- use { { "junegunn/fzf", run = "./install --bin" }, "junegunn/fzf.vim" } -- just in case
     -----------------------------------------------------------------------------//
     -- Treesitter {{{1
     -----------------------------------------------------------------------------//
@@ -95,7 +94,7 @@ local pack_use = function()
         cmd = "ToggleTerm",
         config = function()
             require("toggleterm").setup {
-                size = 12,
+                size = 20,
                 direction = "horizontal",
                 open_mapping = [[<a-t>]],
             }
@@ -169,8 +168,7 @@ local pack_use = function()
     }
     use {
         "mhinz/vim-startify",
-        opt = true,
-        cmd = "Startify",
+        event = "VimEnter",
         config = function()
             require("modules.plugins.startify").config()
         end,
