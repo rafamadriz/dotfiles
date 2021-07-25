@@ -80,10 +80,8 @@ alias \
     dotmv='dot mv'
 
 # search for all scripts and dotfiles, then open them with editor of choice
-files=(~/.zshenv ~/.config/{bspwm,dunst,fontconfig,git,greenclip.cfg,gtk-3.0,htop,kitty,lazygit,lf,mimeapps.list,mozifire,mpd,mpv,ncmpcpp,neofetch,newsboat,npm,nvim,picom,polybar,rofi,sxhkd,user-dirs.dirs,X11,zsh}
-    ~/.local/bin/{scripts,cron,statusbar} ~/.local/share/rais)
 cfg() {
-    find $files -type f |
+    find ~/.config/dotfiles -type f |
         fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
 }
 

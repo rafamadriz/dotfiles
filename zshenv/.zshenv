@@ -1,5 +1,5 @@
 # Path
-export PATH="$PATH:${$(find ~/.local/bin ~/.local/share/npm/bin -type d -printf %p:)%%:}"
+export PATH="$PATH:${$(find ~/.local/bin ~/.local/share/npm/bin -type d -printf %p:)%%:}"  > /dev/null 2>&1
 
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
@@ -18,9 +18,9 @@ export ANDROID_HOME="$XDG_DATA_HOME"/android
 export LESSHISTFILE=-
 
 # Fixing Paths
+# export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority # this creates problems with KDE
 export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
 export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
-export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 export ICEAUTHORITY="$XDG_CACHE_HOME"/ICEauthority
 export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
