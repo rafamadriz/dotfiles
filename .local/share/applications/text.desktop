@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Text editor
-Icon=nvim
-Exec=/usr/bin/kitty -e nvim %u
