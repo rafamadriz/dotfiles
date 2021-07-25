@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Syncs repositories and downloads updates, meant to be run as a cronjob.
+
+ping -q -c 1 example.org >/dev/null || exit
+
+pacman -Syuw --noconfirm

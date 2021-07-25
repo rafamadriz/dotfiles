@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=PDF reader
-Comment=A minimalistic document viewer
-Exec=devour zathura %U
-Icon=org.pwmt.zathura
-Terminal=false
-Categories=Office;Viewer;
