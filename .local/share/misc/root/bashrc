@@ -101,7 +101,8 @@ complete -cf sudo
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls="ls -Fh --color=always"
-    alias ls="ll -Fhl --color=always"
+    alias ll="ll -Fhl --color=always"
+    alias lla="ll -FhlA --color=always"
     alias grep="grep --color=auto"
     alias diff="diff --color=auto"
     alias dir='dir --color=auto'
