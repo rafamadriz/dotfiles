@@ -32,7 +32,6 @@ alias \
     rm='rm -vI' \
     cp='cp -iv' \
     mv='mv -iv' \
-    media='cd /media/rafa/Media' \
     dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
     weather='curl https://wttr.in/Buenos_Aires' \
     ..='cd ..' \
@@ -81,7 +80,7 @@ alias \
 
 # search for all scripts and dotfiles, then open them with editor of choice
 cfg() {
-    find ~/.config/dotfiles -type f |
+    fd . --hidden --type=file -E ".git" ~/.config/dotfiles |
         fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
 }
 
