@@ -10,15 +10,17 @@ alias \
     fgrep='fgrep --color=auto' \
     egrep='egrep --color=auto'
 
-type "exa" >>/dev/null &&
+if exa >/dev/null 2>&1; then
     alias \
         ls='exa --icons -F --color=always' \
         ll='exa --icons -Fl --color=always' \
-        lla='exa --icons -Fla --color=always' ||
+        lla='exa --icons -Fla --color=always'
+else
     alias \
         ls='ls -F --color=always' \
         ll='ls -Fl --color=always' \
         lla='ls -Fla --color=always'
+fi
 
 # shortcuts
 alias \
@@ -32,19 +34,12 @@ alias \
     rm='rm -vI' \
     cp='cp -iv' \
     mv='mv -iv' \
+    d='kitty +kitten diff' \
     dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
     weather='curl https://wttr.in/Buenos_Aires' \
     ..='cd ..' \
     ...='cd ../..' \
     ....='cd ../../..'
-
-# devour
-type "devour" >>/dev/null &&
-    alias \
-        mpv='devour mpv' \
-        zathura='devour zathura' \
-        sxiv='devour sxiv' \
-        firefox='devour firefox'
 
 # git
 alias \
@@ -78,108 +73,11 @@ alias \
     dotrmc='dot rm --cached' \
     dotmv='dot mv'
 
-# search for all scripts and dotfiles, then open them with editor of choice
-cfg() {
-    fd . --hidden --type=file -E ".git" ~/.config/dotfiles |
-        fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
-}
-
-# search for all notes and open selected one in editor
-nt() {
-    rg --files "$HOME"/*ocuments/notes |
-        fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
-}
-
-# cd into note dir, live grep the contents of notes, then open in editor
-live_search_notes() {
-    cd "$HOME"/*ocuments/notes && interactove_fzf
-}
-
-# search for all git repos in folders I care, then cd into selected one.
-all_git() {
-    dir=$(find ~/{code,repos,documents} -type d -name .git | sed 's/\/.git//' |
-        fzf --cycle --preview 'tree -C {} | head -50') && cd $dir && git status
-}
-
-# fd - cd into any hidden directory of the current folder
-fcd() {
-    dir=$(find "${1:-.}" -type d 2>/dev/null | fzf +m) && cd "$dir" || exit
-}
-
-# fkill - kill process
-fkill() {
-    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
-    if [ "x$pid" != "x" ]; then
-        echo "$pid" | xargs kill -"${1:-9}"
-    fi
-}
-
-# cdf - cd into the directory of the selected file
-cdf() {
-    file=$(find "${1:-.}" -type f | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
-}
-
-# search for a package and installed if needed
-pacfind() {
-    paru -Sl | awk '{print $2($4=="" ? "" : " *")}' | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S --needed
-}
-
-# GIT
-# source:
-# https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
-# https://github.com/junegunn/fzf/blob/master/ADVANCED.md#ripgrep-integration
-is_in_git_repo() {
-    git rev-parse HEAD >/dev/null 2>&1
-}
-
-fzf-down() {
-    fzf --height 50% --min-height 20 --border --bind ctrl-/:toggle-preview "$@"
-}
-
-_gf() {
-    is_in_git_repo || return
-    git -c color.status=always status --short |
-        fzf-down -m --ansi --nth 2..,.. \
-            --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1})' |
-        cut -c4- | sed 's/.* -> //'
-}
-
-_gb() {
-    is_in_git_repo || return
-    git branch -a --color=always | grep -v '/HEAD\s' | sort |
-        fzf-down --ansi --multi --tac --preview-window right:70% \
-            --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1)' |
-        sed 's/^..//' | cut -d' ' -f1 |
-        sed 's#^remotes/##'
-}
-
-_gt() {
-    is_in_git_repo || return
-    git tag --sort -version:refname |
-        fzf-down --multi --preview-window right:70% \
-            --preview 'git show --color=always {}'
-}
-
-_gh() {
-    is_in_git_repo || return
-    git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
-        fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
-            --header 'Press CTRL-S to toggle sort' \
-            --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always' |
-        grep -o "[a-f0-9]\{7,\}"
-}
-
-_gr() {
-    is_in_git_repo || return
-    git remote -v | awk '{print $1 "\t" $2}' | uniq |
-        fzf-down --tac \
-            --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1}' |
-        cut -d$'\t' -f1
-}
-
-_gs() {
-    is_in_git_repo || return
-    git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
-        cut -d: -f1
-}
+# devour
+if devour >/dev/null 2>&1; then
+    alias \
+        mpv='devour mpv' \
+        zathura='devour zathura' \
+        sxiv='devour sxiv' \
+        firefox='devour firefox'
+fi
