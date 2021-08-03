@@ -57,6 +57,7 @@ local pack_use = function()
     use { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" }
     use {
         "nvim-treesitter/nvim-treesitter",
+        branch = "0.5-compat",
         run = ":TSUpdate",
         event = "BufRead",
         config = function()
@@ -176,7 +177,7 @@ local pack_use = function()
     use {
         "lukas-reineke/indent-blankline.nvim",
         cond = function()
-            return as._default(vim.g.code_indent_guides)
+            return as._default(vim.g.code_indent_guides, false)
         end,
         config = function()
             require("modules.plugins.indent-guides").config()
@@ -189,7 +190,7 @@ local pack_use = function()
     use {
         "airblade/vim-rooter",
         event = "BufRead",
-        config = "vim.g.rooter_silent_chdir = 1",
+        config = [[vim.g.rooter_silent_chdir = 1]],
     }
     use {
         "turbio/bracey.vim",

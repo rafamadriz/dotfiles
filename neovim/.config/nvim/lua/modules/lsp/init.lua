@@ -24,39 +24,83 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 
 -- symbols for autocomplete
 local lsp_symbols = {
-    Class = "   (Class)",
-    Color = "   (Color)",
-    Constant = "   (Constant)",
-    Constructor = "   (Constructor)",
-    Enum = " 練 (Enum)",
-    EnumMember = "   (EnumMember)",
-    Field = " ﴲ  (Field)",
-    File = "   (File)",
-    Folder = "   (Folder)",
-    Function = "   (Function)",
-    Interface = " ﰮ  (Interface)",
-    Keyword = "   (Keyword)",
-    Method = "   (Method)",
-    Module = "   (Module)",
-    Property = " 襁 (Property)",
-    Snippet = " ﬌  (Snippet)",
-    Struct = " ﳤ  (Struct)",
-    Text = "   (Text) ",
-    Unit = "   (Unit)",
-    Value = "   (Value)",
-    Variable = "[] (Variable)",
-    Reference = "   (Reference)",
-    Event = "   (Event)",
-    Operator = "   (Operator)",
-    TypeParameter = "   (TypeParameter)",
+    Class = "",
+    Color = "",
+    Constant = "",
+    Constructor = "",
+    Enum = "❐",
+    EnumMember = "",
+    Event = "",
+    Field = "ﴲ",
+    File = "",
+    Folder = "",
+    Function = "",
+    Interface = "ﰮ",
+    Keyword = "",
+    Method = "",
+    Module = "",
+    Operator = "",
+    Property = "",
+    Reference = "",
+    Snippet = "﬌",
+    Struct = "ﳤ",
+    Text = "",
+    TypeParameter = "",
+    Unit = "",
+    Value = "",
+    Variable = "[]",
 }
 
-for kind, symbol in pairs(lsp_symbols) do
-    local kinds = vim.lsp.protocol.CompletionItemKind
-    local index = kinds[kind]
+local description = {
+    "Class",
+    "Color",
+    "Constant",
+    "Constructor",
+    "Enum",
+    "EnumMember",
+    "Event",
+    "Field",
+    "File",
+    "Folder",
+    "Function",
+    "Interface",
+    "Keyword",
+    "Method",
+    "Module",
+    "Operator",
+    "Property",
+    "Reference",
+    "Snippet",
+    "Struct",
+    "Text",
+    "TypeParameter",
+    "Unit",
+    "Value",
+    "Variable",
+}
 
+local fix_offset = function(icon, desc)
+    local fmt = string.format
+    local item
+    if as._default(vim.g.code_compe_item_with_text) then
+        item = fmt(" %s  %s", icon, desc)
+        if desc == "Variable" then
+            item = fmt("%s %s", icon, desc)
+        end
+    else
+        item = fmt(" %s", icon)
+        if desc == "Variable" then
+            item = fmt("%s", icon)
+        end
+    end
+    return item
+end
+
+for _, v in pairs(description) do
+    local kinds = vim.lsp.protocol.CompletionItemKind
+    local index = kinds[v]
     if index ~= nil then
-        kinds[index] = symbol
+        kinds[index] = fix_offset(lsp_symbols[v], v)
     end
 end
 

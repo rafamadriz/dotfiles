@@ -1,6 +1,14 @@
 local M = {}
 local map = vim.api.nvim_set_keymap
 
+local with_text = function(text, icon)
+    if as._default(vim.g.code_compe_item_with_text) then
+        return text
+    else
+        return icon
+    end
+end
+
 M.compe = function()
     require("compe").setup {
         enabled = true,
@@ -22,24 +30,24 @@ M.compe = function()
         source = {
             path = as._compe("path", {
                 menu = "[P]",
-                kind = "  (Path)",
+                kind = with_text("  Path", ""),
             }),
             buffer = as._compe("buffer", {
                 menu = "[B]",
-                kind = "   (Buffer)",
+                kind = with_text("   Buffer", " "),
             }),
             calc = as._compe("calc", {
                 menu = "[C]",
-                kind = "   (Calc)",
+                kind = with_text("   Calc", ""),
             }),
             vsnip = as._compe("snippets", {
                 menu = "[S]",
                 priority = 1500,
-                kind = "   (Snippet)",
+                kind = with_text("   Snippet", " "),
             }),
             spell = as._compe("spell", {
                 menu = "[E]",
-                kind = "   (Spell)",
+                kind = with_text("   Spell", ""),
             }),
             emoji = as._compe("emoji", {
                 menu = "[ ﲃ ]",
