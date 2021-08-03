@@ -21,7 +21,7 @@ local M = {
 
     -- Number of screen lines to use for the command-line.
     -- @value: number
-    cmdheight = 1,
+    cmdheight = 2,
 
     -- Minimal number of screen lines to keep above and below the cursor.
     -- @value: number
@@ -142,6 +142,10 @@ local M = {
     -- @options: single, double, none
     compe_doc_window_border = "single",
 
+    -- Add description text to the suggested items in the completion menu.
+    -- @value: boolean
+    compe_item_with_text = true,
+
     -- Autocomplete pairs.
     -- @value: boolean
     compe_autopairs = true,
@@ -159,6 +163,10 @@ local M = {
     -- Enable or disable all treesitter features.
     -- @value: boolean
     treesitter_enabled = true,
+
+    -- Enable or disable treesitter syntax highlighting.
+    -- @value: boolean
+    treesitter_highlight = true,
 
     -- Parsers to install.
     -- @options: string or a table of parsers.

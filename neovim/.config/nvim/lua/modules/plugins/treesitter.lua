@@ -6,7 +6,7 @@ M.config = function()
             ensure_installed = vim.g.code_treesitter_parsers_install or "maintained",
             ignore_install = vim.g.code_treesitter_parsers_ignore or {},
             highlight = {
-                enable = true, -- false will disable the whole extension
+                enable = as._default(vim.g.code_treesitter_highlight), -- false will disable the whole extension
                 use_languagetree = true,
             },
             indent = { enable = false },
