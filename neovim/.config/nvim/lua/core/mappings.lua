@@ -15,6 +15,10 @@ vim.g.mapleader = " "
 as.map("n", "Y", "y$")
 as.map("v", "Y", "<ESC>y$gv")
 as.map("n", "Q", "<Nop>")
+as.map("v", "$", "g_")
+as.map("n", "n", "nzzzv")
+as.map("n", "N", "Nzzzv")
+as.map("n", "J", "mzJ`z")
 as.map("i", "jk", "<ESC>")
 as.map("n", "<BS>", "<C-^>")
 as.map("t", "<C-o>", [[<C-\><C-n>]])
@@ -123,12 +127,12 @@ as.map("n", "<leader>w+", ":resize +15<CR>") -- increase height
 -----------------------------------------------------------------------------//
 -- Quickfix list mappings {{{1
 -----------------------------------------------------------------------------//
-as.map("n", "[q", ":cprevious<CR>")
-as.map("n", "]q", ":cnext<CR>")
+as.map("n", "[q", ":cprevious<CR>zzzv")
+as.map("n", "]q", ":cnext<CR>zzzv")
 as.map("n", "[Q", ":cfirst<CR>")
 as.map("n", "]Q", ":clast<CR>")
-as.map("n", "[l", ":lprevious<CR>")
-as.map("n", "]l", ":lnext<CR>")
+as.map("n", "[l", ":lprevious<CR>zzzv")
+as.map("n", "]l", ":lnext<CR>zzzv")
 as.map("n", "[L", ":lfirst<CR>")
 as.map("n", "]L", ":llast<CR>")
 -----------------------------------------------------------------------------//
