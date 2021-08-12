@@ -22,6 +22,7 @@ M.config = function()
                 "node_modules",
                 "package.json",
                 "package-lock.json",
+                ".git/",
                 ".mkv",
                 ".png",
                 ".jpg",
@@ -80,12 +81,12 @@ M.config = function()
                 },
             },
             live_grep = {
-                theme = "ivy",
-                layout_config = { height = 15 },
+                layout_strategy = "vertical",
+                layout_config = { height = 35, preview_height = 8 },
             },
             current_buffer_fuzzy_find = {
-                theme = "ivy",
-                layout_config = { height = 15 },
+                layout_strategy = "vertical",
+                layout_config = { height = 35, preview_height = 8 },
             },
             lsp_code_actions = {
                 layout_strategy = "horizontal",

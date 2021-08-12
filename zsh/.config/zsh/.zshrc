@@ -33,7 +33,6 @@ zsh_add_file "aliasrc"
 # Plugins
 zsh_add_plugin "zdharma/fast-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 zsh_add_plugin "jeffreytse/zsh-vi-mode"
 PLUG_DIR=$ZDOTDIR/plugins

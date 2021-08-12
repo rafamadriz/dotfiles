@@ -5,7 +5,6 @@ local pack_use = function()
     -- Required by others {{{1
     -----------------------------------------------------------------------------//
     use { "nvim-lua/plenary.nvim", module = "plenary" }
-    use { "nvim-lua/popup.nvim", module = "popup" }
     use { "kyazdani42/nvim-web-devicons", module = "nvim-web-devicons" }
     -----------------------------------------------------------------------------//
     -- LSP {{{1
@@ -35,7 +34,7 @@ local pack_use = function()
         end,
     }
     use { "hrsh7th/vim-vsnip", after = "nvim-compe" }
-    use { "rafamadriz/friendly-snippets", after = "vim-vsnip" }
+    use { "rafamadriz/friendly-snippets" }
     -----------------------------------------------------------------------------//
     -- Telescope {{{1
     -----------------------------------------------------------------------------//
@@ -67,6 +66,16 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     -- Utils {{{1
     -----------------------------------------------------------------------------//
+    use { "haya14busa/is.vim", keys = { "/", "*", "#" } }
+    use {
+        "rhysd/clever-f.vim",
+        keys = { "f", "F", "t", "T" },
+        config = function()
+            vim.g.clever_f_across_no_line = 1
+            vim.cmd "map ; <Plug>(clever-f-repeat-forward)"
+            vim.cmd "map , <Plug>(clever-f-repeat-back)"
+        end,
+    }
     use {
         "folke/which-key.nvim",
         event = "BufWinEnter",

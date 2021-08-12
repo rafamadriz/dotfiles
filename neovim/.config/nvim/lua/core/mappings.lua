@@ -143,6 +143,7 @@ as.map("n", "<leader>gd", ":DiffviewOpen<CR>") -- show diff
 as.map("n", "<leader>gL", ":Neogit log<CR>") -- log
 as.map("n", "<leader>gb", ":Telescope git_branches<CR>") -- git branches
 as.map("n", "<leader>gf", ":Telescope git_files<CR>") -- git files
+as.map("n", "<leader>gm", ":Telescope git_status<CR>") -- git modified files
 as.map("n", "<leader>gc", ":Telescope git_commits<CR>") -- git commits
 as.map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>") -- preview hunk
 as.map("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>") -- toggle line blame
@@ -187,7 +188,6 @@ as.map("n", "<leader>qq", ":SClose<CR>")
 as.map("n", "<leader>qQ", ":quitall<CR>")
 as.map("n", "<leader>qd", ":SDelete<CR>")
 as.map("n", "<leader>ql", ":SLoad<CR>")
-as.map("n", "<leader>qr", ":lua require('core.util').Reload()<CR>")
 -----------------------------------------------------------------------------//
 -- Open/Run {{{1
 -----------------------------------------------------------------------------//

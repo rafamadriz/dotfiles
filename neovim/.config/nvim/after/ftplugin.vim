@@ -33,6 +33,15 @@ augroup LspInfo
     au FileType lspinfo nnoremap <silent> <buffer> q :q<CR>
 augroup END
 
+" trim trailing white space
+if g:code_trim_trailing_space == v:true
+    augroup TrimTrailing
+        au!
+        au BufWritePre * %s/\s\+$//e
+        au BufWritePre * %s/\n\+\%$//e
+    augroup END
+endif
+
 lua << EOF
 function _G.webDevIcons(path)
   local filename = vim.fn.fnamemodify(path, ':t')

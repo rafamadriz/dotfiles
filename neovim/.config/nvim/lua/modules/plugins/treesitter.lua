@@ -10,6 +10,7 @@ M.config = function()
                 use_languagetree = true,
             },
             indent = { enable = false },
+            autopairs = { enable = true },
         }
     end
 end

@@ -5,15 +5,34 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    {
-        virtual_text = as._default(vim.g.code_lsp_virtual_text, false),
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, _, params, client_id, _)
+    local config = {
         underline = as._default(vim.g.code_lsp_diagnostic_underline),
+        virtual_text = as._default(vim.g.code_lsp_virtual_text, false),
         signs = as._default(vim.g.code_lsp_diagnostic_signs_enabled),
         update_in_insert = false,
     }
-)
+    local uri = params.uri
+    local bufnr = vim.uri_to_bufnr(uri)
+
+    if not bufnr then
+        return
+    end
+
+    local diagnostics = params.diagnostics
+
+    for i, v in ipairs(diagnostics) do
+        diagnostics[i].message = string.format("%s: %s", v.source, v.message)
+    end
+
+    vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+
+    if not vim.api.nvim_buf_is_loaded(bufnr) then
+        return
+    end
+
+    vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
+end
 
 local borders = as._lsp_borders(vim.g.code_lsp_window_borders)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = borders })

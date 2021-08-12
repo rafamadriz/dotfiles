@@ -65,18 +65,16 @@ vim.opt.showmode = false
 -----------------------------------------------------------------------------//
 -- List Chars {{{1
 -----------------------------------------------------------------------------//
-if as._default(vim.g.code_listchars, false) == true then
-    vim.opt.list = true
-    vim.opt.listchars = {
-        trail = "•",
-        eol = "↴",
-        tab = "» ",
-        extends = "❯",
-        precedes = "❮",
-        nbsp = "_",
-        space = " ",
-    }
-end
+vim.opt.list = true
+vim.opt.listchars = {
+    trail = "•",
+    -- eol = "↴",
+    tab = "» ",
+    extends = "❯",
+    precedes = "❮",
+    nbsp = "_",
+    space = " ",
+}
 -----------------------------------------------------------------------------//
 -- Indentation {{{1
 -----------------------------------------------------------------------------//
@@ -202,14 +200,7 @@ vim.opt.wildignore = {
 -- TODO: refactor when autocmd API is merged:
 -- https://github.com/neovim/neovim/pull/12378
 -- https://github.com/neovim/neovim/pull/14661
-as.check_and_set(vim.g.code_trim_trailing_space, "BufWritePre", "*", [[%s/\s\+$//e]])
-as.check_and_set(vim.g.code_trim_trailing_space, "BufWritePre", "*", [[%s/\n\+\%$//e]])
-as.check_and_set(
-    vim.g.code_highlight_yank,
-    "TextYankPost",
-    "*",
-    'lua require"vim.highlight".on_yank{timeout = 250}'
-)
+as.nvim_set_au("TextYankPost", "*", 'lua require"vim.highlight".on_yank{timeout = 250}')
 as.check_and_set(
     vim.g.code_preserve_cursor,
     "BufReadPost",
