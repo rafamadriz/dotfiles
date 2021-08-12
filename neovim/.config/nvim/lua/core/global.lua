@@ -7,6 +7,8 @@ _G.as = {
 }
 
 -- create global variables for config file
+-- TODO: themes options are not working beacuse the proper global variable
+-- are not being created.
 local ok, config = pcall(require, "config")
 if ok then
     for opt, val in pairs(config) do
@@ -75,7 +77,7 @@ function as._lsp_auto(server)
 end
 
 function as._lsp_borders(value)
-    local opt = { "single", "double" }
+    local opt = { "single", "double", "rounded" }
     if value ~= nil then
         for _, v in pairs(opt) do
             if value == v then
@@ -84,18 +86,6 @@ function as._lsp_borders(value)
         end
     end
     return nil
-end
-
-function as._compe(source, component)
-    local blacklist = vim.g.code_compe_sources_blacklist
-    if blacklist ~= nil then
-        for _, v in pairs(blacklist) do
-            if source == v then
-                return false
-            end
-        end
-    end
-    return component
 end
 
 function as.select_theme(theme)

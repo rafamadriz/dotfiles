@@ -5,3 +5,6 @@ zsh-history-substring-search
 zsh-vi-mode
 viminfo
 .gitignore
+elpa
+config.el
+transient

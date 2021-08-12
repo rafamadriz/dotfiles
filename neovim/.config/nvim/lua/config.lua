@@ -50,14 +50,6 @@ local M = {
     -- @value: boolean
     preserve_cursor = true,
 
-    -- Hightlight text when yanked.
-    -- @value: boolean
-    highlight_yank = true,
-
-    -- Chars for trailing space, eol, tab, etc.
-    -- @value: boolean
-    listchars = false,
-
     -- Adds indentation guides to all lines .
     -- @value: boolean
     indent_guides = false,
@@ -107,8 +99,8 @@ local M = {
 
     -- Borders for the floating windows of LSP (e. diagnostics).
     -- @value: string
-    -- @options: single, double, none
-    lsp_window_borders = "single",
+    -- @options: single, double, rounded, none
+    lsp_window_borders = "rounded",
 
     -- Show function signature when you type.
     -- @value: boolean
@@ -135,7 +127,7 @@ local M = {
     -- Show autocomplete suggestions as you type. If diasble, the completion
     -- menu has to trigger manually with <C-Space> or <Tab>
     -- @value: boolean
-    compe_autocomplete = false,
+    compe_autocomplete = true,
 
     -- Borders for documentation in completion menu.
     -- @value: string
@@ -149,10 +141,6 @@ local M = {
     -- Number of items to show in the completion menu.
     -- @value: number
     compe_items = 10,
-
-    -- Sources that you don't want in the completin menu.
-    -- @options: lsp, buffer, snippets, path, calc, spell, emoji.
-    compe_sources_blacklist = {},
     -----------------------------------------------------------------------------//
     --- Treesitter {{{1
     -----------------------------------------------------------------------------//
