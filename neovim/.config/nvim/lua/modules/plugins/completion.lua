@@ -1,117 +1,192 @@
 local M = {}
-local map = vim.api.nvim_set_keymap
+local api = vim.api
+local feedkeys = api.nvim_feedkeys
 
-local with_text = function(text, icon)
-    if as._default(vim.g.code_compe_item_with_text) then
-        return text
-    else
-        return icon
-    end
+-- symbols for autocomplete
+local lsp_symbols = {
+    Class = "   Class",
+    Color = "   Color",
+    Constant = "   Constant",
+    Constructor = "   Constructor",
+    Enum = " ❐  Enum",
+    EnumMember = "   EnumMember",
+    Event = "   Event",
+    Field = " ﴲ  Field",
+    File = "   File",
+    Folder = "   Folder",
+    Function = "   Function",
+    Interface = " ﰮ  Interface",
+    Keyword = "   Keyword",
+    Method = "   Method",
+    Module = "   Module",
+    Operator = "   Operator",
+    Property = "   Property",
+    Reference = "   Reference",
+    Snippet = " ﬌  Snippet",
+    Struct = " ﳤ  Struct",
+    Text = "   Text",
+    TypeParameter = "   TypeParameter",
+    Unit = "   Unit",
+    Value = "   Value",
+    Variable = "[] Variable",
+}
+
+local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0
+        and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s"
+            == nil
 end
 
-M.compe = function()
-    require("compe").setup {
-        enabled = true,
-        autocomplete = as._default(vim.g.code_compe_autocomplete),
-        debug = false,
-        min_length = 3,
-        preselect = "always",
-        throttle_time = 80,
-        source_timeout = 200,
-        incomplete_delay = 400,
-        max_abbr_width = 100,
-        max_kind_width = 100,
-        max_menu_width = 100,
-        documentation = {
-            border = as._lsp_borders(vim.g.code_compe_doc_window_border), -- the border option is the same as `|help nvim_open_win|`
-            max_width = 60,
-            min_width = 60,
+M.setup = function()
+    local cmp = require "cmp"
+
+    -- require("cmp_nvim_lsp").setup()
+
+    if not as._default(vim.g.code_autocomplete) then
+        cmp.setup { completion = { autocomplete = false } }
+    end
+
+    cmp.setup {
+        completion = {
+            completeopt = "menu,menuone,noinsert",
+            keyword_length = 3,
         },
-        source = {
-            path = {
-                menu = "[P]",
-                kind = with_text("  Path", ""),
+        snippet = {
+            expand = function(args)
+                require("luasnip").lsp_expand(args.body)
+            end,
+        },
+        mapping = {
+            ["<Tab>"] = cmp.mapping(function(fallback)
+                local luasnip = require "luasnip"
+                if cmp.visible() then
+                    cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                    luasnip.expand_or_jump()
+                elseif has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end, {
+                "i",
+                "s",
+            }),
+            ["<S-Tab>"] = cmp.mapping(function()
+                local luasnip = require "luasnip"
+                if cmp.visible() then
+                    cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                else
+                    fallback()
+                end
+            end, {
+                "i",
+                "s",
+            }),
+            ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+            ["<C-f>"] = cmp.mapping.scroll_docs(4),
+            ["<C-Space>"] = cmp.mapping.complete(),
+            ["<C-e>"] = cmp.mapping.close(),
+            ["<CR>"] = cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Insert,
+                select = true,
             },
-            buffer = {
-                menu = "[B]",
-                kind = with_text("   Buffer", " "),
-            },
-            calc = {
-                menu = "[C]",
-                kind = with_text("   Calc", ""),
-            },
-            vsnip = {
-                menu = "[S]",
-                priority = 1500,
-                kind = with_text("   Snippet", " "),
-            },
-            spell = {
-                menu = "[E]",
-                kind = with_text("   Spell", ""),
-            },
-            emoji = {
-                menu = "[ ﲃ ]",
-                filetypes = { "markdown", "text" },
-            },
-            nvim_lsp = { menu = "[L]" },
-            nvim_lua = { menu = "[]" },
+        },
+        formatting = {
+            format = function(entry, item)
+                item.kind = lsp_symbols[item.kind]
+                item.menu = ({
+                    nvim_lsp = "[L]",
+                    path = "[P]",
+                    calc = "[C]",
+                    luasnip = "[S]",
+                    buffer = "[B]",
+                    spell = "[Spell]",
+                })[entry.source.name]
+                return item
+            end,
+        },
+        documentation = {
+            border = vim.g.code_lsp_window_borders,
+        },
+        sources = {
+            { name = "nvim_lsp" },
+            { name = "luasnip" },
+            { name = "buffer" },
+            { name = "path" },
+            { name = "nvim_lua" },
+            { name = "spell" },
         },
     }
 
-    local t = function(str)
-        return vim.api.nvim_replace_termcodes(str, true, true, true)
-    end
-
-    local check_back_space = function()
-        local col = vim.fn.col "." - 1
-        return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" ~= nil
-    end
-
-    -- Use (s-)tab to:
-    --- move to prev/next item in completion menuone
-    --- jump to prev/next snippet's placeholder
-    _G.tab_complete = function()
-        if vim.fn.pumvisible() == 1 then
-            return t "<C-n>"
-        elseif vim.fn.call("vsnip#available", { 1 }) == 1 then
-            return t "<Plug>(vsnip-expand-or-jump)"
-        elseif check_back_space() then
-            return t "<Tab>"
-        else
-            return vim.fn["compe#complete"]()
-        end
-    end
-    _G.s_tab_complete = function()
-        if vim.fn.pumvisible() == 1 then
-            return t "<C-p>"
-        elseif vim.fn.call("vsnip#jumpable", { -1 }) == 1 then
-            return t "<Plug>(vsnip-jump-prev)"
-        else
-            return t "<S-Tab>"
-        end
-    end
-    map("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
-    map("s", "<Tab>", "v:lua.tab_complete()", { expr = true })
-    map("i", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-    map("s", "<S-Tab>", "v:lua.s_tab_complete()", { expr = true })
-    map("i", "<C-e>", "compe#close('<C-e>')", { expr = true })
-    map("i", "<C-Space>", "compe#complete()", { expr = true })
-    map("i", "<C-d>", "compe#scroll({ 'delta': +4 })", { expr = true })
-    map("i", "<C-f>", "compe#scroll({ 'delta': -4 })", { expr = true })
-    map("i", "<C-l>", [[vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>']], { expr = true })
-    map("s", "<C-l>", [[vsnip#jumpable(1) ? '<Plug>(vsnip-jump-next)' : '<C-l>']], { expr = true })
+    local map = api.nvim_set_keymap
+    map("i", "<C-j>", "<Plug>luasnip-expand-or-jump", { silent = true })
+    map("i", "<C-k>", "<cmd>lua require('luasnip').jump(-1)<Cr>", { silent = true })
 end
 
 M.autopairs = function()
-    if as._default(vim.g.code_compe_autopairs) then
-        require("nvim-autopairs").setup {
-            disable_filetype = { "TelescopePrompt", "vim" },
-            check_ts = true,
-            fast_wrap = {},
+    if as._default(vim.g.code_autopairs) then
+        local pairs = require "nvim-autopairs"
+        local Rule = require "nvim-autopairs.rule"
+        local cond = require "nvim-autopairs.conds"
+        local endwise = require("nvim-autopairs.ts-rule").endwise
+
+        pairs.setup {
+            check_ts = false,
         }
-        require("nvim-autopairs.completion.compe").setup {
-            map_cr = true, --  map <CR> on insert mode
-            map_complete = true, -- it will auto insert `(` after select function or method item
+
+        -- Custom rules
+        pairs.add_rules {
+            -- Add spaces between parentheses when pressing <space>
+            Rule(" ", " ")
+                :with_pair(function(opts)
+                    local pair = opts.line:sub(opts.col - 1, opts.col)
+                    return vim.tbl_contains({ "()", "{}", "[]" }, pair)
+                end)
+                :with_move(cond.none())
+                :with_cr(cond.none())
+                :with_del(function(opts)
+                    local col = vim.api.nvim_win_get_cursor(0)[2]
+                    local context = opts.line:sub(col - 1, col + 2)
+                    return vim.tbl_contains({ "(  )", "{  }", "[  ]" }, context)
+                end),
+            Rule("", " )")
+                :with_pair(cond.none())
+                :with_move(function(opts)
+                    return opts.char == ")"
+                end)
+                :with_cr(cond.none())
+                :with_del(cond.none())
+                :use_key ")",
+            Rule("", " }")
+                :with_pair(cond.none())
+                :with_move(function(opts)
+                    return opts.char == "}"
+                end)
+                :with_cr(cond.none())
+                :with_del(cond.none())
+                :use_key "}",
+            Rule("", " ]")
+                :with_pair(cond.none())
+                :with_move(function(opts)
+                    return opts.char == "]"
+                end)
+                :with_cr(cond.none())
+                :with_del(cond.none())
+                :use_key "]",
+            -- arrow key on javascript, typescript
+            Rule(
+                "%(.*%)%s*%=>$",
+                " {}",
+                { "typescript", "typescriptreact", "javascript", "javascriptreact" }
+            ):use_regex(true):set_end_pair_length(1),
+            -- endwise
+            -- endwise("then$", "end", "lua", nil),
+            endwise("function%(.*%)$", "end", "lua", nil),
+            endwise("do$", "end", "lua", nil),
         }
     end
 end

@@ -47,6 +47,7 @@ M.config = function()
                 ".dll",
                 ".kdbx",
                 ".exe",
+                ".iso",
             },
             mappings = {
                 i = {
@@ -96,16 +97,14 @@ M.config = function()
                 layout_strategy = "horizontal",
                 layout_config = { height = 10, width = 0.5 },
             },
-            lsp_document_diagnostics = {
-                layout_config = { width = 0.7 },
-                layout_strategy = "vertical",
-            },
-            lsp_workspace_diagnostics = {
+            diagnostics = {
                 layout_config = { width = 0.7 },
                 layout_strategy = "vertical",
             },
             find_files = {
                 layout_config = { height = 35, preview_width = 0.55 },
+                hidden = true,
+                no_ignore = true,
             },
             help_tags = {
                 layout_config = { height = 35, preview_width = 0.65 },
@@ -117,6 +116,7 @@ M.config = function()
                 layout_config = { height = 35, preview_width = 0.55 },
             },
             file_browser = {
+                hidden = true,
                 layout_config = { height = 35, preview_width = 0.65 },
             },
             lsp_document_symbols = { previewer = false },
@@ -131,7 +131,8 @@ M.config = function()
             },
         },
     }
-    pcall(require("telescope").load_extension, "fzf") -- NOTE: not sure if this actually loads the extension.
+    pcall(require("telescope").load_extension, "fzf")
+    pcall(require("telescope").load_extension, "projects")
 end
 
 return M

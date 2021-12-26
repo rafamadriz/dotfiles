@@ -19,9 +19,11 @@ as.map("v", "$", "g_")
 as.map("n", "n", "nzzzv")
 as.map("n", "N", "Nzzzv")
 as.map("n", "J", "mzJ`z")
-as.map("i", "jk", "<ESC>")
+as.map("i", "jk", "<ESC>", { noremap = false })
 as.map("n", "<BS>", "<C-^>")
-as.map("t", "<C-o>", [[<C-\><C-n>]])
+as.map("i", "<C-H>", "<BS>", { noremap = false })
+as.map("c", "Q", "q", { silent = false })
+as.map("c", "W", "w", { silent = false })
 -- Move selected line / block of text in visual mode
 as.map("x", "K", ":move '<-2<CR>gv=gv")
 as.map("x", "J", ":move '>+1<CR>gv=gv")
@@ -45,6 +47,8 @@ as.map("v", "<", "<gv")
 as.map("v", ">", ">gv")
 -- Search and replace
 as.map("n", "c.", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]])
+-- Hop
+as.map("n", "S", ":HopChar2<CR>", { noremap = false, silent = false })
 -----------------------------------------------------------------------------//
 -- File manager {{{1
 -----------------------------------------------------------------------------//
@@ -73,8 +77,6 @@ as.map("n", "<leader>hph", ":help packer.txt<CR>")
 -----------------------------------------------------------------------------//
 -- buffers {{{1
 -----------------------------------------------------------------------------//
-as.map("n", "<TAB>", ":bnext<CR>") -- buffer next
-as.map("n", "<S-TAB>", ":bprevious<CR>") -- buffer previous
 as.map("n", "<leader>b<C-t>", ":lua require'core.util'.buf_to_tab()<CR>") -- focus in new tab
 as.map("n", "<leader>bb", ":Telescope buffers<CR>") -- all buffers
 as.map("n", "<leader>bs", ":update<CR>") -- save buffer
@@ -183,17 +185,16 @@ as.map("n", "<leader>zq", ":close<CR>")
 -----------------------------------------------------------------------------//
 -- Quit/Session {{{1
 -----------------------------------------------------------------------------//
-as.map("n", "<leader>qs", ":SSave<CR>")
-as.map("n", "<leader>qq", ":SClose<CR>")
 as.map("n", "<leader>qQ", ":quitall<CR>")
-as.map("n", "<leader>qd", ":SDelete<CR>")
-as.map("n", "<leader>ql", ":SLoad<CR>")
+as.map("n", "<leader>qc", ":lua require'persistence'.load()<CR>")
+as.map("n", "<leader>ql", ":lua require'persistence'.load({last = true})<CR>")
+as.map("n", "<leader>qq", ":Alpha<CR>")
 -----------------------------------------------------------------------------//
 -- Open/Run {{{1
 -----------------------------------------------------------------------------//
 as.map("n", "<leader>r|", [[:execute "set colorcolumn=" . (&colorcolumn == "0" ? "81" : "")<CR>]])
 as.map("n", "<leader>rr", "@:<CR>")
-as.map("n", "<leader>r'", ":Startify<CR>")
+as.map("n", "<leader>rs", ":noautocmd w<CR>")
 as.map("n", "<leader>ri", ":IndentBlanklineToggle<CR>")
 as.map("n", "<leader>rt", ":ToggleTerm<CR>")
 as.map("n", "<leader>rb", ":Telescope file_browser<CR>")

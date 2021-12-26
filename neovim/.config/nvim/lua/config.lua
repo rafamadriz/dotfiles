@@ -23,10 +23,6 @@ local M = {
     -- @value: number
     cmdheight = 1,
 
-    -- Minimal number of screen lines to keep above and below the cursor.
-    -- @value: number
-    scrolloff = 10,
-
     -- Number of spaces to use for each step of (auto)indent and number
     -- of spaces that a <Tab> counts for.
     -- @value: number
@@ -36,27 +32,6 @@ local M = {
     -- each line.
     -- @value: boolean
     relativenumber = true,
-
-    -- Highlight the screen line of the cursor.
-    -- @value: boolean
-    cursorline = true,
-
-    -- When on, lines longer than the width of the window will wrap and
-    -- displaying continues on the next line.
-    -- @value: boolean
-    word_wrap = false,
-
-    -- Keep the last cursor position when reopening a buffer.
-    -- @value: boolean
-    preserve_cursor = true,
-
-    -- Adds indentation guides to all lines .
-    -- @value: boolean
-    indent_guides = false,
-
-    -- Basic trim of trailing white space.
-    -- @value: boolean
-    trim_trailing_space = true,
 
     -- Format on save.
     -- @value: boolean
@@ -70,7 +45,7 @@ local M = {
     -----------------------------------------------------------------------------//
     -- Press <space>ht to see all available themes.
     -- @value: string
-    colorscheme = "onedark",
+    colorscheme = "github",
 
     -- These option only apply for themes available with themes-nvim.
     -- See :h themes-nvim for help.
@@ -97,14 +72,10 @@ local M = {
     -- @value: boolean
     lsp_virtual_text = false,
 
-    -- Borders for the floating windows of LSP (e. diagnostics).
+    -- Borders for the floating windows of LSP (e.g. diagnostics).
     -- @value: string
     -- @options: single, double, rounded, none
     lsp_window_borders = "rounded",
-
-    -- Show function signature when you type.
-    -- @value: boolean
-    lsp_signature_help = true,
 
     --  Enable or disable signs from LSP in signcolum.
     -- @value: boolean
@@ -120,33 +91,32 @@ local M = {
 
     -- By default, all installed servers start automatically, choose which
     -- servers to not start (you can still start them with :LspStart later).
-    lsp_autostart_blacklist = { "lua" },
+    lsp_autostart_blacklist = { "sumneko_lua" },
     -----------------------------------------------------------------------------//
     --- Completion {{{1
     -----------------------------------------------------------------------------//
     -- Show autocomplete suggestions as you type. If diasble, the completion
-    -- menu has to trigger manually with <C-Space> or <Tab>
+    -- menu has to be trigger manually with <C-Space>
     -- @value: boolean
-    compe_autocomplete = true,
-
-    -- Borders for documentation in completion menu.
-    -- @value: string
-    -- @options: single, double, none
-    compe_doc_window_border = "single",
+    autocomplete = true,
 
     -- Autocomplete pairs.
     -- @value: boolean
-    compe_autopairs = true,
+    autopairs = true,
 
     -- Number of items to show in the completion menu.
     -- @value: number
-    compe_items = 10,
+    complete_menu_items = 10,
     -----------------------------------------------------------------------------//
     --- Treesitter {{{1
     -----------------------------------------------------------------------------//
     -- Enable or disable all treesitter features.
     -- @value: boolean
     treesitter_enabled = true,
+
+    -- Enable or disable treesitter syntax highlighting.
+    -- @value: boolean
+    treesitter_highlight = true,
 
     -- Parsers to install.
     -- @options: string or a table of parsers.
@@ -164,7 +134,7 @@ local M = {
 
     -- Position of the startify header.
     -- @options: center, pad
-    startify_header_position = "center",
+    startify_header_position = "pad",
 
     -- Choose your startify header.
     -- @options: set it equal to "cowsay" to get a cow and a random quote.

@@ -40,3 +40,9 @@
 
 [difftool "kitty.gui"]
     cmd = kitty kitty +kitten diff $LOCAL $REMOTE
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
