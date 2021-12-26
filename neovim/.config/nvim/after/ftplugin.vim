@@ -4,6 +4,7 @@ augroup Filetypes
   au BufNewFile,BufRead *.ejs,*.hbs set filetype=html
   au BufNewFile,BufRead *.nix set filetype=nix
   au BufWritePost config.lua PackerCompile
+  au FileType NeogitCommitMessage set spell
 augroup END
 
 " Terminal
@@ -11,6 +12,8 @@ augroup Terminal
     au!
     au TermOpen * tnoremap <buffer> <Esc> <c-\><c-n>
     au TermOpen * tnoremap <buffer> <C-o> <c-\><c-n>
+    au TermOpen * tnoremap <buffer> <silent> <C-j> <c-\><c-n>:wincmd j<CR>
+    au TermOpen * tnoremap <buffer> <silent> <C-k> <c-\><c-n>:wincmd k<CR>
     au TermOpen * startinsert
     au TermOpen * set nonumber norelativenumber
 augroup END
@@ -34,22 +37,8 @@ augroup LspInfo
 augroup END
 
 " trim trailing white space
-if g:code_trim_trailing_space == v:true
-    augroup TrimTrailing
-        au!
-        au BufWritePre * %s/\s\+$//e
-        au BufWritePre * %s/\n\+\%$//e
-    augroup END
-endif
-
-lua << EOF
-function _G.webDevIcons(path)
-  local filename = vim.fn.fnamemodify(path, ':t')
-  local extension = vim.fn.fnamemodify(path, ':e')
-  return require'nvim-web-devicons'.get_icon(filename, extension, { default = true })
-end
-EOF
-
-function! StartifyEntryFormat() abort
-  return 'v:lua.webDevIcons(absolute_path) . " " . entry_path'
-endfunction
+augroup TrimTrailing
+    au!
+    au BufWritePre * %s/\s\+$//e
+    au BufWritePre * %s/\n\+\%$//e
+augroup END

@@ -47,15 +47,15 @@ end
 -----------------------------------------------------------------------------//
 vim.opt.colorcolumn = { as._default_num(vim.g.code_colorcolumn, 0) }
 vim.opt.cmdheight = as._default_num(vim.g.code_cmdheight, 2)
-vim.opt.scrolloff = as._default_num(vim.g.code_scrolloff, 10)
+vim.opt.scrolloff = 10
 vim.opt.conceallevel = 0
 vim.opt.signcolumn = "yes:1"
 vim.opt.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
-vim.opt.showtabline = 2
+vim.opt.showtabline = 1
 vim.opt.termguicolors = true
 vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
 vim.opt.relativenumber = as._default(vim.g.code_relativenumber)
-vim.opt.cursorline = as._default(vim.g.code_cursorline)
+vim.opt.cursorline = true
 vim.opt.title = true
 vim.opt.number = true
 vim.opt.numberwidth = 1
@@ -79,7 +79,7 @@ vim.opt.listchars = {
 -- Indentation {{{1
 -----------------------------------------------------------------------------//
 local indent = as._default_num(vim.g.code_indent_size, 4)
-vim.opt.wrap = as._default(vim.g.code_word_wrap, false)
+vim.opt.wrap = false
 vim.opt.tabstop = 8
 vim.opt.softtabstop = indent
 vim.opt.shiftwidth = indent
@@ -94,7 +94,7 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.inccommand = "nosplit"
-vim.opt.pumheight = as._default_num(vim.g.code_compe_items, 10)
+vim.opt.pumheight = as._default_num(vim.g.code_complete_menu_items, 10)
 vim.opt.completeopt = "menuone,noinsert,noselect"
 -----------------------------------------------------------------------------//
 -- Utils {{{1
@@ -110,10 +110,13 @@ vim.opt.mouse = "a"
 -----------------------------------------------------------------------------//
 -- Folds {{{1
 -----------------------------------------------------------------------------//
-vim.opt.foldlevelstart = 3
+vim.opt.foldlevelstart = 5
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldmethod = "marker"
--- vim.opt.foldmethod = "expr" -- This is kinda buggy
+-- vim.opt.foldmethod = "marker"
+vim.opt.foldmethod = "expr" -- This is kinda buggy
+vim.opt.foldnestmax = 3
+vim.opt.foldtext =
+    [[substitute(getline(v:foldstart),'\\t',repeat('\ ',&tabstop),'g').'...'.trim(getline(v:foldend)) . ' (' . (v:foldend - v:foldstart + 1) . ' lines)']]
 -----------------------------------------------------------------------------//
 -- Disable some builtin plugins {{{1
 -----------------------------------------------------------------------------//
@@ -135,6 +138,7 @@ vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_man = 1
 vim.g.loaded_remote_plugins = 1
+-- vim.g.did_load_filetypes = 1
 -- vim.g.loaded_matchit = 1
 -- vim.g.loaded_matchparen = 1
 -----------------------------------------------------------------------------//
@@ -201,8 +205,7 @@ vim.opt.wildignore = {
 -- https://github.com/neovim/neovim/pull/12378
 -- https://github.com/neovim/neovim/pull/14661
 as.nvim_set_au("TextYankPost", "*", 'lua require"vim.highlight".on_yank{timeout = 250}')
-as.check_and_set(
-    vim.g.code_preserve_cursor,
+as.nvim_set_au(
     "BufReadPost",
     "*",
     [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]

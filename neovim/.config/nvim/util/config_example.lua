@@ -23,10 +23,6 @@ local M = {
     -- @value: number
     cmdheight = 2,
 
-    -- Minimal number of screen lines to keep above and below the cursor.
-    -- @value: number
-    scrolloff = 10,
-
     -- Number of spaces to use for each step of (auto)indent and number
     -- of spaces that a <Tab> counts for.
     -- @value: number
@@ -36,27 +32,6 @@ local M = {
     -- each line.
     -- @value: boolean
     relativenumber = true,
-
-    -- Highlight the screen line of the cursor.
-    -- @value: boolean
-    cursorline = true,
-
-    -- When on, lines longer than the width of the window will wrap and
-    -- displaying continues on the next line.
-    -- @value: boolean
-    word_wrap = false,
-
-    -- Keep the last cursor position when reopening a buffer.
-    -- @value: boolean
-    preserve_cursor = true,
-
-    -- Adds indentation guides to all lines .
-    -- @value: boolean
-    indent_guides = false,
-
-    -- Basic trim of trailing white space.
-    -- @value: boolean
-    trim_trailing_space = true,
 
     -- Format on save.
     -- @value: boolean
@@ -97,14 +72,10 @@ local M = {
     -- @value: boolean
     lsp_virtual_text = false,
 
-    -- Borders for the floating windows of LSP (e. diagnostics).
+    -- Borders for the floating windows of LSP (e.g. diagnostics).
     -- @value: string
     -- @options: single, double, rounded, none
-    lsp_window_borders = "single",
-
-    -- Show function signature when you type.
-    -- @value: boolean
-    lsp_signature_help = true,
+    lsp_window_borders = "rounded",
 
     --  Enable or disable signs from LSP in signcolum.
     -- @value: boolean
@@ -125,26 +96,17 @@ local M = {
     --- Completion {{{1
     -----------------------------------------------------------------------------//
     -- Show autocomplete suggestions as you type. If diasble, the completion
-    -- menu has to trigger manually with <C-Space> or <Tab>
+    -- menu has to be trigger manually with <C-Space>
     -- @value: boolean
-    compe_autocomplete = true,
-
-    -- Borders for documentation in completion menu.
-    -- @value: string
-    -- @options: single, double, none
-    compe_doc_window_border = "single",
-
-    -- Add description text to the suggested items in the completion menu.
-    -- @value: boolean
-    compe_item_with_text = true,
+    autocomplete = true,
 
     -- Autocomplete pairs.
     -- @value: boolean
-    compe_autopairs = true,
+    autopairs = true,
 
     -- Number of items to show in the completion menu.
     -- @value: number
-    compe_items = 10,
+    complete_menu_items = 10,
     -----------------------------------------------------------------------------//
     --- Treesitter {{{1
     -----------------------------------------------------------------------------//

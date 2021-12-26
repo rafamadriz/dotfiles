@@ -12,9 +12,9 @@ alias \
 
 if exa >/dev/null 2>&1; then
     alias \
-        ls='exa --icons -F --color=always' \
-        ll='exa --icons -Fl --color=always' \
-        lla='exa --icons -Fla --color=always'
+        ls='exa --color=always' \
+        ll='exa -l --color=always' \
+        lla='exa -la --color=always'
 else
     alias \
         ls='ls -F --color=always' \
@@ -26,6 +26,8 @@ fi
 alias \
     sx='startx $HOME/.config/X11/xinitrc' \
     nuke='rm -rf' \
+    sctl='sudo systemctl' \
+    open='xdg-open' \
     sysinfo="inxi -Fxz" \
     untar='tar -xvf' \
     icat='kitty +kitten icat' \
@@ -45,6 +47,7 @@ alias \
 alias \
     ga='git add' \
     gcl='git clone' \
+    gcd='cd $(git rev-parse --show-toplevel)' \
     gaa='git add --all' \
     gb='git branch -a' \
     gcm='git commit -m' \

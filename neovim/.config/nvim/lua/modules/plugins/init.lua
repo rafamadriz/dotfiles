@@ -1,6 +1,9 @@
+require "impatient" -- Improve startup a little.
 local pack_use = function()
     local use = require("packer").use
     use { "wbthomason/packer.nvim" }
+    -- NOTE: this is plugin is unnecessary once https://github.com/neovim/neovim/pull/15436 is merged
+    use { "lewis6991/impatient.nvim" }
     -----------------------------------------------------------------------------//
     -- Required by others {{{1
     -----------------------------------------------------------------------------//
@@ -12,12 +15,13 @@ local pack_use = function()
     use { "ray-x/lsp_signature.nvim" }
     use {
         "neovim/nvim-lspconfig",
+        event = "BufReadPre",
         config = function()
             require "modules.lsp"
         end,
     }
     use {
-        "kabouzeid/nvim-lspinstall",
+        "williamboman/nvim-lsp-installer",
         after = "nvim-lspconfig",
         config = function()
             require "modules.lsp.servers"
@@ -27,20 +31,37 @@ local pack_use = function()
     -- Completion and snippets {{{1
     -----------------------------------------------------------------------------//
     use {
-        "hrsh7th/nvim-compe",
+        "hrsh7th/nvim-cmp",
         event = "InsertEnter",
+        requires = {
+            { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+            { "f3fora/cmp-spell", after = "nvim-cmp" },
+            { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+        },
         config = function()
-            require("modules.plugins.completion").compe()
+            require("modules.plugins.completion").setup()
         end,
     }
-    use { "hrsh7th/vim-vsnip", after = "nvim-compe" }
+    use {
+        "L3MON4D3/LuaSnip",
+        after = "nvim-cmp",
+        config = function()
+            require("luasnip").config.set_config {
+                history = true,
+            }
+            require("luasnip.loaders.from_vscode").load {}
+        end,
+    }
     use { "rafamadriz/friendly-snippets" }
     -----------------------------------------------------------------------------//
     -- Telescope {{{1
     -----------------------------------------------------------------------------//
     use {
         "nvim-telescope/telescope-fzf-native.nvim",
-        opt = true,
+        cmd = "Telescope",
         run = "make",
     }
     use {
@@ -53,7 +74,10 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     -- Treesitter {{{1
     -----------------------------------------------------------------------------//
-    use { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" }
+    use {
+        "nvim-treesitter/playground",
+        cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" },
+    }
     use {
         "nvim-treesitter/nvim-treesitter",
         branch = "0.5-compat",
@@ -66,7 +90,13 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     -- Utils {{{1
     -----------------------------------------------------------------------------//
-    use { "haya14busa/is.vim", keys = { "/", "*", "#" } }
+    use {
+        "phaazon/hop.nvim",
+        cmd = { "HopChar2" },
+        config = function()
+            require("hop").setup()
+        end,
+    }
     use {
         "rhysd/clever-f.vim",
         keys = { "f", "F", "t", "T" },
@@ -93,13 +123,12 @@ local pack_use = function()
     use {
         "kyazdani42/nvim-tree.lua",
         requires = "nvim-web-devicons",
-        cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
         config = function()
             require("modules.plugins.filetree").config()
         end,
     }
     use {
-        "akinsho/nvim-toggleterm.lua",
+        "akinsho/toggleterm.nvim",
         keys = "<A-t>",
         cmd = "ToggleTerm",
         config = function()
@@ -113,21 +142,22 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     -- Improve Editing {{{1
     -----------------------------------------------------------------------------//
-    use { "machakann/vim-sandwich", event = "BufRead" }
+    use { "tommcdo/vim-exchange", keys = { { "n", "cx" }, { "v", "X" } } }
+    use { "machakann/vim-sandwich", event = { "BufRead", "InsertLeave" } }
     use {
         "windwp/nvim-autopairs",
-        after = "nvim-compe",
+        after = "nvim-cmp",
         config = function()
             require("modules.plugins.completion").autopairs()
         end,
     }
     use {
-        "b3nj5m1n/kommentary",
+        "numToStr/Comment.nvim",
         keys = { "gcc", "gc" },
         config = function()
-            require("kommentary.config").configure_language("default", {
-                prefer_single_line_comments = true,
-            })
+            require("Comment").setup {
+                ignore = "^$",
+            }
         end,
     }
     -----------------------------------------------------------------------------//
@@ -167,7 +197,7 @@ local pack_use = function()
         end,
     }
     -----------------------------------------------------------------------------//
-    -- UI
+    -- UI {{{1
     -----------------------------------------------------------------------------//
     use "rafamadriz/themes.nvim"
     use {
@@ -177,19 +207,9 @@ local pack_use = function()
         end,
     }
     use {
-        "mhinz/vim-startify",
-        event = "VimEnter",
+        "goolord/alpha-nvim",
         config = function()
-            require("modules.plugins.startify").config()
-        end,
-    }
-    use {
-        "lukas-reineke/indent-blankline.nvim",
-        cond = function()
-            return as._default(vim.g.code_indent_guides, false)
-        end,
-        config = function()
-            require("modules.plugins.indent-guides").config()
+            require("modules.plugins.alpha").config()
         end,
     }
     -----------------------------------------------------------------------------//
@@ -197,9 +217,25 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
-        "airblade/vim-rooter",
+        "folke/persistence.nvim",
+        module = "persistence",
+        event = "BufReadPre",
+        config = function()
+            require("persistence").setup {
+                dir = vim.fn.expand(vim.fn.stdpath "cache" .. "/sessions/"),
+            }
+        end,
+    }
+    use {
+        "ahmedkhalf/project.nvim",
         event = "BufRead",
-        config = [[vim.g.rooter_silent_chdir = 1]],
+        ft = "alpha",
+        config = function()
+            require("project_nvim").setup {
+                detection_methods = { "pattern", "lsp" },
+                show_hidden = true, -- show hidden files in telescope
+            }
+        end,
     }
     use {
         "turbio/bracey.vim",
@@ -261,7 +297,7 @@ local function load_plugins()
 end
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+    vim.cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     load_plugins()
     require("packer").sync()
 else

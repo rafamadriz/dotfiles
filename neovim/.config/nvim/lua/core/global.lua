@@ -7,7 +7,7 @@ _G.as = {
 }
 
 -- create global variables for config file
--- TODO: themes options are not working beacuse the proper global variable
+-- FIXME: themes options are not working beacuse the proper global variable
 -- are not being created.
 local ok, config = pcall(require, "config")
 if ok then
@@ -40,7 +40,7 @@ function as.check_and_set(option, au_type, where, dispatch, boolean)
 end
 
 -- inspect
-function as.dump(...)
+function D(...)
     local objects = vim.tbl_map(vim.inspect, { ... })
     print(unpack(objects))
     return ...

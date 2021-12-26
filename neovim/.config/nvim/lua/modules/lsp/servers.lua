@@ -6,9 +6,7 @@ local function common_on_attach(client, bufnr)
     if as._default(vim.g.code_lsp_document_highlight) then
         require("modules.lsp").documentHighlight(client, bufnr)
     end
-    if as._default(vim.g.code_lsp_signature_help) then
-        require("lsp_signature").on_attach { max_width = 90, fix_pos = true, hint_prefix = " " }
-    end
+    require("lsp_signature").on_attach { max_width = 90, fix_pos = true, hint_prefix = " " }
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
     -- mappings
     as.map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
@@ -26,10 +24,10 @@ local function common_on_attach(client, bufnr)
     as.map("n", "<leader>lh", ":lua vim.lsp.buf.hover()<CR>")
     as.map("n", "<leader>lk", ":lua vim.lsp.buf.signature_help()<CR>")
     as.map("n", "<leader>la", ":Telescope lsp_code_actions<CR>")
-    as.map("n", "<leader>lc", ":lua vim.lsp.diagnostic.clear(0)<CR>")
+    as.map("n", "<leader>lc", ":lua vim.diagnostic.hide()<CR>")
     as.map("n", "<leader>lA", ":Telescope lsp_range_code_actions<CR>")
-    as.map("n", "<leader>ld", ":Telescope lsp_document_diagnostics<CR>")
-    as.map("n", "<leader>lD", ":Telescope lsp_workspace_diagnostics<CR>")
+    as.map("n", "<leader>ld", ":Telescope diagnostics bufnr=0<CR>")
+    as.map("n", "<leader>lD", ":Telescope diagnostics<CR>")
     as.map("n", "<leader>lr", ":lua vim.lsp.buf.rename()<CR>")
     as.map("n", "<leader>ls", ":Telescope lsp_document_symbols<CR>")
     as.map("n", "<leader>lS", ":Telescope lsp_workspace_symbols<CR>")
@@ -38,24 +36,24 @@ local function common_on_attach(client, bufnr)
     as.map(
         "n",
         "<leader>ll",
-        ":lua vim.lsp.diagnostic.show_line_diagnostics({border = as._lsp_borders(vim.g.code_lsp_window_borders)})<CR>"
+        ":lua vim.diagnostic.open_float(0, {border = as._lsp_borders(vim.g.code_lsp_window_borders)})<CR>"
     )
     as.map(
         "n",
         "<c-p>",
-        ":lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = as._lsp_borders(vim.g.code_lsp_window_borders)}})<CR>"
+        ":lua vim.diagnostic.goto_prev({float = {border = as._lsp_borders(vim.g.code_lsp_window_borders)}})<CR>"
     )
     as.map(
         "n",
         "<c-n>",
-        ":lua vim.lsp.diagnostic.goto_next({popup_opts = {border = as._lsp_borders(vim.g.code_lsp_window_borders)}})<CR>"
+        ":lua vim.diagnostic.goto_next({float = {border = as._lsp_borders(vim.g.code_lsp_window_borders)}})<CR>"
     )
     as.map("n", "<leader>l,s", [[:LspStop <C-R>=<CR>]], { silent = false })
 
     as.nvim_set_au(
         "InsertLeave,BufWrite,BufEnter",
         "<buffer>",
-        "lua vim.lsp.diagnostic.set_loclist({open_loclist = false})"
+        "lua vim.diagnostic.setloclist({open = false})"
     )
 
     local mappings = {
@@ -138,75 +136,27 @@ local lua_settings = {
     },
 }
 
-local function make_config()
-    return {
+require("nvim-lsp-installer").on_server_ready(function(server)
+    local opts = {
         -- enable snippet support
         capabilities = require("modules.lsp").capabilities,
         -- map buffer local keybindings when the language server attaches
         on_attach = common_on_attach,
         flags = { debounce_text_changes = 150 },
+        autostart = as._lsp_auto(server.name),
     }
-end
 
--- lsp-install
-local function setup_servers()
-    require("lspinstall").setup()
-
-    -- get all installed servers
-    local servers = require("lspinstall").installed_servers()
-
-    for _, server in pairs(servers) do
-        local config = make_config()
-
-        config.autostart = as._lsp_auto(server)
-
-        -- language specific config
-        if server == "typescript" then
-            config.filetypes = {
-                "javascript",
-                "javascriptreact",
-                "javascript.jsx",
-                "typescript",
-                "typescriptreact",
-                "typescript.tsx",
-            }
-        end
-        if server == "bash" then
-            config.filetypes = { "sh", "zsh" }
-        end
-        if server == "lua" then
-            config.settings = lua_settings
-        end
-        if server == "cpp" then
-            config.filetypes = { "c", "cpp" }
-        end
-
-        require("lspconfig")[server].setup(config)
+    -- language specific config
+    if server.name == "bashls" then
+        opts.filetypes = { "sh", "zsh" }
     end
-end
+    if server.name == "sumneko_lua" then
+        opts.settings = lua_settings
+    end
+    if server.name == "clangd" then
+        opts.filetypes = { "c", "cpp" }
+    end
 
-setup_servers()
-
--- npm i -g emmet-ls
-local lspconfig = require "lspconfig"
-local configs = require "lspconfig/configs"
-if not lspconfig.emmet_ls then
-    configs.emmet_ls = {
-        default_config = {
-            autostart = as._lsp_auto "emmet",
-            cmd = { "emmet-ls", "--stdio" },
-            filetypes = { "html", "css" },
-            root_dir = function()
-                return vim.loop.cwd()
-            end,
-            settings = {},
-        },
-    }
-end
-lspconfig.emmet_ls.setup { capabilities = require("modules.lsp").capabilities }
-
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require("lspinstall").post_install_hook = function()
-    setup_servers() -- reload installed servers
-    vim.cmd "bufdo e"
-end
+    server:setup(opts)
+    vim.cmd [[ do User LspAttachBuffers ]]
+end)
