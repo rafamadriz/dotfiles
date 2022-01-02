@@ -102,7 +102,7 @@ local M = {
 
     -- Autocomplete pairs.
     -- @value: boolean
-    autopairs = true,
+    autopairs = false,
 
     -- Number of items to show in the completion menu.
     -- @value: number

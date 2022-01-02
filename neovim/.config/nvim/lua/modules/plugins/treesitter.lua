@@ -7,7 +7,7 @@ M.config = function()
             ignore_install = vim.g.code_treesitter_parsers_ignore or {},
             highlight = {
                 enable = as._default(vim.g.code_treesitter_highlight), -- false will disable the whole extension
-                use_languagetree = true,
+                disable = { "html" },
             },
             indent = { enable = false },
             autopairs = { enable = true },

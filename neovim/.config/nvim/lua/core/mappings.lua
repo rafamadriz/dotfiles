@@ -92,6 +92,16 @@ as.map("n", "<leader>bn", [[:enew<CR>]], { silent = false }) -- new buffer
 as.map("n", "<leader>bf", [[:e <C-R>=expand("%:p:h") . "/" <CR>]], { silent = false }) -- new file
 as.map("n", "<leader>bv", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], { silent = false }) -- new split
 -----------------------------------------------------------------------------//
+-- notes {{{1
+-----------------------------------------------------------------------------//
+as.map("n", "<leader>nf", ":Telescope zk notes<CR>")
+as.map("n", "<leader>nt", ":Telescope zk tags<CR>")
+as.map("n", "<leader>nl", ":Telescope zk links<CR>")
+as.map("n", "<leader>nb", ":Telescope zk backlinks<CR>")
+as.map("n", "<leader>no", ":Telescope zk orphans<CR>")
+as.map("n", "<leader>nn", ':ZkNew {dir = "", title = ""}<Left><Left>', { silent = false })
+as.map("v", "<leader>nL", ":ZkNewLink<CR>")
+-----------------------------------------------------------------------------//
 -- tabs {{{1
 -----------------------------------------------------------------------------//
 as.map("n", "<leader>tq", [[:tabclose<CR>]], { silent = false }) -- tab close
@@ -192,10 +202,8 @@ as.map("n", "<leader>qq", ":Alpha<CR>")
 -----------------------------------------------------------------------------//
 -- Open/Run {{{1
 -----------------------------------------------------------------------------//
-as.map("n", "<leader>r|", [[:execute "set colorcolumn=" . (&colorcolumn == "0" ? "81" : "")<CR>]])
 as.map("n", "<leader>rr", "@:<CR>")
 as.map("n", "<leader>rs", ":noautocmd w<CR>")
-as.map("n", "<leader>ri", ":IndentBlanklineToggle<CR>")
 as.map("n", "<leader>rt", ":ToggleTerm<CR>")
 as.map("n", "<leader>rb", ":Telescope file_browser<CR>")
 as.map("n", "<leader>r.", ":NvimTreeFindFile<CR>")
