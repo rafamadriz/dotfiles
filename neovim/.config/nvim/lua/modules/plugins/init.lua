@@ -80,7 +80,6 @@ local pack_use = function()
     }
     use {
         "nvim-treesitter/nvim-treesitter",
-        branch = "0.5-compat",
         run = ":TSUpdate",
         event = "BufRead",
         config = function()
@@ -142,6 +141,7 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     -- Improve Editing {{{1
     -----------------------------------------------------------------------------//
+    use { "wellle/targets.vim", event = { "BufEnter" } }
     use { "tommcdo/vim-exchange", keys = { { "n", "cx" }, { "v", "X" } } }
     use { "machakann/vim-sandwich", event = { "BufRead", "InsertLeave" } }
     use {
@@ -217,6 +217,12 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
+        "mickael-menu/zk-nvim",
+        config = function()
+            require("zk").setup()
+        end,
+    }
+    use {
         "folke/persistence.nvim",
         module = "persistence",
         event = "BufReadPre",
@@ -236,12 +242,6 @@ local pack_use = function()
                 show_hidden = true, -- show hidden files in telescope
             }
         end,
-    }
-    use {
-        "turbio/bracey.vim",
-        opt = true,
-        ft = "html",
-        run = "npm install --prefix server",
     }
     use {
         "iamcco/markdown-preview.nvim",
@@ -280,7 +280,7 @@ local pack_use = function()
 end
 -- }}}
 
-local fn, execute = vim.fn, vim.api.nvim_command
+local fn = vim.fn
 local install_path = DATA_PATH .. "/site/pack/packer/start/packer.nvim"
 
 local function load_plugins()

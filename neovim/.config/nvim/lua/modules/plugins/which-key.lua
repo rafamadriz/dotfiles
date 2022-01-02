@@ -92,6 +92,16 @@ M.config = function()
                 s = "save buffer",
                 v = "new file in split",
             },
+            n = {
+                name = "notes",
+                L = "new link",
+                b = "zk backlinks",
+                f = "find notes",
+                l = "zk links",
+                n = "new note",
+                o = "zk orphans",
+                t = "find tags",
+            },
             t = {
                 name = "tabs",
                 ["["] = "previous tab",
@@ -168,7 +178,6 @@ M.config = function()
             },
             r = {
                 name = "run/open",
-                ["|"] = "toggle color column",
                 ["."] = "find current file",
                 J = "append line down",
                 K = "append line up",
@@ -176,7 +185,6 @@ M.config = function()
                 e = "open explorer",
                 f = "format",
                 g = "gitsigns refresh",
-                i = "indent guides toggle",
                 l = "open loclist window",
                 n = "open neovim config",
                 q = "open quickfix window",

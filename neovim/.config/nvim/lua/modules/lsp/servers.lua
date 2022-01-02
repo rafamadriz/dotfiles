@@ -99,43 +99,6 @@ local function common_on_attach(client, bufnr)
     wk.register(mappings)
 end
 
-local path = vim.split(package.path, ";")
--- this is the ONLY correct way to setup your path
-table.insert(path, "lua/?.lua")
-table.insert(path, "lua/?/init.lua")
-local lua_settings = {
-    Lua = {
-        runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = "LuaJIT",
-            -- Setup your lua path
-            path = path,
-        },
-        diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = {
-                "vim",
-                "as",
-                "DATA_PATH",
-                "use",
-                "run",
-            },
-        },
-        workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = {
-                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-            },
-            maxPreload = 10000,
-            preloadFileSize = 50000,
-        },
-        telemetry = {
-            enable = false,
-        },
-    },
-}
-
 require("nvim-lsp-installer").on_server_ready(function(server)
     local opts = {
         -- enable snippet support
@@ -151,10 +114,24 @@ require("nvim-lsp-installer").on_server_ready(function(server)
         opts.filetypes = { "sh", "zsh" }
     end
     if server.name == "sumneko_lua" then
-        opts.settings = lua_settings
-    end
-    if server.name == "clangd" then
-        opts.filetypes = { "c", "cpp" }
+        opts.settings = {
+            Lua = {
+                diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = {
+                        "vim",
+                        "as",
+                        "DATA_PATH",
+                        "use",
+                        "run",
+                    },
+                },
+                workspace = {
+                    maxPreload = 10000,
+                    preloadFileSize = 50000,
+                },
+            },
+        }
     end
 
     server:setup(opts)

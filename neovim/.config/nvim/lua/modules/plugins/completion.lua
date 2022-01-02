@@ -131,52 +131,15 @@ M.autopairs = function()
     if as._default(vim.g.code_autopairs) then
         local pairs = require "nvim-autopairs"
         local Rule = require "nvim-autopairs.rule"
-        local cond = require "nvim-autopairs.conds"
         local endwise = require("nvim-autopairs.ts-rule").endwise
 
         pairs.setup {
             check_ts = false,
+            disable_in_macro = true,
         }
 
         -- Custom rules
         pairs.add_rules {
-            -- Add spaces between parentheses when pressing <space>
-            Rule(" ", " ")
-                :with_pair(function(opts)
-                    local pair = opts.line:sub(opts.col - 1, opts.col)
-                    return vim.tbl_contains({ "()", "{}", "[]" }, pair)
-                end)
-                :with_move(cond.none())
-                :with_cr(cond.none())
-                :with_del(function(opts)
-                    local col = vim.api.nvim_win_get_cursor(0)[2]
-                    local context = opts.line:sub(col - 1, col + 2)
-                    return vim.tbl_contains({ "(  )", "{  }", "[  ]" }, context)
-                end),
-            Rule("", " )")
-                :with_pair(cond.none())
-                :with_move(function(opts)
-                    return opts.char == ")"
-                end)
-                :with_cr(cond.none())
-                :with_del(cond.none())
-                :use_key ")",
-            Rule("", " }")
-                :with_pair(cond.none())
-                :with_move(function(opts)
-                    return opts.char == "}"
-                end)
-                :with_cr(cond.none())
-                :with_del(cond.none())
-                :use_key "}",
-            Rule("", " ]")
-                :with_pair(cond.none())
-                :with_move(function(opts)
-                    return opts.char == "]"
-                end)
-                :with_cr(cond.none())
-                :with_del(cond.none())
-                :use_key "]",
             -- arrow key on javascript, typescript
             Rule(
                 "%(.*%)%s*%=>$",
@@ -184,9 +147,8 @@ M.autopairs = function()
                 { "typescript", "typescriptreact", "javascript", "javascriptreact" }
             ):use_regex(true):set_end_pair_length(1),
             -- endwise
-            -- endwise("then$", "end", "lua", nil),
+            endwise("then$", "end", "lua", "if_statement"),
             endwise("function%(.*%)$", "end", "lua", nil),
-            endwise("do$", "end", "lua", nil),
         }
     end
 end
