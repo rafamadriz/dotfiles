@@ -219,7 +219,7 @@ local pack_use = function()
     use {
         "mickael-menu/zk-nvim",
         config = function()
-            require("zk").setup()
+            require("zk").setup { picker = "telescope" }
         end,
     }
     use {

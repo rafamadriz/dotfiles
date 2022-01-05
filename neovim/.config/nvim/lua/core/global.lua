@@ -7,13 +7,14 @@ _G.as = {
 }
 
 -- create global variables for config file
--- FIXME: themes options are not working beacuse the proper global variable
--- are not being created.
 local ok, config = pcall(require, "config")
 if ok then
     for opt, val in pairs(config) do
         local key = "code_" .. opt
         if not vim.g[key] then
+            if string.match(opt, "themes") then
+                vim.g[opt] = val
+            end
             vim.g[key] = val
         end
     end

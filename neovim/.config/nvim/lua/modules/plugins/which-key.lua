@@ -94,12 +94,11 @@ M.config = function()
             },
             n = {
                 name = "notes",
-                L = "new link",
                 b = "zk backlinks",
                 f = "find notes",
                 l = "zk links",
                 n = "new note",
-                o = "zk orphans",
+                r = "recent notes (3 days ago)",
                 t = "find tags",
             },
             t = {
@@ -235,6 +234,11 @@ M.config = function()
             ["b"] = { name = "buffers", s = "save buffer" },
             ["f"] = { "format selection" },
             ["g"] = { name = "git link", y = "copy permalink selection" },
+            n = {
+                name = "notes",
+                L = "new link",
+                m = "filter notes wit visual selection",
+            },
         },
     }
     -- }}}

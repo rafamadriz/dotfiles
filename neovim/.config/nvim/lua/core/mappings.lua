@@ -1,12 +1,17 @@
 -----------------------------------------------------------------------------//
---[[ NOTE:
+--[[
+NOTE:
 In telescope use <C-q> to send all results to quickfix and <M-q> or
 <A-q> to send selected items
 
- You can use a regex pattern as part of a range in command mode, E.g.
- :3,/stop/s/hello/world/g ]]
+You can use a regex pattern as part of a range in command mode, E.g.
+:3,/stop/s/hello/world/g
 
--- TODO: Refactor whenever https://github.com/neovim/neovim/pull/13823 gets merged
+NOTE: https://github.com/monkoose/neovim-setup/blob/779fe63f3fb435e88452589080323daa94804cf0/lua/conf/maps.lua
+    interesting approach on doing mappings, might do the same
+
+TODO: Refactor whenever https://github.com/neovim/neovim/pull/13823 gets merged
+]]
 -----------------------------------------------------------------------------//
 vim.g.mapleader = " "
 -----------------------------------------------------------------------------//
@@ -94,13 +99,14 @@ as.map("n", "<leader>bv", [[:vsp <C-R>=expand("%:p:h") . "/" <CR>]], { silent = 
 -----------------------------------------------------------------------------//
 -- notes {{{1
 -----------------------------------------------------------------------------//
-as.map("n", "<leader>nf", ":Telescope zk notes<CR>")
-as.map("n", "<leader>nt", ":Telescope zk tags<CR>")
-as.map("n", "<leader>nl", ":Telescope zk links<CR>")
-as.map("n", "<leader>nb", ":Telescope zk backlinks<CR>")
-as.map("n", "<leader>no", ":Telescope zk orphans<CR>")
+as.map("n", "<leader>nf", ":ZkNotes<CR>")
+as.map("n", "<leader>nr", ":ZkNotes {createdAfter= '3 days ago'}<CR>")
+as.map("n", "<leader>nt", ":ZkTags<CR>")
+as.map("n", "<leader>nl", ":ZkLinks<CR>")
+as.map("n", "<leader>nb", ":ZkBacklinks<CR>")
 as.map("n", "<leader>nn", ':ZkNew {dir = "", title = ""}<Left><Left>', { silent = false })
-as.map("v", "<leader>nL", ":ZkNewLink<CR>")
+as.map("v", "<leader>nL", ":ZkNewFromTitleSelection<CR>")
+as.map("v", "<leader>nm", ":ZkMatch<CR>")
 -----------------------------------------------------------------------------//
 -- tabs {{{1
 -----------------------------------------------------------------------------//
