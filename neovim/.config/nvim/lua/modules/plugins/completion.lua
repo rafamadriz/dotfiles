@@ -1,6 +1,4 @@
 local M = {}
-local api = vim.api
-local feedkeys = api.nvim_feedkeys
 
 -- symbols for autocomplete
 local lsp_symbols = {
@@ -122,7 +120,7 @@ M.setup = function()
         },
     }
 
-    local map = api.nvim_set_keymap
+    local map = vim.api.nvim_set_keymap
     map("i", "<C-j>", "<Plug>luasnip-expand-or-jump", { silent = true })
     map("i", "<C-k>", "<cmd>lua require('luasnip').jump(-1)<Cr>", { silent = true })
 end
