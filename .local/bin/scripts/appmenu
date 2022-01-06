@@ -1,9 +1,0 @@
-#!/bin/env bash
-
-# display an app lanucher from rofi
-
-rofi_command="rofi -show drun"
-style="$HOME/.config/rofi/styles/appmenu.rasi"
-
-appmenu() { $rofi_command -theme "$style"; }
-appmenu
