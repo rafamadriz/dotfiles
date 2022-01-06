@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Video
-Icon=mpv
-Exec=mpv --player-operation-mode=pseudo-gui -- %U
