@@ -1,0 +1,4 @@
+[".config/kitty"]
+    type = "archive"
+    url = "https://github.com/kovidgoyal/kitty-themes/archive/master.tar.gz"
+    stripComponents = 1
