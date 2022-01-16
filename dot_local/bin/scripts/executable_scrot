@@ -1,0 +1,24 @@
+#!/bin/env sh
+
+main() {
+    if [ $# -gt 0 ]; then
+        case $1 in
+        --select | -s)
+            maim --select ~/Pictures/scrot/$(date '+%s').png
+            exit 0
+            ;;
+        --copy | -c)
+            maim | xclip -selection clipboard -t image/png
+            exit 0
+            ;;
+        --select-and-copy | -C)
+            maim --select | xclip -selection clipboard -t image/png
+            exit 0
+            ;;
+        esac
+    else
+        maim ~/Pictures/scrot/$(date '+%s').png
+    fi
+}
+
+main "$@"
