@@ -10,3 +10,7 @@ README.md
 {{ if not (lookPath "maim") }}
 .local/bin/scripts/scrot
 {{- end }}
+
+{{ if not (lookPath "neofetch") }}
+.config/neofetch/*
+{{- end }}
