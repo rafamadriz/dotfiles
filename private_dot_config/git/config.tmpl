@@ -1,0 +1,45 @@
+[user]
+  email = {{ .email }}
+  name = {{ .name }}
+  signingkey = {{ .signingkey }}
+
+[commit]
+  gpgsign = false
+
+[core]
+  editor = nvim
+
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[pager]
+    diff = delta
+    log = delta
+    reflog = delta
+    show = delta
+
+[delta]
+    line-numbers = true
+
+[interactive]
+    diffFilter = delta --color-only
+
+[diff]
+    tool = kitty
+    guitool = kitty.gui
+
+[difftool]
+    prompt = false
+    trustExitCode = true
+
+[difftool "kitty"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
+
+[difftool "kitty.gui"]
+    cmd = kitty kitty +kitten diff $LOCAL $REMOTE
+
+[color]
+    ui = auto
+
+[init]
+    defaultBranch = main
