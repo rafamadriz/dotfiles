@@ -1,2 +1,12 @@
 README.md
 .stylua.toml
+
+{{ if not (lookPath "lf") }}
+.config/lf
+.local/bin/scripts/preview
+.local/bin/scripts/togglex
+{{- end }}
+
+{{ if not (lookPath "maim") }}
+.local/bin/scripts/scrot
+{{- end }}
