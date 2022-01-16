@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# add color to commands
+alias \
+    grep="grep --color=auto" \
+    diff="diff --color=auto" \
+    dir='dir --color=auto' \
+    grep='grep --color=auto' \
+    fgrep='fgrep --color=auto' \
+    egrep='egrep --color=auto' \
+    ls='ls -F --color=always' \
+    ll='ls -Fl --color=always' \
+    lla='ls -Fla --color=always'
+
+# shortcuts
+alias \
+    cp='cp -iv' \
+    d='kitty +kitten diff' \
+    icat='kitty +kitten icat' \
+    mv='mv -iv' \
+    nuke='rm -rI' \
+    {{- if eq .chezmoi.os "linux" }}
+    open='xdg-open' \
+    s='systemctl' \
+    {{- end }}
+    rm='rm -vI' \
+    sudo='sudo ' \
+    sysinfo="inxi -Fxz" \
+    untar='tar -xvf' \
+    v='nvim' \
+    vim='nvim' \
+    ..='cd ..' \
+    ...='cd ../..' \
+    ....='cd ../../..'
+
+# git
+alias \
+    g='git' \
+    ga='git add' \
+    gcl='git clone' \
+    cdg='cd $(git rev-parse --show-toplevel)' \
+    gaa='git add --all' \
+    gb='git branch -a' \
+    gcm='git commit -m' \
+    gd='git diff' \
+    gp='git push' \
+    gl='git pull' \
+    gll='git log' \
+    gs='git status' \
+    gr='git remote -v' \
+    grm='git rm' \
+    grmc='git rm --cached' \
+    gmv='git mv'
