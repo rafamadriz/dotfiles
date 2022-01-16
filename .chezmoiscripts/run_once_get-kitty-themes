@@ -1,0 +1,22 @@
+#!/bin/env sh
+
+# Script to pull kitty themes. Originally, I was using
+# `.chezmoiexternal.toml`[0] to pull the repo with the themes, but this adds
+# all of the repo files to be managed by chezmoi, which pollutes all chezmoi
+# actions (e.g. `chezmoi edit`) with all of those files, and I don't like that.
+#
+# [0]: https://www.chezmoi.io/docs/reference/#chezmoiexternalformat
+
+url="https://github.com/kovidgoyal/kitty-themes.git"
+
+if command -v git >/dev/null 2>&1; then
+    cd ~/.config/kitty || exit
+    if [ ! -d "./.git" ]; then
+        echo "No version control history found. Initializing new repository"
+        git init .
+        git remote add origin $url
+        git pull origin master
+    else
+        echo "Repository already exist" && exit
+    fi
+fi
