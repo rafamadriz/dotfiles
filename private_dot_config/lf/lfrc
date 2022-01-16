@@ -1,7 +1,7 @@
 set icons
 set drawbox
 set hidden true
-set previewer ~/.local/bin/scripts/preview
+set previewer ~/.config/lf/preview
 set preview true
 
 # Basic bindings
@@ -11,7 +11,6 @@ map nf nfile
 map N nfiles
 map nd mkdir
 map * mkex
-map o open_config
 map p %cp -ri -- $fs .
 map m %mv -i -- $fs .
 map au unarchive
@@ -28,12 +27,8 @@ map c
 # bookmarks
 map ~ cd ~/
 map T cd ~/.local/share/Trash/files
-map D cd ~/downloads
-map P cd ~/pictures
-map M cd /media/rafa/Media
 map bz cd ~/.config/zsh
 map bn cd ~/.config/nvim
-map br cd ~/.config/rofi
 
 # Custom Functions
 cmd open ${{
@@ -41,10 +36,6 @@ cmd open ${{
         text/*|application/json) $EDITOR "$f";;
         *) xdg-open "$f" ;;
     esac
-}}
-
-cmd open_config ${{
-    du -a ~/.config/* ~/.local/bin/* ~/.local/share/rais/* | awk '{print $2}' | fzf | xargs -r "$EDITOR" ;
 }}
 
 cmd mkdir ${{
@@ -68,7 +59,7 @@ cmd nfiles ${{
 cmd mkex ${{
   for file in "$fx"
   do
-    togglex $file
+    ./.config/lf/togglex $file
   done
 
   lf -remote 'send reload'
