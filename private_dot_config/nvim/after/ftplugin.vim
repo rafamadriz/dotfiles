@@ -7,6 +7,9 @@ augroup Filetypes
   au FileType NeogitCommitMessage set spell textwidth=72
 augroup END
 
+" chezmoi
+autocmd BufWritePost ~/.local/share/chezmoi/* silent! ! chezmoi apply --source-path "%"
+
 " Terminal
 augroup Terminal
     au!
