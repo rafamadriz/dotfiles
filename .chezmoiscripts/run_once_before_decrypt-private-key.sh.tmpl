@@ -3,7 +3,7 @@
 # Source: https://github.com/twpayne/chezmoi/pull/1795
 
 if [ ! -f "{{ .chezmoi.homeDir }}/.config/age/key.txt" ]; then
-    mkdir -p "{{ .chezmoi.homeDir }}/.config/age/key.txt"
+    mkdir -p "{{ .chezmoi.homeDir }}/.config/age"
     age --decrypt --output "{{ .chezmoi.homeDir }}/.config/age/key.txt" "{{ .chezmoi.sourceDir }}/.key.txt.age"
     chmod 600 "{{ .chezmoi.homeDir }}/.config/age/key.txt"
 fi
