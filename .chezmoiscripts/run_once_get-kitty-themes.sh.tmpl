@@ -10,6 +10,9 @@
 url="https://github.com/kovidgoyal/kitty-themes.git"
 
 if command -v git >/dev/null 2>&1; then
+    if [ ! -d "{{ .chezmoi.homeDir}}/.config/kitty" ]; then
+        mkdir -p "{{ .chezmoi.homeDir}}/.config/kitty"
+    fi
     cd ~/.config/kitty || exit
     if [ ! -d "./.git" ]; then
         echo "No version control history found. Initializing new repository"
