@@ -13,5 +13,5 @@ README.md
 {{- end }}
 
 {{ if not (lookPath "neofetch") }}
-.config/neofetch/*
+.config/neofetch/
 {{- end }}
