@@ -1,0 +1,11 @@
+{{- if contains "plasma" (output "printenv" "DESKTOP_SESSION") -}}
+pinentry-program /usr/bin/pinentry-qt
+{{- else }}
+pinentry-program /usr/bin/pinentry-gnome3
+{{- end }}
+default-cache-ttl 34560000
+max-cache-ttl 34560000
+
+default-key  F5302DA7C6F2F5FD
+
+keyserver  hkp://pool.sks-keyservers.net
