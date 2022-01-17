@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if [ ! -f "/home/rafa/.config/age/key.txt" ]; then
-    age --decrypt --output "/home/rafa/.config/age/key.txt" "{{ .chezmoi.sourceDir }}/.key.txt.age"
-    chmod 600 "/home/rafa/.config/age/key.txt"
+# Source: https://github.com/twpayne/chezmoi/pull/1795
+
+if [ ! -f "{{ .chezmoi.homeDir }}/.config/age/key.txt" ]; then
+    age --decrypt --output "{{ .chezmoi.homeDir }}/.config/age/key.txt" "{{ .chezmoi.sourceDir }}/.key.txt.age"
+    chmod 600 "{{ .chezmoi.homeDir }}/.config/age/key.txt"
 fi
