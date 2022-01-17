@@ -18,19 +18,8 @@ function zsh_add_plugin() {
 
 # search for all scripts and dotfiles, then open them with editor of choice
 cfg() {
-    fd . --hidden --type=file -E ".git" ~/.config/dotfiles |
-        fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
-}
-
-# search for all notes and open selected one in editor
-nt() {
-    rg --files "$HOME"/*ocuments/notes |
-        fzf --preview 'bat --color=always --line-range :50 {}' | xargs -r "$EDITOR"
-}
-
-# cd into note dir, live grep the contents of notes, then open in editor
-live_search_notes() {
-    cd "$HOME"/*ocuments/notes && interactove_fzf
+    chezmoi managed -x dirs | fzf --preview='bat --number --color=always --line-range :500 {}' \
+        | xargs -I '{}' chezmoi edit --apply $HOME/'{}'
 }
 
 # fkill - kill process
