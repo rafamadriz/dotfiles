@@ -1,5 +1,6 @@
 README.md
 .stylua.toml
+.key.txt.age
 
 {{ if not (lookPath "lf") }}
 .config/lf
