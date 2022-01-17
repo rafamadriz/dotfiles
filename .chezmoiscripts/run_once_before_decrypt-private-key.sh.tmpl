@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ ! -f "/home/rafa/.config/age/key.txt" ]; then
+    age --decrypt --output "/home/rafa/.config/age/key.txt" "{{ .chezmoi.sourceDir }}/.key.txt.age"
+    chmod 600 "/home/rafa/.config/age/key.txt"
+fi
