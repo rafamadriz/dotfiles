@@ -15,3 +15,11 @@ README.md
 {{ if not (lookPath "neofetch") }}
 .config/neofetch/
 {{- end }}
+
+{{ if not (lookPath "vis") }}
+.config/vis/
+{{- end }}
+
+{{ if not (lookPath "bat") }}
+.config/bat/
+{{- end }}
