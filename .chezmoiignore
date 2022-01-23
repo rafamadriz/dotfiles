@@ -3,9 +3,7 @@ README.md
 .key.txt.age
 
 {{ if not (lookPath "lf") }}
-.config/lf
-.local/bin/scripts/preview
-.local/bin/scripts/togglex
+.config/lf/
 {{- end }}
 
 {{ if not (lookPath "maim") }}
