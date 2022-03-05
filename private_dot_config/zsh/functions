@@ -16,7 +16,7 @@ function zsh_add_plugin() {
     fi
 }
 
-# search for all scripts and dotfiles, then open them with editor of choice
+# search for all dotfiles, then open them with editor of choice
 cfg() {
     chezmoi managed -x dirs | fzf --preview='bat --number --color=always --line-range :500 {}' \
         | xargs -I '{}' chezmoi edit --apply $HOME/'{}'
@@ -29,6 +29,11 @@ fkill() {
     if [ "x$pid" != "x" ]; then
         echo "$pid" | xargs kill -"${1:-9}"
     fi
+}
+
+# recursively search inside all dirs for files that fuzzy match a keyword
+fzfg() {
+    rg -n '' | sed -e 's/:/+/' -e 's/:/\t/' -e 's/+/:/' -e 's/\\/\//g' | fzf | cut -f 1 | cut -d ':' -f 1 | xargs echo ./$@
 }
 
 # cdf - cd into the directory of the selected file
