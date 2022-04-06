@@ -3,6 +3,7 @@ local M = {}
 M.config = function()
     local alpha = require "alpha"
     local startify = require "alpha.themes.startify"
+    local chezmoi_home = "~/.local/share/chezmoi/private_dot_config/nvim/"
     startify.section.header.val = vim.g.code_startify_header_ascii
     startify.section.top_buttons.val = {
         startify.button("e", "New file", ":enew<CR>"),
@@ -15,9 +16,9 @@ M.config = function()
         startify.button("s", "Last Session", ":lua require'persistence'.load({last = true})<CR>"),
     }
     startify.section.bottom_buttons.val = {
-        startify.file_button("~/.config/nvim/lua/config.lua", "c"),
-        startify.file_button("~/.config/nvim/init.lua", "i"),
-        startify.file_button("~/.config/nvim/lua/modules/plugins/init.lua", "l"),
+        startify.file_button(chezmoi_home .. "lua/config.lua", "c"),
+        startify.file_button(chezmoi_home .. "init.lua", "i"),
+        startify.file_button(chezmoi_home .. "lua/modules/plugins/init.lua", "l"),
         { type = "padding", val = 1 },
         startify.button("q", "Quit", ":quitall<CR>"),
     }
