@@ -18,8 +18,9 @@ function zsh_add_plugin() {
 
 # search for all dotfiles, then open them with editor of choice
 cfg() {
-    chezmoi managed -x dirs | fzf --preview='bat --number --color=always --line-range :500 {}' \
-        | xargs -I '{}' chezmoi edit --apply $HOME/'{}'
+    chezmoi managed -x dirs | sed -ne 's/.*/\/home\/'"$USER"'\/&/p' \
+        | fzf --preview='bat --number --color=always --line-range :500 {}' \
+        | xargs -I '{}' chezmoi edit --apply '{}'
 }
 
 # fkill - kill process
