@@ -47,6 +47,7 @@ end
 -----------------------------------------------------------------------------//
 vim.opt.colorcolumn = { as._default_num(vim.g.code_colorcolumn, 0) }
 vim.opt.cmdheight = as._default_num(vim.g.code_cmdheight, 2)
+vim.opt.laststatus = 3
 vim.opt.scrolloff = 10
 vim.opt.conceallevel = 0
 vim.opt.signcolumn = "yes:1"
