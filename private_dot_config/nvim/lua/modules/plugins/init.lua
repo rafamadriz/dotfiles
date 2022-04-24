@@ -1,4 +1,3 @@
-require "impatient" -- Improve startup a little.
 local pack_use = function()
     local use = require("packer").use
     use { "wbthomason/packer.nvim" }
