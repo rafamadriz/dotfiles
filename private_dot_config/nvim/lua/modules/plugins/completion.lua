@@ -107,8 +107,9 @@ M.setup = function()
                 return item
             end,
         },
-        documentation = {
-            border = vim.g.code_lsp_window_borders,
+        window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
         },
         sources = {
             { name = "nvim_lsp" },

@@ -20,6 +20,19 @@ M.config = function()
             -- allow to open the tree if it was previously closed
             auto_open = true,
         },
+        filters = {
+            custom = { ".git", "node_modules", ".cache" },
+        },
+        actions = {
+            open_file = {
+                quit_on_open = false,
+                window_picker = { enable = false },
+            },
+        },
+        git = {
+            enable = true,
+            ignore = true,
+        },
         -- hijack the cursor in the tree to put it at the start of the filename
         hijack_cursor = false,
         -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
@@ -93,14 +106,10 @@ M.config = function()
             },
         },
     }
-    vim.g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
     -- vim.g.nvim_tree_indent_markers = 1
     vim.g.nvim_tree_highlight_opened_files = 1
     vim.g.nvim_tree_add_trailing = 1
-    vim.g.nvim_tree_gitignore = 1
-    vim.g.nvim_tree_quit_on_open = 0
     vim.g.nvim_tree_respect_buf_cwd = 1
-    vim.g.nvim_tree_disable_window_picker = 1
     vim.g.nvim_tree_icons = {
         git = {
             unstaged = "✗",
