@@ -1,0 +1,12 @@
+theme = "onedark"
+
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+
+[keys.insert]
+"C-c" = "normal_mode"
+j = { k = "normal_mode" }
