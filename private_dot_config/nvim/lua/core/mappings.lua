@@ -7,9 +7,6 @@ In telescope use <C-q> to send all results to quickfix and <M-q> or
 You can use a regex pattern as part of a range in command mode, E.g.
 :3,/stop/s/hello/world/g
 
-NOTE: https://github.com/monkoose/neovim-setup/blob/779fe63f3fb435e88452589080323daa94804cf0/lua/conf/maps.lua
-    interesting approach on doing mappings, might do the same
-
 TODO: Refactor whenever https://github.com/neovim/neovim/pull/13823 gets merged
 ]]
 -----------------------------------------------------------------------------//
