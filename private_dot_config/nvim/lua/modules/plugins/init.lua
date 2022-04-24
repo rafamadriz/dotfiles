@@ -60,12 +60,10 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     use {
         "nvim-telescope/telescope-fzf-native.nvim",
-        cmd = "Telescope",
         run = "make",
     }
     use {
         "nvim-telescope/telescope.nvim",
-        cmd = "Telescope",
         config = function()
             require("modules.plugins.telescope").config()
         end,
