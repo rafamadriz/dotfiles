@@ -42,6 +42,8 @@ augroup END
 " trim trailing white space
 augroup TrimTrailing
     au!
+    au BufWritePre * let currPos = getpos(".")
     au BufWritePre * %s/\s\+$//e
     au BufWritePre * %s/\n\+\%$//e
+    au BufWritePre * call cursor(currPos[1], currPos[2])
 augroup END
