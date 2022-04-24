@@ -120,7 +120,7 @@ local M = {
 
     -- Parsers to install.
     -- @options: string or a table of parsers.
-    treesitter_parsers_install = "maintained",
+    treesitter_parsers_install = "all",
 
     -- Parsers to ignore during install.
     -- @options: string or a table of parsers.
