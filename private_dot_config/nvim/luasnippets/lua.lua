@@ -1,10 +1,5 @@
 ---@diagnostic disable: undefined-global
 
-local function import_suffix(import_name)
-    local parts = vim.split(import_name[1][1], '.', true)
-    return parts[#parts] or ''
-end
-
 return {
     s(
         {
