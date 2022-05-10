@@ -1,12 +1,8 @@
 -- Timing {{{1
 -----------------------------------------------------------------------------//
-vim.opt.timeoutlen = as._default_num(vim.g.code_timeoutlen, 300)
-vim.opt.updatetime = as._default_num(vim.g.code_updatetime, 300)
+vim.opt.timeoutlen = 300
+vim.opt.updatetime = 300
 vim.opt.ttimeoutlen = 10
------------------------------------------------------------------------------//
--- Theme {{{1
------------------------------------------------------------------------------//
-vim.cmd("colorscheme " .. as.select_theme(vim.g.code_colorscheme))
 -----------------------------------------------------------------------------//
 -- Window splitting and buffers {{{1
 -----------------------------------------------------------------------------//
@@ -39,14 +35,14 @@ vim.opt.diffopt:append {
 -----------------------------------------------------------------------------//
 -- Grep program {{{1
 -----------------------------------------------------------------------------//
-if vim.fn.executable "rg" == 1 then
+if as.executable("rg") then
     vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 end
 -----------------------------------------------------------------------------//
 -- Display {{{1
 -----------------------------------------------------------------------------//
-vim.opt.colorcolumn = { as._default_num(vim.g.code_colorcolumn, 0) }
-vim.opt.cmdheight = as._default_num(vim.g.code_cmdheight, 2)
+vim.opt.colorcolumn = {0}
+vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 vim.opt.scrolloff = 10
 vim.opt.conceallevel = 0
@@ -55,7 +51,7 @@ vim.opt.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
 vim.opt.showtabline = 1
 vim.opt.termguicolors = true
 vim.opt.guifont = "JetBrainsMono Nerd Font:h14"
-vim.opt.relativenumber = as._default(vim.g.code_relativenumber)
+vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.title = true
 vim.opt.number = true
@@ -63,6 +59,23 @@ vim.opt.numberwidth = 1
 vim.opt.confirm = true -- make vim prompt to save before doing destructive things
 vim.opt.fileencoding = "utf-8"
 vim.opt.showmode = false
+-----------------------------------------------------------------------------//
+-- Formatoptions {{{1
+-----------------------------------------------------------------------------//
+vim.opt.formatoptions = {
+  ['1'] = true, -- Don't break a line after a one-letter word.
+  ['2'] = false, -- Use indent from 2nd line of a paragraph
+  q = true, -- continue comments with gq"
+  c = false, -- Insert current comment leader automatically
+  r = false, -- Continue comments when pressing Enter
+  n = true, -- Recognize numbered lists
+  t = false, -- autowrap lines using text width value
+  j = true, -- remove a comment leader when joining lines.
+  -- Only break if the line was not longer than 'textwidth' when the insert
+  -- started and only at a white character that has been entered during the
+  -- current insert command.
+  l = true,
+}
 -----------------------------------------------------------------------------//
 -- List Chars {{{1
 -----------------------------------------------------------------------------//
@@ -79,7 +92,7 @@ vim.opt.listchars = {
 -----------------------------------------------------------------------------//
 -- Indentation {{{1
 -----------------------------------------------------------------------------//
-local indent = as._default_num(vim.g.code_indent_size, 4)
+local indent = 4
 vim.opt.wrap = false
 vim.opt.tabstop = 8
 vim.opt.softtabstop = indent
@@ -95,14 +108,11 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.inccommand = "nosplit"
-vim.opt.pumheight = as._default_num(vim.g.code_complete_menu_items, 10)
+vim.opt.pumheight = 10
 vim.opt.completeopt = "menuone,noinsert,noselect"
 -----------------------------------------------------------------------------//
 -- Utils {{{1
 -----------------------------------------------------------------------------//
-if as._default(vim.g.code_cursor_block, false) then
-    vim.opt.guicursor = ""
-end
 vim.opt.shortmess:append "c"
 vim.opt.iskeyword:append "-"
 vim.opt.path:append ".,**"
@@ -139,6 +149,8 @@ vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_man = 1
 vim.g.loaded_remote_plugins = 1
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
 -- vim.g.did_load_filetypes = 1
 -- vim.g.loaded_matchit = 1
 -- vim.g.loaded_matchparen = 1
@@ -199,18 +211,5 @@ vim.opt.wildignore = {
     "._*",
     "tags.lock",
 }
------------------------------------------------------------------------------//
--- Autocommands {{{1
------------------------------------------------------------------------------//
--- TODO: refactor when autocmd API is merged:
--- https://github.com/neovim/neovim/pull/12378
--- https://github.com/neovim/neovim/pull/14661
-as.nvim_set_au("TextYankPost", "*", 'lua require"vim.highlight".on_yank{timeout = 250}')
-as.nvim_set_au(
-    "BufReadPost",
-    "*",
-    [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]]
-)
-as.check_and_set(vim.g.code_format_on_save, "BufWritePost", "*", "silent FormatWrite")
 -- }}}
 -- vim:foldmethod=marker
