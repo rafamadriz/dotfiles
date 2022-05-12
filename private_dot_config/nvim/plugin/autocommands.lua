@@ -27,20 +27,6 @@ as.augroup('JumpToLastPosition', {
 })
 
 ----------------------------------------------------------------------------------------------------
--- Chezmoi
-----------------------------------------------------------------------------------------------------
-if as.executable('chezmoi') then
-    as.augroup('Chezmoi', {
-        {
-            event = "BufWritePost",
-            pattern = "~/.local/share/chezmoi/*",
-            command = [[silent! chezmoi apply --source-path "%"]],
-            desc = "apply dotfiles modifications with chezmoi if executable"
-        }
-    })
-end
-
-----------------------------------------------------------------------------------------------------
 -- Trim trailing white space
 ----------------------------------------------------------------------------------------------------
 --source: https://github.com/mcauley-penney/tidy.nvim
