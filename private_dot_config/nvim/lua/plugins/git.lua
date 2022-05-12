@@ -44,23 +44,6 @@ M.gitsigns = function()
 
             -- Text object
             map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "inner git hunk" })
-            local builtins = require('telescope.builtin')
-            local mappings = {
-                ["<leader>"] = {
-                    ["g"] = {
-                        name = "Git",
-                        ["f"] = { builtins.git_files, "Files" },
-                        ["b"] = { builtins.git_branches, "Branches" },
-                        ["c"] = { builtins.git_commits, "Commits" },
-                        ["C"] = { builtins.git_bcommits, "Buffer commits" },
-                        ["z"] = { builtins.git_stash, "Stash" },
-                        ["g"] = { "<cmd>Neogit<CR>", "Neogit" },
-                        ["d"] = { "<cmd>DiffviewOpen<CR>", "Diff" },
-                        ["D"] = { "<cmd>DiffviewFileHistory<CR>", "Diff file history" },
-                    }
-                }
-            }
-            require("which-key").register(mappings, { mode = 'n' })
         end
     }
 end
@@ -76,6 +59,7 @@ M.neogit = function()
             hunk = { "", "" },
         },
     }
+    as.nnoremap("<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 end
 
 M.diffview = function()
@@ -92,6 +76,8 @@ M.diffview = function()
             option_panel = { ["q"] = cb "close" },
         },
     }
+    as.nnoremap("<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Diff" })
+    as.nnoremap("<leader>gd", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff file history" })
 end
 
 return M
