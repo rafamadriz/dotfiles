@@ -137,6 +137,14 @@ local mappings = {
             ["m"] = { builtins.man_pages, "Man pages" },
             ["q"] = { builtins.quickfixhistory, "Quickfix history" },
         },
+        ["g"] = {
+            name = "Git",
+            ["f"] = { builtins.git_files, "Files" },
+            ["b"] = { builtins.git_branches, "Branches" },
+            ["c"] = { builtins.git_commits, "Commits" },
+            ["C"] = { builtins.git_bcommits, "Buffer commits" },
+            ["z"] = { builtins.git_stash, "Stash" },
+        },
         ["b"] = {
             name = "Buffer",
             ["b"] = { builtins.buffers, "Buffers" },
