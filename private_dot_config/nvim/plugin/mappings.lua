@@ -42,6 +42,10 @@ cmap("<C-a>", "<home>", { desc = "Move to end of line" })
 cmap("<C-e>", "<end>", { desc = "Move to begining of line" })
 vnoremap("<", "<gv", { desc = "Keep visual selection when indenting to left" })
 vnoremap(">", ">gv", { desc = "Keep visual selection when indenting to right" })
+nnoremap("cd", function()
+    vim.api.nvim_set_current_dir(vim.fn.expand('%:p:h'))
+    print("Current directory is: " .. vim.fn.getcwd())
+end, { desc = "Change directory to current file", silent = false })
 
 --------------------------------------------------------------------------------
 -- Buffers
