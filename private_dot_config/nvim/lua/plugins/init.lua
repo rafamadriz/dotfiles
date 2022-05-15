@@ -130,9 +130,6 @@ local pack_use = function()
                 input = {
                     insert_only = false,
                 },
-                select = {
-                    telescope = require('telescope.themes').get_cursor()
-                }
             }
         end
     }
