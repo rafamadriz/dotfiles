@@ -9,4 +9,4 @@ require "globals"
 require "settings"
 require "plugins"
 
-vim.cmd "colorscheme github"
+vim.cmd "colorscheme edge"
