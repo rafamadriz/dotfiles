@@ -145,6 +145,12 @@ local pack_use = function()
     }
     use {
         "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup {
+                detection_methods = { "pattern", "lsp" },
+                show_hidden = true, -- show hidden files in telescope
+            }
+        end,
     }
     use {
         "mbbill/undotree",
