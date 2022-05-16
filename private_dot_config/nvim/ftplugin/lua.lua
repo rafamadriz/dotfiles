@@ -68,7 +68,7 @@ end
 ---Global function that searches the path for the required file
 ---@param module string
 ---@return string
-local function find_required_path(module)
+function find_required_path(module)
     -- Look at package.config for directory separator string (it's the first line)
     local sep = string.match(package.config, "^[^\n]")
     -- Properly change '.' to separator (probably '/' on *nix and '\' on Windows)
