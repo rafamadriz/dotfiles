@@ -139,6 +139,9 @@ local pack_use = function()
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
         "mickael-menu/zk-nvim",
+        config = function()
+            require "plugins.zk"
+        end
     }
     use {
         "ahmedkhalf/project.nvim",
