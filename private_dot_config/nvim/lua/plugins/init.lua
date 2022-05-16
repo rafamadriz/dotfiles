@@ -129,7 +129,15 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     -- UI {{{1
     -----------------------------------------------------------------------------//
-    use "rafamadriz/themes.nvim"
+    use { "sainnhe/gruvbox-material" }
+    use { "sainnhe/edge" }
+    use { "projekt0n/github-nvim-theme" }
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = function()
+            require('lualine').setup()
+        end
+    }
     use { "stevearc/dressing.nvim",
         config = function()
             require('dressing').setup {

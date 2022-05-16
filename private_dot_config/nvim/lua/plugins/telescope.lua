@@ -136,6 +136,7 @@ local mappings = {
             ["r"] = { builtins.oldfiles, "Recent files" },
             ["m"] = { builtins.man_pages, "Man pages" },
             ["q"] = { builtins.quickfixhistory, "Quickfix history" },
+            ["p"] = { "<cmd>Telescope projects<CR>", "Projects" },
         },
         ["g"] = {
             name = "Git",
