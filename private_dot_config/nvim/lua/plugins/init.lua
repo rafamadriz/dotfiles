@@ -63,14 +63,20 @@ local pack_use = function()
     use { "alker0/chezmoi.vim" }
     use {
         "phaazon/hop.nvim",
-    }
-    use {
-        "rhysd/clever-f.vim",
         config = function()
-            vim.g.clever_f_across_no_line = 1
-            vim.cmd "map ; <Plug>(clever-f-repeat-forward)"
-            vim.cmd "map , <Plug>(clever-f-repeat-back)"
-        end,
+            local hop = require 'hop'
+            local hint = require 'hop.hint'
+            local after = hint.HintDirection.AFTER_CURSOR
+            local before = hint.HintDirection.BEFORE_CURSOR
+            hop.setup()
+            as.nnoremap('f', function() hop.hint_char1 { direction = after, current_line_only = true } end)
+            as.nnoremap('F', function() hop.hint_char1 { direction = before, current_line_only = true } end)
+            as.onoremap('f', function() hop.hint_char1 { direction = after, current_line_only = true, inclusive_jump = true } end)
+            as.onoremap('F', function() hop.hint_char1 { direction = before, current_line_only = true, inclusive_jump = true } end)
+            as.nnoremap('t', function() hop.hint_char1 { direction = after, current_line_only = true } end)
+            as.nnoremap('T', function() hop.hint_char1 { direction = before, current_line_only = true } end)
+            as.nmap('S', function() hop.hint_char2() end)
+        end
     }
     use {
         "folke/which-key.nvim",
