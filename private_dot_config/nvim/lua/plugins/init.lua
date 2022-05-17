@@ -1,22 +1,6 @@
 local pack_use = function()
     local use = require("packer").use
-    use { "wbthomason/packer.nvim",
-        config = function()
-            local mappings = {
-                ["<leader>"] = {
-                    p = {
-                        name = "Packer",
-                        s = { "<cmd>PackerStatus<CR>", "Packer status" },
-                        S = { "<cmd>PackerSync<CR>", "Packer sync" },
-                        i = { "<cmd>PackerInstall<CR>", "Packer install" },
-                        C = { "<cmd>PackerClean<CR>", "Packer clean" },
-                        c = { "<cmd>PackerCompile<CR>", "Packer compile" },
-                    }
-                }
-            }
-            require "which-key".register(mappings, { mode = 'n' })
-        end
-    }
+    use { "wbthomason/packer.nvim" }
     -----------------------------------------------------------------------------//
     -- Required by others {{{1
     -----------------------------------------------------------------------------//
