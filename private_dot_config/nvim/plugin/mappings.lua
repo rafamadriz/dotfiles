@@ -64,3 +64,37 @@ nnoremap("[l", ":lprevious<CR>zzzv", { desc = "Previous in location list" })
 nnoremap("]l", ":lnext<CR>zzzv", { desc = "Next in location list" })
 nnoremap("[q", ":cprevious<CR>zzzv", { desc = "Previous in quickfix list" })
 nnoremap("]q", ":cnext<CR>zzzv", { desc = "Next in quickfix list" })
+
+--------------------------------------------------------------------------------
+-- Resize windows
+--------------------------------------------------------------------------------
+-- expand or minimize current buffer in "actual" direction
+-- this is useful as mapping ":resize 2" stand-alone might otherwise not be in
+-- the right direction if mapped to ctrl-leftarrow or something related use
+local resize = function(vertical, margin)
+    local cmd = vim.cmd
+    local cur_win = vim.api.nvim_get_current_win()
+    -- go (possibly) right
+    cmd(string.format("wincmd %s", vertical and "l" or "j"))
+    local new_win = vim.api.nvim_get_current_win()
+
+    -- determine direction cond on increase and existing right-hand buffer
+    local not_last = not (cur_win == new_win)
+    local sign = margin > 0
+    -- go to previous window if required otherwise flip sign
+    if not_last == true then
+        cmd [[wincmd p]]
+    else
+        sign = not sign
+    end
+
+    sign = sign and "+" or "-"
+    local dir = vertical and "vertical " or ""
+    local _cmd = dir .. "resize " .. sign .. math.abs(margin) .. "<CR>"
+    cmd(_cmd)
+end
+
+nnoremap("<S-Up>", function() resize(false, -2) end, { desc = "Resize up window horizontally" })
+nnoremap("<S-Down>", function() resize(false, 2) end, { desc = "Resize down window horizontally" })
+nnoremap("<S-Left>", function() resize(true, -2) end, { desc = "Resize left window vetically" })
+nnoremap("<S-Right>", function() resize(true, 2) end, { desc = "Resize right window vetically" })
