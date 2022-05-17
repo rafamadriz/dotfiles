@@ -85,6 +85,7 @@ local pack_use = function()
     }
     use {
         "folke/which-key.nvim",
+        module = "which-key",
         config = function()
             require "plugins.whichkey"
         end
