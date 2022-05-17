@@ -17,6 +17,16 @@ wk.setup {
 }
 
 local mappings = {
+    ["<leader>"] = {
+        p = {
+            name = "Packer",
+            s = { "<cmd>PackerStatus<CR>", "Packer status" },
+            S = { "<cmd>PackerSync<CR>", "Packer sync" },
+            i = { "<cmd>PackerInstall<CR>", "Packer install" },
+            C = { "<cmd>PackerClean<CR>", "Packer clean" },
+            c = { "<cmd>PackerCompile<CR>", "Packer compile" },
+        }
+    },
     ["["] = {
         name = "Previous",
     },
