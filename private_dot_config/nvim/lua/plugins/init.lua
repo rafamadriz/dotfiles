@@ -1,6 +1,22 @@
 local pack_use = function()
     local use = require("packer").use
-    use { "wbthomason/packer.nvim" }
+    use { "wbthomason/packer.nvim",
+        config = function()
+            local mappings = {
+                ["<leader>"] = {
+                    p = {
+                        name = "Packer",
+                        s = { "<cmd>PackerStatus<CR>", "Packer status" },
+                        S = { "<cmd>PackerSync<CR>", "Packer sync" },
+                        i = { "<cmd>PackerInstall<CR>", "Packer install" },
+                        C = { "<cmd>PackerClean<CR>", "Packer clean" },
+                        c = { "<cmd>PackerCompile<CR>", "Packer compile" },
+                    }
+                }
+            }
+            require "which-key".register(mappings, { mode = 'n' })
+        end
+    }
     -----------------------------------------------------------------------------//
     -- Required by others {{{1
     -----------------------------------------------------------------------------//
@@ -159,9 +175,9 @@ local pack_use = function()
         end,
     }
     use { "olimorris/persisted.nvim",
-    config = function()
-        require("persisted").setup {}
-    end
+        config = function()
+            require("persisted").setup {}
+        end
     }
     use {
         "mbbill/undotree",
@@ -187,6 +203,7 @@ local pack_use = function()
     }
 end
 -- }}}
+
 
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. "/site/pack/packer/start/packer.nvim"
