@@ -132,6 +132,9 @@ local pack_use = function()
     use { "sainnhe/gruvbox-material" }
     use { "sainnhe/edge" }
     use { "projekt0n/github-nvim-theme" }
+    use { "goolord/alpha-nvim",
+        config = function() require "plugins.alpha" end
+    }
     use {
         'nvim-lualine/lualine.nvim',
         config = function()
