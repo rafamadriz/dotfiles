@@ -169,6 +169,11 @@ local pack_use = function()
             }
         end,
     }
+    use { "olimorris/persisted.nvim",
+    config = function()
+        require("persisted").setup {}
+    end
+    }
     use {
         "mbbill/undotree",
         config = function()
