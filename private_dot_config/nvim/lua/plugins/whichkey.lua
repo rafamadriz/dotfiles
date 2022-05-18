@@ -1,4 +1,4 @@
-local wk = require("which-key")
+local wk = require "which-key"
 
 wk.setup {
     plugins = {
@@ -25,7 +25,7 @@ local mappings = {
             i = { "<cmd>PackerInstall<CR>", "Packer install" },
             C = { "<cmd>PackerClean<CR>", "Packer clean" },
             c = { "<cmd>PackerCompile<CR>", "Packer compile" },
-        }
+        },
     },
     ["["] = {
         name = "Previous",
@@ -46,5 +46,5 @@ local mappings = {
     },
 }
 
-wk.register(mappings, { mode = 'n' })
-wk.register({ ["<leader>b"] = { name = "Buffer", } }, { mode = 'v' })
+wk.register(mappings, { mode = "n" })
+wk.register({ ["<leader>b"] = { name = "Buffer" } }, { mode = "v" })

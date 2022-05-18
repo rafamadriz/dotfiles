@@ -8,10 +8,16 @@ vim.diagnostic.config {
     float = { source = "always", border = as.lsp.borders },
     underline = {
         severity = vim.diagnostic.severity.ERROR,
-    }
+    },
 }
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = as.lsp.borders })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = as.lsp.borders })
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = as.lsp.borders }
+)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = as.lsp.borders }
+)
 
 -- Highlight line number instead of having icons in sign column
 vim.cmd [[

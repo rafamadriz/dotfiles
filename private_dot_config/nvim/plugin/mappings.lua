@@ -12,10 +12,10 @@ local cmap = as.cmap
 --------------------------------------------------------------------------------
 -- Space as leaderkey
 --------------------------------------------------------------------------------
-nmap('n', '<Space>', '<Nop>', { silent = true })
-vmap('n', '<Space>', '<Nop>', { silent = true })
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+nmap("n", "<Space>", "<Nop>", { silent = true })
+vmap("n", "<Space>", "<Nop>", { silent = true })
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 --------------------------------------------------------------------------------
 -- The Basics
@@ -31,10 +31,26 @@ cmap("Q", "q", { desc = "Always write q" })
 cmap("W", "w", { desc = "Always write w" })
 xnoremap("K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
 xnoremap("J", ":move '>+1<CR>gv=gv", { desc = "Move selected block of text down" })
-nnoremap("k", [[v:count == 0 ? "gk" : "k"]], { expr = true, desc = "Move up in wraped lines as normal lines" })
-nnoremap("j", [[v:count == 0 ? "gj" : "j"]], { expr = true, desc = "Move down in wraped lines as normal lines" })
-xnoremap("k", [[(v:count == 0 && mode() !=# "V") ? "gk" : "k"]], { expr = true, desc = "Move up in wraped lines as nornal lines" })
-xnoremap("j", [[(v:count == 0 && mode() !=# "V") ? "gj" : "j"]], { expr = true, desc = "Move down in wraped lines as nornal lines" })
+nnoremap(
+    "k",
+    [[v:count == 0 ? "gk" : "k"]],
+    { expr = true, desc = "Move up in wraped lines as normal lines" }
+)
+nnoremap(
+    "j",
+    [[v:count == 0 ? "gj" : "j"]],
+    { expr = true, desc = "Move down in wraped lines as normal lines" }
+)
+xnoremap(
+    "k",
+    [[(v:count == 0 && mode() !=# "V") ? "gk" : "k"]],
+    { expr = true, desc = "Move up in wraped lines as nornal lines" }
+)
+xnoremap(
+    "j",
+    [[(v:count == 0 && mode() !=# "V") ? "gj" : "j"]],
+    { expr = true, desc = "Move down in wraped lines as nornal lines" }
+)
 vnoremap("y", "y`]", { desc = "Keep cursor position when yanking text" })
 nnoremap("p", "p`]", { desc = "Jump to end of pasted text" })
 vnoremap("p", "p`]", { desc = "Jump to end of pasted text" })
@@ -43,7 +59,7 @@ cmap("<C-e>", "<end>", { desc = "Move to begining of line" })
 vnoremap("<", "<gv", { desc = "Keep visual selection when indenting to left" })
 vnoremap(">", ">gv", { desc = "Keep visual selection when indenting to right" })
 nnoremap("cd", function()
-    vim.api.nvim_set_current_dir(vim.fn.expand('%:p:h'))
+    vim.api.nvim_set_current_dir(vim.fn.expand "%:p:h")
     print("Current directory is: " .. vim.fn.getcwd())
 end, { desc = "Change directory to current file", silent = false })
 
@@ -53,7 +69,11 @@ end, { desc = "Change directory to current file", silent = false })
 nnoremap("<leader>bs", ":update<CR>", { desc = "Save buffer" })
 vnoremap("<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
 nnoremap("<leader>bq", ":close<CR>", { desc = "Quit buffer" })
-nnoremap("<leader>bQ", ":write | silent %bd | silent e# | bd#<CR>", { desc = "Quit all buffers but current" })
+nnoremap(
+    "<leader>bQ",
+    ":write | silent %bd | silent e# | bd#<CR>",
+    { desc = "Quit all buffers but current" }
+)
 
 --------------------------------------------------------------------------------
 -- Pair of bracket mappings
@@ -94,7 +114,15 @@ local resize = function(vertical, margin)
     cmd(_cmd)
 end
 
-nnoremap("<S-Up>", function() resize(false, -2) end, { desc = "Resize up window horizontally" })
-nnoremap("<S-Down>", function() resize(false, 2) end, { desc = "Resize down window horizontally" })
-nnoremap("<S-Left>", function() resize(true, -2) end, { desc = "Resize left window vetically" })
-nnoremap("<S-Right>", function() resize(true, 2) end, { desc = "Resize right window vetically" })
+nnoremap("<S-Up>", function()
+    resize(false, -2)
+end, { desc = "Resize up window horizontally" })
+nnoremap("<S-Down>", function()
+    resize(false, 2)
+end, { desc = "Resize down window horizontally" })
+nnoremap("<S-Left>", function()
+    resize(true, -2)
+end, { desc = "Resize left window vetically" })
+nnoremap("<S-Right>", function()
+    resize(true, 2)
+end, { desc = "Resize right window vetically" })

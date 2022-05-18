@@ -1,7 +1,7 @@
-local ls = require("luasnip")
-local types = require("luasnip.util.types")
+local ls = require "luasnip"
+local types = require "luasnip.util.types"
 
-ls.config.set_config({
+ls.config.set_config {
     history = true,
     -- Update more often, :h events for more info.
     update_events = "TextChanged,TextChangedI",
@@ -25,24 +25,26 @@ ls.config.set_config({
     -- mapping for cutting selected text so it's usable as SELECT_DEDENT,
     -- SELECT_RAW or TM_SELECTED_TEXT (mapped via xmap).
     store_selection_keys = "<Tab>",
-})
+}
 
 require("luasnip.loaders.from_lua").lazy_load()
 
 -- <c-l> is selecting within a list of options.
-vim.keymap.set({ 's', 'i' }, '<c-l>', function()
+vim.keymap.set({ "s", "i" }, "<c-l>", function()
     if ls.choice_active() then
         ls.change_choice(1)
     end
 end, { desc = "Scroll through choice nodes" })
 
 -- TODO: covert fully to lua
-vim.keymap.set('i', '<Tab>',
+vim.keymap.set(
+    "i",
+    "<Tab>",
     [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>']],
     { desc = "Expand or jump snippet", expr = true }
 )
 
-vim.keymap.set('i', '<S-Tab>', function()
+vim.keymap.set("i", "<S-Tab>", function()
     if ls.jumpable(-1) then
         ls.jump(-1)
     end

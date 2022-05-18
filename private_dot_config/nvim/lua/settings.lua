@@ -35,13 +35,13 @@ vim.opt.diffopt:append {
 -----------------------------------------------------------------------------//
 -- Grep program {{{1
 -----------------------------------------------------------------------------//
-if as.executable("rg") then
+if as.executable "rg" then
     vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 end
 -----------------------------------------------------------------------------//
 -- Display {{{1
 -----------------------------------------------------------------------------//
-vim.opt.colorcolumn = {0}
+vim.opt.colorcolumn = { 0 }
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 vim.opt.scrolloff = 10
@@ -63,18 +63,18 @@ vim.opt.showmode = false
 -- Formatoptions {{{1
 -----------------------------------------------------------------------------//
 vim.opt.formatoptions = {
-  ['1'] = true, -- Don't break a line after a one-letter word.
-  ['2'] = false, -- Use indent from 2nd line of a paragraph
-  q = true, -- continue comments with gq"
-  c = false, -- Insert current comment leader automatically
-  r = false, -- Continue comments when pressing Enter
-  n = true, -- Recognize numbered lists
-  t = false, -- autowrap lines using text width value
-  j = true, -- remove a comment leader when joining lines.
-  -- Only break if the line was not longer than 'textwidth' when the insert
-  -- started and only at a white character that has been entered during the
-  -- current insert command.
-  l = true,
+    ["1"] = true, -- Don't break a line after a one-letter word.
+    ["2"] = false, -- Use indent from 2nd line of a paragraph
+    q = true, -- continue comments with gq"
+    c = false, -- Insert current comment leader automatically
+    r = false, -- Continue comments when pressing Enter
+    n = true, -- Recognize numbered lists
+    t = false, -- autowrap lines using text width value
+    j = true, -- remove a comment leader when joining lines.
+    -- Only break if the line was not longer than 'textwidth' when the insert
+    -- started and only at a white character that has been entered during the
+    -- current insert command.
+    l = true,
 }
 -----------------------------------------------------------------------------//
 -- List Chars {{{1

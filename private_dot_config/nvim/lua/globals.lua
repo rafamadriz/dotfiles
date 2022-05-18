@@ -10,7 +10,6 @@ _G.as = {}
 ----------------------------------------------------------------------------------------------------
 as.lsp = { borders = "rounded" }
 
-
 ----------------------------------------------------------------------------------------------------
 -- Utils
 ----------------------------------------------------------------------------------------------------
@@ -42,7 +41,7 @@ end
 function as.augroup(name, commands)
     local id = api.nvim_create_augroup(name, { clear = true })
     for _, autocmd in ipairs(commands) do
-        local is_callback = type(autocmd.command) == 'function'
+        local is_callback = type(autocmd.command) == "function"
         api.nvim_create_autocmd(autocmd.event, {
             group = name,
             pattern = autocmd.pattern,
@@ -76,8 +75,8 @@ local function make_mapper(mode, o)
     ---@param opts table
     return function(lhs, rhs, opts)
         -- If the label is all that was passed in, set the opts automagically
-        opts = type(opts) == 'string' and { desc = opts } or opts and vim.deepcopy(opts) or {}
-        vim.keymap.set(mode, lhs, rhs, vim.tbl_extend('keep', opts, parent_opts))
+        opts = type(opts) == "string" and { desc = opts } or opts and vim.deepcopy(opts) or {}
+        vim.keymap.set(mode, lhs, rhs, vim.tbl_extend("keep", opts, parent_opts))
     end
 end
 
@@ -85,34 +84,34 @@ local map_opts = { remap = true, silent = true }
 local noremap_opts = { silent = true }
 
 -- A recursive normal mapping
-as.nmap = make_mapper('n', map_opts)
+as.nmap = make_mapper("n", map_opts)
 -- A recursive select mapping
-as.xmap = make_mapper('x', map_opts)
+as.xmap = make_mapper("x", map_opts)
 -- A recursive insert mapping
-as.imap = make_mapper('i', map_opts)
+as.imap = make_mapper("i", map_opts)
 -- A recursive visual mapping
-as.vmap = make_mapper('v', map_opts)
+as.vmap = make_mapper("v", map_opts)
 -- A recursive operator mapping
-as.omap = make_mapper('o', map_opts)
+as.omap = make_mapper("o", map_opts)
 -- A recursive terminal mapping
-as.tmap = make_mapper('t', map_opts)
+as.tmap = make_mapper("t", map_opts)
 -- A recursive visual & select mapping
-as.smap = make_mapper('s', map_opts)
+as.smap = make_mapper("s", map_opts)
 -- A recursive commandline mapping
-as.cmap = make_mapper('c', { remap = true, silent = false })
+as.cmap = make_mapper("c", { remap = true, silent = false })
 -- A non recursive normal mapping
-as.nnoremap = make_mapper('n', noremap_opts)
+as.nnoremap = make_mapper("n", noremap_opts)
 -- A non recursive select mapping
-as.xnoremap = make_mapper('x', noremap_opts)
+as.xnoremap = make_mapper("x", noremap_opts)
 -- A non recursive visual mapping
-as.vnoremap = make_mapper('v', noremap_opts)
+as.vnoremap = make_mapper("v", noremap_opts)
 -- A non recursive insert mapping
-as.inoremap = make_mapper('i', noremap_opts)
+as.inoremap = make_mapper("i", noremap_opts)
 -- A non recursive operator mapping
-as.onoremap = make_mapper('o', noremap_opts)
+as.onoremap = make_mapper("o", noremap_opts)
 -- A non recursive terminal mapping
-as.tnoremap = make_mapper('t', noremap_opts)
+as.tnoremap = make_mapper("t", noremap_opts)
 -- A non recursive visual & select mapping
-as.snoremap = make_mapper('s', noremap_opts)
+as.snoremap = make_mapper("s", noremap_opts)
 -- A non recursive commandline mapping
-as.cnoremap = make_mapper('c', { silent = false })
+as.cnoremap = make_mapper("c", { silent = false })

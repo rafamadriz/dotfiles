@@ -4,26 +4,26 @@ end
 
 local api, fn = vim.api, vim.fn
 
-as.augroup('TextYankHighlight', {
+as.augroup("TextYankHighlight", {
     {
-        event = 'TextYankPost',
-        pattern = '*',
+        event = "TextYankPost",
+        pattern = "*",
         desc = "highlight text on yank",
         command = function()
-            vim.highlight.on_yank({
+            vim.highlight.on_yank {
                 timeout = 300,
-            })
+            }
         end,
     },
 })
 
-as.augroup('JumpToLastPosition', {
+as.augroup("JumpToLastPosition", {
     {
         event = "BufReadPost",
         pattern = "*",
         command = [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]],
         desc = "jump to last cursor position when opening a file",
-    }
+    },
 })
 
 ----------------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ as.augroup('JumpToLastPosition', {
 ----------------------------------------------------------------------------------------------------
 --source: https://github.com/mcauley-penney/tidy.nvim
 --credits: mcauley-penney
-as.augroup('TrimTrailing', {
+as.augroup("TrimTrailing", {
     {
         event = "BufWritePre",
         pattern = "*",
@@ -39,10 +39,10 @@ as.augroup('TrimTrailing', {
             local pos = api.nvim_win_get_cursor(0)
 
             -- delete all whitespace
-            vim.cmd([[:keepjumps keeppatterns %s/\s\+$//e]])
+            vim.cmd [[:keepjumps keeppatterns %s/\s\+$//e]]
 
             -- delete all lines at end of buffer
-            vim.cmd([[:keepjumps keeppatterns silent! 0;/^\%(\n*.\)\@!/,$d]])
+            vim.cmd [[:keepjumps keeppatterns silent! 0;/^\%(\n*.\)\@!/,$d]]
 
             --[[
                 if the row value in the original cursor
@@ -63,26 +63,26 @@ as.augroup('TrimTrailing', {
 
             api.nvim_win_set_cursor(0, pos)
         end,
-    }
+    },
 })
 ----------------------------------------------------------------------------------------------------
 -- Automatically create missing directories when saving file
 ----------------------------------------------------------------------------------------------------
 --source: https://github.com/jghauser/mkdir.nvim
 --credits: jghauser
-as.augroup('Mkdir', {
+as.augroup("Mkdir", {
     {
         event = "BufWritePre",
         pattern = "*",
         command = function()
-            local dir = fn.expand('<afile>:p:h')
+            local dir = fn.expand "<afile>:p:h"
 
             if fn.isdirectory(dir) == 0 then
                 fn.mkdir(dir, "p")
             end
         end,
         desc = "automatically create missing directories when saving file",
-    }
+    },
 })
 
 ----------------------------------------------------------------------------------------------------
@@ -102,21 +102,26 @@ This is based on the implementation discussed here:
 https://github.com/neovim/neovim/issues/5581
 --]]
 
-vim.keymap.set({ 'n', 'v', 'o', 'i', 'c' }, '<Plug>(StopHL)', 'execute("nohlsearch")[-1]', { expr = true })
+vim.keymap.set(
+    { "n", "v", "o", "i", "c" },
+    "<Plug>(StopHL)",
+    'execute("nohlsearch")[-1]',
+    { expr = true }
+)
 
 local function stop_hl()
-    if vim.v.hlsearch == 0 or api.nvim_get_mode().mode ~= 'n' then
+    if vim.v.hlsearch == 0 or api.nvim_get_mode().mode ~= "n" then
         return
     end
-    api.nvim_feedkeys(api.nvim_replace_termcodes('<Plug>(StopHL)', true, true, true), 'm', false)
+    api.nvim_feedkeys(api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
 end
 
 local function hl_search()
     local col = api.nvim_win_get_cursor(0)[2]
     local curr_line = api.nvim_get_current_line()
-    local ok, match = pcall(fn.matchstrpos, curr_line, fn.getreg('/'), 0)
+    local ok, match = pcall(fn.matchstrpos, curr_line, fn.getreg "/", 0)
     if not ok then
-        return vim.notify(match, 'error', { title = 'HL SEARCH' })
+        return vim.notify(match, "error", { title = "HL SEARCH" })
     end
     local _, p_start, p_end = unpack(match)
     -- if the cursor is in a search result, leave highlighting on
@@ -125,25 +130,25 @@ local function hl_search()
     end
 end
 
-as.augroup('VimrcIncSearchHighlight', {
+as.augroup("VimrcIncSearchHighlight", {
     {
-        event = { 'CursorMoved' },
+        event = { "CursorMoved" },
         command = function()
             hl_search()
         end,
     },
     {
-        event = { 'InsertEnter' },
+        event = { "InsertEnter" },
         command = function()
             stop_hl()
         end,
     },
     {
-        event = { 'OptionSet' },
-        pattern = { 'hlsearch' },
+        event = { "OptionSet" },
+        pattern = { "hlsearch" },
         command = function()
             vim.schedule(function()
-                vim.cmd('redrawstatus')
+                vim.cmd "redrawstatus"
             end)
         end,
     },
