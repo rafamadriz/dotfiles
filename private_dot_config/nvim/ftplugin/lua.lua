@@ -104,7 +104,7 @@ vim.opt_local.includeexpr = "v:lua.find_required_path(v:fname)"
 -- Attempt to open help docs if in api or vim.fn, otherwise show lsp hover
 --------------------------------------------------------------------------------
 local function find(word, ...)
-    for _, str in ipairs({ ... }) do
+    for _, str in ipairs { ... } do
         local match_start, match_end = string.find(word, str)
         if match_start then
             return str, match_start, match_end
@@ -120,29 +120,29 @@ end
 local function keyword(word, callback)
     local original_iskeyword = vim.bo.iskeyword
 
-    vim.bo.iskeyword = vim.bo.iskeyword .. ',.'
-    word = word or fn.expand('<cword>')
+    vim.bo.iskeyword = vim.bo.iskeyword .. ",."
+    word = word or fn.expand "<cword>"
 
     vim.bo.iskeyword = original_iskeyword
 
     -- TODO: This is a sub par work around, since I usually rename `vim.api` -> `api` or similar
     -- consider maybe using treesitter in the future
-    local api_match = find(word, 'api', 'vim.api')
-    local fn_match = find(word, 'fn', 'vim.fn')
+    local api_match = find(word, "api", "vim.api")
+    local fn_match = find(word, "fn", "vim.fn")
     if api_match then
-        local _, finish = string.find(word, api_match .. '.')
+        local _, finish = string.find(word, api_match .. ".")
         local api_function = string.sub(word, finish + 1)
 
-        vim.cmd(string.format('help %s', api_function))
+        vim.cmd(string.format("help %s", api_function))
         return
     elseif fn_match then
-        local _, finish = string.find(word, fn_match .. '.')
+        local _, finish = string.find(word, fn_match .. ".")
         if not finish then
             return
         end
-        local api_function = string.sub(word, finish + 1) .. '()'
+        local api_function = string.sub(word, finish + 1) .. "()"
 
-        vim.cmd(string.format('help %s', api_function))
+        vim.cmd(string.format("help %s", api_function))
         return
     elseif callback then
         callback()
@@ -151,9 +151,9 @@ local function keyword(word, callback)
     end
 end
 
-vim.keymap.set('n', 'K', keyword, { buffer = 0, silent = true })
+vim.keymap.set("n", "K", keyword, { buffer = 0, silent = true })
 
-vim.keymap.set('n', '<leader>b%', ":source<CR>", { buffer = 0, desc = "Source buffer" })
+vim.keymap.set("n", "<leader>b%", ":source<CR>", { buffer = 0, desc = "Source buffer" })
 vim.opt_local.shiftwidth = 4
 vim.opt_local.softtabstop = 4
-vim.opt_local.formatoptions:remove({ 't', 'c', 'r', 'o' })
+vim.opt_local.formatoptions:remove { "t", "c", "r", "o" }

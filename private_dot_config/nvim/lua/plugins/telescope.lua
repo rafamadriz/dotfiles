@@ -18,14 +18,14 @@ telescope.setup {
             n = {
                 ["<C-c>"] = actions.close,
                 ["q"] = actions.close,
-            }
+            },
         },
         layout_config = {
             horizontal = {
                 height = 0.75,
                 width = 0.8,
                 prompt_position = "top",
-            }
+            },
         },
         vimgrep_arguments = {
             "rg",
@@ -100,8 +100,8 @@ telescope.setup {
             override_generic_sorter = true, -- override the generic sorter
             override_file_sorter = true, -- override the file sorter
             case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-        }
-    }
+        },
+    },
 }
 
 -- telescope extensions
@@ -115,13 +115,13 @@ telescope.setup {
 --    !fire   | inverse-exact-match         | Items that do not include fire
 --    !^music | inverse-prefix-exact-match  | Items that do not start with music
 --    !.mp2$  | inverse-suffix-exact-match  | Items that do not end with .mp3
-telescope.load_extension('fzf')
-telescope.load_extension('projects')
+telescope.load_extension "fzf"
+telescope.load_extension "projects"
 --------------------------------------------------------------------------------
 -- Mappings & Which-key
 --------------------------------------------------------------------------------
 
-local builtins = require('telescope.builtin')
+local builtins = require "telescope.builtin"
 local mappings = {
     ["<leader>"] = {
         ["<space>"] = { builtins.find_files, "Find files" },
@@ -152,12 +152,17 @@ local mappings = {
             ["g"] = { builtins.current_buffer_fuzzy_find, "Grep string" },
         },
         ["l"] = {
-            ["d"] = { function() builtins.diagnostics { bufnr = 0 } end, "Document diagnostics" },
+            ["d"] = {
+                function()
+                    builtins.diagnostics { bufnr = 0 }
+                end,
+                "Document diagnostics",
+            },
             ["s"] = { builtins.lsp_document_symbols, "Document symbols" },
             ["wd"] = { builtins.diagnostics, "Workspace diagnostics" },
             ["ws"] = { builtins.lsp_workspace_symbols, "Workspace symbols" },
         },
-    }
+    },
 }
 
-require("which-key").register(mappings, { mode = 'n' })
+require("which-key").register(mappings, { mode = "n" })

@@ -14,6 +14,10 @@ startify.section.top_buttons.val = {
     startify.button("h", "Help Tags", "<cmd>Telescope help_tags<CR>"),
     startify.button("p", "Projects", "<cmd>Telescope projects<CR>"),
     startify.button("s", "Load Session", "<cmd>SessionLoad<CR>"),
-    startify.button("d", "Dotfiles", "<cmd>chdir ~/.local/share/chezmoi/ | e ~/.local/share/chezmoi/<CR>")
+    startify.button(
+        "d",
+        "Dotfiles",
+        "<cmd>chdir ~/.local/share/chezmoi/ | e ~/.local/share/chezmoi/<CR>"
+    ),
 }
 startify.section.mru_cwd.val = { { type = "padding", val = 0 } }

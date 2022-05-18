@@ -1,19 +1,19 @@
 ---@diagnostic disable: undefined-global
 
 return {
-    s({ trig = 'nt', name = 'NOTE' }, {
+    s({ trig = "nt", name = "NOTE" }, {
         d(1, function()
             local function with_cmt(cmt)
-                return string.format(vim.bo.commentstring, ' ' .. cmt)
+                return string.format(vim.bo.commentstring, " " .. cmt)
             end
 
-            return s('', {
+            return s("", {
                 c(1, {
-                    t(with_cmt('NOTE: ')),
-                    t(with_cmt('TODO: ')),
-                    t(with_cmt('FIXME: ')),
-                    t(with_cmt('HACK: ')),
-                    t(with_cmt('BUG: ')),
+                    t(with_cmt "NOTE: "),
+                    t(with_cmt "TODO: "),
+                    t(with_cmt "FIXME: "),
+                    t(with_cmt "HACK: "),
+                    t(with_cmt "BUG: "),
                 }),
             })
         end),
@@ -21,24 +21,24 @@ return {
     }),
     --credits: akinsho
     s(
-        { trig = 'hr', name = 'Header' },
+        { trig = "hr", name = "Header" },
         fmt(
             [[
             {1}
             {2} {3}
             {1}
             {4}
-          ]] ,
+          ]],
             {
                 f(function()
-                    local comment = string.format(vim.bo.commentstring:gsub(' ', '') or '#%s', '-')
+                    local comment = string.format(vim.bo.commentstring:gsub(" ", "") or "#%s", "-")
                     local col = vim.bo.textwidth > 0 or 80
-                    return comment .. string.rep('-', col - #comment)
+                    return comment .. string.rep("-", col - #comment)
                 end),
                 f(function()
-                    return vim.bo.commentstring:gsub('%%s', '')
+                    return vim.bo.commentstring:gsub("%%s", "")
                 end),
-                i(1, 'HEADER'),
+                i(1, "HEADER"),
                 i(0),
             }
         )

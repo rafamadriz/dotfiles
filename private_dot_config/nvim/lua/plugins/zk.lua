@@ -1,4 +1,4 @@
-require "zk".setup()
+require("zk").setup()
 local mappings = {
     ["<leader>"] = {
         ["n"] = {
@@ -8,17 +8,17 @@ local mappings = {
             f = { "<cmd>ZkNotes { sort = { 'modified' } }<CR>", "Zk find notes" },
             c = { "<cmd>ZkCd<CR>", "Zk change directory" },
             t = { "<cmd>ZkTags<CR>", "Zk tags" },
-            n = { function()
-                vim.ui.input(
-                    { prompt = "Title: " },
-                    function(title)
+            n = {
+                function()
+                    vim.ui.input({ prompt = "Title: " }, function(title)
                         if title ~= nil then
-                            require "zk".new({ title = title })
+                            require("zk").new { title = title }
                         end
-                    end
-                )
-            end, "Zk new" },
-        }
-    }
+                    end)
+                end,
+                "Zk new",
+            },
+        },
+    },
 }
 require("which-key").register(mappings, { mode = "n" })

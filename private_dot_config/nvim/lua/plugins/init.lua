@@ -16,8 +16,8 @@ local pack_use = function()
             "neovim/nvim-lspconfig",
             config = function()
                 require "plugins.lspconfig"
-            end
-        }
+            end,
+        },
     }
     -----------------------------------------------------------------------------//
     -- Completion and snippets {{{1
@@ -31,11 +31,15 @@ local pack_use = function()
             { "hrsh7th/cmp-nvim-lua" },
             { "saadparwaiz1/cmp_luasnip" },
         },
-        config = function() require "plugins.completion" end,
+        config = function()
+            require "plugins.completion"
+        end,
     }
     use {
         "L3MON4D3/LuaSnip",
-        config = function() require "plugins.snippets" end,
+        config = function()
+            require "plugins.snippets"
+        end,
     }
     -----------------------------------------------------------------------------//
     -- Telescope {{{1
@@ -46,7 +50,9 @@ local pack_use = function()
     }
     use {
         "nvim-telescope/telescope.nvim",
-        config = function() require "plugins.telescope" end,
+        config = function()
+            require "plugins.telescope"
+        end,
     }
     -----------------------------------------------------------------------------//
     -- Treesitter {{{1
@@ -54,7 +60,9 @@ local pack_use = function()
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
-        config = function() require "plugins.treesitter" end,
+        config = function()
+            require "plugins.treesitter"
+        end,
     }
     use { "windwp/nvim-ts-autotag" }
     -----------------------------------------------------------------------------//
@@ -65,19 +73,21 @@ local pack_use = function()
         "phaazon/hop.nvim",
         config = function()
             require "plugins.hop"
-        end
+        end,
     }
     use {
         "folke/which-key.nvim",
         module = "which-key",
         config = function()
             require "plugins.whichkey"
-        end
+        end,
     }
     use {
         "kyazdani42/nvim-tree.lua",
         requires = "nvim-web-devicons",
-        config = function() require 'plugins.tree' end
+        config = function()
+            require "plugins.tree"
+        end,
     }
     -----------------------------------------------------------------------------//
     -- Improve Editing {{{1
@@ -87,7 +97,7 @@ local pack_use = function()
     use {
         "windwp/nvim-autopairs",
         config = function()
-            require('nvim-autopairs').setup {
+            require("nvim-autopairs").setup {
                 disable_filetype = { "TelescopePrompt", "vim" },
             }
         end,
@@ -106,15 +116,21 @@ local pack_use = function()
     use {
         "lewis6991/gitsigns.nvim",
         requires = "plenary.nvim",
-        config = function() require "plugins.git".gitsigns() end,
+        config = function()
+            require("plugins.git").gitsigns()
+        end,
     }
     use {
         "TimUntersberger/neogit",
-        config = function() require "plugins.git".neogit() end,
+        config = function()
+            require("plugins.git").neogit()
+        end,
     }
     use {
         "sindrets/diffview.nvim",
-        config = function() require "plugins.git".diffview() end,
+        config = function()
+            require("plugins.git").diffview()
+        end,
     }
     -----------------------------------------------------------------------------//
     -- UI {{{1
@@ -122,23 +138,27 @@ local pack_use = function()
     use { "sainnhe/gruvbox-material" }
     use { "sainnhe/edge" }
     use { "projekt0n/github-nvim-theme" }
-    use { "goolord/alpha-nvim",
-        config = function() require "plugins.alpha" end
+    use {
+        "goolord/alpha-nvim",
+        config = function()
+            require "plugins.alpha"
+        end,
     }
     use {
-        'nvim-lualine/lualine.nvim',
+        "nvim-lualine/lualine.nvim",
         config = function()
-            require('lualine').setup()
-        end
+            require("lualine").setup()
+        end,
     }
-    use { "stevearc/dressing.nvim",
+    use {
+        "stevearc/dressing.nvim",
         config = function()
-            require('dressing').setup {
+            require("dressing").setup {
                 input = {
                     insert_only = false,
                 },
             }
-        end
+        end,
     }
     -----------------------------------------------------------------------------//
     -- General plugins {{{1
@@ -148,7 +168,7 @@ local pack_use = function()
         "mickael-menu/zk-nvim",
         config = function()
             require "plugins.zk"
-        end
+        end,
     }
     use {
         "ahmedkhalf/project.nvim",
@@ -159,10 +179,11 @@ local pack_use = function()
             }
         end,
     }
-    use { "olimorris/persisted.nvim",
+    use {
+        "olimorris/persisted.nvim",
         config = function()
             require("persisted").setup {}
-        end
+        end,
     }
     use {
         "mbbill/undotree",
@@ -171,7 +192,7 @@ local pack_use = function()
             vim.g.undotree_SplitWidth = 40
             vim.g.undotree_SetFocusWhenToggle = 1
             vim.g.undotree_ShortIndicators = 1
-            as.nnoremap('<leader>u', '<cmd>UndotreeToggle<CR>', { desc = "Undo history" })
+            as.nnoremap("<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Undo history" })
         end,
     }
     use {
@@ -189,9 +210,8 @@ local pack_use = function()
 end
 -- }}}
 
-
 local fn = vim.fn
-local install_path = fn.stdpath('data') .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 
 local function load_plugins()
     local pack = require "packer"
