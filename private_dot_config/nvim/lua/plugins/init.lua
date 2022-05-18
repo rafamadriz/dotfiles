@@ -66,34 +66,16 @@ local pack_use = function()
     }
     use { "windwp/nvim-ts-autotag" }
     -----------------------------------------------------------------------------//
-    -- Utils {{{1
+    -- Improve Editing and motions {{{1
     -----------------------------------------------------------------------------//
-    use { "alker0/chezmoi.vim" }
+    use { "wellle/targets.vim" }
+    use { "machakann/vim-sandwich" }
     use {
         "phaazon/hop.nvim",
         config = function()
             require "plugins.hop"
         end,
     }
-    use {
-        "folke/which-key.nvim",
-        module = "which-key",
-        config = function()
-            require "plugins.whichkey"
-        end,
-    }
-    use {
-        "kyazdani42/nvim-tree.lua",
-        requires = "nvim-web-devicons",
-        config = function()
-            require "plugins.tree"
-        end,
-    }
-    -----------------------------------------------------------------------------//
-    -- Improve Editing {{{1
-    -----------------------------------------------------------------------------//
-    use { "wellle/targets.vim" }
-    use { "machakann/vim-sandwich" }
     use {
         "windwp/nvim-autopairs",
         config = function()
@@ -160,14 +142,27 @@ local pack_use = function()
             }
         end,
     }
-    -----------------------------------------------------------------------------//
-    -- General plugins {{{1
-    -----------------------------------------------------------------------------//
+    use {
+        "norcalli/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup({ "html", "javascript", "css" }, {
+                RRGGBBAA = true,
+                rgb_fn = true,
+                hsl_fn = true,
+                css = true,
+                css_fn = true,
+            })
+        end,
+    }
+    --------------------------------------------------------------------------------
+    -- Project and session management {{{1
+    --------------------------------------------------------------------------------
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
-        "mickael-menu/zk-nvim",
+        "kyazdani42/nvim-tree.lua",
+        requires = "nvim-web-devicons",
         config = function()
-            require "plugins.zk"
+            require "plugins.tree"
         end,
     }
     use {
@@ -185,6 +180,23 @@ local pack_use = function()
             require("persisted").setup {}
         end,
     }
+    -----------------------------------------------------------------------------//
+    -- General plugins {{{1
+    -----------------------------------------------------------------------------//
+    use { "alker0/chezmoi.vim" }
+    use {
+        "folke/which-key.nvim",
+        module = "which-key",
+        config = function()
+            require "plugins.whichkey"
+        end,
+    }
+    use {
+        "mickael-menu/zk-nvim",
+        config = function()
+            require "plugins.zk"
+        end,
+    }
     use {
         "mbbill/undotree",
         config = function()
@@ -193,18 +205,6 @@ local pack_use = function()
             vim.g.undotree_SetFocusWhenToggle = 1
             vim.g.undotree_ShortIndicators = 1
             as.nnoremap("<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Undo history" })
-        end,
-    }
-    use {
-        "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup({ "html", "javascript", "css" }, {
-                RRGGBBAA = true,
-                rgb_fn = true,
-                hsl_fn = true,
-                css = true,
-                css_fn = true,
-            })
         end,
     }
 end
