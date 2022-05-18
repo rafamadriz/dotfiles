@@ -149,7 +149,7 @@ local mappings = {
         ["b"] = {
             name = "Buffer",
             ["b"] = { builtins.buffers, "Buffers" },
-            ["g"] = { builtins.current_buffer_fuzzy_find, "Grep string" },
+            ["w"] = { builtins.current_buffer_fuzzy_find, "Grep string" },
         },
         ["l"] = {
             ["d"] = {
