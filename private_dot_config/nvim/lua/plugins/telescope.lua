@@ -152,15 +152,7 @@ local mappings = {
             ["w"] = { builtins.current_buffer_fuzzy_find, "Grep string" },
         },
         ["l"] = {
-            ["d"] = {
-                function()
-                    builtins.diagnostics { bufnr = 0 }
-                end,
-                "Document diagnostics",
-            },
-            ["s"] = { builtins.lsp_document_symbols, "Document symbols" },
-            ["wd"] = { builtins.diagnostics, "Workspace diagnostics" },
-            ["ws"] = { builtins.lsp_workspace_symbols, "Workspace symbols" },
+            name = "LSP",
         },
     },
 }
