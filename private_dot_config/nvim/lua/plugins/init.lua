@@ -24,12 +24,13 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     use {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         requires = {
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-nvim-lua" },
-            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-path", after = "nvim-cmp" },
+            { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+            { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
         },
         config = function()
             require "plugins.completion"
@@ -37,6 +38,7 @@ local pack_use = function()
     }
     use {
         "L3MON4D3/LuaSnip",
+        event = "InsertEnter",
         config = function()
             require "plugins.snippets"
         end,
@@ -64,7 +66,7 @@ local pack_use = function()
             require "plugins.treesitter"
         end,
     }
-    use { "windwp/nvim-ts-autotag" }
+    use { "windwp/nvim-ts-autotag", event = "InsertEnter" }
     -----------------------------------------------------------------------------//
     -- Improve Editing and motions {{{1
     -----------------------------------------------------------------------------//
@@ -78,6 +80,7 @@ local pack_use = function()
     }
     use {
         "windwp/nvim-autopairs",
+        event = "InsertEnter",
         config = function()
             require("nvim-autopairs").setup {
                 disable_filetype = { "TelescopePrompt", "vim" },
@@ -86,6 +89,7 @@ local pack_use = function()
     }
     use {
         "numToStr/Comment.nvim",
+        keys = { "gcc", "gc", "gb" },
         config = function()
             require("Comment").setup {
                 ignore = "^$",
@@ -104,12 +108,14 @@ local pack_use = function()
     }
     use {
         "TimUntersberger/neogit",
+        cmd = "Neogit",
         config = function()
             require("plugins.git").neogit()
         end,
     }
     use {
         "sindrets/diffview.nvim",
+        cmd = { "DiffviewOpen", "DiffviewFileHistory" },
         config = function()
             require("plugins.git").diffview()
         end,
@@ -144,6 +150,7 @@ local pack_use = function()
     }
     use {
         "norcalli/nvim-colorizer.lua",
+        cmd = { "ColorizerToggle", "ColorizerAttachToBuffer" },
         config = function()
             require("colorizer").setup({ "html", "javascript", "css" }, {
                 RRGGBBAA = true,
@@ -186,6 +193,7 @@ local pack_use = function()
     use { "alker0/chezmoi.vim" }
     use {
         "mhartington/formatter.nvim",
+        cmd = { "Format", "FormatWrite" },
         config = function()
             require "plugins.format"
         end,
@@ -205,12 +213,12 @@ local pack_use = function()
     }
     use {
         "mbbill/undotree",
+        cmd = "UndotreeToggle",
         config = function()
             vim.g.undotree_WindowLayout = 2
             vim.g.undotree_SplitWidth = 40
             vim.g.undotree_SetFocusWhenToggle = 1
             vim.g.undotree_ShortIndicators = 1
-            as.nnoremap("<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Undo history" })
         end,
     }
 end
