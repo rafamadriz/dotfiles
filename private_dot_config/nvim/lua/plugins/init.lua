@@ -185,6 +185,12 @@ local pack_use = function()
     -----------------------------------------------------------------------------//
     use { "alker0/chezmoi.vim" }
     use {
+        "mhartington/formatter.nvim",
+        config = function()
+            require "plugins.format"
+        end,
+    }
+    use {
         "folke/which-key.nvim",
         module = "which-key",
         config = function()

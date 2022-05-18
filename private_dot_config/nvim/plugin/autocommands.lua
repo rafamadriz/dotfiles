@@ -26,6 +26,15 @@ as.augroup("JumpToLastPosition", {
     },
 })
 
+as.augroup("FormatOnSave", {
+    {
+        event = "BufWritePost",
+        pattern = "*",
+        command = "FormatWrite",
+        desc = "Format on save",
+    },
+})
+
 ----------------------------------------------------------------------------------------------------
 -- Trim trailing white space
 ----------------------------------------------------------------------------------------------------
