@@ -225,12 +225,11 @@ end
 -- }}}
 
 local fn = vim.fn
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 
 local function load_plugins()
     local pack = require "packer"
     pack.init {
-        compile_path = install_path .. "/plugin/packer_compiled.lua",
+        snapshot_path = fn.stdpath "config" .. "/snapshots",
         git = { clone_timeout = 600 },
     }
     pack.startup {
@@ -240,6 +239,7 @@ local function load_plugins()
     }
 end
 
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     vim.cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     load_plugins()
