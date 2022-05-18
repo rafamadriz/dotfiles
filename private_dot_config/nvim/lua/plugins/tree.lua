@@ -10,6 +10,7 @@ require("nvim-tree").setup {
         side = "right",
         mappings = {
             list = {
+                { key = "S", action = "" },
                 { key = "?", action = "toggle_help" },
             },
         },
