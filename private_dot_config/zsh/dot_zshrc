@@ -31,7 +31,7 @@ zsh_add_plugin "zsh-users/zsh-history-substring-search"
 zsh_add_plugin "jeffreytse/zsh-vi-mode"
 PLUG_DIR=$ZDOTDIR/plugins
 export ZVM_VI_SURROUND_BINDKEY=s-prefix
-export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 # solves https://github.com/jeffreytse/zsh-vi-mode/issues/90
 #        https://github.com/jeffreytse/zsh-vi-mode/issues/24
 zvm_after_init() {
