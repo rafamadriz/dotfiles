@@ -68,7 +68,7 @@ end, { desc = "Change directory to current file", silent = false })
 --------------------------------------------------------------------------------
 nnoremap("<leader>bs", ":update<CR>", { desc = "Save buffer" })
 vnoremap("<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
-nnoremap("<leader>bq", ":close<CR>", { desc = "Quit buffer" })
+nnoremap("<leader>bq", ":bdelete<CR>", { desc = "Quit buffer" })
 nnoremap(
     "<leader>bQ",
     ":write | silent %bd | silent e# | bd#<CR>",
