@@ -69,7 +69,6 @@ M.neogit = function()
             hunk = { "", "" },
         },
     }
-    as.nnoremap("<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 end
 
 M.diffview = function()
@@ -86,8 +85,6 @@ M.diffview = function()
             option_panel = { ["q"] = cb "close" },
         },
     }
-    as.nnoremap("<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Diff" })
-    as.nnoremap("<leader>gd", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff file history" })
 end
 
 return M

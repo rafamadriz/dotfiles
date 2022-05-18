@@ -86,6 +86,14 @@ nnoremap("[q", ":cprevious<CR>zzzv", { desc = "Previous in quickfix list" })
 nnoremap("]q", ":cnext<CR>zzzv", { desc = "Next in quickfix list" })
 
 --------------------------------------------------------------------------------
+-- Some plugins mappings
+--------------------------------------------------------------------------------
+nnoremap("<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
+nnoremap("<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Diff" })
+nnoremap("<leader>gD", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff file history" })
+nnoremap("<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Undo history" })
+
+--------------------------------------------------------------------------------
 -- Resize windows
 --------------------------------------------------------------------------------
 -- expand or minimize current buffer in "actual" direction
