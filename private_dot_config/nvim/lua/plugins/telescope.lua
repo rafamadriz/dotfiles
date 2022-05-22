@@ -144,6 +144,7 @@ local mappings = {
             ["b"] = { builtins.git_branches, "Branches" },
             ["c"] = { builtins.git_commits, "Commits" },
             ["C"] = { builtins.git_bcommits, "Buffer commits" },
+            ["m"] = { builtins.git_status, "Modified files" },
             ["z"] = { builtins.git_stash, "Stash" },
         },
         ["b"] = {
