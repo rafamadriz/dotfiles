@@ -16,4 +16,8 @@ require "globals"
 require "settings"
 require "plugins"
 
-vim.cmd "colorscheme github_dimmed"
+vim.g.edge_better_performance = 1
+vim.g.gruvbox_material_better_performance = 1
+vim.g.gruvbox_material_palette = "material" -- material, mix & original
+
+vim.cmd "colorscheme edge"
