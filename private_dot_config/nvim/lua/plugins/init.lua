@@ -191,9 +191,11 @@ local pack_use = function()
         end,
     }
     use {
-        "olimorris/persisted.nvim",
+        "Shatur/neovim-session-manager",
         config = function()
-            require("persisted").setup {}
+            require("session_manager").setup {
+                autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
+            }
         end,
     }
     -----------------------------------------------------------------------------//
