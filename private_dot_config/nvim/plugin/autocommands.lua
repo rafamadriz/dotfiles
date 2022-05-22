@@ -35,6 +35,19 @@ as.augroup("FormatOnSave", {
     },
 })
 
+as.augroup("Terminal", {
+    {
+        event = "TermOpen",
+        pattern = "*",
+        command = function()
+            vim.opt_local.number = false
+            vim.opt_local.relativenumber = false
+            vim.cmd "startinsert"
+        end,
+        desc = "Don't show line numbers in terminal",
+    },
+})
+
 ----------------------------------------------------------------------------------------------------
 -- Trim trailing white space
 ----------------------------------------------------------------------------------------------------
