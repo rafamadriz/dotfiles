@@ -8,6 +8,7 @@ local vnoremap = as.vnoremap
 local vmap = as.vmap
 local xnoremap = as.xnoremap
 local cmap = as.cmap
+local tnoremap = as.tnoremap
 
 --------------------------------------------------------------------------------
 -- Space as leaderkey
@@ -86,6 +87,12 @@ nnoremap("[q", ":cprevious<CR>zzzv", { desc = "Previous in quickfix list" })
 nnoremap("]q", ":cnext<CR>zzzv", { desc = "Next in quickfix list" })
 
 --------------------------------------------------------------------------------
+-- Terminal
+--------------------------------------------------------------------------------
+tnoremap("<Esc>", [[<C-\><C-n>]])
+tnoremap("<C-o>", [[<C-\><C-n>]])
+
+--------------------------------------------------------------------------------
 -- Some plugins mappings
 --------------------------------------------------------------------------------
 nnoremap("<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
@@ -122,18 +129,19 @@ local resize = function(vertical, margin)
     cmd(_cmd)
 end
 
-vim.keymap.set({ "n", "t" }, "<S-Up>", function()
+local map = vim.keymap.set
+map({ "n", "t" }, "<S-Up>", function()
     resize(false, -2)
 end, { desc = "Resize up window horizontally" })
 
-vim.keymap.set({ "n", "t" }, "<S-Down>", function()
+map({ "n", "t" }, "<S-Down>", function()
     resize(false, 2)
 end, { desc = "Resize down window horizontally" })
 
-vim.keymap.set({ "n", "t" }, "<S-Left>", function()
+map({ "n", "t" }, "<S-Left>", function()
     resize(true, -2)
 end, { desc = "Resize left window vertically" })
 
-vim.keymap.set({ "n", "t" }, "<S-Right>", function()
+map({ "n", "t" }, "<S-Right>", function()
     resize(true, 2)
 end, { desc = "Resize right window vertically" })
