@@ -122,15 +122,18 @@ local resize = function(vertical, margin)
     cmd(_cmd)
 end
 
-nnoremap("<S-Up>", function()
+vim.keymap.set({ "n", "t" }, "<S-Up>", function()
     resize(false, -2)
 end, { desc = "Resize up window horizontally" })
-nnoremap("<S-Down>", function()
+
+vim.keymap.set({ "n", "t" }, "<S-Down>", function()
     resize(false, 2)
 end, { desc = "Resize down window horizontally" })
-nnoremap("<S-Left>", function()
+
+vim.keymap.set({ "n", "t" }, "<S-Left>", function()
     resize(true, -2)
-end, { desc = "Resize left window vetically" })
-nnoremap("<S-Right>", function()
+end, { desc = "Resize left window vertically" })
+
+vim.keymap.set({ "n", "t" }, "<S-Right>", function()
     resize(true, 2)
-end, { desc = "Resize right window vetically" })
+end, { desc = "Resize right window vertically" })
