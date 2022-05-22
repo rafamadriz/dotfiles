@@ -20,4 +20,26 @@ return {
         t " = ",
         i(0),
     }),
+    s(
+        {
+            trig = "fn",
+            name = "function",
+            dscr = "create a function",
+        },
+        fmt(
+            [[
+            {}function{}({})
+                {}
+            end
+            {}
+	]],
+            {
+                i(1),
+                i(2),
+                i(3),
+                i(4, "-- code"),
+                i(0),
+            }
+        )
+    ),
 }
