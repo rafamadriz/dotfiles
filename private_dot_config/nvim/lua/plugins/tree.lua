@@ -1,10 +1,6 @@
 require("nvim-tree").setup {
     disable_netrw = true, -- disables netrw completely
     update_cwd = true, -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-    update_focused_file = {
-        enable = true,
-        update_cwd = true,
-    },
     view = {
         width = 40,
         side = "right",
