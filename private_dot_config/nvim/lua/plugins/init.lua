@@ -135,12 +135,7 @@ local pack_use = function()
     use {
         "nvim-lualine/lualine.nvim",
         config = function()
-            require("lualine").setup {
-                sections = {
-                    lualine_c = { { "filename", path = 1 } },
-                    lualine_x = { "diagnostics", "encoding", "fileformat", "filetype" },
-                },
-            }
+            require("lualine").setup()
         end,
     }
     use {
