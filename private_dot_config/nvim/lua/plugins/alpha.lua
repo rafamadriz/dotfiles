@@ -13,7 +13,8 @@ startify.section.top_buttons.val = {
     startify.button("w", "Grep Word", "<cmd>Telescope live_grep<CR>"),
     startify.button("h", "Help Tags", "<cmd>Telescope help_tags<CR>"),
     startify.button("p", "Projects", "<cmd>Telescope projects<CR>"),
-    startify.button("s", "Load Session", "<cmd>SessionLoad<CR>"),
+    startify.button("s", "Select Session", "<cmd>SessionManager load_session<CR>"),
+    startify.button("S", "Last Session", "<cmd>SessionManager load_last_session<CR>"),
     startify.button(
         "d",
         "Dotfiles",
