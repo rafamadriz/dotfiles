@@ -26,6 +26,20 @@ local mappings = {
             C = { "<cmd>PackerClean<CR>", "Packer clean" },
             c = { "<cmd>PackerCompile<CR>", "Packer compile" },
         },
+        q = {
+            name = "Quit/Session",
+            Q = { "<cmd>quitall<CR>", "Quit all" },
+            s = {
+                name = "Session management",
+                s = { "<cmd>SessionManager save_current_session<CR>", "Save session" },
+                r = { "<cmd>SessionManager load_session<CR>", "Select session" },
+                l = { "<cmd>SessionManager load_last_session<CR>", "Last session" },
+                c = {
+                    "<cmd>SessionManager load_current_dir_session<CR>",
+                    "Load current dir session",
+                },
+            },
+        },
     },
     ["["] = {
         name = "Previous",
