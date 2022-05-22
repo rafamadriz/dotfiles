@@ -29,6 +29,7 @@ local mappings = {
         q = {
             name = "Quit/Session",
             Q = { "<cmd>quitall<CR>", "Quit all" },
+            p = { "<cmd>Telescope projects<CR>", "Projects" },
             s = {
                 name = "Session management",
                 s = { "<cmd>SessionManager save_current_session<CR>", "Save session" },
