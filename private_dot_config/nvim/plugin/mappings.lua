@@ -75,6 +75,7 @@ nnoremap(
     ":write | silent %bd | silent e# | bd#<CR>",
     { desc = "Quit all buffers but current" }
 )
+nnoremap("<leader>b!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
 
 --------------------------------------------------------------------------------
 -- Pair of bracket mappings
