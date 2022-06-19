@@ -14,18 +14,22 @@ alias \
 
 # shortcuts
 alias \
-    cp='cp -iv' \
-    d='kitty +kitten diff' \
-    icat='kitty +kitten icat' \
-    mv='mv -iv' \
-    nuke='rm -rI' \
     {{- if eq .chezmoi.os "linux" }}
     open='xdg-open' \
     s='systemctl' \
     {{- end }}
+    {{- if lookPath "inxi" }}
+    sysinfo="inxi -Fxz" \
+    {{- end }}
+    {{- if lookPath "kitty" }}
+    d='kitty +kitten diff' \
+    icat='kitty +kitten icat' \
+    {{- end }}
+    cp='cp -iv' \
+    mv='mv -iv' \
+    nuke='rm -rI' \
     rm='rm -vI' \
     sudo='sudo ' \
-    sysinfo="inxi -Fxz" \
     untar='tar -xvf' \
     v='nvim' \
     vim='nvim' \
