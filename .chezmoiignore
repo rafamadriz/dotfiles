@@ -2,12 +2,16 @@ README.md
 .stylua.toml
 .key.txt.age
 
-{{ if not (lookPath "lf") }}
-.config/lf/
-{{- end }}
-
 {{ if not (lookPath "maim") }}
 .local/bin/scripts/scrot
+{{- end }}
+
+{{ if not (lookPath "screenkey") }}
+.local/bin/scripts/scrkey
+{{- end }}
+
+{{ if not (lookPath "lf") }}
+.config/lf/
 {{- end }}
 
 {{ if not (lookPath "neofetch") }}
