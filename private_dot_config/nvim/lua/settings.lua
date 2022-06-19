@@ -6,6 +6,7 @@ vim.opt.ttimeoutlen = 10
 -----------------------------------------------------------------------------//
 -- Window splitting and buffers {{{1
 -----------------------------------------------------------------------------//
+vim.opt.lazyredraw = true
 vim.opt.hidden = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
