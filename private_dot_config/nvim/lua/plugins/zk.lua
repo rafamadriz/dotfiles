@@ -4,7 +4,7 @@ local mappings = {
         ["n"] = {
             name = "Notes",
             l = { "<cmd>ZkLinks<CR>", "Zk links" },
-            b = { "<cmd>ZkBackLinks<CR>", "Zk backlinks" },
+            b = { "<cmd>ZkBacklinks<CR>", "Zk backlinks" },
             f = { "<cmd>ZkNotes { sort = { 'modified' } }<CR>", "Zk find notes" },
             c = { "<cmd>ZkCd<CR>", "Zk change directory" },
             t = { "<cmd>ZkTags<CR>", "Zk tags" },
