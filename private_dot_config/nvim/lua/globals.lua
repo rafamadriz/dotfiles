@@ -17,9 +17,7 @@ as.lsp = { borders = "rounded" }
 ---Check is command is executable
 ---@param cmd string
 ---return boolean
-function as.executable(cmd)
-    return fn.executable(cmd) > 0
-end
+function as.executable(cmd) return fn.executable(cmd) > 0 end
 
 ----------------------------------------------------------------------------------------------------
 -- Autocommand

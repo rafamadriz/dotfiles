@@ -20,22 +20,14 @@ M.gitsigns = function()
 
             -- Navigation
             map("n", "]g", function()
-                if vim.wo.diff then
-                    return "]c"
-                end
-                vim.schedule(function()
-                    gs.next_hunk()
-                end)
+                if vim.wo.diff then return "]c" end
+                vim.schedule(function() gs.next_hunk() end)
                 return "<Ignore>"
             end, { expr = true, desc = "Next git hunk" })
 
             map("n", "[g", function()
-                if vim.wo.diff then
-                    return "[c"
-                end
-                vim.schedule(function()
-                    gs.prev_hunk()
-                end)
+                if vim.wo.diff then return "[c" end
+                vim.schedule(function() gs.prev_hunk() end)
                 return "<Ignore>"
             end, { expr = true, desc = "Previous git hunk" })
 
@@ -46,9 +38,12 @@ M.gitsigns = function()
             map("n", "<leader>gR", gs.reset_buffer, { desc = "Reset buffer" })
             map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
             map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
-            map("n", "<leader>gB", function()
-                gs.blame_line { full = true }
-            end, { desc = "Blame line" })
+            map(
+                "n",
+                "<leader>gB",
+                function() gs.blame_line { full = true } end,
+                { desc = "Blame line" }
+            )
             map("n", "<leader>gl", gs.toggle_current_line_blame, { desc = "Blame current line" })
             map("n", "<leader>gt", gs.toggle_deleted, { desc = "Toggle old versions of hunks" })
 

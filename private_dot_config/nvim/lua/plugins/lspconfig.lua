@@ -16,9 +16,7 @@ local set_mappings = function(client, bufnr)
         ["<leader>"] = {
             ["l"] = {
                 ["d"] = {
-                    function()
-                        builtins.diagnostics { bufnr = 0 }
-                    end,
+                    function() builtins.diagnostics { bufnr = 0 } end,
                     "Document diagnostics",
                 },
                 ["a"] = { vim.lsp.buf.code_action, "Code action" },
@@ -36,9 +34,7 @@ local set_mappings = function(client, bufnr)
                             "textDocument/definition",
                             params,
                             function(_, result)
-                                if result == nil or vim.tbl_isempty(result) then
-                                    return nil
-                                end
+                                if result == nil or vim.tbl_isempty(result) then return nil end
                                 vim.lsp.util.preview_location(
                                     result[1],
                                     { border = as.lsp.borders }
@@ -55,9 +51,7 @@ local set_mappings = function(client, bufnr)
                 ["wd"] = { builtins.diagnostics, "Workspace diagnostics" },
                 ["ws"] = { builtins.lsp_workspace_symbols, "Workspace symbols" },
                 ["wl"] = {
-                    function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end,
+                    function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
                     "List workspace folders",
                 },
             },
@@ -76,9 +70,7 @@ local on_attach = function(client, bufnr)
             {
                 event = { "BufEnter", "CursorHold", "InsertLeave" },
                 buffer = bufnr,
-                command = function()
-                    vim.lsp.codelens.refresh()
-                end,
+                command = function() vim.lsp.codelens.refresh() end,
             },
         })
     end

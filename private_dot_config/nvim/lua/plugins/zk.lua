@@ -13,9 +13,7 @@ local mappings = {
             n = {
                 function()
                     vim.ui.input({ prompt = "Title: " }, function(title)
-                        if title ~= nil then
-                            require("zk").new { title = title }
-                        end
+                        if title ~= nil then require("zk").new { title = title } end
                     end)
                 end,
                 "Zk new",

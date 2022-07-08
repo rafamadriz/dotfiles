@@ -30,9 +30,7 @@ local lsp_symbols = {
 local cmp = require "cmp"
 cmp.setup {
     snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end,
+        expand = function(args) require("luasnip").lsp_expand(args.body) end,
     },
     window = {
         completion = cmp.config.window.bordered(),
@@ -69,9 +67,7 @@ cmp.setup {
         {
             name = "buffer",
             option = {
-                get_bufnrs = function()
-                    return vim.api.nvim_list_bufs()
-                end,
+                get_bufnrs = function() return vim.api.nvim_list_bufs() end,
             },
         },
         { name = "path" },

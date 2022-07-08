@@ -1,6 +1,4 @@
-if not as then
-    return
-end
+if not as then return end
 
 local api, fn = vim.api, vim.fn
 
@@ -79,9 +77,7 @@ as.augroup("TrimTrailing", {
             -- get row count after line deletion
             local end_row = api.nvim_buf_line_count(0)
 
-            if pos[1] > end_row then
-                pos[1] = end_row
-            end
+            if pos[1] > end_row then pos[1] = end_row end
 
             api.nvim_win_set_cursor(0, pos)
         end,
@@ -99,9 +95,7 @@ as.augroup("Mkdir", {
         command = function()
             local dir = fn.expand "<afile>:p:h"
 
-            if fn.isdirectory(dir) == 0 then
-                fn.mkdir(dir, "p")
-            end
+            if fn.isdirectory(dir) == 0 then fn.mkdir(dir, "p") end
         end,
         desc = "automatically create missing directories when saving file",
     },
@@ -132,9 +126,7 @@ vim.keymap.set(
 )
 
 local function stop_hl()
-    if vim.v.hlsearch == 0 or api.nvim_get_mode().mode ~= "n" then
-        return
-    end
+    if vim.v.hlsearch == 0 or api.nvim_get_mode().mode ~= "n" then return end
     api.nvim_feedkeys(api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
 end
 
@@ -142,36 +134,26 @@ local function hl_search()
     local col = api.nvim_win_get_cursor(0)[2]
     local curr_line = api.nvim_get_current_line()
     local ok, match = pcall(fn.matchstrpos, curr_line, fn.getreg "/", 0)
-    if not ok then
-        return vim.notify(match, "error", { title = "HL SEARCH" })
-    end
+    if not ok then return vim.notify(match, "error", { title = "HL SEARCH" }) end
     local _, p_start, p_end = unpack(match)
     -- if the cursor is in a search result, leave highlighting on
-    if col < p_start or col > p_end then
-        stop_hl()
-    end
+    if col < p_start or col > p_end then stop_hl() end
 end
 
 as.augroup("VimrcIncSearchHighlight", {
     {
         event = { "CursorMoved" },
-        command = function()
-            hl_search()
-        end,
+        command = function() hl_search() end,
     },
     {
         event = { "InsertEnter" },
-        command = function()
-            stop_hl()
-        end,
+        command = function() stop_hl() end,
     },
     {
         event = { "OptionSet" },
         pattern = { "hlsearch" },
         command = function()
-            vim.schedule(function()
-                vim.cmd "redrawstatus"
-            end)
+            vim.schedule(function() vim.cmd "redrawstatus" end)
         end,
     },
 })
