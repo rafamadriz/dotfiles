@@ -31,9 +31,7 @@ require("luasnip.loaders.from_lua").lazy_load()
 
 -- <c-l> is selecting within a list of options.
 vim.keymap.set({ "s", "i" }, "<c-l>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
-    end
+    if ls.choice_active() then ls.change_choice(1) end
 end, { desc = "Scroll through choice nodes" })
 
 -- TODO: covert fully to lua
@@ -45,7 +43,5 @@ vim.keymap.set(
 )
 
 vim.keymap.set("i", "<S-Tab>", function()
-    if ls.jumpable(-1) then
-        ls.jump(-1)
-    end
+    if ls.jumpable(-1) then ls.jump(-1) end
 end, { desc = "Jump backwards snippet" })

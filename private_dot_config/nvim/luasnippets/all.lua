@@ -3,9 +3,7 @@
 return {
     s({ trig = "nt", name = "NOTE" }, {
         d(1, function()
-            local function with_cmt(cmt)
-                return string.format(vim.bo.commentstring, " " .. cmt)
-            end
+            local function with_cmt(cmt) return string.format(vim.bo.commentstring, " " .. cmt) end
 
             return s("", {
                 c(1, {
@@ -35,9 +33,7 @@ return {
                     local col = vim.bo.textwidth > 0 or 80
                     return comment .. string.rep("-", col - #comment)
                 end),
-                f(function()
-                    return vim.bo.commentstring:gsub("%%s", "")
-                end),
+                f(function() return vim.bo.commentstring:gsub("%%s", "") end),
                 i(1, "HEADER"),
                 i(0),
             }

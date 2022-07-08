@@ -1,6 +1,4 @@
-if not as then
-    return
-end
+if not as then return end
 
 local nmap = as.nmap
 local nnoremap = as.nnoremap
@@ -131,18 +129,30 @@ local resize = function(vertical, margin)
 end
 
 local map = vim.keymap.set
-map({ "n", "t" }, "<S-Up>", function()
-    resize(false, -2)
-end, { desc = "Resize up window horizontally" })
+map(
+    { "n", "t" },
+    "<S-Up>",
+    function() resize(false, -2) end,
+    { desc = "Resize up window horizontally" }
+)
 
-map({ "n", "t" }, "<S-Down>", function()
-    resize(false, 2)
-end, { desc = "Resize down window horizontally" })
+map(
+    { "n", "t" },
+    "<S-Down>",
+    function() resize(false, 2) end,
+    { desc = "Resize down window horizontally" }
+)
 
-map({ "n", "t" }, "<S-Left>", function()
-    resize(true, -2)
-end, { desc = "Resize left window vertically" })
+map(
+    { "n", "t" },
+    "<S-Left>",
+    function() resize(true, -2) end,
+    { desc = "Resize left window vertically" }
+)
 
-map({ "n", "t" }, "<S-Right>", function()
-    resize(true, 2)
-end, { desc = "Resize right window vertically" })
+map(
+    { "n", "t" },
+    "<S-Right>",
+    function() resize(true, 2) end,
+    { desc = "Resize right window vertically" }
+)

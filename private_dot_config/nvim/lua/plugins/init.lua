@@ -14,9 +14,7 @@ local pack_use = function()
         "williamboman/nvim-lsp-installer",
         {
             "neovim/nvim-lspconfig",
-            config = function()
-                require "plugins.lspconfig"
-            end,
+            config = function() require "plugins.lspconfig" end,
         },
     }
     -----------------------------------------------------------------------------//
@@ -32,16 +30,12 @@ local pack_use = function()
             { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
             { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
         },
-        config = function()
-            require "plugins.completion"
-        end,
+        config = function() require "plugins.completion" end,
     }
     use {
         "L3MON4D3/LuaSnip",
         event = "InsertEnter",
-        config = function()
-            require "plugins.snippets"
-        end,
+        config = function() require "plugins.snippets" end,
     }
     -----------------------------------------------------------------------------//
     -- Telescope {{{1
@@ -52,9 +46,7 @@ local pack_use = function()
     }
     use {
         "nvim-telescope/telescope.nvim",
-        config = function()
-            require "plugins.telescope"
-        end,
+        config = function() require "plugins.telescope" end,
     }
     -----------------------------------------------------------------------------//
     -- Treesitter {{{1
@@ -62,9 +54,7 @@ local pack_use = function()
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
-        config = function()
-            require "plugins.treesitter"
-        end,
+        config = function() require "plugins.treesitter" end,
     }
     use { "windwp/nvim-ts-autotag", event = "InsertEnter" }
     -----------------------------------------------------------------------------//
@@ -74,9 +64,7 @@ local pack_use = function()
     use { "machakann/vim-sandwich" }
     use {
         "phaazon/hop.nvim",
-        config = function()
-            require "plugins.hop"
-        end,
+        config = function() require "plugins.hop" end,
     }
     use {
         "windwp/nvim-autopairs",
@@ -102,23 +90,17 @@ local pack_use = function()
     use {
         "lewis6991/gitsigns.nvim",
         requires = "plenary.nvim",
-        config = function()
-            require("plugins.git").gitsigns()
-        end,
+        config = function() require("plugins.git").gitsigns() end,
     }
     use {
         "TimUntersberger/neogit",
         cmd = "Neogit",
-        config = function()
-            require("plugins.git").neogit()
-        end,
+        config = function() require("plugins.git").neogit() end,
     }
     use {
         "sindrets/diffview.nvim",
         cmd = { "DiffviewOpen", "DiffviewFileHistory" },
-        config = function()
-            require("plugins.git").diffview()
-        end,
+        config = function() require("plugins.git").diffview() end,
     }
     -----------------------------------------------------------------------------//
     -- UI {{{1
@@ -141,9 +123,7 @@ local pack_use = function()
     }
     use {
         "goolord/alpha-nvim",
-        config = function()
-            require "plugins.alpha"
-        end,
+        config = function() require "plugins.alpha" end,
     }
     use {
         "nvim-lualine/lualine.nvim",
@@ -190,9 +170,7 @@ local pack_use = function()
     use {
         "kyazdani42/nvim-tree.lua",
         requires = "nvim-web-devicons",
-        config = function()
-            require "plugins.tree"
-        end,
+        config = function() require "plugins.tree" end,
     }
     use {
         "ahmedkhalf/project.nvim",
@@ -218,22 +196,16 @@ local pack_use = function()
     use {
         "mhartington/formatter.nvim",
         cmd = { "Format", "FormatWrite" },
-        config = function()
-            require "plugins.format"
-        end,
+        config = function() require "plugins.format" end,
     }
     use {
         "folke/which-key.nvim",
         module = "which-key",
-        config = function()
-            require "plugins.whichkey"
-        end,
+        config = function() require "plugins.whichkey" end,
     }
     use {
         "mickael-menu/zk-nvim",
-        config = function()
-            require "plugins.zk"
-        end,
+        config = function() require "plugins.zk" end,
     }
     use {
         "mbbill/undotree",
@@ -257,9 +229,7 @@ local function load_plugins()
         git = { clone_timeout = 600 },
     }
     pack.startup {
-        function()
-            pack_use()
-        end,
+        function() pack_use() end,
     }
 end
 
