@@ -61,7 +61,23 @@ local pack_use = function()
     -- Improve Editing and motions {{{1
     -----------------------------------------------------------------------------//
     use { "wellle/targets.vim" }
-    use { "machakann/vim-sandwich" }
+    use {
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup {
+                keymaps = {
+                    insert = "sa",
+                    insert_line = "saa",
+                    visual = "s",
+                    delete = "sd",
+                    change = "sc",
+                },
+                highlight_motion = {
+                    duration = 0,
+                },
+            }
+        end,
+    }
     use {
         "phaazon/hop.nvim",
         config = function() require "plugins.hop" end,

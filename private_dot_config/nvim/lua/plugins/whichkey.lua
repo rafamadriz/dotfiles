@@ -55,9 +55,9 @@ local mappings = {
         ["cc"] = "Comment line",
     },
     ["s"] = {
-        ["a"] = "Surroud add",
-        ["r"] = "Surroud replace",
-        ["d"] = "Surroud delete",
+        ["a"] = "Surround add",
+        ["c"] = "Surround change",
+        ["d"] = "Surround delete",
     },
 }
 
