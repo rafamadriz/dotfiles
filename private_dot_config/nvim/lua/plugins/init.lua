@@ -46,6 +46,7 @@ local pack_use = function()
     }
     use {
         "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
         config = function() require "plugins.telescope" end,
     }
     -----------------------------------------------------------------------------//
