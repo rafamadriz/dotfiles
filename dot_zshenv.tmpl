@@ -27,7 +27,7 @@ export ANDROID_HOME="$XDG_DATA_HOME"/android
 export LESSHISTFILE=-
 
 # Fixing Paths
-if [[ ! "$DESKTOP_SESSION" == 'plasma' ]]; then
+if [[ ! "$DESKTOP_SESSION" == 'plasma' ]] && [[ ! "$DESKTOP_SESSION" == 'plasmawayland' ]]; then
     export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority # this creates problems with KDE
     export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
     export XSERVERRC="$XDG_CONFIG_HOME"/X11/xserverrc
