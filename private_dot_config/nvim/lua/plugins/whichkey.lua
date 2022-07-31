@@ -54,11 +54,6 @@ local mappings = {
         ["c"] = "Comment text",
         ["cc"] = "Comment line",
     },
-    ["s"] = {
-        ["a"] = "Surround add",
-        ["c"] = "Surround change",
-        ["d"] = "Surround delete",
-    },
 }
 
 wk.register(mappings, { mode = "n" })
