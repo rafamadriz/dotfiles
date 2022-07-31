@@ -67,9 +67,14 @@ local pack_use = function()
         config = function()
             require("nvim-surround").setup {
                 keymaps = {
-                    insert = "sa",
-                    insert_line = "saa",
+                    insert = false,
+                    insert_line = false,
+                    normal = "sa",
+                    normal_cur = "saa",
+                    normal_line = false,
+                    normal_cur_line = false,
                     visual = "s",
+                    visual_line = false,
                     delete = "sd",
                     change = "sc",
                 },
