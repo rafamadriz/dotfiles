@@ -82,7 +82,7 @@ telescope.setup {
         },
         buffers = {
             layout_config = { preview_width = 0.6 },
-            ignore_current_buffer = true,
+            ignore_current_buffer = false,
             sort_mru = true,
             mappings = {
                 i = {
