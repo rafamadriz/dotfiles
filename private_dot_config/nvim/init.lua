@@ -19,5 +19,6 @@ require "plugins"
 vim.g.edge_better_performance = 1
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_palette = "material" -- material, mix & original
+vim.g.catppuccin_flavour = "mocha" -- latte (light), frappe, macchiato, mocha
 
-vim.cmd "colorscheme github_dark_default"
+vim.cmd "colorscheme catppuccin"
