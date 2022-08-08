@@ -10,12 +10,14 @@ local pack_use = function()
     -- LSP {{{1
     -----------------------------------------------------------------------------//
     use { "ray-x/lsp_signature.nvim" }
+    use { "williamboman/mason.nvim", config = function() require("mason").setup() end }
     use {
-        "williamboman/nvim-lsp-installer",
-        {
-            "neovim/nvim-lspconfig",
-            config = function() require "plugins.lspconfig" end,
-        },
+        "williamboman/mason-lspconfig.nvim",
+        config = function() require("mason-lspconfig").setup() end,
+    }
+    use {
+        "neovim/nvim-lspconfig",
+        config = function() require "plugins.lspconfig" end,
     }
     -----------------------------------------------------------------------------//
     -- Completion and snippets {{{1
