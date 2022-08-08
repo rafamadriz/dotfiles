@@ -50,9 +50,7 @@ local mappings = {
     },
     ["g"] = {
         ["b"] = "Comment block",
-        ["bc"] = "Comment block line",
         ["c"] = "Comment text",
-        ["cc"] = "Comment line",
     },
 }
 

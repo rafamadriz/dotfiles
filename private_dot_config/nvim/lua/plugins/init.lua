@@ -78,7 +78,7 @@ local pack_use = function()
                     delete = "sd",
                     change = "sc",
                 },
-                highlight_motion = {
+                highlight = {
                     duration = 0,
                 },
             }
