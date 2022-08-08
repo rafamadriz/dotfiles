@@ -25,6 +25,7 @@ local mappings = {
             i = { "<cmd>PackerInstall<CR>", "Packer install" },
             C = { "<cmd>PackerClean<CR>", "Packer clean" },
             c = { "<cmd>PackerCompile<CR>", "Packer compile" },
+            u = { "<cmd>PackerUpdate<CR>", "Packer update" },
         },
         q = {
             name = "Quit/Session",
