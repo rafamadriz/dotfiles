@@ -1,6 +1,3 @@
-local installer = require "nvim-lsp-installer"
-installer.setup {}
-
 local set_mappings = function(client, bufnr)
     local builtins = require "telescope.builtin"
     require("which-key").register({
@@ -93,12 +90,9 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local installed = {}
-for _, server in pairs(installer.get_installed_servers()) do
-    table.insert(installed, server["name"])
-end
-
 local opts = { on_attach = on_attach, capabilities = capabilities }
+
+local installed = require("mason-lspconfig").get_installed_servers()
 for _, lsp in pairs(installed) do
     if lsp == "sumneko_lua" then
         opts.settings = {
