@@ -90,26 +90,29 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local opts = { on_attach = on_attach, capabilities = capabilities }
+local lspconfig = require "lspconfig"
 
-local installed = require("mason-lspconfig").get_installed_servers()
-for _, lsp in pairs(installed) do
-    if lsp == "sumneko_lua" then
-        opts.settings = {
-            Lua = {
-                diagnostics = {
-                    globals = {
-                        "vim",
-                        "as",
+lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+require("mason-lspconfig").setup_handlers {
+
+    function(server_name) lspconfig[server_name].setup {} end,
+
+    ["sumneko_lua"] = function()
+        lspconfig.sumneko_lua.setup {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {
+                            "vim",
+                            "as",
+                        },
                     },
-                },
-                workspace = {
-                    maxPreload = 10000,
-                    preloadFileSize = 50000,
                 },
             },
         }
-    end
-
-    require("lspconfig")[lsp].setup(opts)
-end
+    end,
+}
