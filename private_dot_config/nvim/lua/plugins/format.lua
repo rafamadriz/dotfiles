@@ -11,18 +11,6 @@ require("formatter").setup {
         typescript = { require("formatter.filetypes.typescript").prettier },
         typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
         json = { require("formatter.filetypes.json").prettier },
-        markdown = {
-            function()
-                return {
-                    exe = "prettier",
-                    args = {
-                        "--stdin-filepath",
-                        vim.api.nvim_buf_get_name(0),
-                        "--parser markdown",
-                    },
-                    stdin = true,
-                }
-            end,
-        },
+        markdown = { require("formatter.filetypes.markdown").prettier },
     },
 }
