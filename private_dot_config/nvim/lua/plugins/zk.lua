@@ -1,5 +1,5 @@
 require("zk").setup {
-    picker = "telescope",
+    -- picker = "telescope",
 }
 local mappings = {
     ["<leader>"] = {

@@ -66,19 +66,20 @@ local pack_use = function()
     use { "wellle/targets.vim" }
     use {
         "kylechui/nvim-surround",
+        keys = { "s", "ss", { "v", "s" }, "ds", "cs" },
         config = function()
             require("nvim-surround").setup {
                 keymaps = {
                     insert = false,
                     insert_line = false,
-                    normal = "sa",
-                    normal_cur = "saa",
+                    normal = "s",
+                    normal_cur = "ss",
                     normal_line = false,
                     normal_cur_line = false,
                     visual = "s",
                     visual_line = false,
-                    delete = "sd",
-                    change = "sc",
+                    delete = "ds",
+                    change = "cs",
                 },
                 highlight = {
                     duration = 0,
@@ -88,6 +89,7 @@ local pack_use = function()
     }
     use {
         "phaazon/hop.nvim",
+        keys = { { "n", "S" }, { "v", "S" } },
         config = function() require "plugins.hop" end,
     }
     use {
