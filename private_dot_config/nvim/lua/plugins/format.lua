@@ -12,5 +12,6 @@ require("formatter").setup {
         typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
         json = { require("formatter.filetypes.json").prettier },
         markdown = { require("formatter.filetypes.markdown").prettier },
+        sh = { require("formatter.filetypes.sh").shfmt },
     },
 }

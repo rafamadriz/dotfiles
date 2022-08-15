@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# Transfer files from a [source] to a [destination]
+# This script is meant to be used for backing up folders to an external drive
+# mounted on the system.
+
+err() {
+    echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
+}
+
+if [ -z "$1" ]; then
+    err "You need specify a source"
+    exit 1
+fi
+
+if [ -z "$2" ]; then
+    err "You need specify a destination"
+    exit 1
+fi
+
+# `-h`: human readable
+# `-v`: verbose
+# `-r`: recurse into directories
+# `-z`: compress
+# `-P`: --partial (keep partially transferred files) +
+#       --progress (show progress during transfer)
+# `-t`: preserve modification times
+if command -v rsync >/dev/null 2>&1; then
+    rsync -h -v -r -z -P -t --exclude={'.stfolder*','.thumbnails'} "$1" "$2"
+else
+    err "rsync is required but is not installed. Aborting"
+    exit 1
+fi
