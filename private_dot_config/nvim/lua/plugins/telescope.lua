@@ -76,6 +76,9 @@ telescope.setup {
         },
     },
     pickers = {
+        current_buffer_fuzzy_find = {
+            theme = "ivy",
+        },
         find_files = {
             hidden = true,
             no_ignore = true,
