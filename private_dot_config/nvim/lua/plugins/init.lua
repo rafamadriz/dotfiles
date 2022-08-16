@@ -66,7 +66,7 @@ local pack_use = function()
     use { "wellle/targets.vim" }
     use {
         "kylechui/nvim-surround",
-        keys = { "s", "ss", { "v", "s" }, "ds", "cs" },
+        keys = { "s", "ss", { "v", "s" } },
         config = function()
             require("nvim-surround").setup {
                 keymaps = {
