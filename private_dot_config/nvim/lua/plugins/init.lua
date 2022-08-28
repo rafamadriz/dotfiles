@@ -89,7 +89,6 @@ local pack_use = function()
     }
     use {
         "phaazon/hop.nvim",
-        keys = { { "n", "S" }, { "v", "S" } },
         config = function() require "plugins.hop" end,
     }
     use {
