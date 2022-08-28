@@ -81,7 +81,7 @@ telescope.setup {
         },
         find_files = {
             hidden = true,
-            no_ignore = true,
+            -- no_ignore = true,
         },
         buffers = {
             layout_config = { preview_width = 0.6 },
