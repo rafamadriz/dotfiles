@@ -97,6 +97,10 @@ lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_c
     capabilities = capabilities,
 })
 
+-- Setup ccls with lspconfig since it's not going to be supported by mason.nvim
+-- Source: https://github.com/williamboman/mason.nvim/issues/349
+if as.executable "ccls" then lspconfig.ccls.setup {} end
+
 require("mason-lspconfig").setup_handlers {
 
     function(server_name) lspconfig[server_name].setup {} end,
