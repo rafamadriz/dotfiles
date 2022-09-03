@@ -61,7 +61,6 @@ local pack_use = function()
     }
     use {
         "nvim-treesitter/nvim-treesitter-context",
-        config = function() require("nvim-treesitter-context").setup() end,
     }
     use { "windwp/nvim-ts-autotag", event = "InsertEnter" }
     -----------------------------------------------------------------------------//
