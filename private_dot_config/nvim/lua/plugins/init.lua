@@ -1,5 +1,25 @@
-local pack_use = function()
-    local use = require("packer").use
+local fn = vim.fn
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+    packer_bootstrap = fn.system {
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    }
+    vim.cmd [[packadd packer.nvim]]
+end
+
+local pack = require "packer"
+
+pack.init {
+    snapshot_path = fn.stdpath "config" .. "/snapshots",
+    git = { clone_timeout = 600 },
+}
+
+pack.startup(function(use)
     use { "wbthomason/packer.nvim" }
     -----------------------------------------------------------------------------//
     -- Required by others {{{1
@@ -245,28 +265,7 @@ local pack_use = function()
             vim.g.undotree_ShortIndicators = 1
         end,
     }
-end
+    if packer_bootstrap then pack.sync() end
+end)
 -- }}}
-
-local fn = vim.fn
-
-local function load_plugins()
-    local pack = require "packer"
-    pack.init {
-        snapshot_path = fn.stdpath "config" .. "/snapshots",
-        git = { clone_timeout = 600 },
-    }
-    pack.startup {
-        function() pack_use() end,
-    }
-end
-
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    vim.cmd("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
-    load_plugins()
-    require("packer").sync()
-else
-    load_plugins()
-end
 -- vim:foldmethod=marker
