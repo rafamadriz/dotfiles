@@ -59,6 +59,10 @@ local pack_use = function()
         run = ":TSUpdate",
         config = function() require "plugins.treesitter" end,
     }
+    use {
+        "nvim-treesitter/nvim-treesitter-context",
+        config = function() require("nvim-treesitter-context").setup() end,
+    }
     use { "windwp/nvim-ts-autotag", event = "InsertEnter" }
     -----------------------------------------------------------------------------//
     -- Improve Editing and motions {{{1
