@@ -51,8 +51,6 @@ xnoremap(
     { expr = true, desc = "Move down in wraped lines as nornal lines" }
 )
 vnoremap("y", "y`]", { desc = "Keep cursor position when yanking text" })
-nnoremap("p", "p`]", { desc = "Jump to end of pasted text" })
-vnoremap("p", "p`]", { desc = "Jump to end of pasted text" })
 cmap("<C-a>", "<home>", { desc = "Move to end of line" })
 cmap("<C-e>", "<end>", { desc = "Move to begining of line" })
 vnoremap("<", "<gv", { desc = "Keep visual selection when indenting to left" })
