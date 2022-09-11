@@ -37,11 +37,6 @@ fzfg() {
     rg -n '' | sed -e 's/:/+/' -e 's/:/\t/' -e 's/+/:/' -e 's/\\/\//g' | fzf | cut -f 1 | cut -d ':' -f 1 | xargs echo ./$@
 }
 
-# cdf - cd into the directory of the selected file
-cdf() {
-    file=$(find "${1:-.}" -type f | fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir" || exit
-}
-
 # add title to terminal to display state,currently executing command, current directory...
 autoload -Uz add-zsh-hook
 function xterm_title_precmd () {
