@@ -199,16 +199,28 @@ pack.startup(function(use)
         end,
     }
     use {
-        "norcalli/nvim-colorizer.lua",
+        "NvChad/nvim-colorizer.lua",
         cmd = { "ColorizerToggle", "ColorizerAttachToBuffer" },
         config = function()
-            require("colorizer").setup({ "html", "javascript", "css" }, {
-                RRGGBBAA = true,
-                rgb_fn = true,
-                hsl_fn = true,
-                css = true,
-                css_fn = true,
-            })
+            require("colorizer").setup {
+                filetypes = { "*" },
+                user_default_options = {
+                    RGB = true, -- #RGB hex codes
+                    RRGGBB = true, -- #RRGGBB hex codes
+                    names = true, -- "Name" codes like Blue or blue
+                    RRGGBBAA = true, -- #RRGGBBAA hex codes
+                    AARRGGBB = true, -- 0xAARRGGBB hex codes
+                    rgb_fn = true, -- CSS rgb() and rgba() functions
+                    hsl_fn = true, -- CSS hsl() and hsla() functions
+                    css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                    css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+                    -- Available modes for `mode`: foreground, background,  virtualtext
+                    mode = "background", -- Set the display mode.
+                    tailwind = true, -- Enable tailwind colors
+                    -- parsers can contain values used in |user_default_options|
+                    sass = { enable = true }, -- Enable sass colors
+                },
+            }
         end,
     }
     --------------------------------------------------------------------------------
