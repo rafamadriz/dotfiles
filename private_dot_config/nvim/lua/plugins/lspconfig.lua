@@ -92,6 +92,8 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local lspconfig = require "lspconfig"
 
+require("lspconfig.ui.windows").default_options.border = as.lsp.borders
+
 lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
     on_attach = on_attach,
     capabilities = capabilities,
