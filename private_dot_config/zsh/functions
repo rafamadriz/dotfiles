@@ -23,10 +23,6 @@ cfg() {
         | xargs -I '{}' chezmoi edit --apply '{}'
 }
 
-# fkill - kill process
-fkill() {
-    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
 # fkill - kill processes - list only the ones you can kill. Modified the earlier script.
 fkill() {
     local pid
