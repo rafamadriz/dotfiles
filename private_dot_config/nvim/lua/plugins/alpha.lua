@@ -21,4 +21,4 @@ startify.section.top_buttons.val = {
         "<cmd>chdir ~/.local/share/chezmoi/ | e ~/.local/share/chezmoi/<CR>"
     ),
 }
-startify.section.mru_cwd.val = { { type = "padding", val = 0 } }
+startify.section.mru.val = { { type = "padding", val = 0 } }
