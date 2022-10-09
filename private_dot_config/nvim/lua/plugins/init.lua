@@ -111,10 +111,6 @@ pack.startup(function(use)
         end,
     }
     use {
-        "phaazon/hop.nvim",
-        config = function() require "plugins.hop" end,
-    }
-    use {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()
