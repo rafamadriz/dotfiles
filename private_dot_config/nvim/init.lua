@@ -1,6 +1,6 @@
 local fn = vim.fn
 local install_path = fn.stdpath "data" .. "/site/pack/impatient/start/impatient.nvim"
-if fn.empty(vim.fn.glob(install_path)) > 0 then
+if fn.empty(fn.glob(install_path)) > 0 then
     -- NOTE: this is plugin is unnecessary once https://github.com/neovim/neovim/pull/15436 is merged
     fn.system {
         "git",
@@ -25,5 +25,5 @@ vim.g.catppuccin_flavour = "mocha" -- latte (light), frappe, macchiato, mocha
 local colorscheme = "catppuccin"
 
 for _, key in pairs(fn.getcompletion("", "color")) do
-    if colorscheme == key then vim.cmd(string.format("colorscheme %s", colorscheme)) end
+    if colorscheme == key then vim.cmd.colorscheme(colorscheme) end
 end
