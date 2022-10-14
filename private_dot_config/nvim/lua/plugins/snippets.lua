@@ -34,12 +34,11 @@ vim.keymap.set({ "s", "i" }, "<c-l>", function()
     if ls.choice_active() then ls.change_choice(1) end
 end, { desc = "Scroll through choice nodes" })
 
--- TODO: covert fully to lua
 vim.keymap.set(
     "i",
     "<Tab>",
-    [[luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>']],
-    { desc = "Expand or jump snippet", expr = true }
+    function() return ls.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>" end,
+    { desc = "Expand or jump snippet", expr = true, silent = true }
 )
 
 vim.keymap.set("i", "<S-Tab>", function()
