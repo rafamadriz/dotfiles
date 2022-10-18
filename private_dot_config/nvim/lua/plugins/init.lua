@@ -223,6 +223,10 @@ pack.startup(function(use)
     --------------------------------------------------------------------------------
     -- Project and session management {{{1
     --------------------------------------------------------------------------------
+    use {
+        "stevearc/overseer.nvim",
+        config = function() require("overseer").setup() end,
+    }
     use { "kevinhwang91/nvim-bqf", ft = "qf" }
     use {
         "kyazdani42/nvim-tree.lua",
