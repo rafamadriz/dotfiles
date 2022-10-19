@@ -14,5 +14,6 @@ require("formatter").setup {
         toml = { require("formatter.filetypes.toml").taplo },
         typescript = { require("formatter.filetypes.typescript").prettier },
         typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
+        zig = { require("formatter.filetypes.zig").zigfmt },
     },
 }
