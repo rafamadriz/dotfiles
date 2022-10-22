@@ -1,6 +1,7 @@
 require("nvim-tree").setup {
     disable_netrw = true, -- disables netrw completely
     update_cwd = true, -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
+    sync_root_with_cwd = true, -- Changes the tree root directory on `DirChanged` and refreshes the tree.
     update_focused_file = {
         enable = true,
         update_cwd = false,
@@ -16,6 +17,13 @@ require("nvim-tree").setup {
         },
     },
     renderer = {
+        add_trailing = true,
+        highlight_git = true,
+        group_empty = true,
+        highlight_opened_files = "all",
+        indent_markers = {
+            enable = true,
+        },
         icons = {
             git_placement = "after",
         },
@@ -24,10 +32,5 @@ require("nvim-tree").setup {
         enable = true,
     },
 }
-
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_add_trailing = 1
-vim.g.nvim_tree_group_empty = 1
-vim.g.nvim_tree_respect_buf_cwd = 1
 
 as.nnoremap("<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Open file tree" })
