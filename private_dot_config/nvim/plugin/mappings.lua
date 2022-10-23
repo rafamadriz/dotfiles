@@ -11,8 +11,8 @@ local tnoremap = as.tnoremap
 --------------------------------------------------------------------------------
 -- Space as leaderkey
 --------------------------------------------------------------------------------
-nmap("n", "<Space>", "<Nop>", { silent = true })
-vmap("n", "<Space>", "<Nop>", { silent = true })
+nmap("<Space>", "<Nop>", { silent = true })
+vmap("<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -120,9 +120,9 @@ local resize = function(vertical, margin)
         sign = not sign
     end
 
-    sign = sign and "+" or "-"
+    local symbol = sign and "+" or "-"
     local dir = vertical and "vertical " or ""
-    local _cmd = dir .. "resize " .. sign .. math.abs(margin) .. "<CR>"
+    local _cmd = dir .. "resize " .. symbol .. math.abs(margin) .. "<CR>"
     cmd(_cmd)
 end
 
