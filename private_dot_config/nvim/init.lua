@@ -20,9 +20,8 @@ require "plugins"
 vim.g.edge_better_performance = 1
 vim.g.gruvbox_material_better_performance = 1
 vim.g.gruvbox_material_palette = "material" -- material, mix & original
-vim.g.catppuccin_flavour = "mocha" -- latte (light), frappe, macchiato, mocha
 
-local colorscheme = "gruvbox-material"
+local colorscheme = "github_dark_default"
 
 for _, key in pairs(fn.getcompletion("", "color")) do
     if colorscheme == key then vim.cmd.colorscheme(colorscheme) end

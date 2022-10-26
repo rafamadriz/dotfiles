@@ -154,19 +154,6 @@ pack.startup(function(use)
     use { "sainnhe/edge" }
     use { "projekt0n/github-nvim-theme" }
     use {
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function()
-            require("catppuccin").setup {
-                integrations = {
-                    which_key = true,
-                    neogit = true,
-                    hop = true,
-                },
-            }
-        end,
-    }
-    use {
         "goolord/alpha-nvim",
         config = function() require "plugins.alpha" end,
     }
