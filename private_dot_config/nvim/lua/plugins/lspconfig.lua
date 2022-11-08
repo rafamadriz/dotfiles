@@ -16,6 +16,7 @@ local set_mappings = function(client, bufnr)
                     function() builtins.diagnostics { bufnr = 0 } end,
                     "Document diagnostics",
                 },
+                ["D"] = { builtins.diagnostics, "Workspace diagnostics" },
                 ["a"] = { vim.lsp.buf.code_action, "Code action" },
                 ["c"] = { vim.lsp.codelens.run, "Run code lens" },
                 ["t"] = { vim.lsp.buf.type_definition, "Go to type definition" },
@@ -23,6 +24,7 @@ local set_mappings = function(client, bufnr)
                 ["f"] = { vim.lsp.buf.formatting, "Formatting" },
                 ["l"] = { vim.diagnostic.open_float, "Line diagnostics" },
                 ["s"] = { builtins.lsp_document_symbols, "Document symbols" },
+                ["S"] = { builtins.lsp_workspace_symbols, "Workspace symbols" },
                 ["p"] = {
                     function()
                         local params = vim.lsp.util.make_position_params()
@@ -40,16 +42,6 @@ local set_mappings = function(client, bufnr)
                         )
                     end,
                     "Peek definition",
-                },
-
-                ["w"] = { name = "Workspace" },
-                ["wa"] = { vim.lsp.buf.add_workspace_folder, "Add folder to workspace" },
-                ["wr"] = { vim.lsp.buf.remove_workspace_folder, "Remove folder from workspace" },
-                ["wd"] = { builtins.diagnostics, "Workspace diagnostics" },
-                ["ws"] = { builtins.lsp_workspace_symbols, "Workspace symbols" },
-                ["wl"] = {
-                    function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-                    "List workspace folders",
                 },
             },
         },
