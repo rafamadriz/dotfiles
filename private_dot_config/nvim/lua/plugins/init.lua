@@ -11,7 +11,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local opts = {}
+local opts = {
+    defaults = {
+        lazy = true, -- should plugins be lazy-loaded?
+        version = "*",
+    },
+    install = {
+        colorscheme = { "kanagawa" },
+    },
+}
 
 require("lazy").setup({
     -----------------------------------------------------------------------------//
@@ -22,16 +30,22 @@ require("lazy").setup({
     -----------------------------------------------------------------------------//
     -- LSP {{{1
     -----------------------------------------------------------------------------//
+    {
+        "williamboman/mason.nvim",
+        event = "BufRead",
+        config = function() require("mason").setup() end,
+        dependencies = {
+            {
+                "williamboman/mason-lspconfig.nvim",
+                config = function() require("mason-lspconfig").setup() end,
+            },
+            {
+                "neovim/nvim-lspconfig",
+                config = function() require "plugins.lspconfig" end,
+            },
+        },
+    },
     { "ray-x/lsp_signature.nvim" },
-    { "williamboman/mason.nvim", config = function() require("mason").setup() end },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        config = function() require("mason-lspconfig").setup() end,
-    },
-    {
-        "neovim/nvim-lspconfig",
-        config = function() require "plugins.lspconfig" end,
-    },
     -----------------------------------------------------------------------------//
     -- Completion and snippets {{{1
     -----------------------------------------------------------------------------//
@@ -58,32 +72,55 @@ require("lazy").setup({
     -- Telescope {{{1
     -----------------------------------------------------------------------------//
     {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
+        "nvim-telescope/telescope.nvim",
+        lazy = false,
+        config = function() require "plugins.telescope" end,
     },
     {
-        "nvim-telescope/telescope.nvim",
-        branch = "0.1.x",
-        config = function() require "plugins.telescope" end,
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
     },
     -----------------------------------------------------------------------------//
     -- Treesitter {{{1
     -----------------------------------------------------------------------------//
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
         build = function() require("nvim-treesitter.install").update { with_sync = true } end,
         config = function() require "plugins.treesitter" end,
+        dependencies = {
+            { "nvim-treesitter/nvim-treesitter-context" },
+        },
     },
     {
-        "nvim-treesitter/nvim-treesitter-context",
+        "windwp/nvim-ts-autotag",
+        ft = {
+            "html",
+            "javascript",
+            "typescript",
+            "javascriptreact",
+            "typescriptreact",
+            "svelte",
+            "vue",
+            "tsx",
+            "jsx",
+            "rescript",
+            "xml",
+            "php",
+            "markdown",
+        },
     },
-    { "windwp/nvim-ts-autotag", event = "InsertEnter" },
     -----------------------------------------------------------------------------//
     -- Improve Editing and motions {{{1
     -----------------------------------------------------------------------------//
-    { "wellle/targets.vim" },
+    {
+        "echasnovski/mini.ai",
+        config = function() require("mini.ai").setup() end,
+        lazy = false,
+    },
     {
         "kylechui/nvim-surround",
+        lazy = false,
         config = function() require("nvim-surround").setup {} end,
     },
     {
@@ -109,7 +146,7 @@ require("lazy").setup({
     -----------------------------------------------------------------------------//
     {
         "lewis6991/gitsigns.nvim",
-        dependencies = "plenary.nvim",
+        event = "BufRead",
         config = function() require("plugins.git").gitsigns() end,
     },
     {
@@ -126,15 +163,17 @@ require("lazy").setup({
     -- UI {{{1
     -----------------------------------------------------------------------------//
     { "sainnhe/gruvbox-material" },
-    { "rebelot/kanagawa.nvim" },
+    { "rebelot/kanagawa.nvim", lazy = false },
     { "sainnhe/edge" },
     { "projekt0n/github-nvim-theme" },
     {
         "goolord/alpha-nvim",
+        lazy = false,
         config = function() require "plugins.alpha" end,
     },
     {
         "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
         config = function()
             require("lualine").setup {
                 sections = {
@@ -150,6 +189,7 @@ require("lazy").setup({
     },
     {
         "stevearc/dressing.nvim",
+        lazy = false,
         config = function()
             require("dressing").setup {
                 input = {
@@ -188,16 +228,18 @@ require("lazy").setup({
     --------------------------------------------------------------------------------
     {
         "stevearc/overseer.nvim",
+        lazy = false,
         config = function() require("overseer").setup() end,
     },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
         "kyazdani42/nvim-tree.lua",
-        dependencies = "nvim-web-devicons",
+        lazy = false,
         config = function() require "plugins.tree" end,
     },
     {
         "ahmedkhalf/project.nvim",
+        lazy = false,
         config = function()
             require("project_nvim").setup {
                 detection_methods = { "pattern", "lsp" },
@@ -207,6 +249,7 @@ require("lazy").setup({
     },
     {
         "Shatur/neovim-session-manager",
+        lazy = false,
         config = function()
             require("session_manager").setup {
                 autoload_mode = require("session_manager.config").AutoloadMode.Disabled,
@@ -216,7 +259,7 @@ require("lazy").setup({
     -----------------------------------------------------------------------------//
     -- General plugins {{{1
     -----------------------------------------------------------------------------//
-    { "alker0/chezmoi.vim" },
+    { "alker0/chezmoi.vim", lazy = false },
     {
         "mhartington/formatter.nvim",
         cmd = { "Format", "FormatWrite" },
@@ -224,10 +267,12 @@ require("lazy").setup({
     },
     {
         "folke/which-key.nvim",
+        lazy = false,
         config = function() require "plugins.whichkey" end,
     },
     {
         "mickael-menu/zk-nvim",
+        lazy = false,
         config = function() require "plugins.zk" end,
     },
     {
