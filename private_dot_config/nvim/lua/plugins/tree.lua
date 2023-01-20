@@ -32,5 +32,3 @@ require("nvim-tree").setup {
         enable = true,
     },
 }
-
-as.nnoremap("<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Open file tree" })

@@ -98,6 +98,7 @@ nnoremap("<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
 nnoremap("<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Diff" })
 nnoremap("<leader>gD", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff file history" })
 nnoremap("<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Undo history" })
+as.nnoremap("<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Open file tree" })
 
 --------------------------------------------------------------------------------
 -- Resize windows
