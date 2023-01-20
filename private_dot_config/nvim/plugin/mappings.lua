@@ -2,6 +2,7 @@ if not as then return end
 
 local nmap = as.nmap
 local nnoremap = as.nnoremap
+local inoremap = as.inoremap
 local vnoremap = as.vnoremap
 local vmap = as.vmap
 local xnoremap = as.xnoremap
@@ -26,6 +27,7 @@ nnoremap("n", "nzzzv", { desc = "Center buffer when repeating search" })
 nnoremap("N", "Nzzzv", { desc = "Center buffer when repeating reverse search" })
 nnoremap("J", "mzJ`z", { desc = "Keep cursor position when joinng lines" })
 nnoremap("<BS>", "<C-^>", { desc = "Jump between last two buffers" })
+inoremap("<C-c>", "<ESC>")
 cmap("Q", "q", { desc = "Always write q" })
 cmap("W", "w", { desc = "Always write w" })
 xnoremap("K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
