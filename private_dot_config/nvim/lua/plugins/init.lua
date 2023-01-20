@@ -39,6 +39,7 @@ require("lazy").setup({
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
+            { "petertriho/cmp-git", ft = { "NeogitCommitMessage", "gitcommit" } },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-path" },
             { "hrsh7th/cmp-buffer" },
