@@ -18,14 +18,14 @@ wk.setup {
 
 local mappings = {
     ["<leader>"] = {
-        p = {
-            name = "Packer",
-            s = { "<cmd>PackerStatus<CR>", "Packer status" },
-            S = { "<cmd>PackerSync<CR>", "Packer sync" },
-            i = { "<cmd>PackerInstall<CR>", "Packer install" },
-            C = { "<cmd>PackerClean<CR>", "Packer clean" },
-            c = { "<cmd>PackerCompile<CR>", "Packer compile" },
-            u = { "<cmd>PackerUpdate<CR>", "Packer update" },
+        L = {
+            name = "Lazy",
+            s = { "<cmd>Lazy<CR>", "Lazy show" },
+            S = { "<cmd>Lazy sync<CR>", "Lazy sync" },
+            i = { "<cmd>Lazy install<CR>", "Lazy install" },
+            c = { "<cmd>Lazy clean<CR>", "Lazy clean" },
+            u = { "<cmd>Lazy update<CR>", "Lazy update" },
+            l = { "<cmd>Lazy log<CR>", "Lazy log" },
         },
         q = {
             name = "Quit/Session",
