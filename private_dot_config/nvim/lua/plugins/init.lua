@@ -90,26 +90,7 @@ pack.startup(function(use)
     use { "wellle/targets.vim" }
     use {
         "kylechui/nvim-surround",
-        keys = { "s", "ss", { "v", "s" } },
-        config = function()
-            require("nvim-surround").setup {
-                keymaps = {
-                    insert = false,
-                    insert_line = false,
-                    normal = "s",
-                    normal_cur = "ss",
-                    normal_line = false,
-                    normal_cur_line = false,
-                    visual = "s",
-                    visual_line = false,
-                    delete = "ds",
-                    change = "cs",
-                },
-                highlight = {
-                    duration = 0,
-                },
-            }
-        end,
+        config = function() require("nvim-surround").setup {} end,
     }
     use {
         "windwp/nvim-autopairs",
