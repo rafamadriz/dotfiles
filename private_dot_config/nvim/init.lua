@@ -1,5 +1,3 @@
-local fn = vim.fn
-
 require "globals"
 require "settings"
 require "plugins"
@@ -10,6 +8,6 @@ vim.g.gruvbox_material_palette = "material" -- material, mix & original
 
 local colorscheme = "kanagawa"
 
-for _, key in pairs(fn.getcompletion("", "color")) do
+for _, key in pairs(vim.fn.getcompletion("", "color")) do
     if colorscheme == key then vim.cmd.colorscheme(colorscheme) end
 end

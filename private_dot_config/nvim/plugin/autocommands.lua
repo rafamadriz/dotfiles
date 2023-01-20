@@ -36,7 +36,7 @@ as.augroup("FormatOnSave", {
 as.augroup("Terminal", {
     {
         event = "TermOpen",
-        pattern = "*",
+        pattern = "term://*",
         command = function()
             vim.opt_local.number = false
             vim.opt_local.relativenumber = false
