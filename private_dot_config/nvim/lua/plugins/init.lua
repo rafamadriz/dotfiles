@@ -151,6 +151,7 @@ pack.startup(function(use)
     -- UI {{{1
     -----------------------------------------------------------------------------//
     use { "sainnhe/gruvbox-material" }
+    use { "rebelot/kanagawa.nvim" }
     use { "sainnhe/edge" }
     use { "projekt0n/github-nvim-theme" }
     use {
