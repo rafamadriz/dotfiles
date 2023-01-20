@@ -72,6 +72,20 @@ cmp.setup {
         },
         { name = "path" },
         { name = "nvim_lua" },
+        { name = "git" },
+    },
+}
+
+require("cmp_git").setup {
+    -- defaults
+    filetypes = { "gitcommit", "NeogitCommitMessage" },
+    github = {
+        issues = {
+            state = "all", -- open, closed, all
+        },
+        pull_requests = {
+            state = "all", -- open, closed, merged, all
+        },
     },
 }
 
