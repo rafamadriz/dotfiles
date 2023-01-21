@@ -1,7 +1,11 @@
 require("neo-tree").setup {
     window = {
         position = "right",
-        mappings = { ["<tab>"] = { "toggle_node", nowait = false } },
+        mappings = {
+            ["<tab>"] = { "toggle_node", nowait = false },
+            ["/"] = "none",
+            ["<space>"] = "none",
+        },
     },
     default_component_configs = {
         name = {
