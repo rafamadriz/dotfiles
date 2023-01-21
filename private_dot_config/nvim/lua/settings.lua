@@ -112,7 +112,8 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 -----------------------------------------------------------------------------//
 -- Utils {{{1
 -----------------------------------------------------------------------------//
-vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+vim.opt.sessionoptions =
+    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 vim.opt.shortmess:append "c"
 vim.opt.iskeyword:append "-"
 vim.opt.path:append ".,**"
