@@ -233,9 +233,10 @@ require("lazy").setup({
     },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
-        "kyazdani42/nvim-tree.lua",
+        "nvim-neo-tree/neo-tree.nvim",
         lazy = false,
-        config = function() require "plugins.tree" end,
+        config = function() require "plugins.neotree" end,
+        dependencies = { "MunifTanjim/nui.nvim" },
     },
     {
         "ahmedkhalf/project.nvim",
