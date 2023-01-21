@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local opts = {
     defaults = {
-        lazy = true, -- should plugins be lazy-loaded?
+        lazy = true,
         version = "*",
     },
     install = {
