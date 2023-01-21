@@ -5,6 +5,7 @@ telescope.setup {
         prompt_prefix = "  ",
         selection_caret = "❯ ",
         sorting_strategy = "ascending",
+        path_display = { truncate = 3 },
         mappings = {
             i = {
                 -- actions.which_key shows the mappings for your picker,
@@ -22,8 +23,6 @@ telescope.setup {
         },
         layout_config = {
             horizontal = {
-                height = 0.75,
-                width = 0.8,
                 prompt_position = "top",
             },
         },
@@ -84,8 +83,10 @@ telescope.setup {
             -- no_ignore = true,
         },
         buffers = {
-            layout_config = { preview_width = 0.6 },
-            ignore_current_buffer = false,
+            path_display = { "smart" },
+            theme = "dropdown",
+            previewer = false,
+            ignore_current_buffer = true,
             sort_mru = true,
             mappings = {
                 i = {
@@ -132,8 +133,8 @@ local mappings = {
             name = "Find",
             ["a"] = { builtins.builtin, "All builtins" },
             ["f"] = { builtins.find_files, "Find files" },
-            ["g"] = { builtins.grep_string, "Grep string under cursor" },
-            ["w"] = { builtins.live_grep, "Grep string" },
+            ["w"] = { builtins.grep_string, "Grep word under cursor" },
+            ["g"] = { builtins.live_grep, "Grep string" },
             ["h"] = { builtins.help_tags, "Help tags" },
             ["c"] = { builtins.commands, "Commands" },
             ["r"] = { builtins.oldfiles, "Recent files" },
@@ -153,7 +154,7 @@ local mappings = {
         ["b"] = {
             name = "Buffer",
             ["b"] = { builtins.buffers, "Buffers" },
-            ["w"] = { builtins.current_buffer_fuzzy_find, "Grep string" },
+            ["g"] = { builtins.current_buffer_fuzzy_find, "Grep string" },
         },
         ["l"] = {
             name = "LSP",
