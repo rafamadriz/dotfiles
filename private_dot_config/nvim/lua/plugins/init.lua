@@ -260,7 +260,6 @@ require("lazy").setup({
     -----------------------------------------------------------------------------//
     -- General plugins {{{1
     -----------------------------------------------------------------------------//
-    { "alker0/chezmoi.vim", lazy = false },
     {
         "mhartington/formatter.nvim",
         cmd = { "Format", "FormatWrite" },
