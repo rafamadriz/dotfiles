@@ -1,111 +1,136 @@
-if not as then return end
+local aucmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
-local api, fn = vim.api, vim.fn
-
-as.augroup("TextYankHighlight", {
-    {
-        event = "TextYankPost",
-        pattern = "*",
-        desc = "highlight text on yank",
-        command = function()
-            vim.highlight.on_yank {
-                timeout = 300,
-            }
-        end,
-    },
+aucmd({"TextYankPost"}, {
+    pattern = "*",
+    desc = "Highlight text on yank",
+    group = augroup("TextHighlightYank", { clear = true }),
+    callback = function()
+        vim.highlight.on_yank { timeout = 250 }
+    end
 })
 
-as.augroup("JumpToLastPosition", {
-    {
-        event = "BufReadPost",
-        pattern = "*",
-        command = [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]],
-        desc = "jump to last cursor position when opening a file",
-    },
+aucmd({"BufReadPost"}, {
+    pattern = "*",
+    desc = "Jump to last position on file",
+    group = augroup("JumpToLastPosition", { clear = true}),
+    command = [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]],
 })
 
-as.augroup("FormatOnSave", {
-    {
-        event = "BufWritePost",
-        pattern = "*",
-        command = "FormatWrite",
-        desc = "Format on save",
-    },
+aucmd({"TermOpen"}, {
+    pattern = "term://*",
+    desc = "Don't show line numbers in terminal",
+    group = augroup("MyTerminalOps", { clear = true }),
+    callback = function()
+        vim.opt_local.number = false
+        vim.opt_local.relativenumber = false
+        vim.opt_local.signcolumn = "no"
+        vim.cmd "startinsert"
+    end,
 })
 
-as.augroup("Terminal", {
-    {
-        event = "TermOpen",
-        pattern = "term://*",
-        command = function()
-            vim.opt_local.number = false
-            vim.opt_local.relativenumber = false
-            vim.cmd "startinsert"
-        end,
-        desc = "Don't show line numbers in terminal",
-    },
+-- Use aucmd to set formatoptions, otherwise if I put them in options.lua it
+-- will get overrule by filetype plugin (super annoying). The other option is to
+-- use after/ftplugin but I would have to set formatoptions for every single
+-- filetype. According to comment in Ref: In order for this aucmd to work, it has
+-- to be defined `after` the default filetype detection (i.e. :filetype plugin
+-- on).
+-- Ref: https://stackoverflow.com/questions/28375119/how-to-override-options-set-by-ftplugins-in-vim
+aucmd({"Filetype"}, {
+    pattern = "*",
+    desc = "Set formatoptions",
+    group = augroup("SetFormatOptions", { clear = true }),
+    callback = function()
+        vim.opt.formatoptions = {
+            ["1"] = true, -- Don't break a line after a one-letter word.
+            ["2"] = false, -- Use indent from 2nd line of a paragraph
+            q = true, -- Continue comments with gq"
+            c = false, -- Insert current comment leader automatically
+            r = true, -- Continue comments when pressing Enter
+            o = false, -- Continue comments when pressing 'o' or 'O'
+            n = true, -- Recognize numbered lists
+            t = false, -- Autowrap lines using text width value
+            j = true, -- Remove a comment leader when joining lines.
+            l = true, -- When a line longer than 'textwidth', don't format it
+        }
+    end,
 })
 
-----------------------------------------------------------------------------------------------------
--- Trim trailing white space
-----------------------------------------------------------------------------------------------------
---source: https://github.com/mcauley-penney/tidy.nvim
---credits: mcauley-penney
-as.augroup("TrimTrailing", {
-    {
-        event = "BufWritePre",
-        pattern = "*",
-        command = function()
-            local pos = api.nvim_win_get_cursor(0)
+-- Source: https://github.com/mcauley-penney/tidy.nvim
+aucmd("BufWritePre", {
+    pattern = "*",
+    desc = "Delete trailing white space",
+    group = augroup("TrimTrailingSpace", { clear = true }),
+    callback = function()
+      local pos = vim.api.nvim_win_get_cursor(0)
 
-            -- delete all whitespace
-            vim.cmd [[:keepjumps keeppatterns %s/\s\+$//e]]
+      -- delete trailing whitespace
+      vim.cmd([[:keepjumps keeppatterns %s/\s\+$//e]])
 
-            -- delete all lines at end of buffer
-            vim.cmd [[:keepjumps keeppatterns silent! 0;/^\%(\n*.\)\@!/,$d]]
+      -- delete lines @ eof
+      vim.cmd([[:keepjumps keeppatterns silent! 0;/^\%(\n*.\)\@!/,$d_]])
 
-            --[[
-                if the row value in the original cursor
-                position tuple is greater than the
-                line count after empty line deletion
-                (meaning that the cursor was inside of
-                the group of empty lines at the end of
-                the file when they were deleted), set
-                the cursor row to the last line
-            ]]
+      local num_rows = vim.api.nvim_buf_line_count(0)
 
-            -- get row count after line deletion
-            local end_row = api.nvim_buf_line_count(0)
+      --[[
+            if the row value in the original cursor
+            position tuple is greater than the
+            line count after empty line deletion
+            (meaning that the cursor was inside of
+            the group of empty lines at the end of
+            the file when they were deleted), set
+            the cursor row to the last line.
+        ]]
+      if pos[1] > num_rows then
+        pos[1] = num_rows
+      end
 
-            if pos[1] > end_row then pos[1] = end_row end
-
-            api.nvim_win_set_cursor(0, pos)
-        end,
-    },
+      vim.api.nvim_win_set_cursor(0, pos)
+    end,
 })
-----------------------------------------------------------------------------------------------------
--- Automatically create missing directories when saving file
-----------------------------------------------------------------------------------------------------
+
+-- Show cursor line only in active window
+-- source: https://github.com/folke/dot/blob/master/nvim/lua/config/autocmds.lua
+-- source: https://stackoverflow.com/questions/14068751/how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
+local cursorline_active_w = augroup("cursorline_on_active_window", { clear = true })
+aucmd({ "VimEnter", "WinEnter", "BufWinEnter", "TabEnter" }, {
+    pattern = "*",
+    group = cursorline_active_w,
+  callback = function()
+    local ok, cl = pcall(vim.api.nvim_win_get_var, 0, "auto-cursorline")
+    if ok and cl then
+      vim.wo.cursorline = true
+      vim.api.nvim_win_del_var(0, "auto-cursorline")
+    end
+  end,
+})
+aucmd({ "WinLeave" }, {
+    pattern = "*",
+    group = cursorline_active_w,
+  callback = function()
+    local cl = vim.wo.cursorline
+    if cl then
+      vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
+      vim.wo.cursorline = false
+    end
+  end,
+})
+
 --source: https://github.com/jghauser/mkdir.nvim
---credits: jghauser
-as.augroup("Mkdir", {
-    {
-        event = "BufWritePre",
+aucmd("BufWritePre", {
         pattern = "*",
-        command = function()
-            local dir = fn.expand "<afile>:p:h"
+        desc = "Automatically create missing directories when saving file",
+        group = augroup("Mkdir", { clear = true }),
+        callback = function()
+            local dir = vim.fn.expand "<afile>:p:h"
 
-            if fn.isdirectory(dir) == 0 then fn.mkdir(dir, "p") end
+            if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, "p") end
         end,
-        desc = "automatically create missing directories when saving file",
-    },
 })
 
-----------------------------------------------------------------------------------------------------
 -- HLSEARCH
-----------------------------------------------------------------------------------------------------
 --source: https://github.com/akinsho/dotfiles/blob/main/.config/nvim/plugin/autocommands.lua
---credits: akinsho
+--credits: @akinsho
 --[[
 In order to get hlsearch working the way I like i.e. on when using /,?,N,n,*,#, etc. and off when
 When I'm not using them, I need to set the following:
@@ -126,34 +151,35 @@ vim.keymap.set(
 )
 
 local function stop_hl()
-    if vim.v.hlsearch == 0 or api.nvim_get_mode().mode ~= "n" then return end
-    api.nvim_feedkeys(api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
+    if vim.v.hlsearch == 0 or vim.api.nvim_get_mode().mode ~= "n" then return end
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
 end
 
 local function hl_search()
-    local col = api.nvim_win_get_cursor(0)[2]
-    local curr_line = api.nvim_get_current_line()
-    local ok, match = pcall(fn.matchstrpos, curr_line, fn.getreg "/", 0)
+    local col = vim.api.nvim_win_get_cursor(0)[2]
+    local curr_line = vim.api.nvim_get_current_line()
+    local ok, match = pcall(vim.fn.matchstrpos, curr_line, vim.fn.getreg "/", 0)
     if not ok then return vim.notify(match, "error", { title = "HL SEARCH" }) end
     local _, p_start, p_end = unpack(match)
     -- if the cursor is in a search result, leave highlighting on
     if col < p_start or col > p_end then stop_hl() end
 end
 
-as.augroup("VimrcIncSearchHighlight", {
-    {
-        event = { "CursorMoved" },
-        command = function() hl_search() end,
-    },
-    {
-        event = { "InsertEnter" },
-        command = function() stop_hl() end,
-    },
-    {
-        event = { "OptionSet" },
-        pattern = { "hlsearch" },
-        command = function()
+local inc_search_hl = augroup("IncSearchHighlight", { clear = true })
+
+aucmd("CursorMoved", {
+    group = inc_search_hl,
+    callback = function() hl_search() end,
+})
+
+aucmd("InsertEnter", {
+    group = inc_search_hl,
+    callback = function() stop_hl() end,
+})
+
+aucmd("OptionSet", {
+    group = inc_search_hl,
+    callback = function()
             vim.schedule(function() vim.cmd "redrawstatus" end)
-        end,
-    },
+    end,
 })

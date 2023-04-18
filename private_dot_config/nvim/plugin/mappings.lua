@@ -1,108 +1,101 @@
-if not as then return end
+local map = vim.keymap.set
 
-local nmap = as.nmap
-local nnoremap = as.nnoremap
-local inoremap = as.inoremap
-local vnoremap = as.vnoremap
-local vmap = as.vmap
-local xnoremap = as.xnoremap
-local cmap = as.cmap
-local tnoremap = as.tnoremap
+-- Move by visible lines, fixes annoying behavior on wrapped lines
+map({ 'n', 'x' }, 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true })
+map({ 'n', 'x' }, 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 
---------------------------------------------------------------------------------
--- Space as leaderkey
---------------------------------------------------------------------------------
-nmap("<Space>", "<Nop>", { silent = true })
-vmap("<Space>", "<Nop>", { silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Disable repeat last recorded character
+map("n", "Q", "<Nop>")
 
---------------------------------------------------------------------------------
--- The Basics
---------------------------------------------------------------------------------
-vnoremap("Y", "<ESC>y$gv", { desc = "Yank to last character" })
-nnoremap("Q", "<Nop>", { desc = "Disable repeat last recorded character" })
-nnoremap("$", "g_", { desc = "Move to last character instead of end of line" })
-nnoremap("n", "nzzzv", { desc = "Center buffer when repeating search" })
-nnoremap("N", "Nzzzv", { desc = "Center buffer when repeating reverse search" })
-nnoremap("J", "mzJ`z", { desc = "Keep cursor position when joinng lines" })
-nnoremap("<BS>", "<C-^>", { desc = "Jump between last two buffers" })
-inoremap("<C-c>", "<ESC>")
-cmap("Q", "q", { desc = "Always write q" })
-cmap("W", "w", { desc = "Always write w" })
-xnoremap("K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
-xnoremap("J", ":move '>+1<CR>gv=gv", { desc = "Move selected block of text down" })
-nnoremap(
-    "k",
-    [[v:count == 0 ? "gk" : "k"]],
-    { expr = true, desc = "Move up in wraped lines as normal lines" }
-)
-nnoremap(
-    "j",
-    [[v:count == 0 ? "gj" : "j"]],
-    { expr = true, desc = "Move down in wraped lines as normal lines" }
-)
-xnoremap(
-    "k",
-    [[(v:count == 0 && mode() !=# "V") ? "gk" : "k"]],
-    { expr = true, desc = "Move up in wraped lines as nornal lines" }
-)
-xnoremap(
-    "j",
-    [[(v:count == 0 && mode() !=# "V") ? "gj" : "j"]],
-    { expr = true, desc = "Move down in wraped lines as nornal lines" }
-)
-vnoremap("y", "y`]", { desc = "Keep cursor position when yanking text" })
-cmap("<C-a>", "<home>", { desc = "Move to end of line" })
-cmap("<C-e>", "<end>", { desc = "Move to begining of line" })
-vnoremap("<", "<gv", { desc = "Keep visual selection when indenting to left" })
-vnoremap(">", ">gv", { desc = "Keep visual selection when indenting to right" })
-nnoremap("cd", function()
-    vim.api.nvim_set_current_dir(vim.fn.expand "%:p:h")
-    print("Current directory is: " .. vim.fn.getcwd())
-end, { desc = "Change directory to current file", silent = false })
+-- Center buffer when searching
+--map("n", "n", "nzzzv")
+--map("n", "N", "Nzzzv")
 
---------------------------------------------------------------------------------
+-- Keep cursor position when joinng lines
+map("n", "J", "mzJ`z")
+
+-- Jump between last two buffers
+map("n", "<BS>", "<C-^>", { desc = "Jump between last two buffers" })
+
+-- Fix annoying behavior where for example: If in blockwise visual mode
+-- and add some text through multiple lines, I would end with <C-c>
+-- (out of muscle memory), but this cancels whatever I did and have to do it again
+map("i", "<C-c>", "<ESC>")
+
+-- Add empty lines before and after cursor line
+map('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = 'Put empty line above' })
+map('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = 'Put empty line below' })
+
+-- Move selected block of text up/down
+map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
+map("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move selected block of text down" })
+
+-- Copy/paste with system clipboard
+map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
+map(  'n',        '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+-- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
+map(  'x',        '<leader>p', '"+P', { desc = 'Paste from system clipboard' })
+
+-- Reselect latest changed, put, or yanked text
+map('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, desc = 'Visually select changed text' })
+
+-- Search inside visually highlighted text. Use `silent = false` for it to
+-- make effect immediately.
+map('x', '/', '<esc>/\\%V', { silent = false, desc = 'Search inside visual selection' })
+
+-- Search visually selected text (slightly better than builtins in Neovim>=0.8)
+map('x', '*', [[y/\V<C-R>=escape(@", '/\')<CR><CR>]])
+map('x', '#', [[y?\V<C-R>=escape(@", '?\')<CR><CR>]])
+
+-- Alternative way to save and exit in Normal mode.
+-- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
+map(  'n',        '<C-S>', '<Cmd>silent! update | redraw<CR>',      { desc = 'Save' })
+map({ 'i', 'x' }, '<C-S>', '<Esc><Cmd>silent! update | redraw<CR>', { desc = 'Save and go to Normal mode' })
+
+-- Correct latest misspelled word by taking first suggestion.
+-- Use `<C-g>u` in Insert mode to mark this as separate undoable action.
+-- Source: https://stackoverflow.com/a/16481737
+-- NOTE: this remaps `<C-z>` in Normal mode (completely stops Neovim), but
+-- it seems to be too harmful anyway.
+map('n', '<C-Z>', '[s1z=',                     { desc = 'Correct latest misspelled word' })
+map('i', '<C-Z>', '<C-g>u<Esc>[s1z=`]a<C-g>u', { desc = 'Correct latest misspelled word' })
+
+-- Some useful mappings when doing stuff in visual mode
+map("v", "y", "y`]", { desc = "Keep cursor position when yanking text" })
+map("v", "<", "<gv", { desc = "Keep visual selection when indenting to left" })
+map("v", ">", ">gv", { desc = "Keep visual selection when indenting to right" })
+
+-- Move sideways in command mode. Using `silent = false` makes movements
+-- to be immediately shown.
+map('c', '<C-h>', '<Left>',  { silent = false, desc = 'Left' })
+map('c', '<C-l>', '<Right>', { silent = false, desc = 'Right' })
+
+-- Move to start/end on line in command mode
+map("c", "<C-a>", "<home>", { desc = "Move to end of line" })
+map("c", "<C-e>", "<end>", { desc = "Move to begining of line" })
+
+-- Fix common mistypes in command mode
+map("c", "Q", "q", { desc = "Always write q" })
+map("c", "W", "w", { desc = "Always write w" })
+
 -- Buffers
---------------------------------------------------------------------------------
-nnoremap("<leader>bs", ":update<CR>", { desc = "Save buffer" })
-vnoremap("<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
-nnoremap("<leader>bq", ":bdelete<CR>", { desc = "Quit buffer" })
-nnoremap(
+map("n", "<leader>bs", ":update<CR>", { desc = "Save buffer" })
+map("v", "<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
+map("n", "<leader>bq", ":bdelete<CR>", { desc = "Quit buffer" })
+map(
+    "n",
     "<leader>bQ",
     ":write | silent %bd | silent e# | bd#<CR>",
     { desc = "Quit all buffers but current" }
 )
-nnoremap("<leader>b!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
+map("n", "<leader>b!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
 
---------------------------------------------------------------------------------
--- Pair of bracket mappings
---------------------------------------------------------------------------------
-nnoremap("[b", ":bprevious<CR>", { desc = "Previous buffer" })
-nnoremap("]b", ":bnext<CR>", { desc = "Next buffer" })
-nnoremap("[l", ":lprevious<CR>zzzv", { desc = "Previous in location list" })
-nnoremap("]l", ":lnext<CR>zzzv", { desc = "Next in location list" })
-nnoremap("[q", ":cprevious<CR>zzzv", { desc = "Previous in quickfix list" })
-nnoremap("]q", ":cnext<CR>zzzv", { desc = "Next in quickfix list" })
-
---------------------------------------------------------------------------------
 -- Terminal
---------------------------------------------------------------------------------
-tnoremap("<Esc>", [[<C-\><C-n>]])
-tnoremap("<C-o>", [[<C-\><C-n>]])
+map("t", "<Esc>", [[<C-\><C-n>]])
+map("t", "<C-o>", [[<C-\><C-n>]])
+map('t', '<C-W>', [[<C-\><C-N><C-w>]], { desc = 'Focus other window' })
 
---------------------------------------------------------------------------------
--- Some plugins mappings
---------------------------------------------------------------------------------
-nnoremap("<leader>gg", "<cmd>Neogit<CR>", { desc = "Neogit" })
-nnoremap("<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Diff" })
-nnoremap("<leader>gD", "<cmd>DiffviewFileHistory<CR>", { desc = "Diff file history" })
-nnoremap("<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Undo history" })
-nnoremap("<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Open file tree" })
-
---------------------------------------------------------------------------------
 -- Resize windows
---------------------------------------------------------------------------------
 -- expand or minimize current buffer in "actual" direction
 -- this is useful as mapping ":resize 2" stand-alone might otherwise not be in
 -- the right direction if mapped to ctrl-leftarrow or something related use
@@ -129,31 +122,30 @@ local resize = function(vertical, margin)
     cmd(_cmd)
 end
 
-local map = vim.keymap.set
 map(
     { "n", "t" },
-    "<S-Up>",
+    "<C-Up>",
     function() resize(false, -2) end,
     { desc = "Resize up window horizontally" }
 )
 
 map(
     { "n", "t" },
-    "<S-Down>",
+    "<C-Down>",
     function() resize(false, 2) end,
     { desc = "Resize down window horizontally" }
 )
 
 map(
     { "n", "t" },
-    "<S-Left>",
+    "<C-Left>",
     function() resize(true, -2) end,
     { desc = "Resize left window vertically" }
 )
 
 map(
     { "n", "t" },
-    "<S-Right>",
+    "<C-Right>",
     function() resize(true, 2) end,
     { desc = "Resize right window vertically" }
 )
