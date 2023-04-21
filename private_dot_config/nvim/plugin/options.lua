@@ -49,7 +49,6 @@ vim.opt.textwidth = 80
 -- Numbers and lines
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.cursorline = true
 
 -- Match and Search
 vim.opt.ignorecase = true
