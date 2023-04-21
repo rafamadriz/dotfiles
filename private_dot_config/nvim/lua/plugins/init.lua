@@ -4,19 +4,6 @@ return {
     { "kyazdani42/nvim-web-devicons" },
 
     {
-        "folke/which-key.nvim",
-        lazy = false,
-        config = function() require "which-key".setup{
-            operators = { gc = "Comments", gb = "Comments", ys = "Surround" },
-            key_labels = {
-                ["<space>"] = "SPC",
-                ["<cr>"] = "RET",
-                ["<tab>"] = "TAB",
-            },
-        } end,
-    },
-
-    {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         config = function()
