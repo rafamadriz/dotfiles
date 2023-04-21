@@ -12,7 +12,9 @@ return {
     {
         'echasnovski/mini.bracketed',
         keys = {"[", "]"},
-        config = function() require("mini.bracketed").setup {} end,
+        config = function() require("mini.bracketed").setup {
+            comment = { suffix = ''},
+        } end,
     },
     {
         'echasnovski/mini.jump',
