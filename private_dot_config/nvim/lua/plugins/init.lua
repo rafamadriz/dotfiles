@@ -31,9 +31,10 @@ return {
     },
     {
         "kylechui/nvim-surround",
-        keys = { "ys", "yss", "ds", "cs", {"S", mode = {"v"}}, {"<C-g>s", mode = {"i"}}, {"<C-g>S", mode = {"i"}}},
+        keys = { "ys", "yss", "ds", "cs", {"ys", mode = {"v"}}, {"<C-g>s", mode = {"i"}}, {"<C-g>S", mode = {"i"}}},
         config = function() require("nvim-surround").setup {
                 keymaps = {
+                    visual = "ys",
                     visual_line = false,
                 },
         } end,
