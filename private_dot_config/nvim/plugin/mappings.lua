@@ -12,7 +12,17 @@ map("n", "Q", "<Nop>")
 --map("n", "N", "Nzzzv")
 
 -- Keep cursor position when joinng lines
-map("n", "J", "mzJ`z")
+map("n", "J", "mzJ`z", {desc = "Join lines"})
+
+-- Make sure to go to proper indentantion level when pressing i
+-- source: https://www.reddit.com/r/neovim/comments/12rqyl8/5_smart_minisnippets_for_making_text_editing_more/
+map("n", "i", function()
+    if #vim.fn.getline(".") == 0 then
+        return [["_cc]]
+    else
+        return "i"
+    end
+end, {expr = true})
 
 -- Jump between last two buffers
 map("n", "<BS>", "<C-^>", { desc = "Jump between last two buffers" })
