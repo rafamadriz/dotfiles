@@ -102,9 +102,7 @@ map(
 map("n", "<leader>b!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
 
 -- Terminal
-map("t", "<Esc>", [[<C-\><C-n>]])
-map("t", "<C-o>", [[<C-\><C-n>]])
-map('t', '<C-W>', [[<C-\><C-N><C-w>]], { desc = 'Focus other window' })
+map("t", "<C-w>", [[<C-\><C-n>]])
 
 -- Resize windows
 -- expand or minimize current buffer in "actual" direction
