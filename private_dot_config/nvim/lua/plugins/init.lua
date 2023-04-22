@@ -46,5 +46,13 @@ return {
             local leap = require('leap')
             leap.add_default_mappings()
         end,
+    },
+
+    -- Other useful utils
+    {
+        "NMAC427/guess-indent.nvim",
+        lazy = false,
+        config = true
     }
+
 }
