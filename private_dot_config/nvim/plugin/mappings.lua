@@ -30,7 +30,8 @@ map("n", "<BS>", "<C-^>", { desc = "Jump between last two buffers" })
 -- Fix annoying behavior where for example: If in blockwise visual mode
 -- and add some text through multiple lines, I would end with <C-c>
 -- (out of muscle memory), but this cancels whatever I did and have to do it again
-map("i", "<C-c>", "<ESC>")
+-- source: https://github.com/neovim/neovim/issues/16416
+map("i", "<C-c>", "<C-c>")
 
 -- Add empty lines before and after cursor line
 map('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = 'Put empty line above' })
