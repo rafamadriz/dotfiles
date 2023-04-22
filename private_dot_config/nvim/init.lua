@@ -44,9 +44,6 @@ local opts = {
         lazy = true,
     },
     lockfile = os.getenv("CHEZMOI") .. "/private_dot_config/nvim/lazy-lock.json",
-    install = {
-        colorscheme = { "kanagawa" },
-    },
 }
 
 require("lazy").setup("plugins", opts)
