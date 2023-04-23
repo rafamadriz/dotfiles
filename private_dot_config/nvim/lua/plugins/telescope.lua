@@ -127,7 +127,7 @@ return {
             {"<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
             {"<leader>fg", "<cmd>Telescope live_grep_args<CR>", desc = "Grep project" },
             {"<leader>fG", "<cmd>Telescope live_grep grep_open_files=true<CR>", desc = "Grep open files" },
-            {"<leader>fw", "<cmd>Telescope grep_string<CR>", desc = "Grep word under cursor" },
+            {"<leader>fw", "<cmd>Telescope grep_string<CR>", desc = "Grep word under cursor", mode = {"n", "v"} },
             {"<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help tags" },
             {"<leader>fc", "<cmd>Telescope commands<CR>", desc = "Commands" },
             {"<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
