@@ -16,13 +16,21 @@ return {
                 indent = { enable = false },
                 autotag = { enable = true },
             }
-        end
+        end,
     },
 
     -- Improve editing experience and motions
     {
         "numToStr/Comment.nvim",
-        keys = {"gcc", "gbc", "gcA", "gco", "gcO", {"gc", mode = {"n", "v"}}, {"gb", mode = {"n", "v"}}},
+        keys = {
+            "gcc",
+            "gbc",
+            "gcA",
+            "gco",
+            "gcO",
+            { "gc", mode = { "n", "v" } },
+            { "gb", mode = { "n", "v" } },
+        },
         config = function()
             require("Comment").setup {
                 ignore = "^$",
@@ -31,19 +39,32 @@ return {
     },
     {
         "kylechui/nvim-surround",
-        keys = { "ys", "yss", "ds", "cs", {"ys", mode = {"v"}}, {"<C-g>s", mode = {"i"}}, {"<C-g>S", mode = {"i"}}},
-        config = function() require("nvim-surround").setup {
+        keys = {
+            "ys",
+            "yss",
+            "ds",
+            "cs",
+            { "ys", mode = { "v" } },
+            { "<C-g>s", mode = { "i" } },
+            {
+                "<C-g>S",
+                mode = { "i" },
+            },
+        },
+        config = function()
+            require("nvim-surround").setup {
                 keymaps = {
                     visual = "ys",
                     visual_line = false,
                 },
-        } end,
+            }
+        end,
     },
     {
         "ggandor/leap.nvim",
-        keys = {{"s", mode = {"n", "v"}}, {"S", mode = {"n", "v"}}, "gs"},
+        keys = { { "s", mode = { "n", "v" } }, { "S", mode = { "n", "v" } }, "gs" },
         config = function()
-            local leap = require('leap')
+            local leap = require "leap"
             leap.add_default_mappings()
         end,
     },
@@ -51,8 +72,7 @@ return {
     -- Other useful utils
     {
         "NMAC427/guess-indent.nvim",
-        event = { 'BufReadPre', 'BufNewFile' },
-        config = true
-    }
-
+        event = { "BufReadPre", "BufNewFile" },
+        config = true,
+    },
 }

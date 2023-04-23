@@ -1,6 +1,6 @@
 return {
     "L3MON4D3/LuaSnip",
-    event = {"InsertEnter"},
+    event = { "InsertEnter" },
     config = function()
         local ls = require "luasnip"
         local types = require "luasnip.util.types"
@@ -46,5 +46,5 @@ return {
         vim.keymap.set("i", "<S-Tab>", function()
             if ls.jumpable(-1) then ls.jump(-1) end
         end, { desc = "Jump backwards snippet" })
-    end
+    end,
 }

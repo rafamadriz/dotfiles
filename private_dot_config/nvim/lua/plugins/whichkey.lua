@@ -15,10 +15,10 @@ return {
 
         local n_mappings = {
             ["<leader>"] = {
-                ["b"] = {name = "Buffer"},
-                ["g"] = {name = "Git"},
+                ["b"] = { name = "Buffer" },
+                ["g"] = { name = "Git" },
             },
         }
         wk.register(n_mappings, { mode = "n" })
-     end,
+    end,
 }

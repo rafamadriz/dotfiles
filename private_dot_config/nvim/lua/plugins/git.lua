@@ -3,11 +3,11 @@
 return {
     {
         "lewis6991/gitsigns.nvim",
-        event = { 'BufReadPre', 'BufNewFile' },
+        event = { "BufReadPre", "BufNewFile" },
         opts = {
             signs = {
-                delete = { text = "│"},
-                topdelete = { text = "│"}
+                delete = { text = "│" },
+                topdelete = { text = "│" },
             },
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
@@ -44,13 +44,23 @@ return {
                     function() gs.blame_line { full = true } end,
                     { desc = "Blame line" }
                 )
-                map("n", "<leader>gl", gs.toggle_current_line_blame, { desc = "Blame current line" })
+                map(
+                    "n",
+                    "<leader>gl",
+                    gs.toggle_current_line_blame,
+                    { desc = "Blame current line" }
+                )
                 map("n", "<leader>gt", gs.toggle_deleted, { desc = "Toggle old versions of hunks" })
 
                 -- Text object
-                map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "inner git hunk" })
+                map(
+                    { "o", "x" },
+                    "ih",
+                    ":<C-U>Gitsigns select_hunk<CR>",
+                    { desc = "inner git hunk" }
+                )
             end,
-        }
+        },
     },
     {
         "sindrets/diffview.nvim",
@@ -68,9 +78,11 @@ return {
                 },
                 key_bindings = {
                     view = { { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } } },
-                    file_panel = { { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } } },
+                    file_panel = {
+                        { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+                    },
                     file_history_panel = {
-                        { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } }
+                        { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
                     },
                     option_panel = { { "n", "q", cb "close", { desc = "Close Diffview" } } },
                 },
@@ -78,8 +90,8 @@ return {
         end,
     },
     {
-        'akinsho/git-conflict.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
+        "akinsho/git-conflict.nvim",
+        event = { "BufReadPre", "BufNewFile" },
         opts = { disable_diagnostics = true },
-    }
+    },
 }

@@ -11,10 +11,9 @@ diagnostic.config {
     float = {
         source = "always",
         border = "rounded",
-    }
+    },
 }
-lsp.handlers["textDocument/hover"] =
-    lsp.with(lsp.handlers.hover, { border = "rounded" })
+lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, { border = "rounded" })
 lsp.handlers["textDocument/signatureHelp"] =
     lsp.with(lsp.handlers.signature_help, { border = "rounded" })
 
@@ -28,41 +27,42 @@ local setup_mappings = function(_, bufnr)
 
     map("n", "<leader>la", lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
     map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
-    map("n", "<leader>lt", lsp.buf.type_definition, { desc = "Go to type definition", buffer = bufnr })
+    map(
+        "n",
+        "<leader>lt",
+        lsp.buf.type_definition,
+        { desc = "Go to type definition", buffer = bufnr }
+    )
     map("n", "<leader>lr", lsp.buf.rename, { desc = "Rename symbol", buffer = bufnr })
-    map("n", "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "LSP Format", buffer = bufnr })
+    map(
+        "n",
+        "<leader>lf",
+        function() lsp.buf.format { async = true } end,
+        { desc = "LSP Format", buffer = bufnr }
+    )
     map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics", buffer = bufnr })
-    map("n", "<leader>lp",
-        function()
-            local params = lsp.util.make_position_params()
-            return lsp.buf_request(
-                0,
-                "textDocument/definition",
-                params,
-                function(_, result)
-                    if result == nil or vim.tbl_isempty(result) then return nil end
-                    lsp.util.preview_location(result[1], { border = "rounded" })
-                end
-            )
-        end,
-        { desc = "Peek definition", buffer = bufnr }
-        )
+    map("n", "<leader>lp", function()
+        local params = lsp.util.make_position_params()
+        return lsp.buf_request(0, "textDocument/definition", params, function(_, result)
+            if result == nil or vim.tbl_isempty(result) then return nil end
+            lsp.util.preview_location(result[1], { border = "rounded" })
+        end)
+    end, { desc = "Peek definition", buffer = bufnr })
 end
 
 local setup_aucmds = function(client, bufnr)
-
     if client.server_capabilities["codeLensProvider"] then
-        aucmd({"BufEnter", "InsertLeave", "CursorHold"}, {
+        aucmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
             desc = "Refresh code lens",
             group = augroup("LspCodeLens", { clear = true }),
             buffer = bufnr,
-            command = 'silent! lua vim.lsp.codelens.refresh()',
+            command = "silent! lua vim.lsp.codelens.refresh()",
         })
     end
 
     if client.server_capabilities["documentHighlightProvider"] then
         local hl_references = augroup(("LspDocHighlight%d"):format(bufnr), { clear = true })
-        aucmd({"CursorHold", "CursorHoldI"}, {
+        aucmd({ "CursorHold", "CursorHoldI" }, {
             desc = "LSP highlight references",
             group = hl_references,
             buffer = bufnr,
@@ -81,10 +81,9 @@ local setup_aucmds = function(client, bufnr)
         group = augroup("UpdateDiagnosticLoc", { clear = true }),
         callback = function(args)
             diagnostic.setloclist { open = false }
-            if #vim.diagnostic.get(args.buf) == 0 then vim.cmd("silent! lclose") end
-        end
+            if #vim.diagnostic.get(args.buf) == 0 then vim.cmd "silent! lclose" end
+        end,
     })
-
 end
 
 aucmd("LspAttach", {
@@ -94,5 +93,5 @@ aucmd("LspAttach", {
         local client = lsp.get_client_by_id(args.data.client_id)
         setup_mappings(client, args.buf)
         setup_aucmds(client, args.buf)
-    end
+    end,
 })

@@ -1,23 +1,21 @@
 local aucmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-aucmd({"TextYankPost"}, {
+aucmd({ "TextYankPost" }, {
     pattern = "*",
     desc = "Highlight text on yank",
     group = augroup("TextHighlightYank", { clear = true }),
-    callback = function()
-        vim.highlight.on_yank { timeout = 250 }
-    end
+    callback = function() vim.highlight.on_yank { timeout = 250 } end,
 })
 
-aucmd({"BufReadPost"}, {
+aucmd({ "BufReadPost" }, {
     pattern = "*",
     desc = "Jump to last position on file",
-    group = augroup("JumpToLastPosition", { clear = true}),
+    group = augroup("JumpToLastPosition", { clear = true }),
     command = [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]],
 })
 
-aucmd({"TermOpen"}, {
+aucmd({ "TermOpen" }, {
     pattern = "term://*",
     desc = "Don't show line numbers in terminal",
     group = augroup("MyTerminalOps", { clear = true }),
@@ -36,7 +34,7 @@ aucmd({"TermOpen"}, {
 -- to be defined `after` the default filetype detection (i.e. :filetype plugin
 -- on).
 -- Ref: https://stackoverflow.com/questions/28375119/how-to-override-options-set-by-ftplugins-in-vim
-aucmd({"Filetype"}, {
+aucmd({ "Filetype" }, {
     pattern = "*",
     desc = "Set formatoptions",
     group = augroup("SetFormatOptions", { clear = true }),
@@ -62,17 +60,17 @@ aucmd("BufWritePre", {
     desc = "Delete trailing white space",
     group = augroup("TrimTrailingSpace", { clear = true }),
     callback = function()
-      local pos = vim.api.nvim_win_get_cursor(0)
+        local pos = vim.api.nvim_win_get_cursor(0)
 
-      -- delete trailing whitespace
-      vim.cmd([[:keepjumps keeppatterns %s/\s\+$//e]])
+        -- delete trailing whitespace
+        vim.cmd [[:keepjumps keeppatterns %s/\s\+$//e]]
 
-      -- delete lines @ eof
-      vim.cmd([[:keepjumps keeppatterns silent! 0;/^\%(\n*.\)\@!/,$d_]])
+        -- delete lines @ eof
+        vim.cmd [[:keepjumps keeppatterns silent! 0;/^\%(\n*.\)\@!/,$d_]]
 
-      local num_rows = vim.api.nvim_buf_line_count(0)
+        local num_rows = vim.api.nvim_buf_line_count(0)
 
-      --[[
+        --[[
             if the row value in the original cursor
             position tuple is greater than the
             line count after empty line deletion
@@ -81,11 +79,9 @@ aucmd("BufWritePre", {
             the file when they were deleted), set
             the cursor row to the last line.
         ]]
-      if pos[1] > num_rows then
-        pos[1] = num_rows
-      end
+        if pos[1] > num_rows then pos[1] = num_rows end
 
-      vim.api.nvim_win_set_cursor(0, pos)
+        vim.api.nvim_win_set_cursor(0, pos)
     end,
 })
 
@@ -96,28 +92,24 @@ local cursorline_active_w = augroup("cursorline_on_active_window", { clear = tru
 aucmd({ "VimEnter", "WinEnter", "BufWinEnter", "TabEnter" }, {
     pattern = "*",
     group = cursorline_active_w,
-    callback = function()
-        vim.wo.cursorline = true
-    end,
+    callback = function() vim.wo.cursorline = true end,
 })
 aucmd({ "WinLeave" }, {
     pattern = "*",
     group = cursorline_active_w,
-  callback = function()
-      vim.wo.cursorline = false
-  end,
+    callback = function() vim.wo.cursorline = false end,
 })
 
 --source: https://github.com/jghauser/mkdir.nvim
 aucmd("BufWritePre", {
-        pattern = "*",
-        desc = "Automatically create missing directories when saving file",
-        group = augroup("Mkdir", { clear = true }),
-        callback = function()
-            local dir = vim.fn.expand "<afile>:p:h"
+    pattern = "*",
+    desc = "Automatically create missing directories when saving file",
+    group = augroup("Mkdir", { clear = true }),
+    callback = function()
+        local dir = vim.fn.expand "<afile>:p:h"
 
-            if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, "p") end
-        end,
+        if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, "p") end
+    end,
 })
 
 -- HLSEARCH
@@ -144,7 +136,11 @@ vim.keymap.set(
 
 local function stop_hl()
     if vim.v.hlsearch == 0 or vim.api.nvim_get_mode().mode ~= "n" then return end
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
+    vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true),
+        "m",
+        false
+    )
 end
 
 local function hl_search()
@@ -172,6 +168,6 @@ aucmd("InsertEnter", {
 aucmd("OptionSet", {
     group = inc_search_hl,
     callback = function()
-            vim.schedule(function() vim.cmd "redrawstatus" end)
+        vim.schedule(function() vim.cmd "redrawstatus" end)
     end,
 })
