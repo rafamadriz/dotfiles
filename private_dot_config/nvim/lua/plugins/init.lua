@@ -38,6 +38,16 @@ return {
         end,
     },
     {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup {
+                disable_filetype = { "TelescopePrompt", "vim" },
+                ignored_next_char = "[%w%.]",
+            }
+        end,
+    },
+    {
         "kylechui/nvim-surround",
         keys = {
             "ys",
