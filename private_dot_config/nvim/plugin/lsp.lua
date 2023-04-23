@@ -81,7 +81,7 @@ local setup_aucmds = function(client, bufnr)
         group = augroup("UpdateDiagnosticLoc", { clear = true }),
         callback = function(args)
             diagnostic.setloclist { open = false }
-            if #args.data.diagnostic == 0 then vim.cmd("silent! lclose") end
+            if #vim.diagnostic.get(args.buf) == 0 then vim.cmd("silent! lclose") end
         end
     })
 
