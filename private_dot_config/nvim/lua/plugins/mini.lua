@@ -30,9 +30,4 @@ return {
         keys = { "gS" },
         config = function() require("mini.splitjoin").setup {} end,
     },
-    {
-        "echasnovski/mini.pairs",
-        event = "InsertEnter",
-        config = function() require("mini.pairs").setup {} end,
-    },
 }
