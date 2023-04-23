@@ -43,7 +43,7 @@ local opts = {
     defaults = {
         lazy = true,
     },
-    lockfile = os.getenv("CHEZMOI") .. "/private_dot_config/nvim/lazy-lock.json",
+    lockfile = os.getenv("NVIMRC") .. "/lazy-lock.json",
 }
 
 require("lazy").setup("plugins", opts)
