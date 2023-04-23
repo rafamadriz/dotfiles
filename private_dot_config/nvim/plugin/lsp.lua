@@ -13,31 +13,6 @@ diagnostic.config {
         border = "rounded",
     }
 }
-
--- Function to rename file with LSP
--- source: https://github.com/akinsho/dotfiles/blob/main/.config/nvim/plugin/lsp.lua
----@param data { old_name: string, new_name: string }
-local function prepare_rename(data)
-  local bufnr = vim.fn.bufnr(data.old_name)
-  for _, client in pairs(lsp.get_active_clients({ bufnr = bufnr })) do
-    local rename_path = { 'server_capabilities', 'workspace', 'fileOperations', 'willRename' }
-    if not vim.tbl_get(client, rename_path) then
-      vim.notify(string.format('%s does not support rename files'), 'error', { title = 'LSP' })
-    end
-    local params = {
-      files = { { newUri = 'file://' .. data.new_name, oldUri = 'file://' .. data.old_name } },
-    }
-    local resp = client.request_sync('workspace/willRenameFiles', params, 1000)
-    vim.lsp.util.apply_workspace_edit(resp.result, client.offset_encoding)
-  end
-end
-
-local function rename_file()
-  local old_name = vim.api.nvim_buf_get_name(0)
-  local new_name = string.format('%s/%s', vim.fs.dirname(old_name), vim.fn.input('New name: '))
-  prepare_rename({ old_name = old_name, new_name })
-  lsp.util.rename(old_name, new_name)
-end
 lsp.handlers["textDocument/hover"] =
     lsp.with(lsp.handlers.hover, { border = "rounded" })
 lsp.handlers["textDocument/signatureHelp"] =
@@ -55,7 +30,6 @@ local setup_mappings = function(_, bufnr)
     map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
     map("n", "<leader>lt", lsp.buf.type_definition, { desc = "Go to type definition", buffer = bufnr })
     map("n", "<leader>lr", lsp.buf.rename, { desc = "Rename symbol", buffer = bufnr })
-    map("n", "<leader>lR", rename_file, { desc = "Rename file", buffer = bufnr })
     map("n", "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "LSP Format", buffer = bufnr })
     map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics", buffer = bufnr })
     map("n", "<leader>lp",
