@@ -77,10 +77,11 @@ return {
                     end,
                 },
                 sources = cmp.config.sources {
-                    { name = "nvim_lsp" },
-                    { name = "luasnip" },
+                    { name = "nvim_lsp", priority = 10 },
+                    { name = "luasnip", priority = 9 },
                     {
                         name = "buffer",
+                        priority = -2,
                         option = {
                             get_bufnrs = function() return vim.api.nvim_list_bufs() end,
                         },
