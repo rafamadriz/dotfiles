@@ -1,7 +1,6 @@
 return {
     -- Required by others
     { "nvim-lua/plenary.nvim" },
-    { "kyazdani42/nvim-web-devicons" },
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -18,6 +17,7 @@ return {
             }
         end,
     },
+    { "nvim-tree/nvim-web-devicons" },
 
     -- Improve editing experience and motions
     {
