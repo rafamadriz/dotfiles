@@ -1,22 +1,6 @@
 return {
     -- Required by others
     { "nvim-lua/plenary.nvim" },
-
-    {
-        "nvim-treesitter/nvim-treesitter",
-        lazy = false,
-        config = function()
-            require("nvim-treesitter.configs").setup {
-                ensure_installed = "all",
-                highlight = {
-                    enable = true,
-                    disable = { "html" },
-                },
-                indent = { enable = false },
-                autotag = { enable = true },
-            }
-        end,
-    },
     { "nvim-tree/nvim-web-devicons" },
 
     -- Improve editing experience and motions
