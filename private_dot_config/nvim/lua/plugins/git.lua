@@ -79,7 +79,7 @@ return {
     },
     {
         'akinsho/git-conflict.nvim',
-        event = 'VeryLazy',
+        event = { 'BufReadPre', 'BufNewFile' },
         opts = { disable_diagnostics = true },
     }
 }
