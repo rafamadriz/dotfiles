@@ -29,6 +29,7 @@ local lsp_symbols = {
 return {
     {
         "hrsh7th/nvim-cmp",
+        keys = { ":" },
         event = "InsertEnter",
         dependencies = {
             { "petertriho/cmp-git", config = true },
@@ -37,7 +38,7 @@ return {
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-nvim-lua" },
             { "saadparwaiz1/cmp_luasnip" },
-            -- { "hrsh7th/cmp-cmdline" },
+            { "hrsh7th/cmp-cmdline" },
         },
         config = function()
             local cmp = require "cmp"
@@ -94,6 +95,21 @@ return {
                 }, {
                     { name = "buffer" },
                 }),
+            })
+            cmp.setup.cmdline(":", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = "path" },
+                }, {
+                    { name = "cmdline" },
+                }),
+            })
+
+            cmp.setup.cmdline({ "/", "?" }, {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = "buffer" },
+                },
             })
         end,
     },
