@@ -10,7 +10,7 @@ diagnostic.config {
     },
     float = {
         source = "always",
-        scope = "cursor",
+        border = "rounded",
     }
 }
 
@@ -38,6 +38,10 @@ local function rename_file()
   prepare_rename({ old_name = old_name, new_name })
   lsp.util.rename(old_name, new_name)
 end
+lsp.handlers["textDocument/hover"] =
+    lsp.with(lsp.handlers.hover, { border = "rounded" })
+lsp.handlers["textDocument/signatureHelp"] =
+    lsp.with(lsp.handlers.signature_help, { border = "rounded" })
 
 local setup_mappings = function(_, bufnr)
     map("n", "gD", lsp.buf.declaration, { desc = "Go to declaration", buffer = bufnr })
@@ -63,7 +67,7 @@ local setup_mappings = function(_, bufnr)
                 params,
                 function(_, result)
                     if result == nil or vim.tbl_isempty(result) then return nil end
-                    lsp.util.preview_location(result[1])
+                    lsp.util.preview_location(result[1], { border = "rounded" })
                 end
             )
         end,
