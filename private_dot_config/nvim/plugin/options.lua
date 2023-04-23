@@ -66,6 +66,9 @@ vim.opt.smartcase = true
 
 -- List Chars
 vim.opt.list = true
+vim.opt.fillchars = {
+    eob = " ", -- supress ~ at EndOfBuffer
+}
 vim.opt.listchars = {
     trail = "•",
     -- eol = "↴",
@@ -78,7 +81,7 @@ vim.opt.listchars = {
 
 -- Session options
 vim.opt.sessionoptions =
-    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 
 -- Jumplist
 vim.opt.jumpoptions = "stack" -- Make jumplist behave like a browser stack
