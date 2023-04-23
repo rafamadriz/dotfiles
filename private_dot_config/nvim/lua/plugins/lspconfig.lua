@@ -10,6 +10,10 @@ return {
             },
             {
                 "neovim/nvim-lspconfig",
+                dependencies = {
+                    "ray-x/lsp_signature.nvim",
+                    opts = { max_width = 90, fix_pos = true, hint_prefix = " " },
+                },
                 config = function()
                     local lspconfig = require "lspconfig"
                     vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", { desc = "LSP info" })
