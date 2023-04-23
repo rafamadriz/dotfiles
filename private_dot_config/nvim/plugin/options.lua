@@ -9,7 +9,17 @@ vim.opt.splitright = true -- Vertical splits will be to the right
 vim.opt.splitkeep = "screen" -- Keep the text on same line when resizing, closing...
 
 -- Diff options
-vim.opt.diffopt = { "internal", "filler", "closeoff", "vertical", "iwhite", "hiddenoff", "algorithm:histogram", "indent-heuristic", "linematch:60" }
+vim.opt.diffopt = {
+    "internal",
+    "filler",
+    "closeoff",
+    "vertical",
+    "iwhite",
+    "hiddenoff",
+    "algorithm:histogram",
+    "indent-heuristic",
+    "linematch:60",
+}
 
 -- vim.opt.iskeyword:append "-" -- Words separated by - are regconized as one word for commands like "w"...
 
@@ -32,7 +42,7 @@ vim.opt.scrolloff = 7 -- Minimal number of lines to keep above/below the cursor
 vim.opt.signcolumn = "yes:1"
 vim.opt.termguicolors = true
 vim.opt.title = true
-vim.opt.titlestring = vim.fn.expand("%:p")
+vim.opt.titlestring = vim.fn.expand "%:p"
 vim.opt.confirm = true -- Save me from doing destructive things
 vim.opt.showmode = false -- When in insert, show mode in last line
 vim.opt.pumheight = 10 -- Maximum number of items to show in the popup menu
@@ -74,7 +84,7 @@ vim.opt.sessionoptions =
 vim.opt.jumpoptions = "stack" -- Make jumplist behave like a browser stack
 
 -- Use rg as grep program
-if vim.fn.executable("rg") > 0 then
+if vim.fn.executable "rg" > 0 then
     vim.opt.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case]]
 end
 

@@ -1,8 +1,8 @@
 local map = vim.keymap.set
 
 -- Move by visible lines, fixes annoying behavior on wrapped lines
-map({ 'n', 'x' }, 'j', [[v:count == 0 ? 'gj' : 'j']], { expr = true })
-map({ 'n', 'x' }, 'k', [[v:count == 0 ? 'gk' : 'k']], { expr = true })
+map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
+map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 
 -- Disable repeat last recorded character
 map("n", "Q", "<Nop>")
@@ -12,17 +12,17 @@ map("n", "Q", "<Nop>")
 --map("n", "N", "Nzzzv")
 
 -- Keep cursor position when joinng lines
-map("n", "J", "mzJ`z", {desc = "Join lines"})
+map("n", "J", "mzJ`z", { desc = "Join lines" })
 
 -- Make sure to go to proper indentantion level when pressing i
 -- source: https://www.reddit.com/r/neovim/comments/12rqyl8/5_smart_minisnippets_for_making_text_editing_more/
 map("n", "i", function()
-    if #vim.fn.getline(".") == 0 then
+    if #vim.fn.getline "." == 0 then
         return [["_cc]]
     else
         return "i"
     end
-end, {expr = true})
+end, { expr = true })
 
 -- Jump between last two buffers
 map("n", "<BS>", "<C-^>", { desc = "Jump between last two buffers" })
@@ -34,42 +34,62 @@ map("n", "<BS>", "<C-^>", { desc = "Jump between last two buffers" })
 map("i", "<C-c>", "<C-c>")
 
 -- Add empty lines before and after cursor line
-map('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = 'Put empty line above' })
-map('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = 'Put empty line below' })
+map(
+    "n",
+    "gO",
+    "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>",
+    { desc = "Put empty line above" }
+)
+map(
+    "n",
+    "go",
+    "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>",
+    { desc = "Put empty line below" }
+)
 
 -- Move selected block of text up/down
 map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
 map("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move selected block of text down" })
 
 -- Copy/paste with system clipboard
-map({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
-map(  'n',        '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+map({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
+map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 -- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
-map(  'x',        '<leader>p', '"+P', { desc = 'Paste from system clipboard' })
+map("x", "<leader>p", '"+P', { desc = "Paste from system clipboard" })
 
 -- Reselect latest changed, put, or yanked text
-map('n', 'gV', '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, desc = 'Visually select changed text' })
+map(
+    "n",
+    "gV",
+    '"`[" . strpart(getregtype(), 0, 1) . "`]"',
+    { expr = true, desc = "Visually select changed text" }
+)
 
 -- Search inside visually highlighted text. Use `silent = false` for it to
 -- make effect immediately.
-map('x', '/', '<esc>/\\%V', { silent = false, desc = 'Search inside visual selection' })
+map("x", "/", "<esc>/\\%V", { silent = false, desc = "Search inside visual selection" })
 
 -- Search visually selected text (slightly better than builtins in Neovim>=0.8)
-map('x', '*', [[y/\V<C-R>=escape(@", '/\')<CR><CR>]])
-map('x', '#', [[y?\V<C-R>=escape(@", '?\')<CR><CR>]])
+map("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]])
+map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]])
 
 -- Alternative way to save and exit in Normal mode.
 -- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
-map(  'n',        '<C-S>', '<Cmd>silent! update | redraw<CR>',      { desc = 'Save' })
-map({ 'i', 'x' }, '<C-S>', '<Esc><Cmd>silent! update | redraw<CR>', { desc = 'Save and go to Normal mode' })
+map("n", "<C-S>", "<Cmd>silent! update | redraw<CR>", { desc = "Save" })
+map(
+    { "i", "x" },
+    "<C-S>",
+    "<Esc><Cmd>silent! update | redraw<CR>",
+    { desc = "Save and go to Normal mode" }
+)
 
 -- Correct latest misspelled word by taking first suggestion.
 -- Use `<C-g>u` in Insert mode to mark this as separate undoable action.
 -- Source: https://stackoverflow.com/a/16481737
 -- NOTE: this remaps `<C-z>` in Normal mode (completely stops Neovim), but
 -- it seems to be too harmful anyway.
-map('n', '<C-Z>', '[s1z=',                     { desc = 'Correct latest misspelled word' })
-map('i', '<C-Z>', '<C-g>u<Esc>[s1z=`]a<C-g>u', { desc = 'Correct latest misspelled word' })
+map("n", "<C-Z>", "[s1z=", { desc = "Correct latest misspelled word" })
+map("i", "<C-Z>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { desc = "Correct latest misspelled word" })
 
 -- Some useful mappings when doing stuff in visual mode
 map("v", "y", "y`]", { desc = "Keep cursor position when yanking text" })
@@ -78,8 +98,8 @@ map("v", ">", ">gv", { desc = "Keep visual selection when indenting to right" })
 
 -- Move sideways in command mode. Using `silent = false` makes movements
 -- to be immediately shown.
-map('c', '<C-h>', '<Left>',  { silent = false, desc = 'Left' })
-map('c', '<C-l>', '<Right>', { silent = false, desc = 'Right' })
+map("c", "<C-h>", "<Left>", { silent = false, desc = "Left" })
+map("c", "<C-l>", "<Right>", { silent = false, desc = "Right" })
 
 -- Move to start/end on line in command mode
 map("c", "<C-a>", "<home>", { desc = "Move to end of line" })

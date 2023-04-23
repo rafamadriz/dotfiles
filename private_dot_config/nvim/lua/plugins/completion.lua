@@ -40,7 +40,7 @@ return {
             -- { "hrsh7th/cmp-cmdline" },
         },
         config = function()
-            local cmp = require"cmp"
+            local cmp = require "cmp"
             cmp.setup {
                 snippet = {
                     expand = function(args) require("luasnip").lsp_expand(args.body) end,
@@ -70,7 +70,7 @@ return {
                             luasnip = "[S]",
                             buffer = "[B]",
                             nvim_lua = "[Lua]",
-                            git = "[Git]"
+                            git = "[Git]",
                         })[entry.source.name]
                         return item
                     end,
@@ -88,13 +88,13 @@ return {
                     { name = "nvim_lua" },
                 },
             }
-          cmp.setup.filetype('gitcommit', {
-            sources = cmp.config.sources({
-              { name = 'git' }, -- You can specify the `cmp_git` source if you were installed it.
-            }, {
-              { name = 'buffer' },
+            cmp.setup.filetype("gitcommit", {
+                sources = cmp.config.sources({
+                    { name = "git" }, -- You can specify the `cmp_git` source if you were installed it.
+                }, {
+                    { name = "buffer" },
+                }),
             })
-          })
-        end
-    }
+        end,
+    },
 }

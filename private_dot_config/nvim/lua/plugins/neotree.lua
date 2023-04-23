@@ -1,9 +1,9 @@
 return {
-     {
-         "nvim-neo-tree/neo-tree.nvim",
-	 lazy = false,
-         keys = { {"<leader>e", "<cmd>Neotree toggle<CR>", desc = "Open file tree"}},
-         config = function()
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        lazy = false,
+        keys = { { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Open file tree" } },
+        config = function()
             require("neo-tree").setup {
                 window = {
                     position = "right",
@@ -43,7 +43,7 @@ return {
                     follow_current_file = true,
                 },
             }
-         end,
-         dependencies = { "MunifTanjim/nui.nvim" },
-     },
+        end,
+        dependencies = { "MunifTanjim/nui.nvim" },
+    },
 }
