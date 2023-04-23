@@ -59,7 +59,7 @@ return {
                     ["<C-c>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm {
                         behavior = cmp.ConfirmBehavior.Insert,
-                        select = true,
+                        select = false,
                     },
                 },
                 formatting = {
