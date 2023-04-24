@@ -11,10 +11,6 @@ minimal.lua
 .local/bin/scripts/scrkey
 {{- end }}
 
-{{ if not (lookPath "lf") }}
-.config/lf/
-{{- end }}
-
 {{ if not (lookPath "neofetch") }}
 .config/neofetch/
 {{- end }}
