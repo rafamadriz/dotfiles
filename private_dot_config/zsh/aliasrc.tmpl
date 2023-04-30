@@ -7,6 +7,11 @@ alias dir='dir --color=auto'
 alias ls='ls -Fh --color=always'
 alias ll='ls -Flh --color=always'
 alias lla='ls -FlAh --color=always'
+alias d='dirs -v'
+
+for index in {1..9}; do
+    alias '$index'='cd +${index}'
+done
 
 # shortcuts
 {{- if eq .chezmoi.os "linux" }}
