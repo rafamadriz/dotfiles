@@ -5,12 +5,9 @@ alias \
     grep="grep --color=auto" \
     diff="diff --color=auto" \
     dir='dir --color=auto' \
-    grep='grep --color=auto' \
-    fgrep='fgrep --color=auto' \
-    egrep='egrep --color=auto' \
     ls='ls -Fh --color=always' \
     ll='ls -Flh --color=always' \
-    lla='ls -Flah --color=always'
+    lla='ls -FlAh --color=always'
 
 # shortcuts
 alias \
@@ -18,13 +15,7 @@ alias \
     open='xdg-open' \
     s='systemctl' \
     {{- end }}
-    {{- if lookPath "inxi" }}
-    sysinfo="inxi -Fxz" \
-    {{- end }}
-    {{- if lookPath "kitty" }}
-    d='kitty +kitten diff' \
     icat='kitty +kitten icat' \
-    {{- end }}
     cp='cp -iv' \
     mv='mv -iv' \
     nuke='rm -rI' \
