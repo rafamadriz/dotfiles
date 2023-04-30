@@ -16,7 +16,7 @@ exec nvim \
     -u NONE \
     -c "map <silent> q :qa!<CR>" \
     -c "xmap / <esc>/\\%V" \
-    -c "set scrollback=100000 termguicolors laststatus=0 cursorline" \
+    -c "set scrollback=100000 termguicolors laststatus=0 cursorline clipboard+=unnamedplus" \
     -c "autocmd TermEnter * stopinsert" \
     -c "autocmd TermClose * ${AUTOCMD_TERMCLOSE_CMD}" \
     -c 'terminal sed </dev/fd/63 -e "s/'$'\x1b'']8;;file:[^\]*[\]//g" && sleep 0.01 && printf "'$'\x1b'']2;"' 63<&0 0</dev/null
