@@ -5,6 +5,12 @@ return {
         keys = { { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Open file tree" } },
         config = function()
             require("neo-tree").setup {
+                sources = {
+                    "filesystem",
+                    "buffers",
+                    "git_status",
+                    "document_symbols",
+                },
                 window = {
                     position = "right",
                     mappings = {
@@ -41,6 +47,7 @@ return {
                         },
                     },
                     follow_current_file = true,
+                    use_libuv_file_watcher = true,
                 },
             }
         end,
