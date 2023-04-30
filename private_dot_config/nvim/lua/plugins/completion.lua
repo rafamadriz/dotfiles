@@ -51,12 +51,16 @@ return {
                     documentation = cmp.config.window.bordered(),
                 },
                 mapping = {
-                    ["<C-n>"] = cmp.mapping.select_next_item(),
-                    ["<C-p>"] = cmp.mapping.select_prev_item(),
+                    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+                    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+                    ["<Down>"] = cmp.mapping.select_next_item {
+                        behavior = cmp.SelectBehavior.Insert,
+                    },
+                    ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
                     ["<C-f>"] = cmp.mapping.scroll_docs(4),
                     ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<C-c>"] = cmp.mapping.abort(),
+                    ["<C-e>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm {
                         behavior = cmp.ConfirmBehavior.Insert,
                         select = false,
@@ -77,10 +81,12 @@ return {
                     end,
                 },
                 sources = cmp.config.sources {
-                    { name = "nvim_lsp", priority = 10 },
+                    { name = "nvim_lsp", priority = 10, max_item_count = 15 },
                     { name = "luasnip", priority = 9 },
                     {
                         name = "buffer",
+                        keyword_length = 3,
+                        max_item_count = 5,
                         priority = -2,
                         option = {
                             get_bufnrs = function() return vim.api.nvim_list_bufs() end,
