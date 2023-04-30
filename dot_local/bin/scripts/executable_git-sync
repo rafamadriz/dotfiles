@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+#
+# From git-extras
+# source: https://github.com/tj/git-extras/blob/master/bin/git-sync
+
+function _usage() {
+  local command="git sync"
+  cat <<EOS
+Usage:
+  ${command} [<remote> <branch>]
+  ${command} -h | --help
+  ${command} -s | --soft
+  ${command} -f | --force
+
+Sync local branch with <remote>/<branch>.
+When <remote> and <branch> are not specified on the command line, upstream of local branch will be used by default.
+All changes and untracked files and directories will be removed unless you add -s(--soft).
+
+Examples:
+  Sync with upstream of local branch:
+    ${command}
+
+  Sync with origin/master:
+    ${command} origin master
+
+  Sync without cleaning untracked files:
+    ${command} -s
+
+  Sync without interaction:
+    ${command} -f
+EOS
+}
+
+function main() {
+  while [ "$1" != "" ]; do
+    case $1 in
+    -h | --help)
+      _usage
+      exit
+      ;;
+    -s | --soft)
+      local soft="true"
+      ;;
+    -f | --force)
+      local force="YES"
+      ;;
+    *)
+      if [ "${remote}" = "" ]; then
+        local remote="$1"
+      elif [ "${branch}" = "" ]; then
+        local branch="$1"
+      else
+        echo -e "Error: too many arguments.\n"
+        _usage
+        exit 1
+      fi
+      ;;
+    esac
+    shift
+  done
+
+  local remote_branch
+  if [ -z "${remote}" ]; then
+    if ! remote_branch="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null)"; then
+      echo "There is no upstream information of local branch."
+      exit 1
+    fi
+    local branch="$(git rev-parse --abbrev-ref --symbolic-full-name @)"
+    local remote=$(git config "branch.${branch}.remote")
+  elif [ -z "${branch}" ]; then
+    echo -e "Error: too few arguments.\n"
+    _usage
+    exit 1
+  else
+    remote_branch="${remote}/${branch}"
+  fi
+
+  if [ "${force}" != "YES" ]; then
+    if [ "${soft}" = "true" ]; then
+      echo -n "Are you sure you want to sync with '${remote_branch}'? [y/N]: "
+    else
+      echo -n "Are you sure you want to clean all changes & sync with '${remote_branch}'? [y/N]: "
+    fi
+    local force
+    read -r force
+  fi
+  case "${force}" in
+  "Y" | "y" | "yes" | "Yes" | "YES")
+    if [ "${soft}" = "true" ]; then
+      git fetch "${remote}" "${branch}" && git reset --hard "${remote_branch}"
+    else
+      git fetch "${remote}" "${branch}" && git reset --hard "${remote_branch}" && git clean -d -f -x
+    fi
+    ;;
+  *)
+    echo "Canceled."
+    ;;
+  esac
+}
+
+main "$@"
