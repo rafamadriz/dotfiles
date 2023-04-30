@@ -1,7 +1,7 @@
 return {
     {
         "williamboman/mason.nvim",
-        event = "VeryLazy",
+        lazy = false,
         config = true,
         dependencies = {
             {
