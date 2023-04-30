@@ -1,50 +1,47 @@
 #!/bin/sh
 
 # add color to commands
-alias \
-    grep="grep --color=auto" \
-    diff="diff --color=auto" \
-    dir='dir --color=auto' \
-    ls='ls -Fh --color=always' \
-    ll='ls -Flh --color=always' \
-    lla='ls -FlAh --color=always'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias dir='dir --color=auto'
+alias ls='ls -Fh --color=always'
+alias ll='ls -Flh --color=always'
+alias lla='ls -FlAh --color=always'
 
 # shortcuts
-alias \
-    {{- if eq .chezmoi.os "linux" }}
-    open='xdg-open' \
-    s='systemctl' \
-    {{- end }}
-    icat='kitty +kitten icat' \
-    cp='cp -iv' \
-    mv='mv -iv' \
-    nuke='rm -rI' \
-    rm='rm -vI' \
-    sudo='sudo ' \
-    untar='tar -xvf' \
-    v='nvim' \
-    vim='nvim' \
-    moi='chezmoi' \
-    ..='cd ..' \
-    ...='cd ../..' \
-    ....='cd ../../..'
+{{- if eq .chezmoi.os "linux" }}
+alias open='xdg-open'
+alias s='systemctl'
+{{- end }}
+alias icat='kitty +kitten icat'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias nuke='rm -rI'
+alias rm='rm -vI'
+alias sudo='sudo '
+alias untar='tar -xvf'
+alias v='nvim'
+alias vim='nvim'
+alias moi='chezmoi'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # git
-alias \
-    g='git' \
-    ga='git add' \
-    gcl='git clone' \
-    cdg='cd $(git rev-parse --show-toplevel)' \
-    gaa='git add --all' \
-    gb='git branch -a' \
-    gc='git commit' \
-    gcm='git commit -m' \
-    gd='git diff' \
-    gp='git push' \
-    gl='git pull' \
-    gll='git log' \
-    gs='git status' \
-    gr='git remote -v' \
-    grm='git rm' \
-    grmc='git rm --cached' \
-    gmv='git mv'
+alias g='git'
+alias ga='git add'
+alias gcl='git clone'
+alias cdg='cd $(git rev-parse --show-toplevel)'
+alias gaa='git add --all'
+alias gb='git branch -a'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gd='git diff'
+alias gp='git push'
+alias gl='git pull'
+alias gll='git log'
+alias gs='git status'
+alias gr='git remote -v'
+alias grm='git rm'
+alias grmc='git rm --cached'
+alias gmv='git mv'
