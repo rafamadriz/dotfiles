@@ -11,7 +11,7 @@ return {
                     enable = true,
                     disable = { "html" },
                 },
-                indent = { enable = false },
+                indent = { enable = true },
                 autotag = { enable = true },
             }
         end,
