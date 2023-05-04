@@ -1,44 +1,30 @@
---source: https://github.com/neovim/nvim-lspconfig/blob/master/test/minimal_init.lua
+local temp_dir = vim.loop.os_getenv "TEMP" or "/tmp"
+local install_dir = temp_dir .. "/lazy-nvim"
 
-local on_windows = vim.loop.os_uname().version:match "Windows"
-
-local function join_paths(...)
-    local path_sep = on_windows and "\\" or "/"
-    local result = table.concat({ ... }, path_sep)
-    return result
+-- set stdpaths to use "/tmp/lazy-nvim"
+for _, name in ipairs { "config", "data", "state", "cache" } do
+    vim.env[("XDG_%s_HOME"):format(name:upper())] = install_dir .. "/" .. name
 end
 
-vim.cmd [[set runtimepath=$VIMRUNTIME]]
-
-local temp_dir = vim.loop.os_getenv "TEMP" or "/tmp"
-
-vim.cmd("set packpath=" .. join_paths(temp_dir, "nvim", "site"))
-
-local package_root = join_paths(temp_dir, "nvim", "site", "pack")
-local install_path = join_paths(package_root, "packer", "start", "packer.nvim")
-local compile_path = join_paths(install_path, "plugin", "packer_compiled.lua")
-
-local function load_plugins()
-    require("packer").startup {
-        {
-            "wbthomason/packer.nvim",
-        },
-        config = {
-            package_root = package_root,
-            compile_path = compile_path,
-        },
+-- bootstrap lazy
+local lazypath = install_dir .. "/plugins/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system {
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "--single-branch",
+        "https://github.com/folke/lazy.nvim.git",
+        lazypath,
     }
 end
+vim.opt.runtimepath:prepend(lazypath)
 
-_G.load_config = function() end
+-- install plugins
+local plugins = {}
 
-if vim.fn.isdirectory(install_path) == 0 then
-    vim.fn.system { "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path }
-    load_plugins()
-    require("packer").sync()
-    vim.cmd [[autocmd User PackerComplete ++once lua load_config()]]
-else
-    load_plugins()
-    require("packer").sync()
-    _G.load_config()
-end
+require("lazy").setup(plugins, {
+    root = install_dir .. "/plugins",
+})
+
+vim.opt.termguicolors = true
