@@ -3,27 +3,17 @@
 return {
     {
         "rebelot/kanagawa.nvim",
-        lazy = false,
         config = function()
             require("kanagawa").setup {
                 compile = true, -- enable compiling the colorscheme
                 dimInactive = true, -- dim inactive window `:h hl-NormalNC`
                 theme = "wave", -- options: wave, dragon, lotus
                 background = {
-                    dark = "dragon",
+                    dark = "wave",
                     light = "lotus",
                 },
             }
             vim.cmd.colorscheme "kanagawa"
-        end,
-    },
-    {
-        "sainnhe/edge",
-        config = function()
-            vim.g.edge_dim_inactive_windows = 1
-            vim.g.edge_style = "aura" -- options: default , aura , neon
-            vim.g.edge_better_performance = 1
-            vim.cmd.colorscheme "edge"
         end,
     },
     {
@@ -37,8 +27,66 @@ return {
         end,
     },
     {
-        "projekt0n/github-nvim-theme",
-        version = "*",
-        config = function() require("github-theme").setup() end,
+        "catppuccin/nvim",
+        name = "catppuccin",
+        config = function()
+            require("catppuccin").setup {
+                dim_inactive = {
+                    enabled = true,
+                    shade = "dark",
+                    percentage = 0.15,
+                },
+                integrations = {
+                    cmp = true,
+                    dashboard = true,
+                    gitsigns = true,
+                    harpoon = false,
+                    leap = true,
+                    lsp_trouble = false,
+                    markdown = true,
+                    mason = true,
+                    mini = true,
+                    neotree = true,
+                    overseer = false,
+                    telescope = true,
+                    treesitter = true,
+                    treesitter_context = true,
+                    which_key = true,
+                    dap = {
+                        enabled = false,
+                        enable_ui = false,
+                    },
+                    native_lsp = {
+                        enabled = true,
+                        virtual_text = {
+                            errors = { "italic" },
+                            hints = { "italic" },
+                            warnings = { "italic" },
+                            information = { "italic" },
+                        },
+                        underlines = {
+                            errors = { "underline" },
+                            hints = { "underline" },
+                            warnings = { "underline" },
+                            information = { "underline" },
+                        },
+                    },
+                },
+            }
+            vim.cmd.colorscheme "catppuccin"
+        end,
+    },
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        config = function()
+            require("tokyonight").setup {
+                style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+                sidebars = { "qf", "help", "neo-tree", "undotree" },
+                dim_inactive = true,
+                lualine_bold = true,
+            }
+            vim.cmd.colorscheme "tokyonight"
+        end,
     },
 }
