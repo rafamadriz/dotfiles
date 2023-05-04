@@ -5,6 +5,9 @@ return {
         keys = { { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Open file tree" } },
         config = function()
             require("neo-tree").setup {
+                source_selector = {
+                    winbar = true,
+                },
                 sources = {
                     "filesystem",
                     "buffers",
@@ -14,6 +17,8 @@ return {
                 window = {
                     position = "right",
                     mappings = {
+                        ["{"] = { "prev_source" },
+                        ["}"] = { "next_source" },
                         ["<tab>"] = { "toggle_node", nowait = false },
                         ["/"] = "none",
                         ["<space>"] = "none",
