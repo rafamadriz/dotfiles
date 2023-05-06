@@ -3,6 +3,14 @@ return {
     { "nvim-lua/plenary.nvim" },
     { "nvim-tree/nvim-web-devicons" },
 
+    -- Package manager
+    {
+        "williamboman/mason.nvim",
+        cmd = "Mason",
+        build = ":MasonUpdate",
+        config = true,
+    },
+
     -- Improve editing experience and motions
     {
         "numToStr/Comment.nvim",
