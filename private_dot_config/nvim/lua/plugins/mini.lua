@@ -12,15 +12,6 @@ return {
         config = function() require("mini.align").setup {} end,
     },
     {
-        "echasnovski/mini.bracketed",
-        keys = { "[", "]" },
-        config = function()
-            require("mini.bracketed").setup {
-                comment = { suffix = "" },
-            }
-        end,
-    },
-    {
         "echasnovski/mini.jump",
         event = "VeryLazy",
         config = function() require("mini.jump").setup {} end,
