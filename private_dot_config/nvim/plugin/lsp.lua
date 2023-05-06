@@ -18,8 +18,8 @@ lsp.handlers["textDocument/signatureHelp"] =
     lsp.with(lsp.handlers.signature_help, { border = "rounded" })
 
 local setup_mappings = function(_, bufnr)
-    map("n", "]d", vim.diagnostic.get_next, { desc = "Next diagnostics ", buffer = bufnr })
-    map("n", "[d", vim.diagnostic.get_prev, { desc = "Previous diagnostics", buffer = bufnr })
+    map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostics ", buffer = bufnr })
+    map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostics", buffer = bufnr })
     map("n", "gD", lsp.buf.declaration, { desc = "Go to declaration", buffer = bufnr })
     map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
     map("n", "gr", lsp.buf.references, { desc = "Go to references", buffer = bufnr })
