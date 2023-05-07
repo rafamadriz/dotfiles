@@ -10,6 +10,14 @@ export PATH=$PATH:$CARGO_HOME/bin
 export PATH=$PATH:$XDG_DATA_HOME/npm/bin
 {{- end}}
 
+# ZSH word split
+# Delete up until `/` with <C-w>, specially useful when typing paths and need to
+# correct just a single section, but by default doing <C-w> deletes the entire "word"
+# default: *?_-.[]~=/&;!#$%^(){}<>
+# source: https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
+# source: https://apple.stackexchange.com/questions/382126/partially-delete-path-in-zsh-option-backspace
+export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+
 # XDG paths
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
