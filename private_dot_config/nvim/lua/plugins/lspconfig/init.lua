@@ -3,10 +3,10 @@ return {
         "williamboman/mason-lspconfig.nvim",
         event = { "BufReadPre", "BufNewFile" },
         config = {
-            ensure_installed = { "lua_ls" },
+            ensure_installed = vim.tbl_keys(require("plugins.lspconfig.servers").servers),
             handlers = {
                 function(server_name)
-                    local config = require "plugins.lspconfig.servers"(server_name)
+                    local config = require("plugins.lspconfig.servers").config(server_name)
                     if config then require("lspconfig")[server_name].setup(config) end
                 end,
             },
