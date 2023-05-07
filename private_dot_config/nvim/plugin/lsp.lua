@@ -2,24 +2,26 @@ local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 local lsp, diagnostic, map = vim.lsp, vim.diagnostic, vim.keymap.set
 
 diagnostic.config {
-    virtual_text = false,
+    virtual_text = {
+        source = "if_many",
+    },
     severity_sort = true,
-    signs = { severity = { diagnostic.severity.ERROR, diagnostic.severity.WARN } },
     underline = {
         severity = diagnostic.severity.ERROR,
     },
     float = {
-        source = "always",
+        source = "if_many",
         border = "rounded",
     },
 }
+
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, { border = "rounded" })
 lsp.handlers["textDocument/signatureHelp"] =
     lsp.with(lsp.handlers.signature_help, { border = "rounded" })
 
 local setup_mappings = function(_, bufnr)
-    map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostics ", buffer = bufnr })
-    map("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous diagnostics", buffer = bufnr })
+    map("n", "]d", diagnostic.goto_next, { desc = "Next diagnostics ", buffer = bufnr })
+    map("n", "[d", diagnostic.goto_prev, { desc = "Previous diagnostics", buffer = bufnr })
     map("n", "gD", lsp.buf.declaration, { desc = "Go to declaration", buffer = bufnr })
     map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
     map("n", "gr", lsp.buf.references, { desc = "Go to references", buffer = bufnr })
