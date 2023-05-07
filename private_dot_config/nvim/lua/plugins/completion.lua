@@ -33,6 +33,7 @@ return {
         event = "InsertEnter",
         dependencies = {
             { "petertriho/cmp-git", config = true },
+            { "lukas-reineke/cmp-rg" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-path" },
             { "hrsh7th/cmp-buffer" },
@@ -76,13 +77,25 @@ return {
                             buffer = "[B]",
                             nvim_lua = "[Lua]",
                             git = "[Git]",
+                            rg = "[RG]",
                         })[entry.source.name]
                         return item
                     end,
                 },
                 sources = cmp.config.sources {
-                    { name = "nvim_lsp", priority = 10, max_item_count = 15 },
-                    { name = "luasnip", priority = 9 },
+                    { name = "nvim_lsp", priority = 20, max_item_count = 15 },
+                    { name = "luasnip", priority = 15 },
+                    {
+                        name = "rg",
+                        option = {
+                            additional_arguments = "--hidden --smart-case",
+                            context_before = 5,
+                            context_after = 5,
+                        },
+                        keyword_length = 3,
+                        max_item_count = 5,
+                        priority = 2,
+                    },
                     {
                         name = "buffer",
                         keyword_length = 3,
@@ -95,10 +108,13 @@ return {
                     { name = "path" },
                     { name = "nvim_lua" },
                 },
+                experimental = {
+                    ghost_text = true,
+                },
             }
             cmp.setup.filetype("gitcommit", {
                 sources = cmp.config.sources({
-                    { name = "git" }, -- You can specify the `cmp_git` source if you were installed it.
+                    { name = "git" },
                 }, {
                     { name = "buffer" },
                 }),
