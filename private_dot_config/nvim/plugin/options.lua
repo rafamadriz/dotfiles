@@ -82,6 +82,7 @@ vim.opt.listchars = {
 -- Session options
 vim.opt.sessionoptions =
     "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
+vim.opt.exrc = true
 
 -- Jumplist
 vim.opt.jumpoptions = "stack" -- Make jumplist behave like a browser stack
