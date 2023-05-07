@@ -151,7 +151,7 @@ return {
             },
             -- git
             { "<leader>gf", "<cmd>Telescope git_files<CR>", desc = "Git files" },
-            { "<leader>gb", "<cmd>Telescope git_branches<CR>", desc = "Branchse" },
+            { "<leader>gb", "<cmd>Telescope git_branches<CR>", desc = "Branches" },
             { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
             { "<leader>gC", "<cmd>Telescope git_bcommits<CR>", desc = "Buffer commits" },
             { "<leader>gm", "<cmd>Telescope git_status<CR>", desc = "Modified files" },
