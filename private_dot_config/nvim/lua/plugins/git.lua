@@ -6,8 +6,8 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         opts = {
             signs = {
-                delete = { text = "│" },
-                topdelete = { text = "│" },
+                add = { text = "+" },
+                change = { text = "~" },
             },
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
