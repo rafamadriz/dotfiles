@@ -1,4 +1,6 @@
-local servers = {
+local M = {}
+
+M.servers = {
     lua_ls = {
         settings = {
             Lua = {
@@ -14,9 +16,11 @@ local servers = {
     },
 }
 
-return function(name)
-    local config = name and servers[name] or {}
+M.config = function(name)
+    local config = name and M.servers[name] or {}
     if not config then return end
     if type(config) == "function" then config = config() end
     return config
 end
+
+return M
