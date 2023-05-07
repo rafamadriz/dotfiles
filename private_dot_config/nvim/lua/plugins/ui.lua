@@ -27,15 +27,86 @@ return {
         event = "VeryLazy",
         config = function()
             require("lualine").setup {
+                options = {
+                    -- section_separators = "",
+                    -- component_separators = "",
+                    -- component_separators = { left = "", right = "" },
+                    -- section_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
+                },
                 sections = {
                     lualine_a = { "mode" },
-                    lualine_b = { "branch", "diff", "" },
-                    lualine_c = { { "filename", path = 1 } },
-                    lualine_x = { "diagnostics", "encoding", "fileformat", "filetype" },
-                    lualine_y = { "progress" },
-                    lualine_z = { "location" },
+                    lualine_b = {
+                        {
+                            "filetype",
+                            icon_only = true,
+                            separator = "",
+                            padding = { left = 1, right = 0 },
+                        },
+                        {
+                            "filename",
+                            path = 1,
+                            symbols = { modified = "", readonly = "[RO]" },
+                            color = { gui = "italic,bold" },
+                        },
+                    },
+                    lualine_c = {
+                        { "branch", separator = "", padding = { left = 1, right = 0 } },
+                        "diff",
+                    },
+                    lualine_x = {
+                        {
+                            "diagnostics",
+                            symbols = { error = "E ", warn = "W ", info = "I ", hint = "H " },
+                            separator = "",
+                        },
+                        {
+                            function()
+                                local buf_clients = vim.lsp.get_active_clients { buffer = 0 }
+                                if #buf_clients == 0 then return "" end
+
+                                local buf_client_names = {}
+                                for _, client in pairs(buf_clients) do
+                                    if client.name ~= "null-ls" then
+                                        table.insert(buf_client_names, client.name)
+                                    end
+                                end
+
+                                local language_servers = "["
+                                    .. table.concat(vim.fn.uniq(buf_client_names), ", ")
+                                    .. "]"
+
+                                return language_servers
+                            end,
+                            color = { gui = "bold" },
+                        },
+                    },
+                    lualine_y = {
+                        { "encoding", separator = "|" },
+                        "fileformat",
+                    },
+                    lualine_z = {
+                        -- 
+                        {
+                            "location",
+                            padding = { left = 1, right = 1 },
+                            separator = "|",
+                        },
+                        -- {
+                        --     function() return "of" end,
+                        --     padding = { left = 1, right = 2 },
+                        --     color = { gui = "italic,bold" },
+                        --     separator = "",
+                        -- },
+                        {
+                            function() return vim.fn.line "$" .. " ℓ" end,
+                            padding = { left = 1, right = 1 },
+                            separator = "",
+                        },
+                    },
                 },
-                extensions = { "quickfix" },
+
+                extensions = { "quickfix", "neo-tree", "lazy" },
             }
         end,
     },
