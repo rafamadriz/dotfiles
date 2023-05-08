@@ -119,6 +119,7 @@ return {
             }
             require("telescope").load_extension "fzf"
             require("telescope").load_extension "live_grep_args"
+            require("telescope").load_extension "projects"
         end,
         keys = {
             -- find
@@ -142,6 +143,7 @@ return {
             { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
             { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix" },
             { "<leader>fQ", "<cmd>Telescope quickfixhistory<CR>", desc = "Quickfix history" },
+            { "<leader>fp", "<cmd>Telescope projects theme=dropdown<CR>", desc = "Projects" },
             -- buffers
             { "<leader>bb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
             {
@@ -155,11 +157,6 @@ return {
             { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
             { "<leader>gC", "<cmd>Telescope git_bcommits<CR>", desc = "Buffer commits" },
             { "<leader>gm", "<cmd>Telescope git_status<CR>", desc = "Modified files" },
-            -- LSP
-            -- {"<leader>ld", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Document diagnostics" },
-            -- {"<leader>lD", "<cmd>Telescope diagnostics<CR>", desc = "Diagnostics of all buffers" },
-            -- {"<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", desc = "Document symbols" },
-            -- {"<leader>lS", "<cmd>Telescope lsp_workspace_symbols<CR>", desc = "Workspace symbols" },
         },
     },
 }

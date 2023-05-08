@@ -70,6 +70,16 @@ return {
 
     -- Other useful utils
     {
+        "ahmedkhalf/project.nvim",
+        lazy = false,
+        config = function()
+            require("project_nvim").setup {
+                detection_methods = { "pattern", "lsp" },
+                show_hidden = true, -- show hidden files in telescope
+            }
+        end,
+    },
+    {
         "NMAC427/guess-indent.nvim",
         event = { "BufReadPre", "BufNewFile" },
         config = true,
