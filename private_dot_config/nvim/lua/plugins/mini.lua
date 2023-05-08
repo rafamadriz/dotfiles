@@ -6,6 +6,7 @@ return {
         config = function()
             local ai = require "mini.ai"
             require("mini.ai").setup {
+                n_lines = 500,
                 mappings = { around_last = "", inside_last = "" },
                 custom_textobjects = {
                     i = ai.gen_spec.treesitter(
