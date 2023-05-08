@@ -15,8 +15,10 @@ return {
 
         local n_mappings = {
             ["<leader>"] = {
+                ["f"] = { name = "Find" },
                 ["b"] = { name = "Buffer" },
                 ["g"] = { name = "Git" },
+                ["l"] = { name = "LSP" },
             },
         }
         wk.register(n_mappings, { mode = "n" })
