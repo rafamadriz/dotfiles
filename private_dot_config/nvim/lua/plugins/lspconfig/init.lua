@@ -2,7 +2,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         event = { "BufReadPre", "BufNewFile" },
-        config = {
+        opts = {
             ensure_installed = vim.tbl_keys(require("plugins.lspconfig.servers").servers),
             handlers = {
                 function(server_name)
