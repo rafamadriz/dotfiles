@@ -1,22 +1,51 @@
 return {
     {
         "glepnir/dashboard-nvim",
-        event = "VimEnter",
+        event = { "VimEnter" },
         config = function()
             require("dashboard").setup {
                 theme = "hyper",
+                shortcut_type = "number",
                 config = {
-                    week_header = { enable = true },
+                    header = {
+                        [[      ::::    ::: :::::::::: ::::::::  :::     ::: :::::::::::   :::   :::]],
+                        [[     :+:+:   :+: :+:       :+:    :+: :+:     :+:     :+:      :+:+: :+:+:]],
+                        [[    :+:+:+  +:+ +:+       +:+    +:+ +:+     +:+     +:+     +:+ +:+:+ +:+]],
+                        [[   +#+ +:+ +#+ +#++:++#  +#+    +:+ +#+     +:+     +#+     +#+  +:+  +#+ ]],
+                        [[  +#+  +#+#+# +#+       +#+    +#+  +#+   +#+      +#+     +#+       +#+  ]],
+                        [[ #+#   #+#+# #+#       #+#    #+#   #+#+#+#       #+#     #+#       #+#   ]],
+                        [[###    #### ########## ########      ###     ########### ###       ###    ]],
+                        [[]],
+                        [[]],
+                        [[]],
+                    },
                     shortcut = {
-                        { desc = "Plugins", action = "Lazy", key = "l" },
-                        { desc = "Find files", action = "Telescope find_files", key = "f" },
-                        { desc = "Grep string", action = "Telescope live_grep_args", key = "g" },
+                        { desc = "Lazy", action = "Lazy", key = "l", group = "Constant" },
+                        { desc = "Mason", action = "Mason", key = "m", group = "Constant" },
+                        {
+                            desc = "Find files",
+                            action = "Telescope find_files",
+                            key = "f",
+                            group = "Constant",
+                        },
+                        {
+                            desc = "Grep string",
+                            action = "Telescope live_grep_args",
+                            key = "g",
+                            group = "Constant",
+                        },
                         {
                             desc = "Dotfiles",
                             action = "Telescope find_files cwd=~/.local/share/chezmoi/",
                             key = "d",
+                            group = "Constant",
                         },
-                        { desc = "Quit", action = "quitall", key = "q" },
+                        {
+                            desc = "Quit",
+                            action = "quitall",
+                            key = "q",
+                            group = "Constant",
+                        },
                     },
                 },
             }
