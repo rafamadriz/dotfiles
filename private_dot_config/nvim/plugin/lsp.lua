@@ -29,7 +29,7 @@ local setup_mappings = function(_, bufnr)
     map("n", "K", lsp.buf.hover, { desc = "Document hover", buffer = bufnr })
     map("n", "<C-k>", lsp.buf.signature_help, { desc = "Signature help", buffer = bufnr })
 
-    map("n", "<leader>la", lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
+    map({ "n", "v" }, "<leader>la", lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
     map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
     map(
         "n",
