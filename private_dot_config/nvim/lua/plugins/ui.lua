@@ -74,7 +74,7 @@ return {
                         },
                         {
                             "filename",
-                            path = 1,
+                            path = 4,
                             symbols = { modified = "", readonly = "[RO]" },
                             color = { gui = "italic,bold" },
                         },
@@ -86,7 +86,7 @@ return {
                     lualine_x = {
                         {
                             "diagnostics",
-                            symbols = { error = "E ", warn = "W ", info = "I ", hint = "H " },
+                            symbols = { error = "E:", warn = "W:", info = "I:", hint = "H:" },
                             separator = "",
                         },
                         {
@@ -111,24 +111,16 @@ return {
                         },
                     },
                     lualine_y = {
-                        { "encoding", separator = "|" },
+                        { "encoding", separator = "┃" },
                         "fileformat",
                     },
                     lualine_z = {
-                        -- 
                         {
-                            "location",
-                            padding = { left = 1, right = 1 },
-                            separator = "|",
-                        },
-                        -- {
-                        --     function() return "of" end,
-                        --     padding = { left = 1, right = 2 },
-                        --     color = { gui = "italic,bold" },
-                        --     separator = "",
-                        -- },
-                        {
-                            function() return vim.fn.line "$" .. " ℓ" end,
+                            function()
+                                local line, fmt = vim.fn.line, string.format
+                                local col = vim.fn.virtcol
+                                return fmt("Ln %3d/%-4d, Col %-3d", line ".", line "$", col ".")
+                            end,
                             padding = { left = 1, right = 1 },
                             separator = "",
                         },
