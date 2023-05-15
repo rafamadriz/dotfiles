@@ -30,7 +30,7 @@ main() {
     fi
 }
 
-if command -v maim && command -v xclip >/dev/null 2>&1; then
+if command -v maim xclip >/dev/null 2>&1; then
     main "$@"
 else
     err "maim and xclip must be executable"
