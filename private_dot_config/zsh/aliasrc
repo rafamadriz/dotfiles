@@ -14,10 +14,10 @@ for index in {1..9}; do
 done
 
 # shortcuts
-{{- if eq .chezmoi.os "linux" }}
-alias open='xdg-open'
-alias s='systemctl'
-{{- end }}
+if command -v xdg-open >/dev/null 2>&1; then
+    alias open='xdg-open'
+fi
+alias sys='systemctl'
 alias icat='kitty +kitten icat'
 alias cp='cp -iv'
 alias mv='mv -iv'
@@ -28,6 +28,7 @@ alias untar='tar -xvf'
 alias v='nvim'
 alias vim='nvim'
 alias moi='chezmoi'
+alias lg='lazygit'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
