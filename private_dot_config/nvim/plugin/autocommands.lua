@@ -85,33 +85,6 @@ aucmd("BufWritePre", {
     end,
 })
 
--- Show cursor line only in active window
--- source: https://github.com/folke/dot/blob/master/nvim/lua/config/autocmds.lua
--- source: https://stackoverflow.com/questions/14068751/how-to-hide-cursor-line-when-focus-in-on-other-window-in-vim
-local cursorline_active_w = augroup("cursorline_on_active_window", { clear = true })
-aucmd({ "VimEnter", "WinEnter", "BufWinEnter", "TabEnter" }, {
-    pattern = "*",
-    group = cursorline_active_w,
-    callback = function() vim.wo.cursorline = true end,
-})
-aucmd({ "WinLeave" }, {
-    pattern = "*",
-    group = cursorline_active_w,
-    callback = function() vim.wo.cursorline = false end,
-})
-
---source: https://github.com/jghauser/mkdir.nvim
-aucmd("BufWritePre", {
-    pattern = "*",
-    desc = "Automatically create missing directories when saving file",
-    group = augroup("Mkdir", { clear = true }),
-    callback = function()
-        local dir = vim.fn.expand "<afile>:p:h"
-
-        if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, "p") end
-    end,
-})
-
 -- HLSEARCH
 --source: https://github.com/akinsho/dotfiles/blob/main/.config/nvim/plugin/autocommands.lua
 --credits: @akinsho
