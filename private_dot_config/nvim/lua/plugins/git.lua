@@ -8,6 +8,8 @@ return {
             signs = {
                 add = { text = "+" },
                 change = { text = "~" },
+                delete = { text = "-" },
+                topdelete = { text = "-" },
             },
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
@@ -64,6 +66,12 @@ return {
     },
     {
         "sindrets/diffview.nvim",
+        keys = {
+            { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Diff" },
+            { "<leader>gD", "<cmd>DiffviewOpen HEAD -- %<CR>", desc = "Diff buffer" },
+            { "<leader>gh", "<cmd>DiffviewFileHistory<CR>", desc = "File history" },
+            { "<leader>gH", "<cmd>DiffviewFileHistory %<CR>", desc = "History buffer" },
+        },
         cmd = { "DiffviewOpen", "DiffviewFileHistory" },
         config = function()
             local cb = require("diffview.config").diffview_callback
