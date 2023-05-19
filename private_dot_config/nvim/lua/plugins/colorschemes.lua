@@ -78,7 +78,6 @@ return {
     },
     {
         "folke/tokyonight.nvim",
-        lazy = false,
         config = function()
             require("tokyonight").setup {
                 style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
@@ -87,6 +86,19 @@ return {
                 lualine_bold = true,
             }
             vim.cmd.colorscheme "tokyonight"
+        end,
+    },
+    {
+        "rose-pine/neovim",
+        lazy = false,
+        name = "rose-pine",
+        config = function()
+            require("rose-pine").setup {
+                --- @usage 'main'|'moon'|'dawn'
+                dark_variant = "main",
+                dim_nc_background = true,
+            }
+            vim.cmd "colorscheme rose-pine"
         end,
     },
 }
