@@ -40,27 +40,12 @@ return {
                 map("n", "<leader>gR", gs.reset_buffer, { desc = "Reset buffer" })
                 map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
                 map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
-                map(
-                    "n",
-                    "<leader>gB",
-                    function() gs.blame_line { full = true } end,
-                    { desc = "Blame line" }
-                )
-                map(
-                    "n",
-                    "<leader>gl",
-                    gs.toggle_current_line_blame,
-                    { desc = "Blame current line" }
-                )
+                map("n", "<leader>gB", function() gs.blame_line { full = true } end, { desc = "Blame line" })
+                map("n", "<leader>gl", gs.toggle_current_line_blame, { desc = "Blame current line" })
                 map("n", "<leader>gt", gs.toggle_deleted, { desc = "Toggle old versions of hunks" })
 
                 -- Text object
-                map(
-                    { "o", "x" },
-                    "ih",
-                    ":<C-U>Gitsigns select_hunk<CR>",
-                    { desc = "inner git hunk" }
-                )
+                map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "inner git hunk" })
             end,
         },
     },

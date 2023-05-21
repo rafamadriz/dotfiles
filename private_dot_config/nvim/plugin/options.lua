@@ -81,17 +81,14 @@ vim.opt.listchars = {
 }
 
 -- Session options
-vim.opt.sessionoptions =
-    "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
+vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 vim.opt.exrc = true
 
 -- Jumplist
 vim.opt.jumpoptions = "stack" -- Make jumplist behave like a browser stack
 
 -- Use rg as grep program
-if vim.fn.executable "rg" > 0 then
-    vim.opt.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case]]
-end
+if vim.fn.executable "rg" > 0 then vim.opt.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case]] end
 
 -- Folds
 vim.opt.foldlevelstart = 999

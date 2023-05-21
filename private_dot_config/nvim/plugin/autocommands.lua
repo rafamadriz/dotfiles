@@ -100,20 +100,11 @@ This is based on the implementation discussed here:
 https://github.com/neovim/neovim/issues/5581
 --]]
 
-vim.keymap.set(
-    { "n", "v", "o", "i", "c" },
-    "<Plug>(StopHL)",
-    'execute("nohlsearch")[-1]',
-    { expr = true }
-)
+vim.keymap.set({ "n", "v", "o", "i", "c" }, "<Plug>(StopHL)", 'execute("nohlsearch")[-1]', { expr = true })
 
 local function stop_hl()
     if vim.v.hlsearch == 0 or vim.api.nvim_get_mode().mode ~= "n" then return end
-    vim.api.nvim_feedkeys(
-        vim.api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true),
-        "m",
-        false
-    )
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
 end
 
 local function hl_search()
