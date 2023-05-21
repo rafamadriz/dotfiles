@@ -10,14 +10,15 @@
   editor = nvim
 
 [alias]
-    lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    dlg  = log -p --cc --graph --decorate
-    wtf  = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%an%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat
-    ls   = ls-files
-    sw   = switch
-    co   = checkout
-    tree = log --all --graph --decorate --oneline --simplify-by-decoration
+    lg    = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    dlg   = log -p --cc --graph --decorate
+    wtf   = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%an%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat
+    ls    = ls-files
+    sw    = switch
+    co    = checkout
+    tree  = log --all --graph --decorate --oneline --simplify-by-decoration
     fixup = commit --amend --no-edit --allow-empty
+    root  = rev-parse --show-toplevel
 
 [merge]
     conflictstyle = diff3

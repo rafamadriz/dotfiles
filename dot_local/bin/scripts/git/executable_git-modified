@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# Show all modified files within a git repo
+
+git ls-files --modified "$(git rev-parse --show-toplevel)"
