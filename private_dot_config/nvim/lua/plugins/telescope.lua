@@ -31,11 +31,15 @@ return {
                             ["q"] = actions.close,
                         },
                     },
+                    layout_strategy = "bottom_pane",
                     path_display = { truncate = 3 },
                     sorting_strategy = "ascending",
                     layout_config = {
                         horizontal = {
                             prompt_position = "top",
+                        },
+                        bottom_pane = {
+                            height = 15,
                         },
                     },
                     cycle_layout_list = { "horizontal", "vertical", "bottom_pane", "center" },
@@ -89,7 +93,7 @@ return {
                 },
                 pickers = {
                     current_buffer_fuzzy_find = {
-                        theme = "ivy",
+                        -- theme = "ivy",
                     },
                     find_files = {
                         hidden = true,
@@ -97,7 +101,7 @@ return {
                     },
                     buffers = {
                         path_display = { "smart" },
-                        theme = "dropdown",
+                        -- theme = "dropdown",
                         previewer = true,
                         ignore_current_buffer = true,
                         sort_mru = true,
@@ -150,7 +154,7 @@ return {
             { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
             { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix" },
             { "<leader>fQ", "<cmd>Telescope quickfixhistory<CR>", desc = "Quickfix history" },
-            { "<leader>fp", "<cmd>Telescope projects theme=dropdown<CR>", desc = "Projects" },
+            { "<leader>fp", "<cmd>Telescope projects<CR>", desc = "Projects" },
             -- buffers
             { "<leader>bb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
             {
