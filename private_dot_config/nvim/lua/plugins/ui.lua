@@ -101,7 +101,7 @@ return {
                                     end
                                 end
 
-                                local language_servers = "["
+                                local language_servers = " ["
                                     .. table.concat(vim.fn.uniq(buf_client_names), ", ")
                                     .. "]"
 
