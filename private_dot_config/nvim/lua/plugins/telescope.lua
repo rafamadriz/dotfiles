@@ -13,6 +13,7 @@ return {
         },
         config = function()
             local actions = require "telescope.actions"
+            local layout = require "telescope.actions.layout"
             require("telescope").setup {
                 defaults = {
                     mappings = {
@@ -20,6 +21,8 @@ return {
                             ["<C-h>"] = "which_key",
                             ["<C-j>"] = actions.cycle_history_next,
                             ["<C-k>"] = actions.cycle_history_prev,
+                            ["<C-o>"] = layout.cycle_layout_next,
+                            ["<C-i>"] = layout.cycle_layout_prev,
                             ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                             ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
                         },
@@ -35,6 +38,7 @@ return {
                             prompt_position = "top",
                         },
                     },
+                    cycle_layout_list = { "horizontal", "vertical", "bottom_pane", "center" },
                     vimgrep_arguments = {
                         "rg",
                         "--color=never",
