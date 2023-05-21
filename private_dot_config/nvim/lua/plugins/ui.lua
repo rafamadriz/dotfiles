@@ -96,9 +96,7 @@ return {
 
                                 local buf_client_names = {}
                                 for _, client in pairs(buf_clients) do
-                                    if client.name ~= "null-ls" then
-                                        table.insert(buf_client_names, client.name)
-                                    end
+                                    if client.name ~= "null-ls" then table.insert(buf_client_names, client.name) end
                                 end
 
                                 local uniq_client_names = table.concat(vim.fn.uniq(buf_client_names), ", ")

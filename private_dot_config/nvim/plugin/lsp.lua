@@ -16,8 +16,7 @@ diagnostic.config {
 }
 
 lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, { border = "rounded" })
-lsp.handlers["textDocument/signatureHelp"] =
-    lsp.with(lsp.handlers.signature_help, { border = "rounded" })
+lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, { border = "rounded" })
 
 local setup_mappings = function(_, bufnr)
     map("n", "]d", diagnostic.goto_next, { desc = "Next diagnostics ", buffer = bufnr })
@@ -31,19 +30,9 @@ local setup_mappings = function(_, bufnr)
 
     map({ "n", "v" }, "<leader>la", lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
     map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
-    map(
-        "n",
-        "<leader>lt",
-        lsp.buf.type_definition,
-        { desc = "Go to type definition", buffer = bufnr }
-    )
+    map("n", "<leader>lt", lsp.buf.type_definition, { desc = "Go to type definition", buffer = bufnr })
     map("n", "<leader>lr", lsp.buf.rename, { desc = "Rename symbol", buffer = bufnr })
-    map(
-        "n",
-        "<leader>lf",
-        function() lsp.buf.format { async = true } end,
-        { desc = "LSP Format", buffer = bufnr }
-    )
+    map("n", "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "LSP Format", buffer = bufnr })
     map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics", buffer = bufnr })
     map("n", "<leader>lp", function()
         local params = lsp.util.make_position_params()

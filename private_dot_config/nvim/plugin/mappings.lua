@@ -48,18 +48,8 @@ map("n", "[L", "<cmd>lfirst<cr>", { desc = "First locationlist " })
 map("i", "<C-c>", "<C-c>")
 
 -- Add empty lines before and after cursor line
-map(
-    "n",
-    "gO",
-    "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>",
-    { desc = "Put empty line above" }
-)
-map(
-    "n",
-    "go",
-    "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>",
-    { desc = "Put empty line below" }
-)
+map("n", "gO", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
+map("n", "go", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
 
 -- Move selected block of text up/down
 map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
@@ -72,12 +62,7 @@ map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 map("x", "<leader>p", '"+P', { desc = "Paste from system clipboard" })
 
 -- Reselect latest changed, put, or yanked text
-map(
-    "n",
-    "gV",
-    '"`[" . strpart(getregtype(), 0, 1) . "`]"',
-    { expr = true, desc = "Visually select changed text" }
-)
+map("n", "gV", '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, desc = "Visually select changed text" })
 
 -- Search inside visually highlighted text. Use `silent = false` for it to
 -- make effect immediately.
@@ -90,12 +75,7 @@ map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]])
 -- Alternative way to save and exit in Normal mode.
 -- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
 map("n", "<C-S>", "<Cmd>silent! update | redraw<CR>", { desc = "Save" })
-map(
-    { "i", "x" },
-    "<C-S>",
-    "<Esc><Cmd>silent! update | redraw<CR>",
-    { desc = "Save and go to Normal mode" }
-)
+map({ "i", "x" }, "<C-S>", "<Esc><Cmd>silent! update | redraw<CR>", { desc = "Save and go to Normal mode" })
 
 -- Correct latest misspelled word by taking first suggestion.
 -- Use `<C-g>u` in Insert mode to mark this as separate undoable action.
@@ -127,12 +107,7 @@ map("c", "W", "w", { desc = "Always write w" })
 map("n", "<leader>bs", ":update<CR>", { desc = "Save buffer" })
 map("v", "<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
 map("n", "<leader>bq", ":bdelete<CR>", { desc = "Quit buffer" })
-map(
-    "n",
-    "<leader>bQ",
-    ":write | silent %bd | silent e# | bd#<CR>",
-    { desc = "Quit all buffers but current" }
-)
+map("n", "<leader>bQ", ":write | silent %bd | silent e# | bd#<CR>", { desc = "Quit all buffers but current" })
 map("n", "<leader>b!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
 
 -- Terminal
@@ -165,30 +140,7 @@ local resize = function(vertical, margin)
     cmd(_cmd)
 end
 
-map(
-    { "n", "t" },
-    "<C-Up>",
-    function() resize(false, -2) end,
-    { desc = "Resize up window horizontally" }
-)
-
-map(
-    { "n", "t" },
-    "<C-Down>",
-    function() resize(false, 2) end,
-    { desc = "Resize down window horizontally" }
-)
-
-map(
-    { "n", "t" },
-    "<C-Left>",
-    function() resize(true, -2) end,
-    { desc = "Resize left window vertically" }
-)
-
-map(
-    { "n", "t" },
-    "<C-Right>",
-    function() resize(true, 2) end,
-    { desc = "Resize right window vertically" }
-)
+map({ "n", "t" }, "<C-Up>", function() resize(false, -2) end, { desc = "Resize up window horizontally" })
+map({ "n", "t" }, "<C-Down>", function() resize(false, 2) end, { desc = "Resize down window horizontally" })
+map({ "n", "t" }, "<C-Left>", function() resize(true, -2) end, { desc = "Resize left window vertically" })
+map({ "n", "t" }, "<C-Right>", function() resize(true, 2) end, { desc = "Resize right window vertically" })

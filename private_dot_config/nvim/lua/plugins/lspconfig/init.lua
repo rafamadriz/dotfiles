@@ -32,10 +32,9 @@ return {
                     vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", { desc = "LSP info" })
 
                     require("lspconfig.ui.windows").default_options.border = "rounded"
-                    lspconfig.util.default_config =
-                        vim.tbl_extend("force", lspconfig.util.default_config, {
-                            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-                        })
+                    lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
+                        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                    })
                 end,
             },
         },
