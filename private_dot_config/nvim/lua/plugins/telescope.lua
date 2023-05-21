@@ -26,6 +26,14 @@ return {
                             ["<C-i>"] = layout.cycle_layout_prev,
                             ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
                             ["<M-q>"] = actions.send_to_qflist + actions.open_qflist,
+                            ["<C-y>"] = function()
+                                -- yank current selection value to system clipboard
+                                -- useful to copy file path or commit hash in their respective pickers,
+                                -- tough not all pickers have a selection value.
+                                local selected_entry = action_state.get_selected_entry()
+                                vim.fn.setreg("+", selected_entry.value)
+                                vim.api.nvim_win_close(0, true)
+                            end,
                         },
                         n = {
                             ["<C-c>"] = actions.close,
