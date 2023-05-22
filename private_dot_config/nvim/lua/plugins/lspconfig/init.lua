@@ -39,4 +39,9 @@ return {
             },
         },
     },
+    {
+        "DNLHC/glance.nvim",
+        cmd = { "Glance" },
+        config = true,
+    },
 }

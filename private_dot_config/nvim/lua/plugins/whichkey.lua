@@ -18,7 +18,7 @@ return {
                 ["f"] = { name = "Find" },
                 ["b"] = { name = "Buffer" },
                 ["g"] = { name = "Git" },
-                ["l"] = { name = "LSP" },
+                ["l"] = { name = "LSP", ["g"] = { name = "Go-to (preview window)" } },
             },
         }
         wk.register(mappings, { mode = "n" })

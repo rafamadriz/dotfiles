@@ -19,5 +19,9 @@ aucmd({ "LspAttach" }, {
         map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Document symbols" })
         map("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Workspace symbols" })
         map("n", "<leader>lo", "<cmd>Neotree toggle right document_symbols<CR>", { desc = "Toggle symbols outline" })
+        map("n", "<leader>lgd", "<cmd>Glance definitions<CR>", { desc = "Definitions" })
+        map("n", "<leader>lgr", "<cmd>Glance references<CR>", { desc = "References" })
+        map("n", "<leader>lgy", "<cmd>Glance type_definitions<CR>", { desc = "Type definitions" })
+        map("n", "<leader>lgm", "<cmd>Glance implementations<CR>", { desc = "Implementations" })
     end,
 })
