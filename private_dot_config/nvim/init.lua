@@ -27,4 +27,4 @@ vim.g.loaded_remote_plugins = 1
 -- vim.g.loaded_matchparen = 1
 
 require "lz"
-require "autocmd"
+require "autoplug"
