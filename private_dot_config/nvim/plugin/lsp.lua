@@ -2,9 +2,7 @@ local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 local lsp, diagnostic, map = vim.lsp, vim.diagnostic, vim.keymap.set
 
 diagnostic.config {
-    virtual_text = {
-        source = "if_many",
-    },
+    virtual_text = false,
     severity_sort = true,
     underline = {
         severity = diagnostic.severity.ERROR,
