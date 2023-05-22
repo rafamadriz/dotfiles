@@ -173,12 +173,13 @@ return {
                 desc = "Grep word under cursor",
                 mode = { "n", "v" },
             },
-            { "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Help tags" },
+            { "<leader>?", "<cmd>Telescope help_tags<CR>", desc = "Help tags" },
             { "<leader>fc", "<cmd>Telescope commands<CR>", desc = "Commands" },
             { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent files" },
             { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "Quickfix" },
             { "<leader>fQ", "<cmd>Telescope quickfixhistory<CR>", desc = "Quickfix history" },
             { "<leader>fp", "<cmd>Telescope projects<CR>", desc = "Projects" },
+            { "<leader>`", "<cmd>Telescope resume<CR>", desc = "Resume last picker" },
             -- buffers
             { "<leader>bb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
             {

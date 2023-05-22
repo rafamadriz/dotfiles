@@ -2,7 +2,7 @@ return {
     {
         "nvim-neo-tree/neo-tree.nvim",
         lazy = false,
-        keys = { { "<leader>e", "<cmd>Neotree toggle<CR>", desc = "Open file tree" } },
+        keys = { { "<leader>e", "<cmd>Neotree toggle right filesystem<CR>", desc = "Toggle file tree" } },
         config = function()
             require("neo-tree").setup {
                 source_selector = {
