@@ -41,7 +41,7 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-history-substring-search"
 zsh_add_plugin "jeffreytse/zsh-vi-mode"
 PLUG_DIR=$ZDOTDIR/plugins
-export ZVM_VI_SURROUND_BINDKEY=s-prefix
+export ZVM_VI_SURROUND_BINDKEY=classic
 # export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 # solves https://github.com/jeffreytse/zsh-vi-mode/issues/90
 #        https://github.com/jeffreytse/zsh-vi-mode/issues/24
@@ -53,5 +53,3 @@ zvm_after_init() {
 [ -f $PLUG_DIR/fzf/completion.zsh ] && source $PLUG_DIR/fzf/completion.zsh
 [ -f $PLUG_DIR/menu.zsh ] && source $PLUG_DIR/menu.zsh
 [ -f $PLUG_DIR/colored-man-pages.zsh ] && source $PLUG_DIR/colored-man-pages.zsh
-
-command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
