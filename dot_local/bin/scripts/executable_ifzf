@@ -20,6 +20,7 @@ IFS=: read -ra selected < <(
         --delimiter : \
         --header '╱ CTRL-R (Ripgrep mode) ╱ CTRL-F (fzf mode) ╱' \
         --preview 'bat --color=always {1} --highlight-line {2}' \
-        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+        --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+        --height=60%
 )
 [ -n "${selected[0]}" ] && $EDITOR "${selected[0]}" "+${selected[1]}"
