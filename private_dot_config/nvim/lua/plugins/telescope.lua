@@ -146,6 +146,11 @@ return {
                                 ["<C-'>"] = require("telescope-live-grep-args.actions").quote_prompt(),
                                 ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt {
                                     postfix = " --iglob ",
+                                    quote_char = "",
+                                },
+                                ["<C-;>"] = require("telescope-live-grep-args.actions").quote_prompt {
+                                    postfix = " --word-regexp ",
+                                    quote_char = "",
                                 },
                             },
                         },
