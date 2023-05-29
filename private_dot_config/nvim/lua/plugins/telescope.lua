@@ -8,7 +8,9 @@ return {
                 build = "make",
             },
             {
-                "nvim-telescope/telescope-live-grep-args.nvim",
+                "rafamadriz/telescope-live-grep-args.nvim",
+                -- Use this brachn until <https://github.com/nvim-telescope/telescope-live-grep-args.nvim/pull/59> is merged
+                branch = "fix-quote-prompt",
             },
         },
         config = function()
