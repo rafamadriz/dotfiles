@@ -75,7 +75,7 @@ return {
         end,
     },
 
-    -- Other useful utils
+    -- Other useful tools
     {
         "ahmedkhalf/project.nvim",
         lazy = false,
@@ -85,6 +85,14 @@ return {
                 show_hidden = true, -- show hidden files in telescope
             }
         end,
+    },
+    {
+        "danymat/neogen",
+        cmd = { "Neogen" },
+        dependencies = "nvim-treesitter",
+        opts = {
+            snippet_engine = "luasnip",
+        },
     },
     {
         "NMAC427/guess-indent.nvim",
