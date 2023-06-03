@@ -11,6 +11,11 @@ map("n", "Q", "<Nop>")
 --map("n", "n", "nzzzv")
 --map("n", "N", "Nzzzv")
 
+-- `^` to go to beginning of line with a character is not convenient, never use `H` in normal mode,
+-- so why not use it for that? might as well add `L` for end of line to keep it consistent
+map("n", "H", "^")
+map("n", "L", "g_")
+
 -- Keep cursor position when joinng lines
 map("n", "J", "mzJ`z", { desc = "Join lines" })
 
