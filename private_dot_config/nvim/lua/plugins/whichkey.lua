@@ -19,6 +19,11 @@ return {
                 ["b"] = { name = "Buffer" },
                 ["g"] = { name = "Git" },
                 ["l"] = { name = "LSP", ["g"] = { name = "Go-to (preview window)" } },
+                ["a"] = "which_key_ignore",
+                ["1"] = "which_key_ignore",
+                ["2"] = "which_key_ignore",
+                ["3"] = "which_key_ignore",
+                ["4"] = "which_key_ignore",
             },
         }
         wk.register(mappings, { mode = "n" })
