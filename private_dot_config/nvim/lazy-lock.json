@@ -19,6 +19,7 @@
   "glance.nvim": { "branch": "master", "commit": "77ebd260c360ce11ddc6aa08efdcea993f40614a" },
   "gruvbox-material": { "branch": "master", "commit": "3fff63b0d6a425ad1076a260cd4f6da61d1632b1" },
   "guess-indent.nvim": { "branch": "main", "commit": "b8ae749fce17aa4c267eec80a6984130b94f80b2" },
+  "harpoon": { "branch": "master", "commit": "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" },
   "kanagawa.nvim": { "branch": "master", "commit": "14a7524a8b259296713d4d77ef3c7f4dec501269" },
   "lazy.nvim": { "branch": "main", "commit": "ebdd0499551765e6a7aba220cc8ae4e0cdb6be69" },
   "leap.nvim": { "branch": "main", "commit": "be918a8e6aa00a6cfa7270d4bfcc11b2f80d6902" },
