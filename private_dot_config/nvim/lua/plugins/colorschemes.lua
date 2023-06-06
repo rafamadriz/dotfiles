@@ -47,7 +47,7 @@ return {
                     mason = true,
                     mini = true,
                     neotree = true,
-                    overseer = false,
+                    overseer = true,
                     telescope = true,
                     treesitter = true,
                     treesitter_context = true,
