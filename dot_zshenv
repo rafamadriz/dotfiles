@@ -1,16 +1,22 @@
 # Path
 export PATH="$PATH:${$(find -L ~/.local/bin -type d -printf %p:)%%:}"  > /dev/null 2>&1
-export PATH=$PATH:$CARGO_HOME/bin
-export PATH=$PATH:$XDG_DATA_HOME/npm/bin
-export PATH=$PATH:$GOPATH/bin
+
+# XDG paths
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
 # Tools
 # Rust
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export PATH="$PATH":"$CARGO_HOME"/bin
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 # Go
 export GOPATH="$XDG_DATA_HOME"/go
+export PATH="$PATH":"$GOPATH"/bin
 # Node, NPM
+export PATH="$PATH":"$XDG_DATA_HOME"/npm/bin
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
@@ -34,12 +40,6 @@ export ZK_NOTEBOOK_DIR=$HOME/Documents/notes/
 # source: https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
 # source: https://apple.stackexchange.com/questions/382126/partially-delete-path-in-zsh-option-backspace
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
-
-# XDG paths
-export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
-export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 
 # Android
 export ANDROID_SDK_ROOT="$XDG_CONFIG_HOME"/android
