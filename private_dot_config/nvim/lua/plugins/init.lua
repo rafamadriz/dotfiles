@@ -61,7 +61,7 @@ return {
     },
     {
         "ggandor/leap.nvim",
-        keys = { { "s", mode = { "n", "v" } }, { "S", mode = { "n", "v" } }, "gs" },
+        keys = { { "s", mode = { "n", "v" } }, { "S", mode = { "n", "v" } } },
         init = function()
             vim.api.nvim_create_autocmd("ColorScheme", {
                 callback = function() vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" }) end,
