@@ -74,6 +74,34 @@ local setup_aucmds = function(client, bufnr)
             if #vim.diagnostic.get(args.buf) == 0 then vim.cmd "silent! lclose" end
         end,
     })
+
+    aucmd("CursorHold", {
+        desc = "Show diagnostic virutal text only in current line",
+        buffer = bufnr,
+        callback = function(args)
+            local ns = vim.api.nvim_create_namespace "CurlineDiag"
+            pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
+            local hi = { "Error", "Warn", "Info", "Hint" }
+            local curline = vim.api.nvim_win_get_cursor(0)[1] - 1
+            local line_diagnostics = vim.diagnostic.get(args.buf, { lnum = curline })
+            local diag = line_diagnostics[#line_diagnostics]
+            local fmt = string.format
+            local virt_texts = { { (" "):rep(10) } }
+
+            if not vim.tbl_isempty(line_diagnostics) then
+                virt_texts[#virt_texts + 1] =
+                    { fmt("%s ", ("●"):rep(#line_diagnostics)), "DiagnosticVirtualText" .. hi[diag.severity] }
+                local diag_message =
+                    fmt("%s: %s", diag.source:gsub("%.", ""), diag.message:gsub("\r", ""):gsub("\n", "  "))
+                virt_texts[#virt_texts + 1] = { diag_message, "DiagnosticVirtualText" .. hi[diag.severity] }
+            end
+
+            vim.api.nvim_buf_set_extmark(args.buf, ns, curline, 0, {
+                virt_text = virt_texts,
+                hl_mode = "combine",
+            })
+        end,
+    })
 end
 
 aucmd("LspAttach", {
