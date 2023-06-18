@@ -7,7 +7,7 @@ M.servers = {
     lua_ls = {
         settings = {
             Lua = {
-                completion = { callSnippet = "Replace" },
+                completion = { callSnippet = "Insert" },
                 -- This won't work, hints are not implemented yet in neovim
                 -- reference: https://github.com/neovim/neovim/issues/18086
                 hint = { enable = true },
