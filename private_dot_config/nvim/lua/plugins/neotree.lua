@@ -5,6 +5,7 @@ return {
         keys = { { "<leader>e", "<cmd>Neotree toggle right filesystem<CR>", desc = "Toggle file tree" } },
         config = function()
             require("neo-tree").setup {
+                close_if_last_window = true,
                 source_selector = {
                     winbar = true,
                 },
