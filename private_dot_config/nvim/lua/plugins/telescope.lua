@@ -205,6 +205,11 @@ return {
             { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
             { "<leader>gC", "<cmd>Telescope git_bcommits<CR>", desc = "Buffer commits" },
             { "<leader>gm", "<cmd>Telescope git_status<CR>", desc = "Modified files" },
+            -- lsp
+            { "<leader>ld", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Document diagnostics" },
+            { "<leader>lD", "<cmd>Telescope diagnostics<CR>", desc = "Workspace diagnostics" },
+            { "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", desc = "Document symbols" },
+            { "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<CR>", desc = "Workspace symbols" },
         },
     },
 }
