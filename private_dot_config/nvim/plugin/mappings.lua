@@ -13,8 +13,8 @@ map("n", "Q", "<Nop>")
 
 -- `^` to go to beginning of line with a character is not convenient, never use `H` in normal mode,
 -- so why not use it for that? might as well add `L` for end of line to keep it consistent
-map("n", "H", "^")
-map("n", "L", "g_")
+map({ "n", "v" }, "H", "^")
+map({ "n", "v" }, "L", "g_")
 
 -- Keep cursor position when joinng lines
 map("n", "J", "mzJ`z", { desc = "Join lines" })
@@ -77,11 +77,6 @@ map("x", "/", "<esc>/\\%V", { silent = false, desc = "Search inside visual selec
 map("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]])
 map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]])
 
--- Alternative way to save and exit in Normal mode.
--- NOTE: Adding `redraw` helps with `cmdheight=0` if buffer is not modified
-map("n", "<C-S>", "<Cmd>silent! update | redraw<CR>", { desc = "Save" })
-map({ "i", "x" }, "<C-S>", "<Esc><Cmd>silent! update | redraw<CR>", { desc = "Save and go to Normal mode" })
-
 -- Correct latest misspelled word by taking first suggestion.
 -- Use `<C-g>u` in Insert mode to mark this as separate undoable action.
 -- Source: https://stackoverflow.com/a/16481737
@@ -114,9 +109,6 @@ map("v", "<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
 map("n", "<leader>bq", ":bdelete<CR>", { desc = "Quit buffer" })
 map("n", "<leader>bQ", ":write | silent %bd | silent e# | bd#<CR>", { desc = "Quit all buffers but current" })
 map("n", "<leader>b!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
-
--- Terminal
-map("t", "<C-w>", [[<C-\><C-n>]])
 
 -- Resize windows
 -- expand or minimize current buffer in "actual" direction
