@@ -168,6 +168,11 @@ return {
             { "<leader><Space>", "<cmd>Telescope find_files<CR>", desc = "Find files" },
             { "<leader>fa", "<cmd>Telescope builtin<CR>", desc = "All pickers" },
             { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find files" },
+            {
+                "<leader>f%",
+                string.format("<cmd>Telescope find_files cwd=%s<CR>", vim.fn.expand "%:p:h"),
+                desc = "Find files in directory of current buffer",
+            },
             { "<leader>fg", "<cmd>Telescope live_grep_args<CR>", desc = "Grep project" },
             {
                 "<leader>fG",
