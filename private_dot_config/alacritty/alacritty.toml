@@ -1,0 +1,45 @@
+import = ["~/.config/alacritty/themes/gruvbox_material_medium_dark.toml"]
+
+[font]
+size = 12
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.bold]
+style = "Bold"
+
+[font.italic]
+style = "Italic"
+
+# https://github.com/alacritty/alacritty/issues/6156#issuecomment-1924172603
+[env]
+TERM = "xterm-256color"
+
+[[hints.enabled]]
+action = "Paste"
+# post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "H", mods = "Control|Shift" }
+regex = "[0-9a-f][0-9a-f\r]{5,126}"
+
+# [[hints.enabled]]
+# action = "Paste"
+# # post_processing = true
+# persist = false
+# mouse.enabled = true
+# binding = { key = "P", mods = "Control|Shift" }
+# regex = "^(/|\./|~/)(\\S+/)?((\\S)+)?"
+
+[[hints.enabled]]
+command = "xdg-open" # On Linux/BSD
+# command = "open" # On macOS
+# command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "U", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
