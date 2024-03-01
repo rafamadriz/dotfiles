@@ -2,7 +2,10 @@ return {
     {
         "nvim-neo-tree/neo-tree.nvim",
         lazy = false,
-        keys = { { "<leader>e", "<cmd>Neotree toggle right filesystem<CR>", desc = "Toggle file tree" } },
+        keys = {
+            { "<leader>e", "<cmd>Neotree toggle right filesystem<CR>", desc = "Toggle file tree" },
+            { "<leader>lo", "<cmd>Neotree toggle right document_symbols<CR>", desc = "Toggle symbols outline" },
+        },
         config = function()
             require("neo-tree").setup {
                 close_if_last_window = true,
