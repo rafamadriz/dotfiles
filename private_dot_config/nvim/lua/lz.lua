@@ -18,4 +18,5 @@ local opts = {
     lockfile = os.getenv "NVIMRC" .. "/lazy-lock.json",
 }
 
+vim.keymap.set("n", "<leader>;", ":Lazy<CR>")
 require("lazy").setup("plugins", opts)
