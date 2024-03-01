@@ -87,14 +87,6 @@ return {
         end,
     },
     {
-        "danymat/neogen",
-        cmd = { "Neogen" },
-        dependencies = "nvim-treesitter",
-        opts = {
-            snippet_engine = "luasnip",
-        },
-    },
-    {
         "NMAC427/guess-indent.nvim",
         event = { "BufReadPre", "BufNewFile" },
         config = true,
