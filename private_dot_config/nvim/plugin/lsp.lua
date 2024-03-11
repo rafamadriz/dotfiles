@@ -89,10 +89,15 @@ local setup_aucmds = function(client, bufnr)
             local virt_texts = { { (" "):rep(10) } }
 
             if not vim.tbl_isempty(line_diagnostics) then
+                local source
+                if diag.source then
+                    source = diag.source:gsub("%.", "")
+                else
+                    source = ""
+                end
                 virt_texts[#virt_texts + 1] =
                     { fmt("%s ", ("●"):rep(#line_diagnostics)), "DiagnosticVirtualText" .. hi[diag.severity] }
-                local diag_message =
-                    fmt("%s: %s", diag.source:gsub("%.", ""), diag.message:gsub("\r", ""):gsub("\n", "  "))
+                local diag_message = fmt("%s: %s", source, diag.message:gsub("\r", ""):gsub("\n", "  "))
                 virt_texts[#virt_texts + 1] = { diag_message, "DiagnosticVirtualText" .. hi[diag.severity] }
             end
 
