@@ -99,10 +99,6 @@ map("c", "<C-l>", "<Right>", { silent = false, desc = "Right" })
 map("c", "<C-a>", "<home>", { desc = "Move to end of line" })
 map("c", "<C-e>", "<end>", { desc = "Move to begining of line" })
 
--- Fix common mistypes in command mode
-map("c", "Q", "q", { desc = "Always write q" })
-map("c", "W", "w", { desc = "Always write w" })
-
 -- Buffers
 map("n", "<leader>bs", ":update<CR>", { desc = "Save buffer" })
 map("v", "<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
