@@ -88,7 +88,7 @@ return {
                     {
                         name = "rg",
                         option = {
-                            additional_arguments = "--hidden --smart-case",
+                            additional_arguments = "--hidden --smart-case --glob '!.git/'",
                             context_before = 5,
                             context_after = 5,
                         },
