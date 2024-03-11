@@ -21,6 +21,10 @@ return {
                         ["ctrl-q"] = "select-all+accept",
                         ["ctrl-a"] = "select-all",
                         ["ctrl-d"] = "deselect-all",
+                        ["ctrl-n"] = "down",
+                        ["ctrl-p"] = "up",
+                        ["ctrl-j"] = "next-history",
+                        ["ctrl-k"] = "previous-history",
                     },
                 },
             }
@@ -35,7 +39,7 @@ return {
                 string.format("<cmd>FzfLua files cwd=%s<CR>", vim.fn.expand "%:p:h"),
                 desc = "Find files in directory of current buffer",
             },
-            { "<leader>fg", "<cmd>FzfLua grep_project<CR>", desc = "Grep project" },
+            { "<leader>fg", "<cmd>FzfLua live_grep_glob<CR>", desc = "Grep project" },
             {
                 "<leader>fw",
                 "<cmd>FzfLua grep_cword<CR>",
@@ -52,7 +56,7 @@ return {
             { "<leader>bb", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
             {
                 "<leader>bg",
-                "<cmd>FzfLua grep_curbuf<CR>",
+                "<cmd>FzfLua lgrep_curbuf<CR>",
                 desc = "Grep on current buffer",
             },
             -- git
