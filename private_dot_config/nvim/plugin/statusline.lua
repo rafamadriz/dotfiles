@@ -40,7 +40,7 @@ local function update_mode_colors()
         mode_color = "%#MiniStatuslineModeReplace#"
     elseif current_mode == "c" then
         mode_color = "%#MiniStatuslineModeCommand#"
-    elseif current_mode == "t" then
+    else
         mode_color = "%#MiniStatuslineModeOther#"
     end
     return mode_color
