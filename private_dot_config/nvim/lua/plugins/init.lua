@@ -47,8 +47,6 @@ return {
             "ds",
             "cs",
             { "ys", mode = { "v" } },
-            { "<C-g>s", mode = { "i" } },
-            { "<C-g>S", mode = { "i" } },
         },
         config = function()
             require("nvim-surround").setup {
@@ -74,8 +72,55 @@ return {
             leap.init_highlight(true)
         end,
     },
+    {
+        "ggandor/flit.nvim",
+        keys = { "f", "F", "t", "T" },
+        opts = {
+            keys = { f = "f", F = "F", t = "t", T = "T" },
+            -- A string like "nv", "nvo", "o", etc.
+            labeled_modes = "v",
+            multiline = false,
+            -- Like `leap`s similar argument (call-specific overrides).
+            -- E.g.: opts = { equivalence_classes = {} }
+            opts = {},
+        },
+    },
 
     -- Other useful tools
+    {
+        "rafamadriz/bigfile.nvim",
+        lazy = false,
+        opts = {
+            filesize = 2, -- size of the file in MiB, the plugin round file sizes to the closest MiB
+            pattern = { "*" }, -- autocmd pattern or function see <### Overriding the detection of big files>
+            features = { -- features to disable
+                "indent_blankline",
+                "illuminate",
+                "lsp",
+                "treesitter",
+                "treesitter_context",
+                -- "syntax",
+                "matchparen",
+                "vimopts",
+                -- "filetype",
+            },
+        },
+    },
+    { "kevinhwang91/nvim-bqf", ft = "qf" },
+    {
+        "stevearc/oil.nvim",
+        lazy = false,
+        config = function()
+            require("oil").setup {
+                default_file_explorer = true,
+                delete_to_trash = true,
+                buf_options = {
+                    buflisted = false,
+                    bufhidden = "hide",
+                },
+            }
+        end,
+    },
     {
         "ahmedkhalf/project.nvim",
         lazy = false,
