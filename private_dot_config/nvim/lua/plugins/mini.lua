@@ -21,14 +21,4 @@ return {
         keys = { { "ga", mode = { "n", "v" } }, { "gA", mode = { "n", "v" } } },
         config = function() require("mini.align").setup {} end,
     },
-    {
-        "echasnovski/mini.jump",
-        event = "VeryLazy",
-        config = function() require("mini.jump").setup {} end,
-    },
-    {
-        "echasnovski/mini.splitjoin",
-        keys = { "gS" },
-        config = function() require("mini.splitjoin").setup {} end,
-    },
 }
