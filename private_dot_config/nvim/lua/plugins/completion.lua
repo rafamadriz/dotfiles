@@ -40,6 +40,7 @@ return {
             { "hrsh7th/cmp-nvim-lua" },
             { "saadparwaiz1/cmp_luasnip" },
             { "hrsh7th/cmp-cmdline" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help" },
         },
         config = function()
             local cmp = require "cmp"
@@ -83,6 +84,7 @@ return {
                     end,
                 },
                 sources = cmp.config.sources {
+                    { name = "nvim_lsp_signature_help" },
                     { name = "nvim_lsp", priority = 20, max_item_count = 15 },
                     { name = "luasnip", priority = 15 },
                     {
