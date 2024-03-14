@@ -18,16 +18,6 @@ return {
                 dependencies = {
                     { "cmp-nvim-lsp" },
                     {
-                        "ray-x/lsp_signature.nvim",
-                        opts = {
-                            max_width = 90,
-                            fix_pos = true,
-                            hint_prefix = " ",
-                            toggle_key = "<c-g>",
-                            floating_window = false,
-                        },
-                    },
-                    {
                         "folke/neodev.nvim",
                         ft = "lua",
                         opts = { library = { plugins = { "nvim-dap-ui" } } },
