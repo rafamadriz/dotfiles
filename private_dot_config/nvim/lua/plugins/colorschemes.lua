@@ -14,6 +14,7 @@ return {
                 },
             }
             vim.cmd.colorscheme "kanagawa"
+            vim.api.nvim_set_hl(0, "CurSearch", { fg = "#223249", bg = "#ff9e3b" })
         end,
     },
     {
@@ -25,56 +26,6 @@ return {
             vim.g.gruvbox_material_foreground = "original" -- options: material, mix, original
             vim.g.gruvbox_material_background = "medium" -- options: hard, medium, soft
             vim.cmd.colorscheme "gruvbox-material"
-        end,
-    },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        config = function()
-            require("catppuccin").setup {
-                dim_inactive = {
-                    enabled = true,
-                    shade = "dark",
-                    percentage = 0.15,
-                },
-                integrations = {
-                    cmp = true,
-                    dashboard = true,
-                    gitsigns = true,
-                    harpoon = false,
-                    leap = true,
-                    lsp_trouble = false,
-                    markdown = true,
-                    mason = true,
-                    mini = true,
-                    neotree = true,
-                    overseer = true,
-                    telescope = true,
-                    treesitter = true,
-                    treesitter_context = true,
-                    which_key = true,
-                    dap = {
-                        enabled = false,
-                        enable_ui = false,
-                    },
-                    native_lsp = {
-                        enabled = true,
-                        virtual_text = {
-                            errors = { "italic" },
-                            hints = { "italic" },
-                            warnings = { "italic" },
-                            information = { "italic" },
-                        },
-                        underlines = {
-                            errors = { "underline" },
-                            hints = { "underline" },
-                            warnings = { "underline" },
-                            information = { "underline" },
-                        },
-                    },
-                },
-            }
-            vim.cmd.colorscheme "catppuccin"
         end,
     },
     {
