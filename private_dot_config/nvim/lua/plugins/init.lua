@@ -110,7 +110,7 @@ return {
     {
         "stevearc/oil.nvim",
         lazy = false,
-        keys = { { "~", "<cmd>Oil<cr>", desc = "File explorer" } },
+        keys = { { "<leader>e", "<cmd>Oil<cr>", desc = "File explorer" } },
         config = function()
             local oil = require "oil"
             oil.setup {

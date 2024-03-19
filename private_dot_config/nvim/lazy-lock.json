@@ -2,7 +2,6 @@
   "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "LuaSnip": { "branch": "master", "commit": "a7a4b4682c4b3e2ba82b82a4e6e5f5a0e79dec32" },
   "bigfile.nvim": { "branch": "main", "commit": "bf43878e16dca1b7c8650abd88763dd9cc62a0da" },
-  "catppuccin": { "branch": "main", "commit": "045e3499d9ec8d84635fb08877ae44fd33f6a38d" },
   "ccc.nvim": { "branch": "main", "commit": "f3d9d31aab7990d50ae6922fd7c1e3a9eb7da183" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "8ee981b4a91f536f52add291594e89fb6645e451" },
