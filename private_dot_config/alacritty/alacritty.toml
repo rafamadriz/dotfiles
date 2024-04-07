@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/gruvbox_material_medium_dark.toml"]
+import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
 
 [font]
 size = 12
@@ -18,22 +18,6 @@ style = "Italic"
 TERM = "xterm-256color"
 
 [[hints.enabled]]
-action = "Paste"
-# post_processing = true
-persist = false
-mouse.enabled = true
-binding = { key = "H", mods = "Control|Shift" }
-regex = "[0-9a-f][0-9a-f\r]{5,126}"
-
-# [[hints.enabled]]
-# action = "Paste"
-# # post_processing = true
-# persist = false
-# mouse.enabled = true
-# binding = { key = "P", mods = "Control|Shift" }
-# regex = "^(/|\./|~/)(\\S+/)?((\\S)+)?"
-
-[[hints.enabled]]
 command = "xdg-open" # On Linux/BSD
 # command = "open" # On macOS
 # command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
@@ -43,3 +27,15 @@ persist = false
 mouse.enabled = true
 binding = { key = "U", mods = "Control|Shift" }
 regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+[[hints.enabled]]
+regex = "[a-f0-9]{40}|[a-f0-9]{7,8}"
+binding = { key = "H", mods = "Control|Shift" }
+action = "Copy"
+
+[[hints.enabled]]
+regex = ''''(/?[^/ \t\"']*[a-zA-Z0-9][^/ \t\"':]*/([^/ \t\"']+/?)*)\
+    |(/[^/ \t\"']*[a-zA-Z0-9][^/ \t\"']*)'''
+action = "Copy"
+hyperlinks = true
+binding = { key = "E", mods = "Control|Shift" }
