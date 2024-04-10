@@ -88,7 +88,10 @@ vim.opt.exrc = true
 vim.opt.jumpoptions = "stack" -- Make jumplist behave like a browser stack
 
 -- Use rg as grep program
-if vim.fn.executable "rg" > 0 then vim.opt.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case]] end
+if vim.fn.executable "rg" > 0 then
+    vim.opt.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case --hidden]]
+end
+vim.opt.grepformat = "%f:%l:%c:%m"
 
 -- Folds
 vim.opt.foldlevelstart = 999
