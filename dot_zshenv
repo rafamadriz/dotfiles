@@ -102,7 +102,7 @@ export LC_ALL=en_US.UTF-8
 # Default Apps
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VIDEO="mpv"
 export COLORTERM="truecolor"
