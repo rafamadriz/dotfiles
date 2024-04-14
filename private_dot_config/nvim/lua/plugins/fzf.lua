@@ -5,6 +5,14 @@ return {
         config = function()
             -- local actions = require "fzf-lua.actions"
             require("fzf-lua").setup {
+                winopts = {
+                    preview = {
+                        layout = "vertical",
+                    },
+                },
+                fzf_opts = {
+                    ["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-history",
+                },
                 files = {
                     fzf_opts = {
                         ["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-files-history",
