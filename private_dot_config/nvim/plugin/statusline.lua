@@ -22,42 +22,82 @@ local modes = {
     ["t"] = "TERMINAL",
 }
 
+local function get_color(hl_group, color)
+    local hl = vim.api.nvim_get_hl(0, { name = hl_group })
+    local decimal_color = hl[color]
+    return string.format("#%x", decimal_color)
+end
+
+local c = {
+    normal_bg = get_color("StatusLine", "bg"),
+    mode = get_color("CursorLine", "bg"),
+    diff_add = get_color("DiffAdded", "fg"),
+    diff_change = get_color("DiffChanged", "fg"),
+    diff_delete = get_color("DiffDeleted", "fg"),
+    git_head = get_color("DiagnosticInfo", "fg"),
+    diganostic_error = get_color("DiagnosticError", "fg"),
+    diganostic_warn = get_color("DiagnosticWarn", "fg"),
+    diganostic_hint = get_color("DiagnosticHint", "fg"),
+    diganostic_info = get_color("DiagnosticInfo", "fg"),
+}
+
+local function create_hl(name, opts)
+    if not opts.bg then opts.bg = c.normal_bg end
+    if not opts.bold then opts.bold = true end
+    vim.api.nvim_set_hl(0, name, opts)
+end
+
+local highlight_groups = {
+    StDiffAdd = { fg = c.diff_add },
+    StDiffChange = { fg = c.diff_change },
+    StDiffDelete = { fg = c.diff_delete },
+    StGitHead = { fg = c.git_head },
+    StNormal = { bg = c.normal_bg },
+    StNormalBold = { bg = c.normal_bg },
+    StMode = { bg = c.mode },
+    StDiagnosticError = { fg = c.diganostic_error },
+    StDiagnosticWarn = { fg = c.diganostic_warn },
+    StDiagnosticHint = { fg = c.diganostic_hint },
+    StDiagnosticInfo = { fg = c.diganostic_info },
+}
+
+for group, param in pairs(highlight_groups) do
+    create_hl(group, param)
+end
+
 local function mode()
     local current_mode = vim.api.nvim_get_mode().mode
-    return string.format(" %s ", modes[current_mode]):upper()
+    return string.format("  %-8s", modes[current_mode]):upper()
 end
 
-local function update_mode_colors()
-    local current_mode = vim.api.nvim_get_mode().mode
-    local mode_color
-    if current_mode == "n" then
-        mode_color = "%#MiniStatuslineModeNormal#"
-    elseif current_mode == "i" or current_mode == "ic" then
-        mode_color = "%#MiniStatuslineModeInsert#"
-    elseif current_mode == "v" or current_mode == "V" or current_mode == "" then
-        mode_color = "%#MiniStatuslineModeVisual#"
-    elseif current_mode == "R" then
-        mode_color = "%#MiniStatuslineModeReplace#"
-    elseif current_mode == "c" then
-        mode_color = "%#MiniStatuslineModeCommand#"
-    else
-        mode_color = "%#MiniStatuslineModeOther#"
-    end
-    return mode_color
-end
-
-local function filepath()
+local function filepath(opts)
     local fpath = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.:h")
     if fpath == "" or fpath == "." then return " " end
 
+    local vowels = "AEIOUaeiou"
+    local function remove_vowels(str)
+        if #str > 4 then
+            for c in vowels:gmatch "." do
+                str = string.sub(str, 1, 1) == c and str:gsub(c, c) or str:gsub(c, "")
+            end
+        end
+        return str
+    end
+
+    if opts.remove_vowels then fpath = remove_vowels(fpath) end
     return string.format(" %%<%s/", fpath)
 end
 
+local function is_modified()
+    if vim.bo.modified then return "•" end
+    return " "
+end
+
 local function filename()
-    local fname = vim.fn.expand "%:t"
-    if vim.bo.modified then fname = fname .. "[+]" end
-    if fname == "" then return "" end
-    return fname .. " "
+    local file_name = vim.fn.expand "%:t"
+    if file_name == "" then return " " end
+
+    return file_name
 end
 
 local function lsp()
@@ -78,27 +118,42 @@ local function lsp()
     local hints = ""
     local info = ""
 
-    if count["errors"] ~= 0 then errors = " %#DiagnosticError#E:" .. count["errors"] end
-    if count["warnings"] ~= 0 then warnings = " %#DiagnosticWarn#W:" .. count["warnings"] end
-    if count["hints"] ~= 0 then hints = " %#DiagnosticHint#H:" .. count["hints"] end
-    if count["info"] ~= 0 then info = " %#DiagnosticInfo#I:" .. count["info"] end
+    if count["errors"] ~= 0 then errors = " %#StDiagnosticError#E:" .. count["errors"] end
+    if count["warnings"] ~= 0 then warnings = " %#StDiagnosticWarn#W:" .. count["warnings"] end
+    if count["hints"] ~= 0 then hints = " %#StDiagnosticHint#H:" .. count["hints"] end
+    if count["info"] ~= 0 then info = " %#StDiagnosticInfo#I:" .. count["info"] end
 
-    return errors .. warnings .. hints .. info .. "%#Normal#"
+    return errors .. warnings .. hints .. info .. "%#StatusLine#"
 end
 
 local function filetype() return string.format("  %s ", vim.bo.filetype):upper() end
 
 local function lineinfo()
-    if vim.bo.filetype == "alpha" then return "" end
-    return " %P %l:%c "
+    local pos = vim.fn.getcurpos()
+    local line = pos[2]
+    local column = pos[3]
+    local height = vim.api.nvim_buf_line_count(0)
+
+    local str = " "
+    local padding = #tostring(height) - #tostring(line)
+    if padding > 0 then str = str .. (" "):rep(padding) end
+
+    str = str .. "ℓ "
+    str = str .. line
+    str = str .. " c "
+    str = str .. column
+    str = str .. " "
+
+    if #tostring(column) < 2 then str = str .. " " end
+    return str
 end
 
 local vcs = function()
     local git_info = vim.b.gitsigns_status_dict
     if not git_info or git_info.head == "" then return "" end
-    local added = git_info.added and ("%#GitSignsAdd#+" .. git_info.added .. " ") or ""
-    local changed = git_info.changed and ("%#GitSignsChange#~" .. git_info.changed .. " ") or ""
-    local removed = git_info.removed and ("%#GitSignsDelete#-" .. git_info.removed .. " ") or ""
+    local added = git_info.added and ("%#StDiffAdd#+" .. git_info.added .. " ") or ""
+    local changed = git_info.changed and ("%#StDiffChange#~" .. git_info.changed .. " ") or ""
+    local removed = git_info.removed and ("%#StDiffDelete#-" .. git_info.removed .. " ") or ""
     if git_info.added == 0 then added = "" end
     if git_info.changed == 0 then changed = "" end
     if git_info.removed == 0 then removed = "" end
@@ -108,25 +163,26 @@ local vcs = function()
         changed,
         removed,
         " ",
-        "%#GitSignsAdd# ",
+        "%#StGitHead#",
         git_info.head,
-        " %#Normal#",
+        " %#StatusLine#",
     }
 end
 
 Statusline = {}
 Statusline.active = function()
     return table.concat {
-        "%#StatusLine#",
-        update_mode_colors(),
+        "%#StMode#",
         mode(),
-        "%#Normal# ",
-        filepath(),
+        "%#StNormal#",
+        filepath { remove_vowels = true },
         filename(),
-        "%#Normal#",
+        is_modified(),
+        "%#StatusLine#",
         vcs(),
         "%=%#StatusLineExtra#",
         lsp(),
+        "%#StNormal#",
         filetype(),
         lineinfo(),
     }
