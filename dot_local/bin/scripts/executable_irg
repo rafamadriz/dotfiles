@@ -6,7 +6,7 @@
 # 3. Open the file in editor
 # Credits: @junegunn https://github.com/junegunn/fzf/blob/master/ADVANCED.md#log-tailing
 
-RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob \"!**/.git/**\" "
 INITIAL_QUERY="${*:-}"
 IFS=: read -ra selected < <(
     FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
