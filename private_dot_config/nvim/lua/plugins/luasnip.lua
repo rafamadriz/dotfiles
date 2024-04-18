@@ -29,7 +29,7 @@ return {
             store_selection_keys = "<Tab>",
         }
 
-        require("luasnip.loaders.from_lua").lazy_load()
+        require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/lua/snippets" }
 
         -- <c-l> is selecting within a list of options.
         vim.keymap.set({ "s", "i" }, "<c-l>", function()
