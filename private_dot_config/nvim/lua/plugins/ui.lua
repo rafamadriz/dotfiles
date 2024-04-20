@@ -1,14 +1,14 @@
 return {
     {
         "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
+        lazy = false,
         config = function()
             require("lualine").setup {
                 options = {
-                    -- section_separators = "",
+                    section_separators = "",
                     -- component_separators = "",
                     component_separators = { left = "", right = "" },
-                    section_separators = { left = "", right = "" },
+                    -- section_separators = { left = "", right = "" },
                     -- section_separators = { left = "", right = "" },
                 },
                 sections = {
