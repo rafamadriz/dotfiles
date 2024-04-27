@@ -66,7 +66,6 @@ local config = function()
                     luasnip = "[S]",
                     buffer = "[B]",
                     nvim_lua = "[Lua]",
-                    git = "[Git]",
                     rg = "[RG]",
                 })[entry.source.name]
                 return item
@@ -104,13 +103,6 @@ local config = function()
             ghost_text = true,
         },
     }
-    cmp.setup.filetype("gitcommit", {
-        sources = cmp.config.sources({
-            { name = "git" },
-        }, {
-            { name = "buffer" },
-        }),
-    })
     cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
@@ -134,7 +126,6 @@ return {
         keys = { ":" },
         event = "InsertEnter",
         dependencies = {
-            { "petertriho/cmp-git", config = true },
             { "lukas-reineke/cmp-rg" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-path" },
