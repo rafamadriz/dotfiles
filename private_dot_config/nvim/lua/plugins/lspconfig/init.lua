@@ -35,15 +35,4 @@ return {
             },
         },
     },
-    {
-        "DNLHC/glance.nvim",
-        cmd = { "Glance" },
-        config = true,
-        keys = {
-            { "<leader>lgd", "<cmd>Glance definitions<CR>", desc = "Definitions" },
-            { "<leader>lgr", "<cmd>Glance references<CR>", desc = "References" },
-            { "<leader>lgy", "<cmd>Glance type_definitions<CR>", desc = "Type definitions" },
-            { "<leader>lgm", "<cmd>Glance implementations<CR>", desc = "Implementations" },
-        },
-    },
 }
