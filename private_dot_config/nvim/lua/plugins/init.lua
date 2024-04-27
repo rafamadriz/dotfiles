@@ -59,7 +59,7 @@ return {
     },
     {
         "ggandor/leap.nvim",
-        keys = { { "s", mode = { "n", "v" } }, { "S", mode = { "n", "v" } } },
+        lazy = false,
         init = function()
             vim.api.nvim_create_autocmd("ColorScheme", {
                 callback = function() vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" }) end,
@@ -70,6 +70,7 @@ return {
             leap.opts.safe_labels = {}
             leap.add_default_mappings()
             leap.init_highlight(true)
+            leap.opts.special_keys.prev_target = "<backspace>"
         end,
     },
     {
