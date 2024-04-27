@@ -38,7 +38,7 @@ vim.opt.shortmess = {
 
 -- Display
 vim.opt.laststatus = 3 -- Use a single status line for all windows
-vim.opt.scrolloff = 7 -- Minimal number of lines to keep above/below the cursor
+vim.opt.scrolloff = 3 -- Minimal number of lines to keep above/below the cursor
 vim.opt.signcolumn = "yes:1"
 vim.opt.termguicolors = true
 vim.opt.title = true
