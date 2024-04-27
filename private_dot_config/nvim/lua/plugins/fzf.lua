@@ -6,7 +6,12 @@ return {
             -- local actions = require "fzf-lua.actions"
             require("fzf-lua").setup {
                 winopts = {
+                    height = 0.45, -- window height
+                    width = 0.55, -- window width
+                    row = 0.35, -- window row position (0=top, 1=bottom)
+                    col = 0.50, -- window col position (0=left, 1=right)
                     preview = {
+                        hidden = "hidden",
                         layout = "vertical",
                     },
                 },
@@ -20,6 +25,9 @@ return {
                     cwd_prompt = false,
                 },
                 grep = {
+                    winopts = {
+                        width = 0.8, -- window width
+                    },
                     rg_glob = true,
                     rg_opts = [[--column --hidden --glob "!**/.git/**" --line-number --no-heading --color=always --smart-case --max-columns=4096 -e]],
                     fzf_opts = {
@@ -30,7 +38,7 @@ return {
                     fzf = {
                         ["ctrl-q"] = "select-all+accept",
                         ["ctrl-a"] = "select-all",
-                        ["ctrl-d"] = "deselect-all",
+                        ["ctrl-i"] = "deselect-all",
                         ["ctrl-n"] = "down",
                         ["ctrl-p"] = "up",
                         ["ctrl-j"] = "next-history",
