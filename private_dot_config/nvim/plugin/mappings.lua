@@ -7,7 +7,13 @@ map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 -- Disable repeat last recorded character
 map("n", "Q", "<Nop>")
 -- I always type :Q by mistake
-vim.api.nvim_create_user_command("Q", "quit", {})
+vim.api.nvim_create_user_command("Q", function(arg)
+    if arg.bang then
+        vim.cmd.quit { bang = true }
+    else
+        vim.cmd.quit()
+    end
+end, { bang = true })
 
 -- Center buffer when searching
 --map("n", "n", "nzzzv")
