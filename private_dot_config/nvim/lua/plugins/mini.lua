@@ -13,6 +13,15 @@ M.ai = function()
     }
 end
 
+M.operators = function()
+    require("mini.operators").setup {
+        exchange = { prefix = "cx" },
+        multiply = { prefix = "cm" },
+        replace = { prefix = "cr" },
+        sort = { prefix = "" },
+    }
+end
+
 return {
     {
         "echasnovski/mini.nvim",
@@ -22,6 +31,7 @@ return {
         config = function()
             M.ai()
             require("mini.align").setup {}
+            M.operators()
         end,
     },
 }
