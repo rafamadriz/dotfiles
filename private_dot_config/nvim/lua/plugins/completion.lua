@@ -73,7 +73,7 @@ local config = function()
         },
         sources = cmp.config.sources {
             { name = "nvim_lsp_signature_help" },
-            { name = "nvim_lsp", priority = 20, max_item_count = 15 },
+            { name = "nvim_lsp", priority = 1000, max_item_count = 15 },
             { name = "luasnip", priority = 15 },
             {
                 name = "rg",
