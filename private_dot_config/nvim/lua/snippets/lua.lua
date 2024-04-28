@@ -17,11 +17,11 @@ return {
         { trig = "fn", name = "function", desc = "create function" },
         fmt(
             [[
-            local function {}({})
+            function {}({})
                 {}
             end
         ]],
-            { i(1, "name"), i(2, "parameters"), i(3, "-- body") }
+            { i(1, ""), i(2, ""), i(3, "") }
         )
     ),
     snippet(
