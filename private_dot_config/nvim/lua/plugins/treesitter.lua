@@ -3,7 +3,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
         lazy = false,
         build = ":TSUpdate",
-        dependencies = { "nvim-treesitter/nvim-treesitter-context" },
+        dependencies = { "nvim-treesitter/nvim-treesitter-context", "RRethy/nvim-treesitter-endwise" },
         config = function()
             require("nvim-treesitter.configs").setup {
                 ensure_installed = {
@@ -38,6 +38,7 @@ return {
                 },
                 indent = { enable = true },
                 autotag = { enable = true },
+                endwise = { enable = true },
                 incremental_selection = {
                     enable = true,
                     keymaps = {
