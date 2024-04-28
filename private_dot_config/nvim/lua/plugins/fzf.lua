@@ -37,8 +37,7 @@ return {
                 keymap = {
                     fzf = {
                         ["ctrl-q"] = "select-all+accept",
-                        ["ctrl-a"] = "select-all",
-                        ["ctrl-i"] = "deselect-all",
+                        ["ctrl-a"] = "toggle-all",
                         ["ctrl-n"] = "down",
                         ["ctrl-p"] = "up",
                         ["ctrl-j"] = "next-history",
