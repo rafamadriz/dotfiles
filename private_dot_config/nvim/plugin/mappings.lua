@@ -65,8 +65,8 @@ map("n", "[L", "<cmd>lfirst<cr>", { desc = "First locationlist " })
 map("i", "<C-c>", "<C-c>")
 
 -- Add empty lines before and after cursor line
-map("n", "gO", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
-map("n", "go", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
+map("n", "cO", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
+map("n", "co", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
 
 -- Move selected block of text up/down
 map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
