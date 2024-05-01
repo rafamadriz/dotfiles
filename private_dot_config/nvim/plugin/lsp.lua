@@ -2,7 +2,10 @@ local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 local lsp, diagnostic, map = vim.lsp, vim.diagnostic, vim.keymap.set
 
 diagnostic.config {
-    virtual_text = false,
+    virtual_text = {
+        source = "if_many",
+        spacing = 4,
+    },
     severity_sort = true,
     underline = {
         severity = diagnostic.severity.ERROR,
@@ -51,16 +54,16 @@ local setup_aucmds = function(client, bufnr)
     end
 
     if client.server_capabilities["documentHighlightProvider"] then
-        local hl_references = augroup(("LspDocHighlight%d"):format(bufnr), { clear = true })
-        aucmd({ "CursorHold", "CursorHoldI" }, {
-            desc = "LSP highlight references",
-            group = hl_references,
+        local under_cursor_highlights = augroup("LspDocHighlight", { clear = false })
+        aucmd({ "CursorHold", "CursorHoldI", "InsertLeave", "BufEnter" }, {
+            group = under_cursor_highlights,
+            desc = "Highlight references under the cursor",
             buffer = bufnr,
             callback = function() lsp.buf.document_highlight() end,
         })
-        aucmd("CursorMoved", {
-            desc = "LSP clear highlight references",
-            group = hl_references,
+        aucmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+            group = under_cursor_highlights,
+            desc = "Clear highlight references",
             buffer = bufnr,
             callback = function() lsp.buf.clear_references() end,
         })
@@ -72,39 +75,6 @@ local setup_aucmds = function(client, bufnr)
         callback = function(args)
             diagnostic.setloclist { open = false }
             if #vim.diagnostic.get(args.buf) == 0 then vim.cmd "silent! lclose" end
-        end,
-    })
-
-    aucmd("CursorHold", {
-        desc = "Show diagnostic virutal text only in current line",
-        buffer = bufnr,
-        callback = function(args)
-            local ns = vim.api.nvim_create_namespace "CurlineDiag"
-            pcall(vim.api.nvim_buf_clear_namespace, args.buf, ns, 0, -1)
-            local hi = { "Error", "Warn", "Info", "Hint" }
-            local curline = vim.api.nvim_win_get_cursor(0)[1] - 1
-            local line_diagnostics = vim.diagnostic.get(args.buf, { lnum = curline })
-            local diag = line_diagnostics[#line_diagnostics]
-            local fmt = string.format
-            local virt_texts = { { (" "):rep(10) } }
-
-            if not vim.tbl_isempty(line_diagnostics) then
-                local source
-                if diag.source then
-                    source = diag.source:gsub("%.", "")
-                else
-                    source = ""
-                end
-                virt_texts[#virt_texts + 1] =
-                    { fmt("%s ", ("●"):rep(#line_diagnostics)), "DiagnosticVirtualText" .. hi[diag.severity] }
-                local diag_message = fmt("%s: %s", source, diag.message:gsub("\r", ""):gsub("\n", "  "))
-                virt_texts[#virt_texts + 1] = { diag_message, "DiagnosticVirtualText" .. hi[diag.severity] }
-            end
-
-            vim.api.nvim_buf_set_extmark(args.buf, ns, curline, 0, {
-                virt_text = virt_texts,
-                hl_mode = "combine",
-            })
         end,
     })
 end
