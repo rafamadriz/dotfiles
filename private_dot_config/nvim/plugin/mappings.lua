@@ -4,6 +4,10 @@ local map = vim.keymap.set
 map({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
 map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 
+-- Kinda of smooth scrolling, help scroll-smooth
+map("n", "<C-U>", "<C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>")
+map("n", "<C-D>", "<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>")
+
 -- Disable repeat last recorded character
 map("n", "Q", "<Nop>")
 -- I always type :Q by mistake
