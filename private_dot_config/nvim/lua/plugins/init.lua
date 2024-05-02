@@ -162,7 +162,10 @@ return {
                     end, {
                         prompt = "Projects> ",
                         actions = {
-                            ["default"] = function(choice) vim.cmd.edit(choice[1]) end,
+                            ["default"] = function(choice)
+                                vim.cmd.edit(choice[1])
+                                vim.cmd.cd(choice[1])
+                            end,
                             ["ctrl-x"] = {
                                 function(choice)
                                     local history = require "project_nvim.utils.history"
