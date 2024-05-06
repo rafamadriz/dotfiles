@@ -19,7 +19,6 @@ return {
     },
     {
         "sainnhe/gruvbox-material",
-        lazy = false,
         config = function()
             vim.g.gruvbox_material_dim_inactive_windows = 1
             vim.g.gruvbox_material_better_performance = 1
@@ -42,6 +41,7 @@ return {
     },
     {
         "rose-pine/neovim",
+        lazy = false,
         name = "rose-pine",
         config = function()
             require("rose-pine").setup {
