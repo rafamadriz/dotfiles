@@ -79,7 +79,7 @@ export GPG_TTY=$(tty)
 # --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 # --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
 
-export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git*' -not -path '*/node_modules*'"
+export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
 export FZF_DEFAULT_OPTS=" \
 --layout=reverse --border=sharp --multi --height=40%"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
