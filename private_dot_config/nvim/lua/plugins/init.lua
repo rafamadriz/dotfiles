@@ -89,6 +89,7 @@ return {
 
     -- Other useful tools
     {
+        -- TODO: do this with just a file in config instead of plugin
         "rafamadriz/bigfile.nvim",
         lazy = false,
         opts = {
