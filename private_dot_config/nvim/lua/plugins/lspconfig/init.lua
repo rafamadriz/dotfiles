@@ -24,8 +24,13 @@ return {
                     },
                 },
                 config = function()
-                    local lspconfig = require "lspconfig"
                     vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", { desc = "LSP info" })
+
+                    local lspconfig = require "lspconfig"
+
+                    -- Setup ccls with lspconfig since it's not going to be supported by mason.nvim
+                    -- Source: https://github.com/williamboman/mason.nvim/issues/349
+                    if vim.fn.executable "ccls" then lspconfig["ccls"].setup {} end
 
                     require("lspconfig.ui.windows").default_options.border = "rounded"
                     lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {

@@ -1,5 +1,5 @@
 -- Timings
-vim.opt.timeoutlen = 1000 -- Time to wait for a keymap to complete
+vim.opt.timeoutlen = 300 -- Time to wait for a keymap to complete
 vim.opt.ttimeoutlen = 300 -- Time to wait for a key code sequence to complete
 vim.opt.updatetime = 100 -- If nothing is typed is this time, swap file will be written
 
