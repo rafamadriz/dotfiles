@@ -26,25 +26,26 @@ return {
             enable_autosnippets = true,
             -- mapping for cutting selected text so it's usable as SELECT_DEDENT,
             -- SELECT_RAW or TM_SELECTED_TEXT (mapped via xmap).
-            store_selection_keys = "<Tab>",
+            store_selection_keys = "<c-k>",
         }
 
-        require("luasnip.loaders.from_lua").lazy_load { paths = "~/.config/nvim/lua/snippets" }
+        require("luasnip.loaders.from_lua").lazy_load { paths = vim.fn.stdpath "config" .. "/lua/snippets" }
 
         -- <c-l> is selecting within a list of options.
         vim.keymap.set({ "s", "i" }, "<c-l>", function()
             if ls.choice_active() then ls.change_choice(1) end
         end, { desc = "Scroll through choice nodes" })
 
-        vim.keymap.set(
-            "i",
-            "<Tab>",
-            function() return ls.expand_or_jumpable() and "<Plug>luasnip-expand-or-jump" or "<Tab>" end,
-            { desc = "Expand or jump snippet", expr = true, silent = true }
-        )
+        -- <c-k> is my expansion key
+        -- this will expand the current item or jump to the next item within the snippet.
+        vim.keymap.set({ "i", "s" }, "<c-k>", function()
+            if ls.expand_or_jumpable() then ls.expand_or_jump() end
+        end, { silent = true })
 
-        vim.keymap.set("i", "<S-Tab>", function()
+        -- <c-j> is my jump backwards key.
+        -- this always moves to the previous item within the snippet
+        vim.keymap.set({ "i", "s" }, "<c-j>", function()
             if ls.jumpable(-1) then ls.jump(-1) end
-        end, { desc = "Jump backwards snippet" })
+        end, { silent = true })
     end,
 }
