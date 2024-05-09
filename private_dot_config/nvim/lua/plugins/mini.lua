@@ -15,10 +15,11 @@ end
 
 M.operators = function()
     require("mini.operators").setup {
-        exchange = { prefix = "cx" },
-        multiply = { prefix = "cm" },
-        replace = { prefix = "cr" },
+        exchange = { prefix = "gx" },
+        replace = { prefix = "gX" },
+        multiply = { prefix = "" },
         sort = { prefix = "" },
+        evaluate = { prefix = "" },
     }
 end
 
