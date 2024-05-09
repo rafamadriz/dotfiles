@@ -64,10 +64,6 @@ map("n", "[L", "<cmd>lfirst<cr>", { desc = "First locationlist " })
 -- source: https://github.com/neovim/neovim/issues/16416
 map("i", "<C-c>", "<C-c>")
 
--- Add empty lines before and after cursor line
-map("n", "cO", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
-map("n", "co", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
-
 -- Move selected block of text up/down
 map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })
 map("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move selected block of text down" })
