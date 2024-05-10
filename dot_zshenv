@@ -75,15 +75,34 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GPG_TTY=$(tty)
 
 # FZF
-# --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-# --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-# --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+FZF_BINDS="--bind 'f4:toggle-preview,shift-down:preview-half-page-down,shift-up:preview-half-page-up,alt-a:toggle-all'"
+FZF_DISPLAY="--layout=reverse --border=sharp --multi --height=40%"
 
-export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
-export FZF_DEFAULT_OPTS=" \
---layout=reverse --border=sharp --multi --height=40%"
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :50 {}'"
+if [ -x "$(command -v bat)" ]; then
+    FZF_PREVIEW="--preview 'bat --color=always --line-range :50 {}'"
+else
+    FZF_PREVIEW="--preview 'cat {}'"
+fi
+
+if [ -x "$(command -v fd)" ]; then
+    FD_COMMAND='fd --strip-cwd-prefix --hidden --exclude=\*.git/\* --type=file'
+    FZF_COMMAND="$FD_COMMAND --no-ignore"
+    FZF_T_OPTS="
+        --bind 'ctrl-g:transform:[[ ! \$FZF_PROMPT == \"  > \" ]] &&
+        echo \"rebind(ctrl-g)+change-prompt(  > )+change-header(ctrl-g to Respect .gitignore)+reload($FD_COMMAND --no-ignore)\" ||
+        echo \"rebind(ctrl-g)+change-prompt(ig> )+change-header(ctrl-g to Disable .gitignore)+reload($FD_COMMAND)\"' \
+        --prompt '  > '
+        --header 'ctrl-g to Respect .gitignore'
+    "
+else
+    FZF_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
+    FZF_T_OPTS=""
+fi
+
+export FZF_DEFAULT_COMMAND="$FZF_COMMAND"
+export FZF_DEFAULT_OPTS="$FZF_DISPLAY $FZF_BINDS"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="$FZF_T_OPTS $FZF_PREVIEW"
 export FZF_ALT_C_COMMAND="find . -type d -not -path '*/\.git/*'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 
