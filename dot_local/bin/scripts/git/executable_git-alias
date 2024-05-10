@@ -4,7 +4,7 @@
 # source: https://github.com/tj/git-extras/blob/master/bin/git-alias
 
 usage() {
-  cat <<HERE
+	cat <<HERE
 usage: git alias                         # list all aliases
    or: git alias <search-pattern>        # show aliases matching pattern
    or: git alias <alias-name> <command>  # alias a command

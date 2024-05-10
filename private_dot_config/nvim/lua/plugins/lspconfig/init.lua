@@ -30,7 +30,15 @@ return {
 
                     -- Setup ccls with lspconfig since it's not going to be supported by mason.nvim
                     -- Source: https://github.com/williamboman/mason.nvim/issues/349
-                    if vim.fn.executable "ccls" then lspconfig["ccls"].setup {} end
+                    if vim.fn.executable "ccls" then
+                        lspconfig["ccls"].setup {
+                            init_options = {
+                                cache = {
+                                    directory = vim.fn.stdpath "cache" .. "/ccls-cache",
+                                },
+                            },
+                        }
+                    end
 
                     require("lspconfig.ui.windows").default_options.border = "rounded"
                     lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
