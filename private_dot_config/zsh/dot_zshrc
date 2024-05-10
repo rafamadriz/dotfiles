@@ -48,11 +48,12 @@ export ZVM_VI_SURROUND_BINDKEY=classic
 # solves https://github.com/jeffreytse/zsh-vi-mode/issues/90
 #        https://github.com/jeffreytse/zsh-vi-mode/issues/24
 zvm_after_init() {
-    [ -f $PLUG_DIR/fzf/key-bindings.zsh ] && source $PLUG_DIR/fzf/key-bindings.zsh
+    if [ -x "$(command -v fzf)" ]; then
+        eval "$(fzf --zsh)"
+    fi
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
 }
-[ -f $PLUG_DIR/fzf/completion.zsh ] && source $PLUG_DIR/fzf/completion.zsh
 [ -f $PLUG_DIR/menu.zsh ] && source $PLUG_DIR/menu.zsh
 [ -f $PLUG_DIR/colored-man-pages.zsh ] && source $PLUG_DIR/colored-man-pages.zsh
 
