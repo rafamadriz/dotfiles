@@ -39,7 +39,7 @@ return {
                 keymap = {
                     fzf = {
                         ["ctrl-q"] = "select-all+accept",
-                        ["ctrl-a"] = "toggle-all",
+                        ["alt-a"] = "toggle-all",
                         ["ctrl-n"] = "down",
                         ["ctrl-p"] = "up",
                         ["ctrl-j"] = "next-history",
