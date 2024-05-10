@@ -19,6 +19,7 @@ return {
                 ["b"] = { name = "Buffer" },
                 ["g"] = { name = "Git" },
                 ["l"] = { name = "LSP" },
+                ["t"] = { name = "Tasks" },
                 ["a"] = "which_key_ignore",
                 ["1"] = "which_key_ignore",
                 ["2"] = "which_key_ignore",
