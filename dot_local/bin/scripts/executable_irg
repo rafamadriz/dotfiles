@@ -1,26 +1,21 @@
 #!/usr/bin/env bash
 
-# Two-phase filtering with Ripgrep and fzf
-#
-# 1. Switch between Ripgrep launcher mode (CTRL-R) and fzf filtering mode (CTRL-F)
-# 3. Open the file in editor
-# Credits: @junegunn https://github.com/junegunn/fzf/blob/master/ADVANCED.md#log-tailing
-
+# source: https://github.com/junegunn/fzf/blob/master/ADVANCED.md#switching-between-ripgrep-mode-and-fzf-mode-using-a-single-key-binding
+# another alternative I saw: https://github.com/potamides/dotfiles/blob/master/.bashrc#L190-L212
+# Switch between Ripgrep mode and fzf filtering mode (CTRL-G)
+rm -f /tmp/rg-fzf-{r,f}
 RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case --hidden --glob \"!**/.git/**\" "
 INITIAL_QUERY="${*:-}"
-IFS=: read -ra selected < <(
-	FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
-		fzf --ansi \
-		--color "hl:-1:underline,hl+:-1:underline:reverse" \
-		--disabled --query "$INITIAL_QUERY" \
-		--bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
-		--bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(2. fzf> )+enable-search+clear-query+rebind(ctrl-r)" \
-		--bind "ctrl-r:unbind(ctrl-r)+change-prompt(1. ripgrep> )+disable-search+reload($RG_PREFIX {q} || true)+rebind(change,ctrl-f)" \
-		--prompt '1. Ripgrep> ' \
-		--delimiter : \
-		--header '╱ CTRL-R (Ripgrep mode) ╱ CTRL-F (fzf mode) ╱' \
-		--preview 'bat --color=always {1} --highlight-line {2}' \
-		--preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-		--height=60%
-)
-[ -n "${selected[0]}" ] && $EDITOR "${selected[0]}" "+${selected[1]}"
+: | fzf --ansi --disabled --query "$INITIAL_QUERY" \
+	--bind "start:reload:$RG_PREFIX {q}" \
+	--bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+	--bind 'ctrl-g:transform:[[ ! $FZF_PROMPT =~ ripgrep ]] &&
+      echo "rebind(change)+change-prompt(1. ripgrep> )+disable-search+transform-query:echo \{q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r" ||
+      echo "unbind(change)+change-prompt(2. fzf> )+enable-search+transform-query:echo \{q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f"' \
+	--color "hl:-1:underline,hl+:-1:underline:reverse" \
+	--prompt '1. ripgrep> ' \
+	--delimiter : \
+	--header 'CTRL-G: Switch between ripgrep/fzf' \
+	--preview 'bat --color=always {1} --highlight-line {2}' \
+	--preview-window 'up,50%,border-bottom,+{2}+3/3,~3' \
+	--bind 'enter:become($EDITOR {1} +{2})'
