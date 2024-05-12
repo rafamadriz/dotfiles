@@ -26,12 +26,15 @@ return {
                     cwd_prompt = false,
                 },
                 grep = {
+                    -- debug = true,
                     formatter = "path.filename_first",
                     winopts = {
                         width = 0.8, -- window width
                     },
                     rg_glob = true,
-                    rg_opts = [[--column --hidden --glob "!**/.git/**" --line-number --no-heading --color=always --smart-case --max-columns=4096 -e]],
+                    rg_opts = [[--column --hidden --glob "!**/.git/**" ]]
+                        .. [[--line-number --no-heading --color=always ]]
+                        .. [[--smart-case --max-columns=4096 -e]],
                     fzf_opts = {
                         ["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-grep-history",
                     },
