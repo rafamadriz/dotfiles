@@ -17,7 +17,7 @@ return {
             ["<leader>"] = {
                 ["f"] = { name = "Find" },
                 ["b"] = { name = "Buffer" },
-                ["g"] = { name = "Git" },
+                ["g"] = { name = "Git", ["y"] = { name = "Link" } },
                 ["l"] = { name = "LSP" },
                 ["t"] = { name = "Tasks" },
                 ["a"] = "which_key_ignore",

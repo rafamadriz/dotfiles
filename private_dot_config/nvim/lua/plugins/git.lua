@@ -83,6 +83,110 @@ return {
         end,
     },
     {
+        "linrongbin16/gitlinker.nvim",
+        cmd = "GitLink",
+        config = function()
+            require("gitlinker").setup {
+                router = {
+                    file_only = {
+                        ["^github%.com"] = "https://github.com/"
+                            .. "{_A.ORG}/"
+                            .. "{_A.REPO}/blob/"
+                            .. "{_A.REV}/"
+                            .. "{_A.FILE}",
+                        ["^gitlab%.com"] = "https://gitlab.com/"
+                            .. "{_A.ORG}/"
+                            .. "{_A.REPO}/blob/"
+                            .. "{_A.REV}/"
+                            .. "{_A.FILE}",
+                        ["^bitbucket%.org"] = "https://bitbucket.org/"
+                            .. "{_A.ORG}/"
+                            .. "{_A.REPO}/src/"
+                            .. "{_A.REV}/"
+                            .. "{_A.FILE}",
+                        ["^codeberg%.org"] = "https://codeberg.org/"
+                            .. "{_A.ORG}/"
+                            .. "{_A.REPO}/src/commit/"
+                            .. "{_A.REV}/"
+                            .. "{_A.FILE}",
+                        ["^git%.samba%.org"] = "https://git.samba.org/?p="
+                            .. "{string.len(_A.ORG) > 0 and (_A.ORG .. '/') or ''}" -- 'p=samba.git;' or 'p=bbaumbach/samba.git;'
+                            .. "{_A.REPO .. '.git'};a=blob;"
+                            .. "f={_A.FILE};",
+                    },
+                    homepage = {
+                        ["^github%.com"] = "https://github.com/" .. "{_A.ORG}/" .. "{_A.REPO}/",
+                        ["^gitlab%.com"] = "https://gitlab.com/" .. "{_A.ORG}/" .. "{_A.REPO}/blob/",
+                        ["^bitbucket%.org"] = "https://bitbucket.org/" .. "{_A.ORG}/" .. "{_A.REPO}/src/",
+                        ["^codeberg%.org"] = "https://codeberg.org/" .. "{_A.ORG}/" .. "{_A.REPO}/",
+                        ["^git%.samba%.org"] = "https://git.samba.org/?p="
+                            .. "{string.len(_A.ORG) > 0 and (_A.ORG .. '/') or ''}" -- 'p=samba.git;' or 'p=bbaumbach/samba.git;'
+                            .. "{_A.REPO .. '.git'};a=blob;",
+                    },
+                },
+            }
+        end,
+        keys = {
+            { "<leader>gyl", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Yank git permlink" },
+            { "<leader>gyL", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git permlink" },
+            -- blame
+            { "<leader>gyb", "<cmd>GitLink blame<cr>", mode = { "n", "v" }, desc = "Yank git blame link" },
+            { "<leader>gyB", "<cmd>GitLink! blame<cr>", mode = { "n", "v" }, desc = "Open git blame link" },
+            -- default branch
+            {
+                "<leader>gyd",
+                "<cmd>GitLink default_branch<cr>",
+                mode = { "n", "v" },
+                desc = "Copy default branch link",
+            },
+            {
+                "<leader>gyD",
+                "<cmd>GitLink! default_branch<cr>",
+                mode = { "n", "v" },
+                desc = "Open default branch link",
+            },
+            -- default branch
+            {
+                "<leader>gyc",
+                "<cmd>GitLink current_branch<cr>",
+                mode = { "n", "v" },
+                desc = "Copy current branch link",
+            },
+            {
+                "<leader>gyC",
+                "<cmd>GitLink! current_branch<cr>",
+                mode = { "n", "v" },
+                desc = "Open current branch link",
+            },
+            -- File only
+            {
+                "<leader>gyf",
+                "<cmd>GitLink file_only<cr>",
+                mode = { "n", "v" },
+                desc = "Copy file link",
+            },
+            {
+                "<leader>gyF",
+                "<cmd>GitLink! file_only<cr>",
+                mode = { "n", "v" },
+                desc = "Open file link",
+            },
+            -- Homepage
+            {
+                "<leader>gyh",
+                "<cmd>GitLink homepage<cr>",
+                mode = { "n", "v" },
+                desc = "Copy homepage link",
+            },
+            {
+                "<leader>gyH",
+                "<cmd>GitLink! homepage<cr>",
+                mode = { "n", "v" },
+                desc = "Open homepage link",
+            },
+        },
+    },
+    {
         "akinsho/git-conflict.nvim",
         event = { "BufReadPre", "BufNewFile" },
         opts = { disable_diagnostics = true },
