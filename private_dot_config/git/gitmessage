@@ -1,23 +1,28 @@
 
-# <type>[(optional scope)]: <subject>
-# <BLANK LINE>
+# <type>([optional scope]): <description>
+#
 # [optional body]
-# <BLANK LINE>
+#
 # [optional footer(s)]
 
+# {{{ Type
 # type
-#   fix:      A bug fix
-#   feat:     A new features
-#   docs:     Documentation only changes
-#   style:    Changes that do not affect the meaning of the code
-#   refactor: A code change that neither fixes a bug nor adds a feature
-#   perf:     A code change that improves performance
-#   test:     Adding missing or correcting existing tests
-#   build:    Changes that affect the build system or external dependencies
-#   ci:       Changes to our CI configuration files and scripts
-#   chore:    Other changes that don't modify src or test files
-#   revert:   Reverts a previous commit
+#   build:     Changes that affect the build system or external dependencies
+#   chore:     Other changes that don't modify src or test files
+#   ci:        Changes to our CI configuration files and scripts
+#   deprecate: Deprecates existing functionality, but does not remove it from the product. Giving time before removing it
+#   docs:      Documentation only changes
+#   feat:      A new feature
+#   fix:       A bug fix
+#   perf:      A code change that improves performance
+#   refactor:  A code change that neither fixes a bug nor adds a feature
+#   revert:    Reverts a previous commit
+#   security:  Improves the security of the product or resolves a security issue that has been reported
+#   style:     Changes that do not affect the meaning of the code
+#   test:      Adding missing or correcting existing tests
+# }}}
 
+# {{{ Optional scope
 # optional scope
 #   init:     Initialize commit
 #   security: Security to invite users to upgrade in case of vulnerabilities
@@ -25,22 +30,36 @@
 #   config:   Configuration changes
 #   i18n:     Internationalization and localization
 #   ...
+# }}}
 
-# subject: Short summary
-#   - Do nt end with a period
+# {{{ Description
+# description: short summary
+#   - Do not end with a period
 #   - Not cased
 #   - Start writing in lower case
-#   - 100 chars or less
+#   - 50 chars or less
 #   - Use the imperative mood
+# }}}
 
+# {{{ Optional body
 # optional body: Explain why this change is being made.
-#   - Wrap it to about 100 characters or so
+#   - Wrap it to about 72 characters or so
 #   - Can use multiple lines with "-" for bullet points
 #   - Explain what and why vs. how
+# }}}
 
+# {{{ Optional footers
 # optional footer(s): Provide links or keys to any relevant tickets
-#   - Wrap it to about 100 characters or so
+#   - Wrap it to about 72 characters or so
 #   Linking a pull request to an issue using a keyword
 #     - close #ISSUE-NUMBER
 #     - fix #ISSUE-NUMBER
 #     - resolve #ISSUE-NUMBER
+# }}}
+
+# {{{ Misc
+# Examples
+#           https://www.conventionalcommits.org/en/v1.0.0-beta.2/#examples
+# Full specification
+#           https://www.conventionalcommits.org/en/v1.0.0-beta.2/#specification
+# }}}
