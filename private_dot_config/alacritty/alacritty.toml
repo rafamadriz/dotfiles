@@ -1,10 +1,11 @@
-import = ["~/.config/alacritty/themes/kanagawa_wave.toml"]
+import = ["~/.config/alacritty/themes/tokyo-night.toml"]
 
 [font]
 size = 12
 
 [font.normal]
-family = "JetBrains Mono"
+# family = "JetBrains Mono"
+family = "Cascadia Mono"
 style = "Regular"
 
 [font.bold]
@@ -12,6 +13,10 @@ style = "Bold"
 
 [font.italic]
 style = "Italic"
+
+[font.bold_italic]
+family = "Cascadia Mono"
+style = "Bold Italic"
 
 # https://github.com/alacritty/alacritty/issues/6156#issuecomment-1924172603
 [env]
