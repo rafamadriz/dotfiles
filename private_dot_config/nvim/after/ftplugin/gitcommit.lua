@@ -7,4 +7,3 @@ vim.opt_local.textwidth = 72
 vim.opt.foldmethod = "marker"
 vim.opt.foldmarker = "{{{,}}}"
 vim.opt.foldlevel = 0
-vim.cmd.normal "gg"

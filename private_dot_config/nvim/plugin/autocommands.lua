@@ -8,11 +8,33 @@ aucmd({ "TextYankPost" }, {
     callback = function() vim.highlight.on_yank { timeout = 250 } end,
 })
 
+local no_lastplace = {
+    buftypes = {
+        "quickfix",
+        "nofile",
+        "help",
+        "terminal",
+    },
+    filetypes = {
+        "gitcommit",
+        "gitrebase",
+    },
+}
+
 aucmd({ "BufReadPost" }, {
     pattern = "*",
-    desc = "Jump to last position on file",
+    desc = "Jump to last place in files",
     group = augroup("JumpToLastPosition", { clear = true }),
-    command = [[if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif]],
+    callback = function()
+        if
+            vim.fn.line [['"]] >= 1
+            and vim.fn.line [['"]] <= vim.fn.line "$"
+            and not vim.tbl_contains(no_lastplace.buftypes, vim.o.buftype)
+            and not vim.tbl_contains(no_lastplace.filetypes, vim.o.filetype)
+        then
+            vim.cmd [[normal! g`" | zv]]
+        end
+    end,
 })
 
 aucmd({ "TermOpen" }, {
