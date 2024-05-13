@@ -45,11 +45,11 @@ end
 
 local setup_aucmds = function(client, bufnr)
     if client.server_capabilities["codeLensProvider"] then
-        aucmd({ "BufEnter", "InsertLeave", "CursorHold" }, {
+        aucmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
             desc = "Refresh code lens",
             group = augroup("LspCodeLens", { clear = true }),
             buffer = bufnr,
-            command = "silent! lua vim.lsp.codelens.refresh()",
+            callback = function() lsp.codelens.refresh() end,
         })
     end
 
