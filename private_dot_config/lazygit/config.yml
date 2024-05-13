@@ -1,4 +1,9 @@
- gui:
-   theme:
-     selectedLineBgColor:
-       - reverse
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
