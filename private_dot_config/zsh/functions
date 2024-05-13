@@ -16,13 +16,6 @@ function zsh_add_plugin() {
     fi
 }
 
-# search for all dotfiles, then open them with editor of choice
-cfg() {
-    chezmoi managed -x dirs | sed -ne 's/.*/\/home\/'"$USER"'\/&/p' \
-        | fzf --preview='bat --number --color=always --line-range :500 {}' \
-        | xargs -I '{}' chezmoi edit --apply '{}'
-}
-
 # fkill - kill processes - list only the ones you can kill. Modified the earlier script.
 fkill() {
     local pid
