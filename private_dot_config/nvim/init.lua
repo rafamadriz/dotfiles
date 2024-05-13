@@ -1,3 +1,7 @@
+-- Experimental cache lua modules `help vim.loader.enable`
+-- https://github.com/neovim/neovim/pull/22668
+if vim.loader then vim.loader.enable() end
+
 -- Space as leaderkey
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("v", "<Space>", "<Nop>", { silent = true })
