@@ -10,12 +10,12 @@ alias lla='ls -FlAh --color=always'
 alias d='dirs -v'
 
 for index in {1..9}; do
-    alias "$index"="cd +${index}"
+	alias "$index"="cd +${index}"
 done
 
 # shortcuts
 if command -v xdg-open >/dev/null 2>&1; then
-    alias open='xdg-open'
+	alias open='xdg-open'
 fi
 alias sys='systemctl'
 alias icat='kitty +kitten icat'
@@ -27,9 +27,8 @@ alias sudo='sudo '
 alias untar='tar -xvf'
 alias v='nvim'
 alias vim='nvim'
-alias moi='chezmoi'
+alias cm='chezmoi'
 alias lg='lazygit'
-alias dots='cd $DOTFILES'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
