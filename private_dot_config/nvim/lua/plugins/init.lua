@@ -122,7 +122,7 @@ return {
                     show_hidden = true,
                 },
                 keymaps = {
-                    ["<C-d>"] = "actions.close",
+                    ["Q"] = "actions.close",
                     ["<C-c>"] = false,
                 },
             }
