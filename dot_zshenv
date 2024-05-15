@@ -76,7 +76,7 @@ export GPG_TTY=$(tty)
 
 # FZF
 FZF_BINDS="--bind 'f4:toggle-preview,shift-down:preview-half-page-down,shift-up:preview-half-page-up,alt-a:toggle-all'"
-FZF_DISPLAY="--layout=reverse --border=sharp --multi --height=40%"
+FZF_DISPLAY="--layout=reverse --border=sharp --multi --height=60%"
 
 if [ -x "$(command -v bat)" ]; then
     FZF_PREVIEW="--preview 'bat --color=always --line-range :50 {}'"
