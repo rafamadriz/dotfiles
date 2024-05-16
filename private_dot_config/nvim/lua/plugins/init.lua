@@ -88,26 +88,6 @@ return {
     },
 
     -- Other useful tools
-    {
-        -- TODO: do this with just a file in config instead of plugin
-        "rafamadriz/bigfile.nvim",
-        lazy = false,
-        opts = {
-            filesize = 2, -- size of the file in MiB, the plugin round file sizes to the closest MiB
-            pattern = { "*" }, -- autocmd pattern or function see <### Overriding the detection of big files>
-            features = { -- features to disable
-                "indent_blankline",
-                "illuminate",
-                "lsp",
-                "treesitter",
-                "treesitter_context",
-                -- "syntax",
-                "matchparen",
-                "vimopts",
-                -- "filetype",
-            },
-        },
-    },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
         "stevearc/oil.nvim",
