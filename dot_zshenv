@@ -88,10 +88,10 @@ if [ -x "$(command -v fd)" ]; then
     FD_COMMAND='fd --strip-cwd-prefix --hidden --exclude=\*.git/\* --type=file'
     FZF_T_OPTS="
         --bind 'ctrl-g:transform:[[ ! \$FZF_PROMPT == \"  > \" ]] &&
-        echo \"rebind(ctrl-g)+change-prompt(  > )+change-header(ctrl-g to Respect .gitignore)+reload($FD_COMMAND --no-ignore)\" ||
-        echo \"rebind(ctrl-g)+change-prompt(ig> )+change-header(ctrl-g to Disable .gitignore)+reload($FD_COMMAND)\"' \
+        echo \"rebind(ctrl-g)+change-prompt(  > )+change-header(:: ctrl-g to Respect .gitignore)+reload($FD_COMMAND --no-ignore)\" ||
+        echo \"rebind(ctrl-g)+change-prompt(ig> )+change-header(:: ctrl-g to Disable .gitignore)+reload($FD_COMMAND)\"' \
         --prompt 'ig> '
-        --header 'ctrl-g to Disable .gitignore'
+        --header ':: ctrl-g to Disable .gitignore'
     "
 else
     FZF_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
