@@ -26,7 +26,7 @@ end
 -- the main culprits of this are foldmethod when set to expr and treesitter.
 -- The other options doesn't seem to make a difference.
 -- This improves the delay to a point where is not very notcible.
-vim.api.nvim_create_autocmd({ "BufReadPre" }, {
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufReadPost" }, {
     pattern = "*",
     desc = "Improve performance on big files",
     callback = function(args)
