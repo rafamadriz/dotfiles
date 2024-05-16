@@ -86,20 +86,19 @@ fi
 
 if [ -x "$(command -v fd)" ]; then
     FD_COMMAND='fd --strip-cwd-prefix --hidden --exclude=\*.git/\* --type=file'
-    FZF_COMMAND="$FD_COMMAND --no-ignore"
     FZF_T_OPTS="
         --bind 'ctrl-g:transform:[[ ! \$FZF_PROMPT == \"  > \" ]] &&
         echo \"rebind(ctrl-g)+change-prompt(  > )+change-header(ctrl-g to Respect .gitignore)+reload($FD_COMMAND --no-ignore)\" ||
         echo \"rebind(ctrl-g)+change-prompt(ig> )+change-header(ctrl-g to Disable .gitignore)+reload($FD_COMMAND)\"' \
-        --prompt '  > '
-        --header 'ctrl-g to Respect .gitignore'
+        --prompt 'ig> '
+        --header 'ctrl-g to Disable .gitignore'
     "
 else
     FZF_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
     FZF_T_OPTS=""
 fi
 
-export FZF_DEFAULT_COMMAND="$FZF_COMMAND"
+export FZF_DEFAULT_COMMAND="$FD_COMMAND"
 export FZF_DEFAULT_OPTS="$FZF_DISPLAY $FZF_BINDS"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_T_OPTS $FZF_PREVIEW"
@@ -117,6 +116,7 @@ export ZDOTDIR=$HOME/.config/zsh
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+export MANGOHUD=1
 
 # Default Apps
 export EDITOR="nvim"
