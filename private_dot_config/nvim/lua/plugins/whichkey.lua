@@ -20,6 +20,7 @@ return {
                 ["g"] = { name = "Git", ["y"] = { name = "Link" } },
                 ["l"] = { name = "LSP" },
                 ["t"] = { name = "Tasks" },
+                ["d"] = { name = "Debug" },
                 ["a"] = "which_key_ignore",
                 ["1"] = "which_key_ignore",
                 ["2"] = "which_key_ignore",
