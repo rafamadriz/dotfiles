@@ -69,8 +69,9 @@ map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" }
 map("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move selected block of text down" })
 
 -- Copy/paste with system clipboard
-map({ "n", "x", "v" }, "<leader>y", '"+y', { desc = "Copy to system clipboard" })
 map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
+map({ "n", "x", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+map("n", "<leader>Y", [["+y$]], { desc = "Yank to system clipboard (end of line)" })
 -- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
 map("x", "<leader>p", '"+P', { desc = "Paste from system clipboard" })
 
