@@ -1,5 +1,4 @@
-local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
-local lsp, diagnostic, map = vim.lsp, vim.diagnostic, vim.keymap.set
+local lsp, diagnostic = vim.lsp, vim.diagnostic
 
 diagnostic.config {
     virtual_text = {
@@ -20,6 +19,7 @@ lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, { border = "ro
 lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, { border = "rounded" })
 
 local setup_mappings = function(_, bufnr)
+    local map = vim.keymap.set
     map("n", "]d", diagnostic.goto_next, { desc = "Next diagnostics ", buffer = bufnr })
     map("n", "[d", diagnostic.goto_prev, { desc = "Previous diagnostics", buffer = bufnr })
     map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
@@ -43,6 +43,7 @@ local setup_mappings = function(_, bufnr)
     end, { desc = "Peek definition", buffer = bufnr })
 end
 
+local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 local setup_aucmds = function(client, bufnr)
     if client.server_capabilities["codeLensProvider"] then
         aucmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
