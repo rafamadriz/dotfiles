@@ -69,14 +69,14 @@ map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" }
 map("v", "J", ":move '>+1<CR>gv=gv", { desc = "Move selected block of text down" })
 
 -- Copy/paste with system clipboard
-map("n", "<leader>p", '"+p', { desc = "Paste from system clipboard" })
 map({ "n", "x", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 map("n", "<leader>Y", [["+y$]], { desc = "Yank to system clipboard (end of line)" })
+map("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
 -- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
-map("x", "<leader>p", '"+P', { desc = "Paste from system clipboard" })
+map("x", "<leader>p", [["+P]], { desc = "Paste from system clipboard" })
 
 -- Reselect latest changed, put, or yanked text
-map("n", "gV", '"`[" . strpart(getregtype(), 0, 1) . "`]"', { expr = true, desc = "Visually select changed text" })
+map("n", "gV", [["`[" . strpart(getregtype(), 0, 1) . "`]"]], { expr = true, desc = "Visually select changed text" })
 
 -- Search inside visually highlighted text. Use `silent = false` for it to
 -- make effect immediately.
