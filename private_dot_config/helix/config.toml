@@ -1,4 +1,4 @@
-theme = "onedark"
+theme = "vim_dark_high_contrast"
 
 [editor]
 line-number = "relative"
@@ -10,3 +10,6 @@ normal = "block"
 
 [keys.insert]
 "C-c" = "normal_mode"
+
+[editor.file-picker]
+hidden = false
