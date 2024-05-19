@@ -15,8 +15,10 @@ style = "Bold"
 style = "Italic"
 
 [font.bold_italic]
-family = "Cascadia Mono"
 style = "Bold Italic"
+
+[mouse]
+hide_when_typing = true
 
 # https://github.com/alacritty/alacritty/issues/6156#issuecomment-1924172603
 [env]
