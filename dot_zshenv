@@ -121,6 +121,7 @@ export MANGOHUD=1
 # Default Apps
 export EDITOR="nvim"
 export VISUAL="nvim"
+export MANPAGER='nvim +Man!'
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VIDEO="mpv"
