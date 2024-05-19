@@ -31,8 +31,9 @@ return {
         dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
         config = function()
             M.ai()
-            require("mini.align").setup {}
             M.operators()
+            require("mini.align").setup {}
+            require("mini.notify").setup {}
         end,
     },
 }
