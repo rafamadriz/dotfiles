@@ -68,7 +68,7 @@ local config = function()
         },
         sources = cmp.config.sources {
             { name = "nvim_lsp_signature_help" },
-            { name = "nvim_lsp", priority = 1000, max_item_count = 15 },
+            { name = "nvim_lsp", priority = 1000, max_item_count = 10 },
             { name = "luasnip", priority = 15 },
             {
                 name = "rg",
@@ -85,7 +85,7 @@ local config = function()
                 name = "buffer",
                 keyword_length = 3,
                 max_item_count = 5,
-                priority = -2,
+                priority = 10,
                 option = {
                     get_bufnrs = function() return vim.api.nvim_list_bufs() end,
                     keyword_pattern = [[\k\+]],
@@ -100,11 +100,10 @@ local config = function()
     }
     cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
+        sources = cmp.config.sources {
             { name = "path" },
-        }, {
             { name = "cmdline" },
-        }),
+        },
     })
 
     cmp.setup.cmdline({ "/", "?" }, {
