@@ -5,6 +5,9 @@ size = 12
 
 [font.normal]
 # family = "JetBrains Mono"
+# family = "Fira Code"
+# family = "Hack"
+# family = "Source Code Pro"
 family = "Cascadia Mono"
 style = "Regular"
 
@@ -13,6 +16,8 @@ style = "Bold"
 
 [font.italic]
 style = "Italic"
+# style = "Bold Italic"
+# family = "VictorMono Nerd Font"
 
 [font.bold_italic]
 style = "Bold Italic"
