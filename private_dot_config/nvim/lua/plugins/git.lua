@@ -36,14 +36,14 @@ return {
                 -- Actions
                 map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", { desc = "Stage hunk" })
                 map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
-                map("n", "<leader>gS", gs.stage_buffer, { desc = "Stage buffer" })
-                map("n", "<leader>gR", gs.reset_buffer, { desc = "Reset buffer" })
-                map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Undo stage hunk" })
-                map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
+                map("n", "<leader>gS", ":Gitsigns stage_buffer<CR>", { desc = "Stage buffer" })
+                map("n", "<leader>gR", ":Gitsigns reset_buffer<CR>", { desc = "Reset buffer" })
+                map("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>", { desc = "Undo stage hunk" })
+                map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk" })
                 map("n", "<leader>gP", ":Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk" })
                 map("n", "<leader>gB", ":Gitsigns blame_line<CR>", { desc = "Blame line" })
-                map("n", "<leader>gl", gs.toggle_current_line_blame, { desc = "Blame current line" })
-                map("n", "<leader>gt", gs.toggle_deleted, { desc = "Toggle old versions of hunks" })
+                map("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>", { desc = "Blame current line" })
+                map("n", "<leader>gt", ":Gitsigns toggle_deleted<CR>", { desc = "Toggle old versions of hunks" })
 
                 -- Text object
                 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "inner git hunk" })
