@@ -34,6 +34,7 @@ return {
             M.operators()
             require("mini.align").setup {}
             require("mini.notify").setup {}
+            require("mini.git").setup {}
         end,
     },
 }
