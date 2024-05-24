@@ -61,7 +61,6 @@ local config = function()
                     luasnip = "[S]",
                     buffer = "[B]",
                     nvim_lua = "[Lua]",
-                    rg = "[RG]",
                 })[entry.source.name]
                 return item
             end,
@@ -70,17 +69,6 @@ local config = function()
             { name = "nvim_lsp_signature_help" },
             { name = "nvim_lsp", priority = 1000, max_item_count = 10 },
             { name = "luasnip", priority = 15 },
-            {
-                name = "rg",
-                option = {
-                    additional_arguments = "--hidden --smart-case --glob '!.git/'",
-                    context_before = 5,
-                    context_after = 5,
-                },
-                keyword_length = 3,
-                max_item_count = 5,
-                priority = 2,
-            },
             {
                 name = "buffer",
                 keyword_length = 3,
@@ -120,7 +108,6 @@ return {
         keys = { ":" },
         event = "InsertEnter",
         dependencies = {
-            { "lukas-reineke/cmp-rg" },
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-path" },
             { "hrsh7th/cmp-buffer" },
