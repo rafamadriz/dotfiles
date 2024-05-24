@@ -104,22 +104,20 @@ return {
                 keymaps = {
                     ["Q"] = "actions.close",
                     ["<C-c>"] = false,
+                    ["g:"] = {
+                        -- source: https://github.com/stevearc/oil.nvim/pull/318
+                        desc = "Run shell command on file under cursor",
+                        callback = function()
+                            vim.ui.input({ prompt = "command: ", completion = "shellcmd" }, function(input)
+                                if input == "" or input == nil then return end
+                                local file_path = oil.get_current_dir() .. oil.get_cursor_entry().name
+                                if file_path == "" or file_path == nil then return end
+                                vim.api.nvim_command(":! " .. input .. ' "' .. file_path .. '"')
+                            end)
+                        end,
+                    },
                 },
             }
-            -- source: https://github.com/stevearc/oil.nvim/pull/318
-            vim.api.nvim_create_autocmd({ "FileType" }, {
-                pattern = { "oil" },
-                callback = function()
-                    vim.keymap.set("n", "g:", function()
-                        vim.ui.input({ prompt = "command: ", completion = "shellcmd" }, function(input)
-                            if input == "" or input == nil then return end
-                            local file_path = oil.get_current_dir() .. oil.get_cursor_entry().name
-                            if file_path == "" or file_path == nil then return end
-                            vim.api.nvim_command(":! " .. input .. ' "' .. file_path .. '"')
-                        end)
-                    end, { buffer = 0, desc = "Run shell command on file under cursor" })
-                end,
-            })
         end,
     },
     {
