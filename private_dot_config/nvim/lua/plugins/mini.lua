@@ -34,6 +34,7 @@ return {
             M.operators()
             require("mini.align").setup {}
             require("mini.notify").setup {}
+            vim.notify = require("mini.notify").make_notify()
             require("mini.git").setup {}
         end,
     },
