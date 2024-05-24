@@ -104,6 +104,20 @@ return {
                 keymaps = {
                     ["Q"] = "actions.close",
                     ["<C-c>"] = false,
+                    ["yp"] = {
+                        -- source: https://www.reddit.com/r/neovim/comments/1czp9zr/comment/l5hv900/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+                        desc = "Copy filepath to system clipboard",
+                        callback = function()
+                            require("oil.actions").copy_entry_path.callback()
+                            local copied = vim.fn.getreg(vim.v.register)
+                            vim.fn.setreg("+", copied)
+                            vim.notify(
+                                string.format("Copied to system clipboard:\n%s", copied),
+                                vim.log.levels.INFO,
+                                {}
+                            )
+                        end,
+                    },
                     ["g:"] = {
                         -- source: https://github.com/stevearc/oil.nvim/pull/318
                         desc = "Run shell command on file under cursor",
