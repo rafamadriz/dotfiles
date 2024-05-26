@@ -76,6 +76,16 @@ return {
         },
     },
 
+    -- Chezmoi
+    {
+        "alker0/chezmoi.vim",
+        lazy = false,
+        init = function()
+            -- This option is required.
+            vim.g["chezmoi#use_tmp_buffer"] = true
+        end,
+    },
+
     -- Other useful tools
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     {
