@@ -13,21 +13,10 @@ return {
 
     -- Improve editing experience and motions
     {
-        "numToStr/Comment.nvim",
-        keys = {
-            "gcc",
-            "gbc",
-            "gcA",
-            "gco",
-            "gcO",
-            { "gc", mode = { "n", "v" } },
-            { "gb", mode = { "n", "v" } },
-        },
-        config = function()
-            require("Comment").setup {
-                ignore = "^$",
-            }
-        end,
+        "folke/ts-comments.nvim",
+        opts = {},
+        event = "VeryLazy",
+        enabled = vim.fn.has "nvim-0.10.0" == 1,
     },
     {
         "windwp/nvim-autopairs",
