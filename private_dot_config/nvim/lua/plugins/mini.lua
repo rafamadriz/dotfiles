@@ -36,6 +36,7 @@ return {
             require("mini.notify").setup {}
             vim.notify = require("mini.notify").make_notify()
             require("mini.git").setup {}
+            vim.cmd.cnoreabbrev "G Git"
         end,
     },
 }
