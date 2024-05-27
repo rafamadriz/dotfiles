@@ -23,8 +23,8 @@ return {
         event = "InsertEnter",
         config = function()
             require("nvim-autopairs").setup {
-                disable_filetype = { "TelescopePrompt", "vim" },
-                ignored_next_char = "[%w%.]",
+                disable_filetype = { "vim" },
+                map_c_w = true, -- map <c-w> to delete a pair if possible
             }
         end,
     },
