@@ -39,15 +39,6 @@ return {
                 indent = { enable = true },
                 autotag = { enable = true },
                 endwise = { enable = true },
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "gn",
-                        node_incremental = "gn",
-                        scope_incremental = nil,
-                        node_decremental = "gN",
-                    },
-                },
             }
         end,
     },
