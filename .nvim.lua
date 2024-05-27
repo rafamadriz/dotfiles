@@ -1,23 +1,24 @@
 -- to run this file as a local nvim config see `help trust`
 
-if vim.fn.exists "$TMUX" == 1 then
+if (vim.fn.exists "$TMUX" == 1) and (vim.fn.executable "chezmoi" > 0) then
     vim.api.nvim_create_user_command("ChezmoiApply", function(arg)
-        local filename = vim.fn.expand "%"
+        local function command(file)
+            vim.system({ "tmux", "display-popup", "-E", "chezmoi", "apply", file or nil }, { text = true })
+        end
 
+        local filename = vim.fn.expand "%"
         if vim.fn.fnamemodify(filename, ":."):match "^%." then
+            -- only execute command without filename
             -- ignore files starting with `.`
+            command()
             return
         end
 
-        local fmt = string.format
-        local tmux_cmd = [[tmux display-popup -E]]
-        local chezmoi_cmd = [[chezmoi apply]]
-        local chezmoi_file = vim.fn.systemlist({ "chezmoi", "target-path", filename })[1]
-
         if arg.bang then
-            vim.fn.system(fmt("%s %s %s", tmux_cmd, chezmoi_cmd, chezmoi_file))
+            local chezmoi_file = vim.fn.systemlist({ "chezmoi", "target-path", filename })[1]
+            command(chezmoi_file)
         else
-            vim.fn.system(fmt("%s %s", tmux_cmd, chezmoi_cmd))
+            command()
         end
     end, { bang = true })
 
@@ -33,8 +34,3 @@ if vim.fn.exists "$TMUX" == 1 then
         end,
     })
 end
-
--- https://github.com/MunifTanjim/dotfiles/blob/8c13a4e05359bb12f9ade5abc1baca6fcec372db/.nvim.lua
--- https://github.com/atusy/dotfiles/blob/2bcb80069a6f02f118ab303857293c3c868e317a/.nvim.lua
--- https://github.com/gametaro/dotfiles/blob/a02fb500820268ef7c5188f9d60fd4f5771b38fc/.nvim.lua
--- if vim.fn.has "nvim-0.10" == 0 then return end
