@@ -65,7 +65,7 @@ local config = function()
                 return item
             end,
         },
-        sources = cmp.config.sources {
+        sources = {
             { name = "nvim_lsp_signature_help" },
             { name = "nvim_lsp", priority = 1000, max_item_count = 10 },
             { name = "luasnip", priority = 15 },

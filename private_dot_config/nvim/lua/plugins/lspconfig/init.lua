@@ -40,9 +40,59 @@ return {
                         }
                     end
 
+                    -- Fix for https://github.com/rafamadriz/dotfiles/issues/2
+                    local capabilities = vim.lsp.protocol.make_client_capabilities()
+                    capabilities.textDocument.completion = {
+                        dynamicRegistration = false,
+                        completionItem = {
+                            snippetSupport = true,
+                            commitCharactersSupport = true,
+                            deprecatedSupport = true,
+                            preselectSupport = true,
+                            tagSupport = {
+                                valueSet = {
+                                    1,
+                                },
+                            },
+                            insertReplaceSupport = true,
+                            resolveSupport = {
+                                properties = {
+                                    "documentation",
+                                    "detail",
+                                    "additionalTextEdits",
+                                    "sortText",
+                                    "filterText",
+                                    "insertText",
+                                    "textEdit",
+                                    "insertTextFormat",
+                                    "insertTextMode",
+                                },
+                            },
+                            insertTextModeSupport = {
+                                valueSet = {
+                                    1,
+                                    2,
+                                },
+                            },
+                            labelDetailsSupport = true,
+                        },
+                        contextSupport = true,
+                        insertTextMode = 1,
+                        completionList = {
+                            itemDefaults = {
+                                "commitCharacters",
+                                "editRange",
+                                "insertTextFormat",
+                                "insertTextMode",
+                                "data",
+                            },
+                        },
+                    }
+
                     require("lspconfig.ui.windows").default_options.border = "rounded"
                     lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-                        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                        capabilities = capabilities,
                     })
                 end,
             },
