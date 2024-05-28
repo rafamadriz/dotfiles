@@ -49,6 +49,19 @@ aucmd({ "TermOpen" }, {
     end,
 })
 
+-- Treesitter rewrite: https://github.com/rafamadriz/dotfiles/issues/3
+aucmd({ "Filetype" }, {
+    -- TODO: in nvim-treesitter 1.0 this is require("nvim-treesitter.config")
+    pattern = require("nvim-treesitter.info").installed_parsers(),
+    group = augroup("TreesitterOpts", { clear = true }),
+    callback = function()
+        vim.treesitter.start()
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo.foldmethod = "expr"
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+})
+
 -- Use aucmd to set formatoptions, otherwise if I put them in options.lua it
 -- will get overrule by filetype plugin (super annoying). The other option is to
 -- use after/ftplugin but I would have to set formatoptions for every single

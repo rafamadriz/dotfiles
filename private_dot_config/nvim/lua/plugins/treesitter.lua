@@ -32,11 +32,6 @@ return {
                     "yaml",
                     "zig",
                 },
-                highlight = {
-                    enable = true,
-                    disable = { "html" },
-                },
-                indent = { enable = true },
                 endwise = { enable = true },
             }
         end,

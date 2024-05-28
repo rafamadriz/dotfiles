@@ -95,8 +95,6 @@ vim.opt.grepformat = "%f:%l:%c:%m"
 
 -- Folds
 vim.opt.foldlevelstart = 999
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldmethod = "expr"
 
 -- BACKUP AND SWAP
 vim.opt.swapfile = false
