@@ -78,37 +78,6 @@ M.keymaps = {
     { "<leader>fq", "<cmd>FzfLua quickfix<CR>", desc = "Quickfix" },
     { "<leader>fQ", "<cmd>FzfLua quickfix_stack<CR>", desc = "Quickfix history" },
     { "<leader>`", "<cmd>FzfLua resume<CR>", desc = "Resume last picker" },
-    {
-        "<leader>fp",
-        function()
-            local fzf = require "fzf-lua"
-            fzf.fzf_exec(function(add_to_results)
-                local contents = require("project_nvim").get_recent_projects()
-                for _, project in pairs(contents) do
-                    add_to_results(project)
-                end
-                -- close the fzf named pipe, this signals EOF and terminates the fzf "loading" indicator.
-                add_to_results()
-            end, {
-                prompt = "Projects> ",
-                actions = {
-                    ["default"] = function(choice)
-                        vim.cmd.edit(choice[1])
-                        vim.cmd.cd(choice[1])
-                    end,
-                    ["ctrl-x"] = {
-                        function(choice)
-                            local history = require "project_nvim.utils.history"
-                            local delete = vim.fn.confirm("Delete '" .. choice[1] .. "' projects? ", "&Yes\n&No", 2)
-                            if delete == 1 then history.delete_project { value = choice[1] } end
-                        end,
-                        fzf.actions.resume,
-                    },
-                },
-            })
-        end,
-        desc = "Projects",
-    },
     -- buffers
     { "<leader>bb", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
     {
