@@ -23,6 +23,13 @@ M.operators = function()
     }
 end
 
+M.notify = function()
+    local notify = require "mini.notify"
+    notify.setup {}
+    vim.api.nvim_create_user_command("Mes", function() notify.show_history() end, {})
+    vim.notify = notify.make_notify()
+end
+
 M.git = function()
     local git = require "mini.git"
     git.setup {}
@@ -53,6 +60,7 @@ return {
         config = function()
             M.ai()
             M.operators()
+            M.notify()
             M.git()
             require("mini.align").setup {}
         end,
