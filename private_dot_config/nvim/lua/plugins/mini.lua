@@ -23,6 +23,27 @@ M.operators = function()
     }
 end
 
+M.git = function()
+    local git = require "mini.git"
+    git.setup {}
+    vim.cmd.cnoreabbrev "G Git"
+
+    vim.api.nvim_create_autocmd("Filetype", {
+        pattern = { "git", "diff" },
+        callback = function(args)
+            if not vim.api.nvim_buf_is_valid(args.buf) then return end
+            local buf_name = vim.api.nvim_buf_get_name(args.buf)
+            if not vim.startswith(buf_name, "minigit://") then return end
+
+            vim.wo.foldmethod = "expr"
+            vim.wo.foldexpr = "v:lua.MiniGit.diff_foldexpr()"
+
+            vim.keymap.set({ "n", "x" }, "K", git.show_at_cursor, { buffer = args.buf, desc = "Show git data" })
+            vim.keymap.set({ "n", "x" }, "gd", git.show_diff_source, { buffer = args.buf, desc = "Go to git source" })
+        end,
+    })
+end
+
 return {
     {
         "echasnovski/mini.nvim",
@@ -32,11 +53,8 @@ return {
         config = function()
             M.ai()
             M.operators()
+            M.git()
             require("mini.align").setup {}
-            require("mini.notify").setup {}
-            vim.notify = require("mini.notify").make_notify()
-            require("mini.git").setup {}
-            vim.cmd.cnoreabbrev "G Git"
         end,
     },
 }
