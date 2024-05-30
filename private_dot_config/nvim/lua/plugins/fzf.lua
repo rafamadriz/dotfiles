@@ -80,11 +80,7 @@ M.keymaps = {
     { "<leader>`", "<cmd>FzfLua resume<CR>", desc = "Resume last picker" },
     -- buffers
     { "<leader>bb", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
-    {
-        "<leader>bg",
-        "<cmd>FzfLua lgrep_curbuf<CR>",
-        desc = "Grep on current buffer",
-    },
+    { "<leader>bg", "<cmd>FzfLua lgrep_curbuf<CR>", desc = "Grep on current buffer" },
     -- git
     { "<leader>gf", "<cmd>FzfLua git_files<CR>", desc = "Git files" },
     { "<leader>gb", "<cmd>FzfLua git_branches<CR>", desc = "Branches" },
