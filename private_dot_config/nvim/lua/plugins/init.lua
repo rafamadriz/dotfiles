@@ -88,6 +88,7 @@ return {
 
     -- Other useful tools
     { "kevinhwang91/nvim-bqf", ft = "qf" },
+    { "hiphish/rainbow-delimiters.nvim", lazy = false },
     {
         "NMAC427/guess-indent.nvim",
         event = { "BufReadPre", "BufNewFile" },
