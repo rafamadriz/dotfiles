@@ -7,7 +7,7 @@ diagnostic.config {
     },
     severity_sort = true,
     underline = {
-        severity = diagnostic.severity.ERROR,
+        severity = { diagnostic.severity.ERROR, diagnostic.severity.WARN },
     },
     float = {
         source = "if_many",
