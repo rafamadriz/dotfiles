@@ -39,7 +39,7 @@ vim.opt.shortmess = {
 -- Display
 vim.opt.laststatus = 3 -- Use a single status line for all windows
 vim.opt.scrolloff = 2 -- Minimal number of lines to keep above/below the cursor
-vim.opt.signcolumn = "yes:1"
+vim.opt.signcolumn = "auto:2-3"
 vim.opt.termguicolors = true
 vim.opt.title = true
 vim.opt.titlestring = vim.fn.expand "%:p"
@@ -55,6 +55,7 @@ vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.textwidth = 80
+vim.opt.virtualedit = "block"
 
 -- Numbers and lines
 vim.opt.number = true
