@@ -1,4 +1,4 @@
-local temp_dir = vim.loop.os_getenv "TEMP" or "/tmp"
+local temp_dir = os.getenv "TEMP" or "/tmp"
 local install_dir = temp_dir .. "/lazy-nvim"
 
 -- set stdpaths to use "/tmp/lazy-nvim"
