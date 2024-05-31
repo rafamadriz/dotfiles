@@ -5,10 +5,10 @@ return {
         config = function()
             require("lualine").setup {
                 options = {
-                    section_separators = "",
+                    -- section_separators = "",
                     -- component_separators = "",
                     component_separators = { left = "", right = "" },
-                    -- section_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
                     -- section_separators = { left = "", right = "" },
                 },
                 sections = {
@@ -40,17 +40,17 @@ return {
                         },
                         -- {
                         --     function()
-                        --         local buf_clients = vim.lsp.get_active_clients { bufnr = 0 }
+                        --         local buf_clients = vim.lsp.get_clients { bufnr = 0 }
                         --         if #buf_clients == 0 then return "" end
-
+                        --
                         --         local buf_client_names = {}
                         --         for _, client in pairs(buf_clients) do
                         --             table.insert(buf_client_names, client.name)
                         --         end
-
+                        --
                         --         local uniq_client_names = table.concat(vim.fn.uniq(buf_client_names), ", ")
                         --         local language_servers = string.format(" [%s]", uniq_client_names)
-
+                        --
                         --         return language_servers
                         --     end,
                         --     color = { gui = "bold" },
@@ -63,12 +63,24 @@ return {
                     lualine_z = {
                         {
                             function()
-                                local line, fmt = vim.fn.line, string.format
-                                local col = vim.fn.virtcol
-                                return fmt("ℓ %3d/%-4d c %-3d", line ".", line "$", col ".")
+                                local pos = vim.fn.getcurpos()
+                                local line, column = pos[2], pos[3]
+                                local height = vim.api.nvim_buf_line_count(0)
+
+                                local str = " "
+                                local padding = #tostring(height) - #tostring(line)
+                                if padding > 0 then str = str .. (" "):rep(padding) end
+
+                                str = str .. "ℓ "
+                                str = str .. line
+                                str = str .. " c "
+                                str = str .. column
+                                str = str .. " "
+
+                                if #tostring(column) < 2 then str = str .. " " end
+                                return str
                             end,
-                            padding = { left = 1, right = 1 },
-                            separator = "",
+                            padding = { left = 0, right = 0 },
                         },
                     },
                 },
