@@ -98,6 +98,7 @@ vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.foldlevelstart = 999
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldmethod = "expr"
+vim.opt.foldtext = "" -- show original text with its syntax highlighting
 
 -- BACKUP AND SWAP
 vim.opt.swapfile = false
