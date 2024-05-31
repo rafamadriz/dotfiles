@@ -4,11 +4,12 @@ import = ["~/.config/alacritty/themes/tokyo-night.toml"]
 size = 12
 
 [font.normal]
+family = "Cascadia Mono"
 # family = "JetBrains Mono"
 # family = "Fira Code"
 # family = "Hack"
 # family = "Source Code Pro"
-family = "Cascadia Mono"
+# family = "Maple Mono"
 style = "Regular"
 
 [font.bold]
