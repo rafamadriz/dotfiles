@@ -60,7 +60,6 @@ return {
         },
         cmd = { "DiffviewOpen", "DiffviewFileHistory" },
         config = function()
-            local cb = require("diffview.config").diffview_callback
             require("diffview").setup {
                 view = {
                     default = {
@@ -78,7 +77,6 @@ return {
                     file_history_panel = {
                         { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
                     },
-                    option_panel = { { "n", "q", cb "close", { desc = "Close Diffview" } } },
                 },
             }
         end,
