@@ -60,6 +60,7 @@ return {
         },
         cmd = { "DiffviewOpen", "DiffviewFileHistory" },
         config = function()
+            local actions = require "diffview.actions"
             require("diffview").setup {
                 view = {
                     default = {
@@ -73,6 +74,18 @@ return {
                     view = { { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } } },
                     file_panel = {
                         { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+                        {
+                            "n",
+                            "<c-u>",
+                            actions.scroll_view(-0.25),
+                            { desc = "Scroll the view up" },
+                        },
+                        {
+                            "n",
+                            "<c-d>",
+                            actions.scroll_view(0.25),
+                            { desc = "Scroll the view down" },
+                        },
                     },
                     file_history_panel = {
                         { "n", "q", "<Cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
