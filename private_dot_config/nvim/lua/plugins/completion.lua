@@ -81,6 +81,7 @@ local config = function()
             },
             { name = "path" },
             { name = "nvim_lua" },
+            { name = "lazydev", group_index = 0 },
         },
         experimental = {
             ghost_text = true,
