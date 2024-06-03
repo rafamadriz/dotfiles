@@ -111,9 +111,9 @@ map("c", "<C-l>", "<Right>", { silent = false, desc = "Right" })
 map("c", "<C-a>", "<home>", { desc = "Move to end of line" })
 map("c", "<C-e>", "<end>", { desc = "Move to begining of line" })
 
--- Buffers
-map("n", "<leader>bs", ":update<CR>", { desc = "Save buffer" })
-map("v", "<leader>bs", "<ESC>:update<CR>gv", { desc = "Save buffer" })
+map("n", "<leader>;", "mmA;<ESC>`m", { desc = "Apend semicolon" })
+map("n", "<leader>,", "mmA,<ESC>`m", { desc = "Apend comma" })
+
 map("n", "<leader>bq", ":bdelete<CR>", { desc = "Quit buffer" })
 map("n", "<leader>bQ", ":write | silent %bd | silent e# | bd#<CR>", { desc = "Quit all buffers but current" })
 map("n", "<leader>b!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
