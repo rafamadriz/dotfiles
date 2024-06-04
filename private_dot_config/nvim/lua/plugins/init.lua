@@ -56,7 +56,7 @@ return {
         end,
         config = function()
             local leap = require "leap"
-            leap.opts.safe_labels = {}
+            -- leap.opts.safe_labels = {}
             leap.add_default_mappings()
             leap.init_highlight(true)
             leap.opts.special_keys.prev_target = "<backspace>"
