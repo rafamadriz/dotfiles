@@ -85,7 +85,7 @@ return {
                     },
                 },
 
-                extensions = { "quickfix", "neo-tree", "lazy", "oil", "mason", "fzf" },
+                extensions = { "quickfix", "man", "lazy", "oil", "mason", "fzf" },
             }
         end,
     },
