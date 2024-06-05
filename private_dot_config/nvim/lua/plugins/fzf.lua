@@ -66,6 +66,7 @@ M.keymaps = {
         desc = "Find files in directory of current buffer",
     },
     { "<leader>fg", "<cmd>FzfLua live_grep_glob<CR>", desc = "Grep project" },
+    { "<leader>fG", "<cmd>FzfLua lgrep_curbuf<CR>", desc = "Grep on current buffer" },
     {
         "<leader>fw",
         "<cmd>FzfLua grep_cword<CR>",
@@ -79,8 +80,7 @@ M.keymaps = {
     { "<leader>fQ", "<cmd>FzfLua quickfix_stack<CR>", desc = "Quickfix history" },
     { "<leader>`", "<cmd>FzfLua resume<CR>", desc = "Resume last picker" },
     -- buffers
-    { "<leader>bb", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
-    { "<leader>bg", "<cmd>FzfLua lgrep_curbuf<CR>", desc = "Grep on current buffer" },
+    { "<leader>b", "<cmd>FzfLua buffers<CR>", desc = "Buffers" },
     -- git
     { "<leader>gf", "<cmd>FzfLua git_files<CR>", desc = "Git files" },
     { "<leader>gb", "<cmd>FzfLua git_branches<CR>", desc = "Branches" },
