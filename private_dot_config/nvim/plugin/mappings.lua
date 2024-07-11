@@ -152,3 +152,13 @@ map({ "n", "t" }, "<C-Up>", function() resize(false, -2) end, { desc = "Resize u
 map({ "n", "t" }, "<C-Down>", function() resize(false, 2) end, { desc = "Resize down window horizontally" })
 map({ "n", "t" }, "<C-Left>", function() resize(true, -2) end, { desc = "Resize left window vertically" })
 map({ "n", "t" }, "<C-Right>", function() resize(true, 2) end, { desc = "Resize right window vertically" })
+
+-- Copy text to clipboard using codeblock format ```{ft}{content}```
+-- Source: https://www.reddit.com/r/neovim/comments/1dfvluw/share_your_favorite_settingsfeaturesexcerpts_from/
+vim.api.nvim_create_user_command("CopyCodeBlock", function(opts)
+    local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, true)
+    local content = table.concat(lines, "\n")
+    local result = string.format("```%s\n%s\n```", vim.bo.filetype, content)
+    vim.fn.setreg("+", result)
+    -- vim.notify 'Text copied to clipboard'
+end, { range = true })
