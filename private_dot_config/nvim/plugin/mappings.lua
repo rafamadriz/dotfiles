@@ -115,8 +115,8 @@ map("n", "<leader>;", "mmA;<ESC>`m", { desc = "Apend semicolon" })
 map("n", "<leader>,", "mmA,<ESC>`m", { desc = "Apend comma" })
 
 -- Save and delete buffers
-map("n", "<leader>s", ":update<CR>", { desc = "Save buffer" })
-map("v", "<leader>s", "<ESC>:update<CR>gv", { desc = "Save buffer" })
+map("n", "<leader>w", ":update<CR>", { desc = "Write buffer" })
+map("v", "<leader>w", "<ESC>:update<CR>gv", { desc = "Write buffer" })
 map("n", "<leader>q", ":bdelete<CR>", { desc = "Quit buffer" })
 map("n", "<leader>Q", ":write | silent %bd | silent e# | bd#<CR>", { desc = "Quit all buffers but current" })
 map("n", "<leader>!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
