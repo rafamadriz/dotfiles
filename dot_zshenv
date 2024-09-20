@@ -116,7 +116,6 @@ export ZDOTDIR=$HOME/.config/zsh
 export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export MANGOHUD=1
 
 # Default Apps
 export EDITOR="nvim"
