@@ -1,34 +1,25 @@
 return {
     "folke/which-key.nvim",
     lazy = false,
-    config = function()
-        local wk = require "which-key"
-
-        wk.setup {
-            operators = { gc = "Comments", gb = "Comments", ys = "Surround" },
-            key_labels = {
-                ["<space>"] = "SPC",
-                ["<cr>"] = "RET",
-                ["<tab>"] = "TAB",
+    opts = {
+        preset = "helix",
+        icons = { mappings = false, keys = { Space = "SPC" } },
+        spec = {
+            {
+                mode = { "n", "v" }, -- NORMAL and VISUAL mode
+                { "<leader>1", hidden = true },
+                { "<leader>2", hidden = true },
+                { "<leader>3", hidden = true },
+                { "<leader>4", hidden = true },
+                { "<leader>a", hidden = true },
+                { "<leader>b", group = "Buffer" },
+                { "<leader>d", group = "Debug" },
+                { "<leader>f", group = "Find" },
+                { "<leader>g", group = "Git" },
+                { "<leader>gy", group = "Link" },
+                { "<leader>l", group = "LSP" },
+                { "<leader>t", group = "Tasks" },
             },
-        }
-
-        local mappings = {
-            ["<leader>"] = {
-                ["f"] = { name = "Find" },
-                ["b"] = { name = "Buffer" },
-                ["g"] = { name = "Git", ["y"] = { name = "Link" } },
-                ["l"] = { name = "LSP" },
-                ["t"] = { name = "Tasks" },
-                ["d"] = { name = "Debug" },
-                ["a"] = "which_key_ignore",
-                ["1"] = "which_key_ignore",
-                ["2"] = "which_key_ignore",
-                ["3"] = "which_key_ignore",
-                ["4"] = "which_key_ignore",
-            },
-        }
-        wk.register(mappings, { mode = "n" })
-        wk.register(mappings, { mode = "v" })
-    end,
+        },
+    },
 }
