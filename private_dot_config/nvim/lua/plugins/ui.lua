@@ -23,7 +23,7 @@ return {
                         {
                             "filename",
                             path = 4,
-                            symbols = { modified = "", readonly = "[RO]" },
+                            symbols = { modified = "󰏫", readonly = "[RO]" },
                             color = { gui = "italic,bold" },
                         },
                     },
