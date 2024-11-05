@@ -1,0 +1,4 @@
+[".config/alacritty"]
+    type = "archive"
+    url = "https://github.com/alacritty/alacritty-theme/archive/refs/heads/master.zip"
+    stripComponents = 1
