@@ -84,7 +84,7 @@ local config = function()
             { name = "lazydev", group_index = 0 },
         },
         experimental = {
-            ghost_text = true,
+            ghost_text = false,
         },
     }
     cmp.setup.cmdline(":", {
