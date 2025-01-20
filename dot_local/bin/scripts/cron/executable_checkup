@@ -1,0 +1,14 @@
+#!/bin/env sh
+
+notify="notify-send --icon=system-software-install --app-name=Checkup --expire-time 3000 $1 $2"
+
+$notify "Repository sync" "Checking for packages updates."
+
+sudo pacman -Syyuw --noconfirm || $notify "Repository sync" "Error downloading updates."
+
+if pacman -Qu | grep -v "\[ignored\]"
+then
+    $notify "Repository Sync" "Updates available."
+else
+    $notify "Repository Sync"  "Sync complete. No new packages for update."
+fi
