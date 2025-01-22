@@ -33,6 +33,8 @@ export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
 # Haskell
 export GHCUP_INSTALL_BASE_PREFIX="$XDG_DATA_HOME"
 export PATH="$PATH":"$GHCUP_INSTALL_BASE_PREFIX"/.ghcup/bin
+# SQLite
+export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 # Notes database
 export ZK_NOTEBOOK_DIR=$HOME/Documents/notes/
 
