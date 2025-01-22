@@ -87,7 +87,7 @@ return {
     },
 
     -- Other useful tools
-    { "kevinhwang91/nvim-bqf", ft = "qf" },
+    { "kevinhwang91/nvim-bqf",           ft = "qf" },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
     {
         "NMAC427/guess-indent.nvim",
@@ -107,7 +107,7 @@ return {
     {
         "ThePrimeagen/harpoon",
         keys = {
-            { "<C-\\>", function() require("harpoon.ui").toggle_quick_menu() end },
+            { "<C-\\>",    function() require("harpoon.ui").toggle_quick_menu() end },
             { "<leader>a", function() require("harpoon.mark").add_file() end },
             { "<leader>1", function() require("harpoon.ui").nav_file(1) end },
             { "<leader>2", function() require("harpoon.ui").nav_file(2) end },

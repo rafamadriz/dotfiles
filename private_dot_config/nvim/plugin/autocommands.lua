@@ -62,16 +62,16 @@ aucmd({ "Filetype" }, {
     group = augroup("SetFormatOptions", { clear = true }),
     callback = function()
         vim.opt.formatoptions = {
-            ["1"] = true, -- Don't break a line after a one-letter word.
+            ["1"] = true,  -- Don't break a line after a one-letter word.
             ["2"] = false, -- Use indent from 2nd line of a paragraph
-            q = true, -- Continue comments with gq"
-            c = false, -- Insert current comment leader automatically
-            r = true, -- Continue comments when pressing Enter
-            o = false, -- Continue comments when pressing 'o' or 'O'
-            n = true, -- Recognize numbered lists
-            t = false, -- Autowrap lines using text width value
-            j = true, -- Remove a comment leader when joining lines.
-            l = true, -- When a line longer than 'textwidth', don't format it
+            q = true,      -- Continue comments with gq"
+            c = false,     -- Insert current comment leader automatically
+            r = true,      -- Continue comments when pressing Enter
+            o = false,     -- Continue comments when pressing 'o' or 'O'
+            n = true,      -- Recognize numbered lists
+            t = false,     -- Autowrap lines using text width value
+            j = true,      -- Remove a comment leader when joining lines.
+            l = true,      -- When a line longer than 'textwidth', don't format it
         }
     end,
 })
