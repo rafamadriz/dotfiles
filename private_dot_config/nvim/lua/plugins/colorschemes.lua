@@ -5,9 +5,9 @@ return {
         "rebelot/kanagawa.nvim",
         config = function()
             require("kanagawa").setup {
-                compile = true, -- enable compiling the colorscheme
+                compile = true,     -- enable compiling the colorscheme
                 dimInactive = true, -- dim inactive window `:h hl-NormalNC`
-                theme = "wave", -- options: wave, dragon, lotus
+                theme = "wave",     -- options: wave, dragon, lotus
                 background = {
                     dark = "wave",
                     light = "lotus",
@@ -23,13 +23,12 @@ return {
             vim.g.gruvbox_material_dim_inactive_windows = 1
             vim.g.gruvbox_material_better_performance = 1
             vim.g.gruvbox_material_foreground = "original" -- options: material, mix, original
-            vim.g.gruvbox_material_background = "medium" -- options: hard, medium, soft
+            vim.g.gruvbox_material_background = "medium"   -- options: hard, medium, soft
             vim.cmd.colorscheme "gruvbox-material"
         end,
     },
     {
         "folke/tokyonight.nvim",
-        lazy = false,
         config = function()
             require("tokyonight").setup {
                 style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
@@ -42,6 +41,7 @@ return {
     },
     {
         "rose-pine/neovim",
+        lazy = false,
         name = "rose-pine",
         config = function()
             require("rose-pine").setup {
