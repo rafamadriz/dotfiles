@@ -1,0 +1,8 @@
+[Unit]
+Description=Mailbox synchronization service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mbsync --verbose --config %h/.config/mbsync/mbsyncrc fastmail
