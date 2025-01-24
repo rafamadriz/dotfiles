@@ -29,7 +29,7 @@ return {
                 go = { "goimports" },
                 html = { "prettier" },
                 -- Use a sub-list to run only the first available formatter
-                javascript = { { "prettierd", "prettier" } },
+                javascript = { "prettierd", "prettier" },
                 javascriptreact = { "prettier" },
                 json = { "prettier" },
                 lua = { "stylua" },
