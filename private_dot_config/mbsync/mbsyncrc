@@ -1,0 +1,68 @@
+# Do not remove messages marked for deletion
+Expunge None
+# Do not remove deleted mailboxes
+Remove None
+# use the arrival date and time from the IMAP server for the original message
+CopyArrivalDate yes
+# You can see all the different ways to sync the mailboxes by going to the link
+# above, but this will sync from remote to local without propagating deletions.
+Sync PullNew
+# automatically create necessary mailboxes locally
+Create Near
+
+#############################################################################################
+#                                       Fastmail                                            #
+#############################################################################################
+# First section: remote IMAP account
+IMAPAccount fastmail
+Host imap.fastmail.com
+Port 993
+User rafa@rafaelmadriz.com
+PassCmd "kpass mbsync-fastmail"
+TLSType IMAPS
+# TLSVersions TLSv1.2
+
+IMAPStore fastmail-remote
+Account fastmail
+
+# This section describes the local storage
+MaildirStore fastmail-local
+Path ~/.local/share/maildir/fastmail/
+Inbox ~/.local/share/maildir/fastmail/Inbox
+# The SubFolders option allows to represent all
+# IMAP subfolders as local subfolders
+SubFolders Verbatim
+
+# This section a "channel", a connection between remote and local
+Channel fastmail
+Far :fastmail-remote:
+Near :fastmail-local:
+# You can control what gets synced. '*' syncs everything.
+Patterns *
+# keeps the mailbox sync state files in the local mailbox
+SyncState *
+
+#############################################################################################
+#                                       Gmail                                               #
+#############################################################################################
+IMAPAccount gmail
+Host imap.gmail.com
+User rafamadrizjr@gmail.com
+PassCmd "kpass mbsync-gmail"
+TLSType IMAPS
+Pipelinedepth 1
+Timeout 60
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.local/share/maildir/gmail/
+Inbox ~/.local/share/maildir/gmail/Inbox
+SubFolders Verbatim
+
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns *
+SyncState *

@@ -1,0 +1,12 @@
+[Unit]
+Description=Mailbox synchronization timer
+
+[Timer]
+# The timer will still start 2 minutes after the system boots up.
+OnBootSec=2m
+; This triggers the mbsync.service 15 minutes after the service was last activated.
+OnUnitActiveSec=15m
+Unit=mbsync.service
+
+[Install]
+WantedBy=timers.target
