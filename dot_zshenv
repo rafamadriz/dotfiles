@@ -111,6 +111,9 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
 export DOTFILES="${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi"
 export NVIMRC="${DOTFILES:-$HOME/.local/share/chezmoi}/private_dot_config/nvim"
 
+# MAILDIR
+export MAILDIR="$XDG_DATA_HOME/maildir"
+
 # ZSH
 export ZDOTDIR=$HOME/.config/zsh
 
