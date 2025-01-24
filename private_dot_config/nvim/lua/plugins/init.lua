@@ -87,6 +87,11 @@ return {
     },
 
     -- Other useful tools
+    {
+        "OXY2DEV/markview.nvim",
+        ft = "markdown"
+
+    },
     { "kevinhwang91/nvim-bqf",           ft = "qf" },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
     {
