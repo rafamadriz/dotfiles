@@ -14,7 +14,7 @@ vim.opt.diffopt = {
     "filler",
     "closeoff",
     "vertical",
-    "iwhite",
+    -- "iwhite",
     "hiddenoff",
     "algorithm:histogram",
     "indent-heuristic",
