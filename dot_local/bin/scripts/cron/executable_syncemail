@@ -1,0 +1,20 @@
+#!/bin/env sh
+
+[ -z "{$MAILDIR}" ] && mkdir -p "$XDG_DATA_HOME/maildir/{fastmail,gmail}" && MAILDIR="$XDG_DATA_HOME/maildir"
+
+# Keep local Archive of Trash and Spam
+[ ! -d "$MAILDIR/fastmail/TrashArchive" ] && mkdir -p "$MAILDIR/fastmail/TrashArchive"
+
+# --recursive: recurse into directories
+# --links: copy symlinks as symlinks
+# -p: preserve permissions
+# --times: preserve modification times
+# --group: preserve group
+# --owner: preserve owner
+# --progress: show progress during transfer
+# --ignore-existing: ignore files that already exist on receiving side
+# --human-readable: output numbers in a human-readable format
+rsync --recursive --links -p --times --group --owner --progress --ignore-existing --human-readable $MAILDIR/fastmail/{Trash,Spam}/* $MAILDIR/fastmail/TrashArchive || exit 1
+
+# Sync mailboxes
+mbsync --config "$XDG_CONFIG_HOME/mbsync/mbsyncrc" --verbose fastmail

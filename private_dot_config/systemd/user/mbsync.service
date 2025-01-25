@@ -5,4 +5,4 @@ After=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mbsync --verbose --config %h/.config/mbsync/mbsyncrc fastmail
+ExecStart=%h/.local/bin/scripts/cron/syncemail
