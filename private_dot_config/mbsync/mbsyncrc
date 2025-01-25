@@ -1,14 +1,16 @@
-# Do not remove messages marked for deletion
-Expunge None
+# Make sure emails are moved into the correct folders after downloaded if moved
+# in Far side, when are keeping a local Archive of Trash.
+Expunge Near
 # Do not remove deleted mailboxes
 Remove None
 # use the arrival date and time from the IMAP server for the original message
 CopyArrivalDate yes
-# You can see all the different ways to sync the mailboxes by going to the link
-# above, but this will sync from remote to local without propagating deletions.
-Sync PullNew
+# propagate changes from far to near side.
+Sync Pull
 # automatically create necessary mailboxes locally
 Create Near
+# keeps the mailbox sync state files in the local mailbox
+SyncState *
 
 #############################################################################################
 #                                       Fastmail                                            #
@@ -38,7 +40,7 @@ Channel fastmail
 Far :fastmail-remote:
 Near :fastmail-local:
 # You can control what gets synced. '*' syncs everything.
-Patterns *
+Patterns * !TrashArchive
 # keeps the mailbox sync state files in the local mailbox
 SyncState *
 
