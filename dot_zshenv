@@ -35,6 +35,8 @@ export GHCUP_INSTALL_BASE_PREFIX="$XDG_DATA_HOME"
 export PATH="$PATH":"$GHCUP_INSTALL_BASE_PREFIX"/.ghcup/bin
 # SQLite
 export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
+# W3M
+export W3M_DIR="$XDG_STATE_HOME/w3m"
 # Notes database
 export ZK_NOTEBOOK_DIR=$HOME/Documents/notes/
 
@@ -126,6 +128,7 @@ export LC_ALL=en_US.UTF-8
 export EDITOR="nvim"
 export VISUAL="nvim"
 export MANPAGER='nvim +Man!'
+export MANWIDTH=120
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VIDEO="mpv"
