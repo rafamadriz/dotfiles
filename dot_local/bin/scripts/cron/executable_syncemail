@@ -14,7 +14,7 @@
 # --progress: show progress during transfer
 # --ignore-existing: ignore files that already exist on receiving side
 # --human-readable: output numbers in a human-readable format
-rsync --recursive --links -p --times --group --owner --progress --ignore-existing --human-readable $MAILDIR/fastmail/{Trash,Spam}/* $MAILDIR/fastmail/TrashArchive || exit 1
+rsync --verbose --recursive --links -p --times --group --owner --progress --ignore-existing --human-readable $MAILDIR/fastmail/{Trash,Spam}/* $MAILDIR/fastmail/TrashArchive || exit 1
 
 # Sync mailboxes
 mbsync --config "$XDG_CONFIG_HOME/mbsync/mbsyncrc" --verbose fastmail
