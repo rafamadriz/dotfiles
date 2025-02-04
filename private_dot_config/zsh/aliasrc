@@ -4,9 +4,9 @@
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias dir='dir --color=auto'
-alias ls='ls -Fh --color=always'
-alias ll='ls -Flh --color=always'
-alias lla='ls -FlAh --color=always'
+alias ls='ls -Fh --color=auto'
+alias ll='ls -Flh --color=auto'
+alias lla='ls -FlAh --color=auto'
 alias d='dirs -v'
 
 for index in {1..9}; do
