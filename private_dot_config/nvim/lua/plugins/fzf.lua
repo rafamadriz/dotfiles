@@ -19,6 +19,7 @@ M.config = {
         fzf_opts = {
             ["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-files-history",
         },
+        fd_opts = [[--color=never --type f --type l --exclude .git --hidden]],
         cwd_prompt = false,
     },
     grep = {
