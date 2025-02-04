@@ -28,6 +28,38 @@ local lsp_symbols = {
 
 local config = function()
     local cmp = require "cmp"
+
+    -- Stolen from wincent https://github.com/wincent/wincent/commit/5d6641ae1a36199a11529a8925b2f7d9516d9688
+    -- Until https://github.com/hrsh7th/nvim-cmp/issues/1716
+    -- (cmp.ConfirmBehavior.MatchSuffix) gets implemented, use this local wrapper
+    -- to choose between `cmp.ConfirmBehavior.Insert` and
+    -- `cmp.ConfirmBehavior.Replace`:
+    local confirm = function(entry)
+        local behavior = cmp.ConfirmBehavior.Replace
+        if entry then
+            local completion_item = entry.completion_item
+            local newText = ""
+            if completion_item.textEdit then
+                newText = completion_item.textEdit.newText
+            elseif type(completion_item.insertText) == "string" and completion_item.insertText ~= "" then
+                newText = completion_item.insertText
+            else
+                newText = completion_item.word or completion_item.label or ""
+            end
+
+            -- How many characters will be different after the cursor position if we
+            -- replace?
+            local diff_after = math.max(0, entry.replace_range["end"].character + 1) - entry.context.cursor.col
+
+            -- Does the text that will be replaced after the cursor match the suffix
+            -- of the `newText` to be inserted? If not, we should `Insert` instead.
+            if entry.context.cursor_after_line:sub(1, diff_after) ~= newText:sub(-diff_after) then
+                behavior = cmp.ConfirmBehavior.Insert
+            end
+        end
+        cmp.confirm { select = true, behavior = behavior }
+    end
+
     cmp.setup {
         view = {
             entries = {
@@ -50,7 +82,14 @@ local config = function()
             ["<C-d>"] = cmp.mapping.scroll_docs(4),
             ["<C-Space>"] = cmp.mapping.complete(),
             ["<C-e>"] = cmp.mapping.abort(),
-            ["<C-y>"] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Insert, select = true },
+            ["<C-y>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    local entry = cmp.get_selected_entry()
+                    confirm(entry)
+                else
+                    fallback()
+                end
+            end, { "i", "s" }),
         },
         formatting = {
             format = function(entry, item)
