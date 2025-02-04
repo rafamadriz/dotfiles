@@ -89,10 +89,9 @@ return {
     -- Other useful tools
     {
         "OXY2DEV/markview.nvim",
-        ft = "markdown"
-
+        ft = "markdown",
     },
-    { "kevinhwang91/nvim-bqf",           ft = "qf" },
+    { "kevinhwang91/nvim-bqf", ft = "qf" },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
     {
         "NMAC427/guess-indent.nvim",
@@ -108,16 +107,5 @@ return {
             vim.g.undotree_SplitWidth = 45
             vim.g.undotree_SetFocusWhenToggle = 1
         end,
-    },
-    {
-        "ThePrimeagen/harpoon",
-        keys = {
-            { "<C-\\>",    function() require("harpoon.ui").toggle_quick_menu() end },
-            { "<leader>a", function() require("harpoon.mark").add_file() end },
-            { "<leader>1", function() require("harpoon.ui").nav_file(1) end },
-            { "<leader>2", function() require("harpoon.ui").nav_file(2) end },
-            { "<leader>3", function() require("harpoon.ui").nav_file(3) end },
-            { "<leader>4", function() require("harpoon.ui").nav_file(4) end },
-        },
     },
 }
