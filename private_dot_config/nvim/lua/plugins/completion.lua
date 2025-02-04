@@ -1,30 +1,4 @@
-local lsp_symbols = {
-    Class = "   Class",
-    Color = "   Color",
-    Constant = " 󰏿  Constant",
-    Constructor = "   Constructor",
-    Enum = " ❐  Enum",
-    EnumMember = "   EnumMember",
-    Event = "   Event",
-    Field = " 󰇽  Field",
-    File = "   File",
-    Folder = "   Folder",
-    Function = "   Function",
-    Interface = "   Interface",
-    Keyword = "   Keyword",
-    Method = "   Method",
-    Module = "   Module",
-    Operator = "   Operator",
-    Property = "   Property",
-    Reference = "   Reference",
-    Snippet = " ﬌  Snippet",
-    Struct = "   Struct",
-    Text = "   Text",
-    TypeParameter = "   TypeParameter",
-    Unit = "   Unit",
-    Value = "   Value",
-    Variable = "[] Variable",
-}
+-- NOTE: Keep notice of https://github.com/Saghen/blink.cmp as a simplier alternative to cmp
 
 local config = function()
     local cmp = require "cmp"
@@ -93,7 +67,6 @@ local config = function()
         },
         formatting = {
             format = function(entry, item)
-                item.kind = lsp_symbols[item.kind]
                 item.menu = ({
                     nvim_lsp = "[LSP]",
                     path = "[F]",
@@ -106,11 +79,10 @@ local config = function()
         },
         sources = {
             { name = "nvim_lsp_signature_help" },
-            { name = "nvim_lsp",               priority = 1000, max_item_count = 10 },
-            { name = "luasnip",                priority = 15 },
+            { name = "nvim_lsp", priority = 1000, max_item_count = 10 },
+            { name = "luasnip", priority = 15 },
             {
                 name = "buffer",
-                keyword_length = 3,
                 max_item_count = 5,
                 priority = 1,
                 option = {
