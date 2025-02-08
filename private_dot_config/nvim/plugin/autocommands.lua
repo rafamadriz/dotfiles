@@ -49,6 +49,18 @@ aucmd({ "TermOpen" }, {
     end,
 })
 
+-- source: https://github.com/jghauser/mkdir.nvim
+aucmd("BufWritePre", {
+    pattern = "*",
+    desc = "Automatically create missing directories when saving file",
+    group = augroup("Mkdir", { clear = true }),
+    callback = function()
+        local dir = vim.fn.expand "<afile>:p:h"
+
+        if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, "p") end
+    end,
+})
+
 -- Use aucmd to set formatoptions, otherwise if I put them in options.lua it
 -- will get overrule by filetype plugin (super annoying). The other option is to
 -- use after/ftplugin but I would have to set formatoptions for every single
