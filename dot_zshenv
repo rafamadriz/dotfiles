@@ -49,12 +49,12 @@ export ZK_NOTEBOOK_DIR=$HOME/Documents/notes/
 export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
 
 # Android
-export ANDROID_SDK_ROOT="$XDG_CONFIG_HOME"/android
 export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
 export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
 export ANDROID_HOME="$XDG_DATA_HOME"/android
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
 
 # Disable files
 export LESSHISTFILE=-
