@@ -1,7 +1,6 @@
 return {
     -- Required by others
     { "nvim-lua/plenary.nvim" },
-    { "nvim-tree/nvim-web-devicons" },
 
     -- Package manager
     {
