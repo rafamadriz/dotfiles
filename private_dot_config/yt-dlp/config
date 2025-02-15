@@ -1,0 +1,16 @@
+# filename template
+--output "%(title)s.%(ext)s"
+
+# prevent downloading live chat as a subtitle track
+--compat-options no-live-chat
+
+# prevent listing unavailable videos for YouTube playlists
+--compat-options no-youtube-unavailable-videos
+
+--sponsorblock-mark all
+--embed-metadata
+--sub-langs all
+--embed-subs
+--embed-thumbnail
+--convert-thumbnails jpg
+--embed-chapters
