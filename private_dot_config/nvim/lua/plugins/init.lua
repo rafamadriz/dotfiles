@@ -87,6 +87,15 @@ return {
 
     -- Other useful tools
     {
+        "zk-org/zk-nvim",
+        lazy = false,
+        config = function()
+            require("zk").setup {
+                picker = "fzf_lua",
+            }
+        end,
+    },
+    {
         "OXY2DEV/markview.nvim",
         ft = "markdown",
     },
