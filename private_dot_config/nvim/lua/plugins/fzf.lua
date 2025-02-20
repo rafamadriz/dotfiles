@@ -15,7 +15,7 @@ M.config = {
         ["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-history",
     },
     files = {
-        formatter = "path.filename_first",
+        -- formatter = "path.filename_first",
         fzf_opts = {
             ["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-files-history",
         },
@@ -27,7 +27,7 @@ M.config = {
     grep = {
         -- debug = true,
         multiline = 2, -- fzf >= 0.53.0
-        formatter = "path.filename_first",
+        -- formatter = "path.filename_first",
         winopts = {
             width = 0.8, -- window width
             height = 0.9,
