@@ -2,12 +2,12 @@ local M = {}
 
 M.config = {
     winopts = {
-        height = 0.45, -- window height
+        height = 0.60, -- window height
         width = 0.55, -- window width
         row = 0.35, -- window row position (0=top, 1=bottom)
         col = 0.50, -- window col position (0=left, 1=right)
         preview = {
-            hidden = "hidden",
+            -- hidden = "hidden",
             layout = "vertical",
         },
     },
@@ -21,6 +21,8 @@ M.config = {
         },
         fd_opts = [[--color=never --type f --type l --exclude .git --hidden]],
         cwd_prompt = false,
+        previewer = { toggle_behavior = "extend" },
+        winopts = { preview = { hidden = "hidden" } },
     },
     grep = {
         -- debug = true,
@@ -28,6 +30,7 @@ M.config = {
         formatter = "path.filename_first",
         winopts = {
             width = 0.8, -- window width
+            height = 0.9,
         },
         rg_glob = true,
         rg_opts = [[--column --hidden --glob "!**/.git/**" ]]
@@ -44,6 +47,7 @@ M.config = {
             -- If no separator is detected will return the original query
             return (regex or query), flags
         end,
+        previewer = { toggle_behavior = "extend" },
     },
     keymap = {
         fzf = {
