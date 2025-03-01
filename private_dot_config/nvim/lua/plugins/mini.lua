@@ -127,6 +127,7 @@ return {
             M.git()
             require("mini.align").setup {}
             require("mini.icons").setup {}
+            require("mini.animate").setup()
             require("mini.statusline").setup {
                 content = { active = M.statusline },
             }
