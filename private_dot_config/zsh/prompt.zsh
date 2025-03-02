@@ -120,7 +120,18 @@ function fill-line() {
 function set-prompt() {
   emulate -L zsh
 
-  precmd() { print "" }
+  precmd() {
+    print ""
+
+    # Get the most recent command
+    local last_cmd="$(fc -ln -1)"
+
+    # Check if the command starts with a space (ignore it if so)
+    if [[ -n "$last_cmd" && "${last_cmd:0:1}" != " " && "$(id -u)" -ne 0 ]]; then
+        printf "%s \x1F %s \x1F %s\n" "$(date "+%Y-%m-%d.%H:%M:%S")" "$(pwd)" "$last_cmd" >> $XDG_DATA_HOME/zsh/zsh-history-$HOST.log
+    fi
+  }
+
   local top_left="%F{blue}%~%f $vcs_info_msg_0_ "
   local bottom_left='%B%F{%(?.green.red)}%(#.#.❯)%f%b '
 
