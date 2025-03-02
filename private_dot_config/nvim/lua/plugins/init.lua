@@ -1,3 +1,6 @@
+-- plugins to check in the future:
+-- https://github.com/MagicDuck/grug-far.nvim
+-- https://github.com/Saghen/blink.cmp
 return {
     -- Required by others
     { "nvim-lua/plenary.nvim" },
@@ -97,7 +100,7 @@ return {
     },
     {
         "OXY2DEV/markview.nvim",
-        ft = "markdown",
+        lazy = false,
     },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
