@@ -1,4 +1,10 @@
 [".config/alacritty"]
-    type = "archive"
-    url = "https://github.com/alacritty/alacritty-theme/archive/refs/heads/master.zip"
-    stripComponents = 1
+type = "archive"
+url = "https://github.com/alacritty/alacritty-theme/archive/refs/heads/master.zip"
+stripComponents = 1
+refreshPeriod = "672h"
+
+[".config/ghostty/shaders"]
+type = "git-repo"
+url = "https://github.com/hackr-sh/ghostty-shaders.git"
+refreshPeriod = "672h"
