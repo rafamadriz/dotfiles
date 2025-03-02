@@ -21,7 +21,6 @@ M.config = {
         },
         fd_opts = [[--color=never --type f --type l --exclude .git --hidden]],
         cwd_prompt = false,
-        previewer = { toggle_behavior = "extend" },
         winopts = { preview = { hidden = "hidden" } },
     },
     grep = {
