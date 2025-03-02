@@ -40,7 +40,7 @@ export SQLITE_HISTORY=$XDG_DATA_HOME/sqlite_history
 # W3M
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 # Notes database
-export ZK_NOTEBOOK_DIR=$HOME/Documents/notes/
+export ZK_NOTEBOOK_DIR="$HOME/Documents/notes"
 # Recoll
 export RECOLL_CONFDIR="$XDG_CONFIG_HOME/recoll"
 
@@ -83,11 +83,21 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GPG_TTY=$(tty)
 
 # FZF
-FZF_BINDS="--bind 'f4:toggle-preview,shift-down:preview-half-page-down,shift-up:preview-half-page-up,alt-a:toggle-all'"
-FZF_DISPLAY="--layout=reverse --border=sharp --multi --height=60%"
+FZF_BINDS="--bind f4:toggle-preview \
+ --bind ctrl-d:preview-half-page-down \
+ --bind ctrl-u:preview-half-page-up \
+ --bind 'ctrl-y:execute-silent(wl-copy {})' \
+ --bind alt-a:toggle-all \
+ --bind ctrl-n:down \
+ --bind ctrl-p:up \
+ --bind ctrl-j:next-history \
+ --bind ctrl-k:previous-history \
+ --history='$HOME/.local/share/fzf_history'
+ "
+FZF_DISPLAY="--layout=reverse --border=bold --multi --height=60% --style=full"
 
 if [ -x "$(command -v bat)" ]; then
-    FZF_PREVIEW="--preview 'bat --color=always --line-range :50 {}'"
+    FZF_PREVIEW="--preview 'bat --color=always --line-range :50 {}' --preview-border=bold"
 else
     FZF_PREVIEW="--preview 'cat {}'"
 fi
@@ -96,10 +106,10 @@ if [ -x "$(command -v fd)" ]; then
     FD_COMMAND='fd --strip-cwd-prefix --hidden --exclude=\*.git/\* --type=file'
     FZF_T_OPTS="
         --bind 'ctrl-g:transform:[[ ! \$FZF_PROMPT == \"  > \" ]] &&
-        echo \"rebind(ctrl-g)+change-prompt(  > )+change-header(:: ctrl-g to Respect .gitignore)+reload($FD_COMMAND --no-ignore)\" ||
-        echo \"rebind(ctrl-g)+change-prompt(ig> )+change-header(:: ctrl-g to Disable .gitignore)+reload($FD_COMMAND)\"' \
+        echo \"rebind(ctrl-g)+change-prompt(  > )+reload($FD_COMMAND --no-ignore)\" ||
+        echo \"rebind(ctrl-g)+change-prompt(ig> )+reload($FD_COMMAND)\"' \
         --prompt 'ig> '
-        --header ':: ctrl-g to Disable .gitignore'
+        --header '/ CTRL-G .gitignore / CTRL-Y copy /'
     "
 else
     FZF_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
