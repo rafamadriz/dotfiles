@@ -1,10 +1,12 @@
-general.import = ["~/.config/alacritty/themes/tokyo-night.toml"]
+general.import = ["~/.config/alacritty/themes/vesper.toml"]
 
 [font]
 size = 12
 
 [font.normal]
-family = "Cascadia Mono"
+# family = "0xProto"
+family = "CommitMono"
+# family = "Cascadia Mono"
 # family = "JetBrains Mono"
 # family = "Fira Code"
 # family = "Hack"
