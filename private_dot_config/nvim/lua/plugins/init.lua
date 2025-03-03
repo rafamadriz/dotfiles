@@ -21,16 +21,6 @@ return {
         enabled = vim.fn.has "nvim-0.10.0" == 1,
     },
     {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        config = function()
-            require("nvim-autopairs").setup {
-                disable_filetype = { "vim" },
-                map_c_w = true, -- map <c-w> to delete a pair if possible
-            }
-        end,
-    },
-    {
         "kylechui/nvim-surround",
         keys = {
             "ys",
@@ -99,8 +89,8 @@ return {
         end,
     },
     {
-        "OXY2DEV/markview.nvim",
-        lazy = false,
+        "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown" },
     },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
