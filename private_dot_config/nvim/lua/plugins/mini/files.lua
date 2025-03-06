@@ -68,6 +68,11 @@ local xdg_open = function()
     os.execute("xdg-open " .. path)
 end
 
+local open_trash = function()
+    local trash = vim.fn.stdpath "data" .. "/mini.files/trash"
+    files.open(trash)
+end
+
 M.setup = function()
     files.setup {
         options = {
@@ -111,6 +116,7 @@ M.setup = function()
             vim.keymap.set("n", "gy", yank_path, { buffer = b, desc = "Yank path" })
             vim.keymap.set("n", "g:", run_cmd, { buffer = b, desc = "Run shell cmd on entry" })
             vim.keymap.set("n", "gx", xdg_open, { buffer = b, desc = "Open with system utility" })
+            vim.keymap.set("n", "g\\", open_trash, { buffer = b, desc = "Open trash folder" })
         end,
     })
 end
