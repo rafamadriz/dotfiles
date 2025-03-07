@@ -128,7 +128,7 @@ function set-prompt() {
 
     # Check if the command starts with a space (ignore it if so)
     if [[ -n "$last_cmd" && "${last_cmd:0:1}" != " " && "$(id -u)" -ne 0 ]]; then
-        printf "%s \x1F %s \x1F %s\n" "$(date "+%Y-%m-%d.%H:%M:%S")" "$(pwd)" "$last_cmd" >> $XDG_DATA_HOME/zsh/zsh-history-$HOST.log
+        printf "%s \x1F %s \x1F %s\n" "$(date "+%Y-%m-%d.%H:%M:%S")" "$(pwd)" "$last_cmd" >> $XDG_DATA_HOME/zsh/zsh-history-$HOSTNAME.log
     fi
   }
 
