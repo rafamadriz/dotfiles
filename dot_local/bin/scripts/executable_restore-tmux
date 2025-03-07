@@ -1,0 +1,6 @@
+#!/bin/env sh
+
+# https://wiki.archlinux.org/title/tmux#Start_tmux_on_every_shell_login
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    tmux new-session -A -s main >/dev/null 2>&1
+fi

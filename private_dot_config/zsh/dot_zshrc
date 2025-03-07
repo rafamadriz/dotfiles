@@ -57,6 +57,6 @@ zvm_after_init() {
 [ -f $PLUG_DIR/colored-man-pages.zsh ] && source $PLUG_DIR/colored-man-pages.zsh
 
 # https://wiki.archlinux.org/title/tmux#Start_tmux_on_every_shell_login
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-    tmux new-session -A -s ${USER} >/dev/null 2>&1
-fi
+# if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+#     tmux new-session -A -s ${USER} >/dev/null 2>&1
+# fi

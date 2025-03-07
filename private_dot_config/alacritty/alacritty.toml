@@ -25,6 +25,9 @@ style = "Italic"
 [font.bold_italic]
 style = "Bold Italic"
 
+[terminal.shell]
+program = "restore-tmux"
+
 [mouse]
 hide_when_typing = true
 
