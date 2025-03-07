@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+#
+# Neovim bootloader to change configs
+# From: https://www.youtube.com/watch?v=LkHjJlSgKZY
+
+choose_config() {
+	all_configs="LazyVim default"
+	selected=$(printf "%s" "$all_configs" | tr ' ' '\n' | fzf --prompt="Neovim config " --height=~50% --layout=reverse --border)
+	if [ -z "$selected" ]; then
+		printf "%s\n" "Nothing selected"
+		return 0
+	elif [ "$selected" = "default" ]; then
+		selected=""
+	fi
+	NVIM_APPNAME=$selected nvim "$@"
+}
+
+choose_config "$@"
