@@ -49,15 +49,27 @@ aucmd({ "TermOpen" }, {
     end,
 })
 
--- source: https://github.com/jghauser/mkdir.nvim
+-- source: https://github.com/tsakirist/dotfiles/blob/7d3454a57679e5ba1c8ce4273bbed3eb737bb99c/nvim/lua/tt/autocommands.lua#L117-L142
 aucmd("BufWritePre", {
     pattern = "*",
     desc = "Automatically create missing directories when saving file",
     group = augroup("Mkdir", { clear = true }),
-    callback = function()
-        local dir = vim.fn.expand "<afile>:p:h"
+    callback = function(event)
+        ---Checks whether the autocommand should run
+        ---@param path string
+        ---@return boolean
+        local function is_excluded(path)
+            for _, pattern in ipairs { "^oil://" } do
+                if path:find(pattern) then return true end
+            end
+            return false
+        end
 
-        if vim.fn.isdirectory(dir) == 0 then vim.fn.mkdir(dir, "p") end
+        local full_path = event.match
+        if is_excluded(full_path) then return end
+
+        local directory = vim.fn.fnamemodify(full_path, ":p:h")
+        vim.fn.mkdir(directory, "p")
     end,
 })
 

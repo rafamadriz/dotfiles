@@ -62,7 +62,6 @@ return {
             M.operators()
             M.notify()
             M.git()
-            require("plugins.mini.files").setup()
             require("plugins.mini.statusline").setup()
             require("mini.align").setup {}
             require("mini.icons").setup {}
