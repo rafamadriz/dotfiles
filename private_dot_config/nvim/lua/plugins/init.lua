@@ -91,6 +91,9 @@ return {
     {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown" },
+        opts = {
+            checkbox = { checked = { scope_highlight = "@markup.strikethrough" } },
+        },
     },
     { "kevinhwang91/nvim-bqf", ft = "qf" },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
