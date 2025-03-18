@@ -2,6 +2,7 @@
 Description=Check for package updates and notify user
 Wants=network-online.target
 After=network-online.target
+OnFailure=emailnotification@%n.service
 
 [Service]
 Type=oneshot
