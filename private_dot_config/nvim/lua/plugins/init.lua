@@ -89,6 +89,20 @@ return {
         end,
     },
     {
+        "folke/zen-mode.nvim",
+        ft = "markdown",
+        opts = {
+            window = {
+                width = 90,
+                options = {
+                    number = false,
+                    relativenumber = false,
+                    signcolumn = "no",
+                },
+            },
+        },
+    },
+    {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = { "markdown" },
         opts = {
