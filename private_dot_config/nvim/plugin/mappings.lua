@@ -162,3 +162,54 @@ vim.api.nvim_create_user_command("CopyCodeBlock", function(opts)
     vim.fn.setreg("+", result)
     -- vim.notify 'Text copied to clipboard'
 end, { range = true })
+
+-- jump to next/prev file
+local navigate_files = function(direction)
+    local current_file = vim.fn.expand "%:p"
+    local current_dir = vim.fn.expand "%:p:h"
+
+    -- get all files in the directory, sorted
+    local files = vim.fn.glob(current_dir .. "/*", false, true)
+    files = vim.tbl_filter(function(file) return vim.fn.isdirectory(file) == 0 end, files)
+    table.sort(files)
+
+    if #files == 0 then
+        -- no files in directory
+        return
+    end
+
+    local target_index
+
+    if direction == "first" then
+        target_index = 1
+    elseif direction == "last" then
+        target_index = #files
+    else
+        local index = vim.fn.index(files, current_file) + 1
+        if index <= 0 then
+            return
+        end
+
+        if direction == "next" then
+            target_index = index + 1
+            if target_index > #files then
+                return
+            end
+        elseif direction == "prev" then
+            target_index = index - 1
+            if target_index < 1 then
+                return
+            end
+        else
+            -- Invalid direction
+            return
+        end
+    end
+
+    vim.cmd("e " .. files[target_index])
+end
+
+map("n", "[f", function() navigate_files "prev" end, { desc = "Previous file in directory" })
+map("n", "]f", function() navigate_files "next" end, { desc = "Next file in directory" })
+map("n", "[F", function() navigate_files "first" end, { desc = "First file in directory" })
+map("n", "]F", function() navigate_files "last" end, { desc = "Last file in directory" })
