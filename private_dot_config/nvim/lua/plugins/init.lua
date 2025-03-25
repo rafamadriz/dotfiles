@@ -80,6 +80,28 @@ return {
 
     -- Other useful tools
     {
+        "CopilotC-Nvim/CopilotChat.nvim",
+        cmd = {
+            "CopilotChatOpen",
+            "CopilotChatToggle",
+            "CopilotChatPrompts",
+            "CopilotChatCommit",
+            "CopilotChatLoad",
+            "CopilotChatExplain",
+            "CopilotChatReview",
+        },
+        dependencies = { { "zbirenbaum/copilot.lua", opts = {} } },
+        build = "make tiktoken", -- Only on MacOS or Linux
+        opts = {
+            model = "claude-3.7-sonnet",
+            mappings = {
+                close = {
+                    insert = "",
+                },
+            },
+        },
+    },
+    {
         "zk-org/zk-nvim",
         lazy = false,
         config = function()
