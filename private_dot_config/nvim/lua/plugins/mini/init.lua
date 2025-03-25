@@ -65,7 +65,6 @@ return {
             require("plugins.mini.statusline").setup()
             require("mini.align").setup {}
             require("mini.icons").setup {}
-            require("mini.animate").setup()
         end,
     },
 }
