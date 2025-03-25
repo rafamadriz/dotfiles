@@ -3,7 +3,12 @@
 if [ $# -eq 1 ]; then
 	selected=$1
 else
-	selected=$(find ~/code -mindepth 1 -maxdepth 1 -type d | fzf --preview 'tree -L 2 -C {} | head -50')
+	selected=$(
+		(
+			find ~/code -mindepth 1 -maxdepth 1 -type d
+			printf "%s\n" "$ZK_NOTEBOOK_DIR" "$DOTFILES"
+		) | fzf --preview 'tree -L 2 -C {} | head -50'
+	)
 fi
 
 if [ -z "$selected" ]; then

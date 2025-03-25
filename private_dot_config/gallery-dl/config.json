@@ -1,0 +1,34 @@
+{
+  "extractor": {
+    "base-directory": "~/Pictures/random/gallery-dl",
+    "archive": "~/Pictures/random/gallery-dl/db/archive.sqlite3"
+  },
+  "postprocessors": [
+    {
+      "name": "exec",
+      "async": false,
+      "archive": "~/Pictures/random/gallery-dl/db/optimization-png.sqlite3",
+      "archive-prefix": "{category}, ",
+      "archive-format": "{id}.{extension!l}",
+      "archive-pragma": ["journal_mode=WAL", "synchronous=NORMAL"],
+      "command": "oxipng -o max --strip safe --force --preserve {}",
+      "event": "after",
+      "filter": "extension == 'png'",
+      "mtime": true,
+      "blacklist": null
+    },
+    {
+      "name": "exec",
+      "async": false,
+      "archive": "~/Pictures/random/gallery-dl/db/optimization-jpg.sqlite3",
+      "archive-prefix": "{category}, ",
+      "archive-format": "{id}.{extension!l}",
+      "archive-pragma": ["journal_mode=WAL", "synchronous=NORMAL"],
+      "command": "exiftran -ai {} && jpegtran -copy none -perfect -optimize -outfile {} {}",
+      "event": "after",
+      "filter": "extension == 'jpg'",
+      "mtime": true,
+      "blacklist": null
+    }
+  ]
+}
