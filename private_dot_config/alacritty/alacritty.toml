@@ -25,6 +25,10 @@ style = "Italic"
 [font.bold_italic]
 style = "Bold Italic"
 
+[window]
+# opacity = 0.9
+startup_mode = "Maximized"
+
 [terminal.shell]
 program = "restore-tmux"
 
