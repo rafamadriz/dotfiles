@@ -95,6 +95,7 @@ FZF_BINDS="--bind f4:toggle-preview \
  --bind ctrl-k:previous-history \
  --history='$HOME/.local/share/fzf_history'
  "
+
 FZF_DISPLAY="--layout=reverse --border=bold --multi --height=60% --style=full"
 
 if [ -x "$(command -v bat)" ]; then

@@ -3,18 +3,24 @@
 local function get_buf_size(bufnr)
     bufnr = bufnr or vim.api.nvim_get_current_buf()
     local ok, stats = pcall(function() return vim.loop.fs_stat(vim.api.nvim_buf_get_name(bufnr)) end)
-    if not (ok and stats) then return 0 end
+    if not (ok and stats) then
+        return 0
+    end
     return math.floor(0.5 + (stats.size / (1024 * 1024)))
 end
 
 local disable_treesitter = function()
     local ok, ts_config = pcall(require, "nvim-treesitter.configs")
-    if not ok then return end
+    if not ok then
+        return
+    end
 
     local modules = ts_config.available_modules()
 
     for _, module in pairs(modules) do
-        if ts_config.get_module(module).enable then vim.cmd.TSBufDisable(module) end
+        if ts_config.get_module(module).enable then
+            vim.cmd.TSBufDisable(module)
+        end
     end
 end
 

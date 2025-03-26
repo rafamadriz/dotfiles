@@ -37,7 +37,9 @@ local setup_mappings = function(_, bufnr)
     map("n", "<leader>lp", function()
         local params = lsp.util.make_position_params()
         return lsp.buf_request(0, "textDocument/definition", params, function(_, result)
-            if result == nil or vim.tbl_isempty(result) then return end
+            if result == nil or vim.tbl_isempty(result) then
+                return
+            end
             lsp.util.preview_location(result[1], { border = "rounded" })
         end)
     end, { desc = "Peek definition", buffer = bufnr })
@@ -75,7 +77,9 @@ local setup_aucmds = function(client, bufnr)
         group = augroup("UpdateDiagnosticLoc", { clear = true }),
         callback = function(args)
             diagnostic.setloclist { open = false }
-            if #vim.diagnostic.get(args.buf) == 0 then vim.cmd "silent! lclose" end
+            if #vim.diagnostic.get(args.buf) == 0 then
+                vim.cmd "silent! lclose"
+            end
         end,
     })
 end

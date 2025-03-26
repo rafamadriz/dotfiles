@@ -60,13 +60,17 @@ aucmd("BufWritePre", {
         ---@return boolean
         local function is_excluded(path)
             for _, pattern in ipairs { "^oil://" } do
-                if path:find(pattern) then return true end
+                if path:find(pattern) then
+                    return true
+                end
             end
             return false
         end
 
         local full_path = event.match
-        if is_excluded(full_path) then return end
+        if is_excluded(full_path) then
+            return
+        end
 
         local directory = vim.fn.fnamemodify(full_path, ":p:h")
         vim.fn.mkdir(directory, "p")
@@ -125,7 +129,9 @@ aucmd("BufWritePre", {
             the file when they were deleted), set
             the cursor row to the last line.
         ]]
-        if pos[1] > num_rows then pos[1] = num_rows end
+        if pos[1] > num_rows then
+            pos[1] = num_rows
+        end
 
         vim.api.nvim_win_set_cursor(0, pos)
     end,
@@ -149,7 +155,9 @@ https://github.com/neovim/neovim/issues/5581
 vim.keymap.set({ "n", "v", "o", "i", "c" }, "<Plug>(StopHL)", 'execute("nohlsearch")[-1]', { expr = true })
 
 local function stop_hl()
-    if vim.v.hlsearch == 0 or vim.api.nvim_get_mode().mode ~= "n" then return end
+    if vim.v.hlsearch == 0 or vim.api.nvim_get_mode().mode ~= "n" then
+        return
+    end
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
 end
 
@@ -159,7 +167,9 @@ local function hl_search()
     local _, match = pcall(vim.fn.matchstrpos, curr_line, vim.fn.getreg "/", 0)
     local _, p_start, p_end = unpack(match)
     -- if the cursor is in a search result, leave highlighting on
-    if col < p_start or col > p_end then stop_hl() end
+    if col < p_start or col > p_end then
+        stop_hl()
+    end
 end
 
 local inc_search_hl = augroup("IncSearchHighlight", { clear = true })

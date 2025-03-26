@@ -71,7 +71,9 @@ return {
             handlers = {
                 function(server_name)
                     local config = require("plugins.lspconfig.servers").config(server_name)
-                    if config then require("lspconfig")[server_name].setup(config) end
+                    if config then
+                        require("lspconfig")[server_name].setup(config)
+                    end
                 end,
             },
         },

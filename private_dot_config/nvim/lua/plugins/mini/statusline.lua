@@ -39,7 +39,9 @@ local groups = function()
 
         local str = " "
         local padding = #tostring(height) - #tostring(line)
-        if padding > 0 then str = str .. (" "):rep(padding) end
+        if padding > 0 then
+            str = str .. (" "):rep(padding)
+        end
 
         str = str .. "ℓ "
         str = str .. line
@@ -47,7 +49,9 @@ local groups = function()
         str = str .. column
         str = str .. " "
 
-        if #tostring(column) < 2 then str = str .. " " end
+        if #tostring(column) < 2 then
+            str = str .. " "
+        end
         return str
     end
 
