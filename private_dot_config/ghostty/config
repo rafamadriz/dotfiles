@@ -1,5 +1,17 @@
 theme = HaX0R_GR33N
+font-family = "CommitMono"
+# font-family = "0xProto"
+# font-family = "Cascadia Mono"
+# font-family = "JetBrains Mono"
+# font-family = "Fira Code"
+# font-family = "Hack"
+# font-family = "Source Code Pro"
+# font-family = "Maple Mono"
+
 mouse-hide-while-typing = true
+maximize = true
+
+command = "restore-tmux"
 
 # don't confirm when closing window/terminal
 confirm-close-surface = false
