@@ -1,133 +1,76 @@
--- NOTE: Keep notice of https://github.com/Saghen/blink.cmp as a simplier alternative to cmp
-
-local config = function()
-    local cmp = require "cmp"
-
-    -- Stolen from wincent https://github.com/wincent/wincent/commit/5d6641ae1a36199a11529a8925b2f7d9516d9688
-    -- Until https://github.com/hrsh7th/nvim-cmp/issues/1716
-    -- (cmp.ConfirmBehavior.MatchSuffix) gets implemented, use this local wrapper
-    -- to choose between `cmp.ConfirmBehavior.Insert` and
-    -- `cmp.ConfirmBehavior.Replace`:
-    local confirm = function(entry)
-        local behavior = cmp.ConfirmBehavior.Replace
-        if entry then
-            local completion_item = entry.completion_item
-            local newText = ""
-            if completion_item.textEdit then
-                newText = completion_item.textEdit.newText
-            elseif type(completion_item.insertText) == "string" and completion_item.insertText ~= "" then
-                newText = completion_item.insertText
-            else
-                newText = completion_item.word or completion_item.label or ""
-            end
-
-            -- How many characters will be different after the cursor position if we
-            -- replace?
-            local diff_after = math.max(0, entry.replace_range["end"].character + 1) - entry.context.cursor.col
-
-            -- Does the text that will be replaced after the cursor match the suffix
-            -- of the `newText` to be inserted? If not, we should `Insert` instead.
-            if entry.context.cursor_after_line:sub(1, diff_after) ~= newText:sub(-diff_after) then
-                behavior = cmp.ConfirmBehavior.Insert
-            end
-        end
-        cmp.confirm { select = true, behavior = behavior }
-    end
-
-    cmp.setup {
-        view = {
-            entries = {
-                follow_cursor = true,
+return {
+    "saghen/blink.cmp",
+    dependencies = { "mikavilpas/blink-ripgrep.nvim", "ribru17/blink-cmp-spell" },
+    version = "1.*",
+    opts = {
+        -- (Default) Only show the documentation popup when manually triggered
+        completion = {
+            documentation = { auto_show = true },
+            keyword = {
+                -- 'prefix' will fuzzy match on the text before the cursor
+                -- 'full' will fuzzy match on the text before _and_ after the cursor
+                -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
+                range = "full",
             },
-        },
-        snippet = {
-            expand = function(args) require("luasnip").lsp_expand(args.body) end,
-        },
-        window = {
-            completion = cmp.config.window.bordered(),
-            documentation = cmp.config.window.bordered(),
-        },
-        mapping = {
-            ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
-            ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-            ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-            ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-            ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-            ["<C-d>"] = cmp.mapping.scroll_docs(4),
-            ["<C-Space>"] = cmp.mapping.complete(),
-            ["<C-e>"] = cmp.mapping.abort(),
-            ["<C-y>"] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                    local entry = cmp.get_selected_entry()
-                    confirm(entry)
-                else
-                    fallback()
-                end
-            end, { "i", "s" }),
-        },
-        formatting = {
-            format = function(entry, item)
-                item.menu = ({
-                    nvim_lsp = "[LSP]",
-                    path = "[F]",
-                    luasnip = "[S]",
-                    buffer = "[B]",
-                    nvim_lua = "[Lua]",
-                })[entry.source.name]
-                return item
-            end,
-        },
-        sources = {
-            { name = "nvim_lsp_signature_help" },
-            { name = "nvim_lsp", priority = 1000, max_item_count = 10 },
-            { name = "luasnip", priority = 15 },
-            {
-                name = "buffer",
-                max_item_count = 5,
-                priority = 1,
-                option = {
-                    get_bufnrs = function() return vim.api.nvim_list_bufs() end,
-                    keyword_pattern = [[\k\+]],
+            list = { selection = { auto_insert = false } },
+            menu = {
+                -- TODO: Defaults to `vim.o.winborder` on nvim 0.11+
+                border = "rounded",
+                draw = {
+                    columns = {
+                        { "kind_icon", "label", "label_description", gap = 1 },
+                        { "kind" },
+                        { "source_name" },
+                    },
                 },
             },
-            { name = "path" },
-            { name = "nvim_lua" },
-            { name = "lazydev", group_index = 0 },
         },
-        experimental = {
-            ghost_text = false,
-        },
-    }
-    cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources {
-            { name = "path" },
-            { name = "cmdline" },
-        },
-    })
 
-    cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
+        signature = { enabled = true },
+
         sources = {
-            { name = "buffer" },
+            default = { "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep", "spell" },
+            providers = {
+                path = {
+                    opts = {
+                        get_cwd = function() return vim.fn.getcwd() end,
+                        show_hidden_files_by_default = true,
+                    },
+                },
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    -- make lazydev completions top priority (see `:h blink.cmp`)
+                    score_offset = 100,
+                },
+                ripgrep = {
+                    module = "blink-ripgrep",
+                    name = "Ripgrep",
+                    max_items = 3,
+                    -- the score offset may need more tweeking
+                    score_offset = -3,
+                },
+                spell = {
+                    name = "Spell",
+                    module = "blink-cmp-spell",
+                    opts = {
+                        -- Only enable source in `@spell` captures, and disable it in `@nospell` captures.
+                        enable_in_context = function()
+                            local curpos = vim.api.nvim_win_get_cursor(0)
+                            local captures = vim.treesitter.get_captures_at_pos(0, curpos[1] - 1, curpos[2] - 1)
+                            local in_spell_capture = false
+                            for _, cap in ipairs(captures) do
+                                if cap.capture == "spell" then
+                                    in_spell_capture = true
+                                elseif cap.capture == "nospell" then
+                                    return false
+                                end
+                            end
+                            return in_spell_capture
+                        end,
+                    },
+                },
+            },
         },
-    })
-end
-
-return {
-    {
-        "hrsh7th/nvim-cmp",
-        keys = { ":" },
-        event = "InsertEnter",
-        dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-nvim-lua" },
-            { "saadparwaiz1/cmp_luasnip" },
-            { "hrsh7th/cmp-cmdline" },
-            { "hrsh7th/cmp-nvim-lsp-signature-help" },
-        },
-        config = config,
     },
 }

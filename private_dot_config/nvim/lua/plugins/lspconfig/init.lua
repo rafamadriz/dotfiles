@@ -79,9 +79,7 @@ return {
             "mason.nvim",
             {
                 "neovim/nvim-lspconfig",
-                dependencies = {
-                    { "cmp-nvim-lsp" },
-                },
+                dependencies = { "saghen/blink.cmp" },
                 config = function()
                     vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<CR>", { desc = "LSP info" })
 
@@ -101,8 +99,7 @@ return {
 
                     require("lspconfig.ui.windows").default_options.border = "rounded"
                     lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
-                        -- capabilities = require("cmp_nvim_lsp").default_capabilities(),
-                        capabilities = capabilities,
+                        capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
                     })
                 end,
             },
