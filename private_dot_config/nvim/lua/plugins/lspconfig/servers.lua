@@ -22,8 +22,12 @@ M.servers = {
 
 M.config = function(name)
     local config = name and M.servers[name] or {}
-    if not config then return end
-    if type(config) == "function" then config = config() end
+    if not config then
+        return
+    end
+    if type(config) == "function" then
+        config = config()
+    end
     return config
 end
 
