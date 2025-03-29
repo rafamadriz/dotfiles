@@ -43,6 +43,9 @@ export W3M_DIR="$XDG_STATE_HOME/w3m"
 export ZK_NOTEBOOK_DIR="$HOME/Documents/notes"
 # Recoll
 export RECOLL_CONFDIR="$XDG_CONFIG_HOME/recoll"
+# Julia
+export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
+export JULIAUP_DEPOT_PATH="$XDG_DATA_HOME/julia"
 
 # ZSH word split
 # Delete up until `/` with <C-w>, specially useful when typing paths and need to
