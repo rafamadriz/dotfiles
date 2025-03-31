@@ -44,28 +44,11 @@ end, { expr = true })
 -- Jump between last two buffers
 map("n", "<BS>", "<C-^>", { desc = "Jump between last two buffers" })
 
--- Pair bracket
-map("n", "]b", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
-map("n", "]B", "<cmd>blast<cr>", { desc = "Last buffer " })
-map("n", "[B", "<cmd>bfirst<cr>", { desc = "First buffer " })
-map("n", "]q", "<cmd>cnext<cr>", { desc = "Next quickfix " })
-map("n", "[q", "<cmd>cprevious<cr>", { desc = "Previous quickfix " })
-map("n", "]Q", "<cmd>clast<cr>", { desc = "Last quickfix " })
-map("n", "[Q", "<cmd>cfirst<cr>", { desc = "First quickfix" })
-map("n", "]l", "<cmd>lnext<cr>", { desc = "Next locationlist" })
-map("n", "[l", "<cmd>lprevious<cr>", { desc = "Previous locationlist " })
-map("n", "]L", "<cmd>llast<cr>", { desc = "Last locationlist " })
-map("n", "[L", "<cmd>lfirst<cr>", { desc = "First locationlist " })
-
 -- Fix annoying behavior where for example: If in blockwise visual mode
 -- and add some text through multiple lines, I would end with <C-c>
 -- (out of muscle memory), but this cancels whatever I did and have to do it again
 -- source: https://github.com/neovim/neovim/issues/16416
 map("i", "<C-c>", "<C-c>")
-
-map("n", "[<space>", "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Put empty line above" })
-map("n", "]<space>", "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Put empty line below" })
 
 -- Move selected block of text up/down
 map("v", "K", ":move '<-2<CR>gv=gv", { desc = "Move selected block of text up" })

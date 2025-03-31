@@ -14,8 +14,6 @@ return {
             },
             list = { selection = { auto_insert = false } },
             menu = {
-                -- TODO: Defaults to `vim.o.winborder` on nvim 0.11+
-                border = "rounded",
                 draw = {
                     columns = {
                         { "kind_icon", "label", "label_description", gap = 1 },

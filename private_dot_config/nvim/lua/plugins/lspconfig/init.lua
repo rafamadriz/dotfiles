@@ -99,7 +99,10 @@ return {
                         }
                     end
 
-                    require("lspconfig.ui.windows").default_options.border = "rounded"
+                    -- TODO: This won't be need once this issue is completed:
+                    -- https://github.com/neovim/nvim-lspconfig/issues/3494
+                    -- From blink docs
+                    -- On Neovim 0.11+ with vim.lsp.config, you may skip this step. This is still required when using nvim-lspconfig until this issue is completed
                     lspconfig.util.default_config = vim.tbl_extend("force", lspconfig.util.default_config, {
                         capabilities = require("blink.cmp").get_lsp_capabilities(capabilities),
                     })
