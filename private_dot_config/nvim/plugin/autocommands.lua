@@ -39,14 +39,9 @@ aucmd({ "BufReadPost" }, {
 
 aucmd({ "TermOpen" }, {
     pattern = "term://*",
-    desc = "Don't show line numbers in terminal",
+    desc = "Start in insert mode in terminal",
     group = augroup("MyTerminalOps", { clear = true }),
-    callback = function()
-        vim.opt_local.number = false
-        vim.opt_local.relativenumber = false
-        vim.opt_local.signcolumn = "no"
-        vim.cmd "startinsert"
-    end,
+    callback = function() vim.cmd "startinsert" end,
 })
 
 -- source: https://github.com/tsakirist/dotfiles/blob/7d3454a57679e5ba1c8ce4273bbed3eb737bb99c/nvim/lua/tt/autocommands.lua#L117-L142

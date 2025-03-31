@@ -11,36 +11,27 @@ diagnostic.config {
     },
     float = {
         source = "if_many",
-        border = "rounded",
     },
 }
 
-lsp.handlers["textDocument/hover"] = lsp.with(lsp.handlers.hover, { border = "rounded" })
-lsp.handlers["textDocument/signatureHelp"] = lsp.with(lsp.handlers.signature_help, { border = "rounded" })
 
 local setup_mappings = function(_, bufnr)
     local map = vim.keymap.set
-    map("n", "]d", diagnostic.goto_next, { desc = "Next diagnostics ", buffer = bufnr })
-    map("n", "[d", diagnostic.goto_prev, { desc = "Previous diagnostics", buffer = bufnr })
-    map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
-    map("n", "gr", lsp.buf.references, { desc = "Go to references", buffer = bufnr })
-    map("n", "gm", lsp.buf.implementation, { desc = "Go to implementation", buffer = bufnr })
-    map("n", "gy", lsp.buf.type_definition, { desc = "Go to type definition", buffer = bufnr })
-    map("n", "K", lsp.buf.hover, { desc = "Document hover", buffer = bufnr })
+    -- map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
     map("n", "<C-k>", lsp.buf.signature_help, { desc = "Signature help", buffer = bufnr })
 
-    map({ "n", "v" }, "<leader>la", lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
-    map("n", "<leader>lc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
-    map("n", "<leader>lr", lsp.buf.rename, { desc = "Rename symbol", buffer = bufnr })
+    map("n", "gry", lsp.buf.type_definition, { desc = "Go to type definition", buffer = bufnr })
+    map("n", "grc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
     map("n", "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "LSP Format", buffer = bufnr })
     map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics", buffer = bufnr })
     map("n", "<leader>lp", function()
+        ---@diagnostic disable-next-line: missing-parameter
         local params = lsp.util.make_position_params()
         return lsp.buf_request(0, "textDocument/definition", params, function(_, result)
             if result == nil or vim.tbl_isempty(result) then
                 return
             end
-            lsp.util.preview_location(result[1], { border = "rounded" })
+            lsp.util.preview_location(result[1])
         end)
     end, { desc = "Peek definition", buffer = bufnr })
 end
