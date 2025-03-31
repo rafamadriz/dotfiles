@@ -53,6 +53,7 @@ return {
     },
     {
         "catppuccin/nvim",
+        lazy = false,
         name = "catppuccin",
         config = function()
             require("catppuccin").setup {
@@ -67,11 +68,11 @@ return {
     },
     {
         "oonamo/ef-themes.nvim",
-        lazy = false,
         config = function()
             require("ef-themes").setup {
                 light = "ef-spring", -- Ef-theme to select for light backgrounds
-                dark = "ef-cherie",
+                dark = "ef-maris-dark",
+                -- transparent = true,
                 modules = {
                     blink = true,
                     cmp = true,
