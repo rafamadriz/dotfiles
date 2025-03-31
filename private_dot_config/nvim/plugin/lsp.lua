@@ -1,10 +1,7 @@
 local lsp, diagnostic = vim.lsp, vim.diagnostic
+local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
 diagnostic.config {
-    virtual_text = {
-        source = "if_many",
-        spacing = 4,
-    },
     severity_sort = true,
     underline = {
         severity = { diagnostic.severity.ERROR, diagnostic.severity.WARN },
@@ -14,16 +11,54 @@ diagnostic.config {
     },
 }
 
+local initial_virtext_cfg = vim.diagnostic.config().virtual_text
+-- source: https://www.reddit.com/r/neovim/comments/1jm5atz/replacing_vimdiagnosticopen_float_with_virtual/
+---@param jumpCount number
+local function jump_with_virtline_diagnostics(jumpCount)
+    pcall(vim.api.nvim_del_augroup_by_name, "jumpWithVirtLineDiags") -- prevent autocmd for repeated jumps
+
+    diagnostic.jump { count = jumpCount, wrap = false }
+
+    diagnostic.config {
+        virtual_text = false,
+        virtual_lines = { current_line = true },
+    }
+
+    vim.defer_fn(function() -- deferred to not trigger by jump itself
+        aucmd("CursorMoved", {
+            desc = "User(once): Reset diagnostics virtual lines",
+            once = true,
+            group = augroup("jumpWithVirtLineDiags", {}),
+            callback = function() diagnostic.config { virtual_lines = false, virtual_text = initial_virtext_cfg } end,
+        })
+    end, 1)
+end
 
 local setup_mappings = function(_, bufnr)
     local map = vim.keymap.set
     -- map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
+    map("n", "]d", function() jump_with_virtline_diagnostics(1) end, { desc = "Next diagnostic" })
+    map("n", "[d", function() jump_with_virtline_diagnostics(-1) end, { desc = "Prev diagnostic" })
+    map("n", "]D", function() jump_with_virtline_diagnostics(math.huge) end, { desc = "Last diagnostic" })
+    map("n", "[D", function() jump_with_virtline_diagnostics(-math.huge) end, { desc = "First diagnostic" })
     map("n", "<C-k>", lsp.buf.signature_help, { desc = "Signature help", buffer = bufnr })
-
     map("n", "gry", lsp.buf.type_definition, { desc = "Go to type definition", buffer = bufnr })
     map("n", "grc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
     map("n", "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "LSP Format", buffer = bufnr })
-    map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics", buffer = bufnr })
+    map("n", "<leader>ll", function()
+        diagnostic.config {
+            virtual_lines = { current_line = true },
+            virtual_text = false,
+        }
+
+        aucmd("CursorMoved", {
+            group = augroup("line-diagnostics", { clear = true }),
+            callback = function()
+                diagnostic.config { virtual_lines = false, virtual_text = initial_virtext_cfg }
+                return true
+            end,
+        })
+    end, { desc = "Line diagnostics", buffer = bufnr })
     map("n", "<leader>lp", function()
         ---@diagnostic disable-next-line: missing-parameter
         local params = lsp.util.make_position_params()
@@ -36,7 +71,6 @@ local setup_mappings = function(_, bufnr)
     end, { desc = "Peek definition", buffer = bufnr })
 end
 
-local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 local setup_aucmds = function(client, bufnr)
     if client.server_capabilities["codeLensProvider"] then
         aucmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
@@ -68,7 +102,7 @@ local setup_aucmds = function(client, bufnr)
         group = augroup("UpdateDiagnosticLoc", { clear = true }),
         callback = function(args)
             diagnostic.setloclist { open = false }
-            if #vim.diagnostic.get(args.buf) == 0 then
+            if #diagnostic.get(args.buf) == 0 then
                 vim.cmd "silent! lclose"
             end
         end,
