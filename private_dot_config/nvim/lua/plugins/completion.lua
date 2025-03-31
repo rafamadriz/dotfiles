@@ -29,6 +29,12 @@ return {
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep", "spell" },
             providers = {
+                lsp = {
+                    score_offset = 200,
+                },
+                snippets = {
+                    score_offset = 150,
+                },
                 path = {
                     opts = {
                         get_cwd = function() return vim.fn.getcwd() end,
@@ -45,7 +51,6 @@ return {
                     module = "blink-ripgrep",
                     name = "Ripgrep",
                     max_items = 3,
-                    -- the score offset may need more tweeking
                     score_offset = -3,
                 },
                 spell = {
