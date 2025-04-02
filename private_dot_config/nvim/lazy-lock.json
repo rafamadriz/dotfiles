@@ -1,5 +1,4 @@
 {
-  "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
   "CopilotChat.nvim": { "branch": "main", "commit": "cd82b6b9c4cfb254218f5782cc3339e05cbb9989" },
   "blink-cmp-spell": { "branch": "master", "commit": "782bc76be09c0c5dd08e3edd04e4ec1054c3158e" },
   "blink-ripgrep.nvim": { "branch": "main", "commit": "d4af981745ea67b2c29bcd25f9843dbeedc580ed" },
