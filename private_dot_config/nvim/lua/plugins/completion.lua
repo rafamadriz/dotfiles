@@ -25,6 +25,7 @@ return {
         },
 
         signature = { enabled = true },
+        snippets = { preset = "mini_snippets" },
 
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep", "spell" },

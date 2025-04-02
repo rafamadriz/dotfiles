@@ -1,5 +1,0 @@
-vim.api.nvim_create_user_command("InsertTime", function()
-    local current_time = string.format("%s", os.date "%I:%M %p")
-    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-    vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { current_time })
-end, {})
