@@ -1,9 +1,9 @@
 return {
     "saghen/blink.cmp",
+    lazy = false,
     dependencies = { "mikavilpas/blink-ripgrep.nvim", "ribru17/blink-cmp-spell" },
     version = "1.*",
     opts = {
-        -- (Default) Only show the documentation popup when manually triggered
         completion = {
             documentation = { auto_show = true },
             keyword = {
