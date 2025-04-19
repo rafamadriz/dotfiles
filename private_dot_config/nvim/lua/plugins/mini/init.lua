@@ -2,7 +2,7 @@ local M = {}
 
 M.ai = function()
     local ai = require "mini.ai"
-    require("mini.ai").setup {
+    ai.setup {
         n_lines = 500,
         mappings = { around_last = "", inside_last = "" },
         custom_textobjects = {
@@ -93,6 +93,8 @@ M.snippets = function()
     vim.keymap.set("i", "<S-Tab>", jump_prev)
 end
 
+---@module "lazy"
+---@type LazySpec
 return {
     {
         "echasnovski/mini.nvim",

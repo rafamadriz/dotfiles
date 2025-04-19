@@ -1,5 +1,5 @@
--- TODO: make a function that checks if cwd is a git repo and returns true/false
--- use that as a `cond` option (:help lazy.nvim-lazy.nvim-plugin-spec) for git plugins.
+---@module "lazy"
+---@type LazySpec
 return {
     {
         "lewis6991/gitsigns.nvim",

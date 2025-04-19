@@ -1,5 +1,7 @@
 -- plugins to check in the future:
 -- https://github.com/MagicDuck/grug-far.nvim
+---@module "lazy"
+---@type LazySpec
 return {
     -- Required by others
     { "nvim-lua/plenary.nvim" },

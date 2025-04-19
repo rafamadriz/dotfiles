@@ -105,6 +105,8 @@ M.keymaps = {
     { "<leader>lS", "<cmd>FzfLua lsp_workspace_symbols<CR>", desc = "Workspace symbols" },
 }
 
+---@module "lazy"
+---@type LazySpec
 return {
     {
         "ibhagwan/fzf-lua",
