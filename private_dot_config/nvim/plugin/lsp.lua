@@ -1,6 +1,14 @@
 local lsp, diagnostic = vim.lsp, vim.diagnostic
 local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
+local lsp_configs = {
+    "lua_ls",
+    "taplo",
+    "rust_analyzer",
+    "bashls",
+}
+lsp.enable(lsp_configs)
+
 diagnostic.config {
     severity_sort = true,
     underline = {

@@ -7,9 +7,27 @@ return {
     -- Package manager
     {
         "williamboman/mason.nvim",
-        cmd = "Mason",
+        lazy = false,
         build = ":MasonUpdate",
         config = true,
+    },
+
+    --- LSP
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        keys = { { "<leader>li", "<cmd>LspInfo<CR>", { desc = "LSP info" } } },
+    },
+    {
+        "folke/lazydev.nvim",
+        ft = "lua", -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
     },
 
     -- Improve editing experience and motions
