@@ -1,5 +1,7 @@
 -- To choose a colorscheme just delete (dd) lazy = false from current
 -- colorscheme and move/paste (p) it to desired one
+---@module "lazy"
+---@type LazySpec
 return {
     {
         "rebelot/kanagawa.nvim",

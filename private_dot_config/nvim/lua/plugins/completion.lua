@@ -1,8 +1,12 @@
+---@module "lazy"
+---@type LazySpec
 return {
     "saghen/blink.cmp",
     lazy = false,
     dependencies = { "mikavilpas/blink-ripgrep.nvim", "ribru17/blink-cmp-spell" },
     version = "1.*",
+    ---@module "blink.cmp"
+    ---@type blink.cmp.Config
     opts = {
         completion = {
             documentation = { auto_show = true },
@@ -30,12 +34,6 @@ return {
         sources = {
             default = { "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep", "spell" },
             providers = {
-                lsp = {
-                    score_offset = 200,
-                },
-                snippets = {
-                    score_offset = 150,
-                },
                 path = {
                     opts = {
                         get_cwd = function() return vim.fn.getcwd() end,
