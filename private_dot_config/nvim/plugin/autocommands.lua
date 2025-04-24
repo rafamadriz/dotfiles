@@ -120,13 +120,16 @@ local function stop_hl()
     if vim.v.hlsearch == 0 or vim.api.nvim_get_mode().mode ~= "n" then
         return
     end
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(StopHL)", true, true, true), "m", false)
+    vim.api.nvim_feedkeys(vim.keycode "<Plug>(StopHL)", "m", false)
 end
 
 local function hl_search()
     local col = vim.api.nvim_win_get_cursor(0)[2]
     local curr_line = vim.api.nvim_get_current_line()
-    local _, match = pcall(vim.fn.matchstrpos, curr_line, vim.fn.getreg "/", 0)
+    local ok, match = pcall(vim.fn.matchstrpos, curr_line, vim.fn.getreg "/", 0)
+    if not ok then
+        return
+    end
     local _, p_start, p_end = unpack(match)
     -- if the cursor is in a search result, leave highlighting on
     if col < p_start or col > p_end then
