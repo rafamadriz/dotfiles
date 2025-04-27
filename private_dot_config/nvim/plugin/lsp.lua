@@ -80,8 +80,10 @@ local setup_mappings = function(bufnr)
     end, { desc = "Peek definition", buffer = bufnr })
 end
 
+---@param client vim.lsp.Client
+---@param bufnr number
 local setup_aucmds = function(client, bufnr)
-    if client.server_capabilities["codeLensProvider"] then
+    if client:supports_method(lsp.protocol.Methods.textDocument_codeLens) then
         aucmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
             desc = "Refresh code lens",
             group = augroup("LspCodeLens", { clear = true }),
@@ -90,7 +92,7 @@ local setup_aucmds = function(client, bufnr)
         })
     end
 
-    if client.server_capabilities["documentHighlightProvider"] then
+    if client:supports_method(lsp.protocol.Methods.textDocument_documentHighlight) then
         local under_cursor_highlights = augroup("LspDocHighlight", { clear = false })
         aucmd({ "CursorHold", "CursorHoldI", "InsertLeave", "BufEnter" }, {
             group = under_cursor_highlights,
@@ -122,8 +124,21 @@ aucmd("LspAttach", {
     desc = "My LSP settings",
     group = augroup("UserLspConfig", {}),
     callback = function(args)
-        local client = lsp.get_client_by_id(args.data.client_id)
+        ---@type vim.lsp.Client
+        local client = assert(lsp.get_client_by_id(args.data.client_id))
         setup_mappings(args.buf)
         setup_aucmds(client, args.buf)
+
+        -- Automatically show completion
+        -- if client:supports_method(lsp.protocol.Methods.textDocument_completion) then
+        --     -- Optional: trigger autocompletion on EVERY keypress. May be slow!
+        --     local chars = {}
+        --     for i = 32, 126 do
+        --         table.insert(chars, string.char(i))
+        --     end
+        --     client.server_capabilities.completionProvider.triggerCharacters = chars
+        --
+        --     lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        -- end
     end,
 })
