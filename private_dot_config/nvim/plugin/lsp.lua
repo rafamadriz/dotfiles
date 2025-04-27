@@ -42,7 +42,7 @@ local function jump_with_virtline_diagnostics(jumpCount)
     end, 1)
 end
 
-local setup_mappings = function(_, bufnr)
+local setup_mappings = function(bufnr)
     local map = vim.keymap.set
     -- map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
     map("n", "]d", function() jump_with_virtline_diagnostics(1) end, { desc = "Next diagnostic" })
@@ -86,7 +86,7 @@ local setup_aucmds = function(client, bufnr)
             desc = "Refresh code lens",
             group = augroup("LspCodeLens", { clear = true }),
             buffer = bufnr,
-            callback = function() lsp.codelens.refresh() end,
+            callback = lsp.codelens.refresh,
         })
     end
 
@@ -96,13 +96,13 @@ local setup_aucmds = function(client, bufnr)
             group = under_cursor_highlights,
             desc = "Highlight references under the cursor",
             buffer = bufnr,
-            callback = function() lsp.buf.document_highlight() end,
+            callback = lsp.buf.document_highlight,
         })
         aucmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
             group = under_cursor_highlights,
             desc = "Clear highlight references",
             buffer = bufnr,
-            callback = function() lsp.buf.clear_references() end,
+            callback = lsp.buf.clear_references,
         })
     end
 
@@ -123,7 +123,7 @@ aucmd("LspAttach", {
     group = augroup("UserLspConfig", {}),
     callback = function(args)
         local client = lsp.get_client_by_id(args.data.client_id)
-        setup_mappings(client, args.buf)
+        setup_mappings(args.buf)
         setup_aucmds(client, args.buf)
     end,
 })
