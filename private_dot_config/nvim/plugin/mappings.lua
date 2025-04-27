@@ -24,14 +24,14 @@ end, { bang = true })
 --map("n", "N", "Nzzzv")
 
 -- `^` to go to beginning of line with a character is not convenient, never use `H` in normal mode,
--- so why not use it for that? might as well add `L` for end of line to keep it consistent
+-- so why not use it for that? Might as well add `L` for end of line to keep it consistent
 map({ "n", "v" }, "H", "^")
 map({ "n", "v" }, "L", "g_")
 
--- Keep cursor position when joinng lines
+-- Keep cursor position when joining lines
 map("n", "J", "mzJ`z", { desc = "Join lines" })
 
--- Make sure to go to proper indentantion level when pressing i
+-- Make sure to go to proper indentation level when pressing i
 -- source: https://www.reddit.com/r/neovim/comments/12rqyl8/5_smart_minisnippets_for_making_text_editing_more/
 map("n", "i", function()
     if #vim.fn.getline "." == 0 then
@@ -59,7 +59,7 @@ map({ "n", "x", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard"
 map("n", "<leader>Y", [["+y$]], { desc = "Yank to system clipboard (end of line)" })
 map("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
 map("n", "<leader>P", [["+P]], { desc = "Paste from system clipboard" })
--- - Paste in Visual with `P` to not copy selected text (`:h v_P`)
+-- Paste in Visual with `P` to not copy selected text (`:h v_P`)
 map("x", "<leader>p", [["+P]], { desc = "Paste from system clipboard" })
 
 -- Reselect latest changed, put, or yanked text
@@ -108,7 +108,7 @@ map("n", "<leader>!", ":noautocmd write<CR>", { desc = "Save noautocmd" })
 -- Resize windows
 -- expand or minimize current buffer in "actual" direction
 -- this is useful as mapping ":resize 2" stand-alone might otherwise not be in
--- the right direction if mapped to ctrl-leftarrow or something related use
+-- the right direction if mapped to ctrl-left arrow or something related use
 local resize = function(vertical, margin)
     local cmd = vim.cmd
     local cur_win = vim.api.nvim_get_current_win()
