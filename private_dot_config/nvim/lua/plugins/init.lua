@@ -18,7 +18,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = false,
-        keys = { { "<leader>li", "<cmd>LspInfo<CR>", { desc = "LSP info" } } },
+        keys = { { "<leader>li", "<cmd>LspInfo<CR>", desc = "Info" } },
     },
     {
         "folke/lazydev.nvim",
