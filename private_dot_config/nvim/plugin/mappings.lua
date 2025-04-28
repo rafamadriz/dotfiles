@@ -8,6 +8,11 @@ map({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
 map("n", "<C-U>", "<C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>")
 map("n", "<C-D>", "<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>")
 
+-- Easier builtin completion
+map("i", "<c-space>", "<C-X><C-O>")
+map("i", "<C-F>", "<C-X><C-F>")
+map("i", "<C-L>", "<C-X><C-L>")
+
 -- Disable repeat last recorded character
 map("n", "Q", "<Nop>")
 -- I always type :Q by mistake
