@@ -54,6 +54,12 @@ local setup_mappings = function(bufnr)
     map("n", "grc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
     map("n", "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "Format", buffer = bufnr })
     map("n", "<leader>lo", diagnostic.open_float, { desc = "Open float diagnostics", buffer = bufnr })
+    map(
+        "n",
+        "<leader>lh",
+        function() lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+        { desc = "Toggle inlay hints", buffer = bufnr }
+    )
     map("n", "<leader>ll", function()
         diagnostic.config {
             virtual_lines = { current_line = true },
