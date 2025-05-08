@@ -100,58 +100,28 @@ aucmd({ "Filetype" }, {
 })
 
 -- HLSEARCH
---source: https://github.com/akinsho/dotfiles/blob/main/.config/nvim/plugin/autocommands.lua
---credits: @akinsho
---[[
-In order to get hlsearch working the way I like i.e. on when using /,?,N,n,*,#, etc. and off when
-When I'm not using them, I need to set the following:
-The mappings below are essentially faked user input this is because in order to automatically turn off
-the search highlight just changing the value of 'hlsearch' inside a function does not work
-read `:h nohlsearch`. So to have this work I check that the current mouse position is not a search
-result, if it is we leave highlighting on, otherwise I turn it off on cursor moved by faking my input
-using the expr mappings below.
-This is based on the implementation discussed here:
-https://github.com/neovim/neovim/issues/5581
---]]
+-- Source: https://github.com/Wansmer/nvim-config/blob/4bbfd1c9c693ae33b8d7a57a9ae9b14a94068bbb/lua/modules/key_listener.lua
+-- Source: https://www.reddit.com/r/neovim/comments/zc720y/tip_to_manage_hlsearch/
+local auto_hlsearch = vim.api.nvim_create_namespace "auto_hlsearch"
 
-vim.keymap.set({ "n", "v", "o", "i", "c" }, "<Plug>(StopHL)", 'execute("nohlsearch")[-1]', { expr = true })
+---Deleting hlsearch when it already no needed
+local function toggle_hlsearch(char)
+    local keys = { "<CR>", "n", "N", "*", "#", "?", "/" }
+    local new_hlsearch = vim.tbl_contains(keys, char) and 1 or 0
 
-local function stop_hl()
-    if vim.v.hlsearch == 0 or vim.api.nvim_get_mode().mode ~= "n" then
-        return
-    end
-    vim.api.nvim_feedkeys(vim.keycode "<Plug>(StopHL)", "m", false)
-end
-
-local function hl_search()
-    local col = vim.api.nvim_win_get_cursor(0)[2]
-    local curr_line = vim.api.nvim_get_current_line()
-    local ok, match = pcall(vim.fn.matchstrpos, curr_line, vim.fn.getreg "/", 0)
-    if not ok then
-        return
-    end
-    local _, p_start, p_end = unpack(match)
-    -- if the cursor is in a search result, leave highlighting on
-    if col < p_start or col > p_end then
-        stop_hl()
+    if vim.api.nvim_get_vvar "hlsearch" ~= new_hlsearch then
+        vim.api.nvim_set_vvar("hlsearch", new_hlsearch)
     end
 end
 
-local inc_search_hl = augroup("IncSearchHighlight", { clear = true })
+---Handler for pressing keys. Added listeners for modes
+---@param char string
+local function key_listener(char)
+    local key = vim.fn.keytrans(char)
+    local mode = vim.fn.mode()
+    if mode == "n" then
+        toggle_hlsearch(key)
+    end
+end
 
-aucmd("CursorMoved", {
-    group = inc_search_hl,
-    callback = function() hl_search() end,
-})
-
-aucmd("InsertEnter", {
-    group = inc_search_hl,
-    callback = function() stop_hl() end,
-})
-
-aucmd("OptionSet", {
-    group = inc_search_hl,
-    callback = function()
-        vim.schedule(function() vim.cmd "redrawstatus" end)
-    end,
-})
+vim.on_key(key_listener, auto_hlsearch)
