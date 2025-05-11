@@ -49,6 +49,8 @@ export RECOLL_CONFDIR="$XDG_CONFIG_HOME/recoll"
 # Julia
 export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
 export JULIAUP_DEPOT_PATH="$XDG_DATA_HOME/julia"
+# LIMACTL https://github.com/lima-vm/lima/discussions/2745
+export LIMA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/lima"
 
 # ZSH word split
 # Delete up until `/` with <C-w>, specially useful when typing paths and need to

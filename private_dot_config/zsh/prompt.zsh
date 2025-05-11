@@ -132,7 +132,8 @@ function set-prompt() {
     fi
   }
 
-  local top_left="%F{blue}%~%f $vcs_info_msg_0_ "
+  # local top_left="%F{blue}%~%f $vcs_info_msg_0_ "
+  local top_left="%F{yellow}%n@%f%F{green}${CONTAINER_ID:-%m}%f %F{blue}%~%f $vcs_info_msg_0_ "
   local bottom_left='%B%F{%(?.green.red)}%(#.#.❯)%f%b '
 
   local REPLY
