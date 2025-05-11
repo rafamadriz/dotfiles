@@ -6,6 +6,7 @@ local lsp_configs = {
     "taplo",
     "rust_analyzer",
     "bashls",
+    "ccls",
 }
 lsp.enable(lsp_configs)
 
