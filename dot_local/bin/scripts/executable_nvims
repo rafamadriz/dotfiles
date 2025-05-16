@@ -4,7 +4,7 @@
 # From: https://www.youtube.com/watch?v=LkHjJlSgKZY
 
 choose_config() {
-	all_configs="LazyVim default"
+	all_configs="LazyVim default debugnvim"
 	selected=$(printf "%s" "$all_configs" | tr ' ' '\n' | fzf --prompt="Neovim config " --height=~50% --layout=reverse --border)
 	if [ -z "$selected" ]; then
 		printf "%s\n" "Nothing selected"
