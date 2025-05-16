@@ -31,6 +31,10 @@ return {
             },
         },
     },
+    {
+        "Bekaboo/dropbar.nvim",
+        lazy = false,
+    },
 
     -- Improve editing experience and motions
     {
