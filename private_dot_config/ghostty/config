@@ -1,4 +1,4 @@
-theme = HaX0R_GR33N
+theme = light:dayfox,dark:Dark Pastel
 font-family = "CommitMono"
 # font-family = "0xProto"
 # font-family = "Cascadia Mono"
@@ -25,8 +25,8 @@ font-feature = -dlig
 # keybind = global:ctrl+shift+]=toggle_quick_terminal
 
 # custom-shader = shaders/animated-gradient-shader.glsl
-custom-shader = shaders/bettercrt.glsl
-custom-shader = shaders/bloom.glsl
+# custom-shader = shaders/bettercrt.glsl
+# custom-shader = shaders/bloom.glsl
 # custom-shader = shaders/bloom1.glsl
 # custom-shader = shaders/bloom075.glsl
 # custom-shader = shaders/bloom060.glsl
@@ -44,7 +44,7 @@ custom-shader = shaders/bloom.glsl
 # custom-shader = shaders/fireworks.glsl
 # custom-shader = shaders/gears-and-belts.glsl
 # custom-shader = shaders/glitchy.glsl
-custom-shader = shaders/glow-rgbsplit-twitchy.glsl
+# custom-shader = shaders/glow-rgbsplit-twitchy.glsl
 # custom-shader = shaders/gradient-background.glsl
 # custom-shader = shaders/inside-the-matrix.glsl
 # custom-shader = shaders/just-snow.glsl
