@@ -1,6 +1,6 @@
 #!/bin/env sh
 
-[ -z "{$MAILDIR}" ] && mkdir -p "$XDG_DATA_HOME/maildir/{fastmail,gmail}" && MAILDIR="$XDG_DATA_HOME/maildir"
+[ -z "$MAILDIR" ] && mkdir -p "$XDG_DATA_HOME/maildir/{fastmail,gmail}" && MAILDIR="$XDG_DATA_HOME/maildir"
 
 # Keep local Archive of Trash and Spam
 [ ! -d "$MAILDIR/fastmail/TrashArchive" ] && mkdir -p "$MAILDIR/fastmail/TrashArchive"
