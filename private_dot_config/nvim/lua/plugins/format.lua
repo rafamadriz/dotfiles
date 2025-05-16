@@ -17,12 +17,9 @@ return {
         end, { range = true })
     end,
     config = function()
+        vim.keymap.set({ "n", "v" }, "<leader>=", "<cmd>Format<CR>")
         require("conform").setup {
-            format_on_save = {
-                -- These options will be passed to conform.format()
-                timeout_ms = 500,
-                lsp_fallback = true,
-            },
+            format_on_save = nil,
             formatters_by_ft = {
                 -- Conform will run multiple formatters sequentially
                 -- python = { "isort", "black" },
