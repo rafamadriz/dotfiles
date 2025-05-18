@@ -46,7 +46,7 @@ vim.opt.titlestring = vim.fn.expand "%:p"
 vim.opt.confirm = true -- Save me from doing destructive things
 vim.opt.showmode = false -- When in insert, show mode in last line
 vim.opt.pumheight = 15 -- Maximum number of items to show in the popup menu
-vim.opt.completeopt = "menuone,noinsert,noselect,fuzzy"
+vim.opt.completeopt = "menuone,noinsert,fuzzy"
 vim.opt.mouse = "a"
 vim.o.winborder = "rounded"
 
