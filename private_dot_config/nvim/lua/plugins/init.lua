@@ -8,7 +8,7 @@ return {
 
     -- Package manager
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         lazy = false,
         build = ":MasonUpdate",
         config = true,
