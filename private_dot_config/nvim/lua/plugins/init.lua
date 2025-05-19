@@ -103,6 +103,12 @@ return {
 
     -- Other useful tools
     {
+        "andrewferrier/debugprint.nvim",
+        opts = {},
+        lazy = false,
+        version = "*",
+    },
+    {
         "zk-org/zk-nvim",
         lazy = false,
         config = function()
