@@ -124,7 +124,11 @@ return {
             checkbox = { checked = { scope_highlight = "@markup.strikethrough" } },
         },
     },
-    { "kevinhwang91/nvim-bqf", ft = "qf" },
+    {
+        "r0nsha/qfpreview.nvim",
+        ft = "qf",
+        opts = {},
+    },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
     {
         "NMAC427/guess-indent.nvim",
