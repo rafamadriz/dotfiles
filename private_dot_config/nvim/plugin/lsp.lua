@@ -7,6 +7,8 @@ local lsp_configs = {
     "rust_analyzer",
     "bashls",
     "ccls",
+    "html",
+    "cssls",
 }
 lsp.enable(lsp_configs)
 
