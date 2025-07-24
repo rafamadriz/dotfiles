@@ -100,7 +100,7 @@ return {
         "echasnovski/mini.nvim",
         lazy = false,
         version = false,
-        dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+        dependencies = { { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" } },
         config = function()
             M.ai()
             M.operators()
