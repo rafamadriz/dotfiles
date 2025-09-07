@@ -9,6 +9,8 @@ local lsp_configs = {
     "ccls",
     "html",
     "cssls",
+    "pyright",
+    "ts_ls",
 }
 lsp.enable(lsp_configs)
 
