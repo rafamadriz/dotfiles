@@ -5,7 +5,7 @@ aucmd({ "TextYankPost" }, {
     pattern = "*",
     desc = "Highlight text on yank",
     group = augroup("TextHighlightYank", { clear = true }),
-    callback = function() vim.highlight.on_yank { timeout = 250 } end,
+    callback = function() vim.highlight.on_yank { timeout = 200 } end,
 })
 
 local no_lastplace = {
