@@ -9,11 +9,6 @@ return {
         spec = {
             {
                 mode = { "n", "v" }, -- NORMAL and VISUAL mode
-                { "<leader>1", hidden = true },
-                { "<leader>2", hidden = true },
-                { "<leader>3", hidden = true },
-                { "<leader>4", hidden = true },
-                { "<leader>a", hidden = true },
                 { "<leader>b", group = "Buffer" },
                 { "<leader>d", group = "Debug" },
                 { "<leader>f", group = "Find" },
