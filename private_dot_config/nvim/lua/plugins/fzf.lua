@@ -62,7 +62,7 @@ M.keymaps = {
         string.format("<cmd>FzfLua files cwd=%s<CR>", vim.fn.expand "%:p:h"),
         desc = "Find files in directory of current buffer",
     },
-    { "<leader>fg", "<cmd>FzfLua live_grep_glob<CR>", desc = "Grep project" },
+    { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Grep project" },
     { "<leader>fG", "<cmd>FzfLua lgrep_curbuf<CR>", desc = "Grep on current buffer" },
     {
         "<leader>fw",
