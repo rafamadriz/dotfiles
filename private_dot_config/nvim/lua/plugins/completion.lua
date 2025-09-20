@@ -17,7 +17,6 @@ return {
                 -- example: 'foo_|_bar' will match 'foo_' for 'prefix' and 'foo__bar' for 'full'
                 range = "full",
             },
-            list = { selection = { auto_insert = false } },
             menu = {
                 draw = {
                     columns = {
