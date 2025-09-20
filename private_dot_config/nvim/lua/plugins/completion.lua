@@ -4,7 +4,7 @@ return {
     "saghen/blink.cmp",
     lazy = false,
     enabled = false,
-    dependencies = { "mikavilpas/blink-ripgrep.nvim", "ribru17/blink-cmp-spell" },
+    dependencies = { "ribru17/blink-cmp-spell" },
     version = "1.*",
     ---@module "blink.cmp"
     ---@type blink.cmp.Config
@@ -33,7 +33,7 @@ return {
         snippets = { preset = "mini_snippets" },
 
         sources = {
-            default = { "lazydev", "lsp", "path", "snippets", "buffer", "ripgrep", "spell" },
+            default = { "lazydev", "lsp", "path", "snippets", "buffer", "spell" },
             providers = {
                 path = {
                     opts = {
@@ -46,12 +46,6 @@ return {
                     module = "lazydev.integrations.blink",
                     -- make lazydev completions top priority (see `:h blink.cmp`)
                     score_offset = 100,
-                },
-                ripgrep = {
-                    module = "blink-ripgrep",
-                    name = "Ripgrep",
-                    max_items = 3,
-                    score_offset = -3,
                 },
                 spell = {
                     name = "Spell",
