@@ -1,7 +1,7 @@
 -- Timings
 vim.opt.timeoutlen = 1000 -- Time to wait for a keymap to complete
 vim.opt.ttimeoutlen = 300 -- Time to wait for a key code sequence to complete
-vim.opt.updatetime = 100 -- If nothing is typed is this time, swap file will be written
+vim.opt.updatetime = 300 -- If nothing is typed is this time, swap file will be written
 
 -- Window splitting
 vim.opt.splitbelow = true -- Horizontal splits will be below
@@ -22,6 +22,7 @@ vim.opt.diffopt = {
 }
 
 -- vim.opt.iskeyword:append "-" -- Words separated by - are regconized as one word for commands like "w"...
+vim.opt.iskeyword:remove "_"
 
 -- Message output on vim acctions
 vim.opt.shortmess = {
@@ -46,7 +47,7 @@ vim.opt.titlestring = vim.fn.expand "%:p"
 vim.opt.confirm = true -- Save me from doing destructive things
 vim.opt.showmode = false -- When in insert, show mode in last line
 vim.opt.pumheight = 15 -- Maximum number of items to show in the popup menu
-vim.opt.completeopt = "menuone,noinsert,fuzzy"
+vim.opt.completeopt = "menuone,noinsert,fuzzy,popup"
 vim.opt.mouse = "a"
 vim.o.winborder = "rounded"
 
@@ -71,6 +72,7 @@ vim.opt.smartcase = true
 vim.opt.list = true
 vim.opt.fillchars = {
     eob = " ", -- supress ~ at EndOfBuffer
+    diff = "/",
 }
 vim.opt.listchars = {
     trail = "•",
