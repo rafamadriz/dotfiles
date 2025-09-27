@@ -104,9 +104,27 @@ return {
     -- Other useful tools
     {
         "andrewferrier/debugprint.nvim",
-        opts = {},
         lazy = false,
         version = "*",
+        opts = {
+            keymaps = {
+                normal = {
+                    plain_below = "<leader>d?p",
+                    plain_above = "<leader>d?P",
+                    variable_below = "<leader>d?v",
+                    variable_above = "<leader>d?V",
+                    surround_plain = "<leader>d?sp",
+                    surround_variable = "<leader>d?sv",
+                    textobj_below = "<leader>d?o",
+                    textobj_above = "<leader>d?O",
+                    textobj_surround = "<leader>d?so",
+                },
+                visual = {
+                    variable_below = "<leader>d?v",
+                    variable_above = "<leader>d?V",
+                },
+            }
+        },
     },
     {
         "zk-org/zk-nvim",
