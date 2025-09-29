@@ -11,6 +11,7 @@ lsp.enable({
     "cssls",
     "pyright",
     "ts_ls",
+    "css_variables",
 })
 
 diagnostic.config {
