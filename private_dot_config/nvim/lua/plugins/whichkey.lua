@@ -3,6 +3,7 @@
 return {
     "folke/which-key.nvim",
     lazy = false,
+    enabled = false,
     opts = {
         preset = "helix",
         icons = { mappings = false, keys = { Space = "SPC" } },
