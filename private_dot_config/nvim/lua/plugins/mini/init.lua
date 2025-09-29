@@ -93,6 +93,59 @@ M.snippets = function()
     vim.keymap.set("i", "<S-Tab>", jump_prev)
 end
 
+M.clue = function()
+    local miniclue = require "mini.clue"
+    miniclue.setup {
+        window = {
+            delay = 200,
+        },
+        triggers = {
+            -- Leader triggers
+            { mode = "n", keys = "<Leader>" },
+            { mode = "x", keys = "<Leader>" },
+
+            -- `[` and `]` keys
+            { mode = "n", keys = "[" },
+            { mode = "n", keys = "]" },
+
+            -- Built-in completion
+            { mode = "i", keys = "<C-x>" },
+
+            -- `g` key
+            { mode = "n", keys = "g" },
+            { mode = "x", keys = "g" },
+
+            -- Marks
+            { mode = "n", keys = "'" },
+            { mode = "n", keys = "`" },
+            { mode = "x", keys = "'" },
+            { mode = "x", keys = "`" },
+
+            -- Registers
+            { mode = "n", keys = '"' },
+            { mode = "x", keys = '"' },
+            { mode = "i", keys = "<C-r>" },
+            { mode = "c", keys = "<C-r>" },
+
+            -- Window commands
+            { mode = "n", keys = "<C-w>" },
+
+            -- `z` key
+            { mode = "n", keys = "z" },
+            { mode = "x", keys = "z" },
+        },
+        clues = {
+            miniclue.gen_clues.square_brackets(),
+            miniclue.gen_clues.builtin_completion(),
+            miniclue.gen_clues.g(),
+            miniclue.gen_clues.marks(),
+            miniclue.gen_clues.registers(),
+            miniclue.gen_clues.windows(),
+            miniclue.gen_clues.z(),
+        },
+    }
+end
+
 ---@module "lazy"
 ---@type LazySpec
 return {
@@ -102,14 +155,15 @@ return {
         version = false,
         dependencies = { { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" } },
         config = function()
+            require("mini.align").setup {}
+            require("mini.icons").setup {}
+            require("plugins.mini.statusline").setup()
             M.ai()
             M.operators()
             M.notify()
             M.git()
             M.snippets()
-            require("plugins.mini.statusline").setup()
-            require("mini.align").setup {}
-            require("mini.icons").setup {}
+            M.clue()
         end,
     },
 }
