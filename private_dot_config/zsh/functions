@@ -36,6 +36,32 @@ fzfg() {
     rg -n '' | sed -e 's/:/+/' -e 's/:/\t/' -e 's/+/:/' -e 's/\\/\//g' | fzf | cut -f 1 | cut -d ':' -f 1 | xargs echo ./$@
 }
 
+compress() {
+    tar -czf "${1%/}.tar.gz" "${1%/}"; 
+}
+
+# Write iso file to sd card / USB drive
+iso2sd() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: iso2sd <input_file> <output_device>"
+        echo "Example: iso2sd ~/Downloads/ubuntu-25.04-desktop-amd64.iso /dev/sda"
+        echo -e "\nAvailable SD cards:"
+        lsblk -d -o NAME | grep -E '^sd[a-z]' | awk '{print "/dev/"$1}'
+    else
+        sudo dd bs=4M status=progress oflag=sync if="$1" of="$2"
+        sudo eject $2
+    fi
+}
+
+# Transcode any image to compressed-but-lossless PNG
+img2png() {
+    magick "$1" -strip -define png:compression-filter=5 \
+        -define png:compression-level=9 \
+        -define png:compression-strategy=1 \
+        -define png:exclude-chunk=all \
+        "${1%.*}.png"
+}
+
 # add title to terminal to display state,currently executing command, current directory...
 autoload -Uz add-zsh-hook
 function xterm_title_precmd () {

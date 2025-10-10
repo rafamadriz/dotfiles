@@ -15,7 +15,9 @@ done
 
 # shortcuts
 if command -v xdg-open >/dev/null 2>&1; then
-	alias open='xdg-open'
+	open() {
+	    xdg-open "$@" >/dev/null 2>&1 &
+	}
 fi
 alias sys='systemctl'
 alias icat='kitty +kitten icat'
