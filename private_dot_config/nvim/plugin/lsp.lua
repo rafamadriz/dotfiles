@@ -12,6 +12,7 @@ lsp.enable({
     "pyright",
     "ts_ls",
     "css_variables",
+    "gopls",
 })
 
 diagnostic.config {
