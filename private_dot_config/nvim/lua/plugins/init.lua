@@ -61,36 +61,6 @@ return {
             }
         end,
     },
-    {
-        "ggandor/leap.nvim",
-        lazy = false,
-        init = function()
-            vim.api.nvim_create_autocmd("ColorScheme", {
-                callback = function() vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" }) end,
-            })
-        end,
-        config = function()
-            local leap = require "leap"
-            -- leap.opts.safe_labels = {}
-            leap.add_default_mappings()
-            leap.init_highlight(true)
-            leap.opts.special_keys.prev_target = "<backspace>"
-        end,
-    },
-    {
-        "ggandor/flit.nvim",
-        keys = { "f", "F", "t", "T" },
-        opts = {
-            keys = { f = "f", F = "F", t = "t", T = "T" },
-            -- A string like "nv", "nvo", "o", etc.
-            labeled_modes = "v",
-            multiline = false,
-            -- Like `leap`s similar argument (call-specific overrides).
-            -- E.g.: opts = { equivalence_classes = {} }
-            opts = {},
-        },
-    },
-
     -- Chezmoi
     {
         "alker0/chezmoi.vim",
