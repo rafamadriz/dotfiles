@@ -13,16 +13,6 @@ M.ai = function()
     }
 end
 
-M.operators = function()
-    require("mini.operators").setup {
-        exchange = { prefix = "gx" },
-        replace = { prefix = "gX" },
-        multiply = { prefix = "" },
-        sort = { prefix = "" },
-        evaluate = { prefix = "" },
-    }
-end
-
 M.notify = function()
     local notify = require "mini.notify"
     notify.setup {}
@@ -159,7 +149,6 @@ return {
             require("mini.icons").setup {}
             require("plugins.mini.statusline").setup()
             M.ai()
-            M.operators()
             M.notify()
             M.git()
             M.snippets()
