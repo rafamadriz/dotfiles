@@ -22,7 +22,7 @@ vim.opt.diffopt = {
 }
 
 -- vim.opt.iskeyword:append "-" -- Words separated by - are regconized as one word for commands like "w"...
-vim.opt.iskeyword:remove "_"
+-- vim.opt.iskeyword:remove "_"
 
 -- Message output on vim acctions
 vim.opt.shortmess = {

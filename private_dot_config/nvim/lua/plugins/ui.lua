@@ -14,7 +14,7 @@ return {
     },
     {
         "uga-rosa/ccc.nvim",
-        ft = { "typescript", "typescriptreact", "javascriptreact", "html", "css" },
+        ft = { "typescript", "typescriptreact", "javascriptreact", "html", "css", "scss" },
         cmd = { "CccPick", "CccHighlighterToggle" },
         opts = { highlighter = { auto_enable = true } },
     },

@@ -115,11 +115,7 @@ return {
             },
         },
     },
-    {
-        "r0nsha/qfpreview.nvim",
-        ft = "qf",
-        opts = {},
-    },
+    { "kevinhwang91/nvim-bqf", ft = "qf" },
     { "hiphish/rainbow-delimiters.nvim", lazy = false },
     {
         "NMAC427/guess-indent.nvim",

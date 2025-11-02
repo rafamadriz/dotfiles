@@ -52,7 +52,7 @@ local opts = {
     defaults = {
         lazy = true,
     },
-    lockfile = os.getenv "NVIMRC" .. "/lazy-lock.json",
+    lockfile = os.getenv "HOME" .. "/.config/nvim/lazy-lock.json",
 }
 
 vim.keymap.set("n", "<leader>-", ":Lazy<CR>", { desc = "Lazy" })
