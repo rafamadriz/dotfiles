@@ -8,3 +8,8 @@ refreshPeriod = "672h"
 type = "git-repo"
 url = "https://github.com/hackr-sh/ghostty-shaders.git"
 refreshPeriod = "672h"
+
+[".config/bash/fzf-tab-completion"]
+type = "file"
+url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh"
+refreshPeriod = "672h"

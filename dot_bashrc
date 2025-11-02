@@ -1,0 +1,48 @@
+# Increase history size
+export HISTSIZE=50000
+export HISTFILESIZE=1000000
+
+# Change location of history file
+if [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}"/bash ]; then
+    mkdir -p "${XDG_DATA_HOME:-$HOME/.local/share}"/bash
+fi
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}"/bash/history
+
+# Save command with current directory appended as a comment
+export PROMPT_COMMAND='
+history -a; # Append the command to the history file
+history -r; # Read the updated history file
+'
+# Options
+# ignoredups:   Stop logging of consecutive identical commands
+# ignorespace: avoid saving commands that start with a space
+export HISTCONTROL="ignoredups:ignorespace"
+export HISTTIMEFORMAT="%F %T " # History timestamps
+shopt -s histappend   # append to the history file, don't overwrite it
+shopt -s checkwinsize # checks the window size after each command and, if necessary, updates the values of LINES and COLUMNS
+
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+fi
+
+# Use fzf-tab-completion: https://github.com/lincheney/fzf-tab-completion
+# Install bash-completion via package manager (e.g., apt, yum, pacman)
+# bash-completion: https://github.com/scop/bash-completion/
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/bash/fzf-tab-completion ]; then
+    source "${XDG_CONFIG_HOME:-$HOME/.config}/bash/fzf-tab-completion"
+    bind -x '"\t": fzf_bash_completion'
+    export FZF_COMPLETION_AUTO_COMMON_PREFIX=true
+    export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
+fi
+
+# Allows you to see repository status in your prompt.
+if [ -f /usr/share/git/git-prompt.sh ]; then
+    source /usr/share/git/git-prompt.sh
+fi
+
+if [ -x "$(command -v fzf)" ]; then
+    eval "$(fzf --bash)"
+fi
+
+# Generated with: https://bash-prompt-generator.org/
+PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\n\[\e[38;5;69m\]\u\[\e[0m\]@\[\e[38;5;195m\]\h\[\e[0m\] \[\e[1m\]\w\[\e[0;38;5;225;3m\]${PS1_CMD1}\[\e[0m\] \[\e[2m\]\t\[\e[0m\] [\[\e[38;5;167;2m\]$?\[\e[0m\]]\n\$ '
