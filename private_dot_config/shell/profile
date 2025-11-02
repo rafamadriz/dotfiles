@@ -1,0 +1,157 @@
+#!/bin/env sh
+# shellcheck disable=SC2155
+# SC2155: Declare and assign separately to avoid masking return values.
+
+############################################################
+# Path                                                     #
+############################################################
+export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
+
+############################################################
+# XDG PATHS                                                #
+############################################################
+export XDG_DATA_HOME="${XDG_DATA_HOME:="$HOME/.local/share"}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:="$HOME/.cache"}"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:="$HOME/.config"}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:="$HOME/.local/state"}"
+
+############################################################
+# Defaults                                                 #
+############################################################
+export EDITOR="nvim"
+export VISUAL="nvim"
+export MANPAGER='nvim +Man!'
+export MANWIDTH=120
+export TERMINAL="ghostty"
+export BROWSER="firefox"
+export VIDEO="mpv"
+export COLORTERM="truecolor"
+export HOSTNAME="$(uname -n)"
+
+############################################################
+# Dotfiles                                                 #
+############################################################
+export DOTFILES="${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi"
+export NVIMRC="${DOTFILES:-$HOME/.local/share/chezmoi}/private_dot_config/nvim"
+export ZK_NOTEBOOK_DIR="$HOME/Documents/notes"
+
+########################################################################################
+# Others programs:                                                                     #
+# - Fix cluttering since a lot of programs just put stuff in ~                         #
+#   Most of these were taken from: https://wiki.archlinux.org/title/XDG_Base_Directory #
+# - Add some bin folders to PATH from package managers like npm, cargo, go, etc        #
+########################################################################################
+# GTK
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+# WGET
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+# Disable less history files
+export LESSHISTFILE=-
+# Wine
+export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+# SQLite
+export SQLITE_HISTORY="$XDG_DATA_HOME"/sqlite_history
+# W3M
+export W3M_DIR="$XDG_STATE_HOME/w3m"
+# Pass
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+# GPG
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+export GPG_TTY="$(tty)"
+# Go
+export GOPATH="$XDG_DATA_HOME"/go
+export PATH="$PATH":"$GOPATH"/bin
+# Docker
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export MACHINE_STORAGE_PATH="$XDG_DATA_HOME"/docker-machine
+# Haskell
+export GHCUP_INSTALL_BASE_PREFIX="$XDG_DATA_HOME"
+export PATH="$PATH":"$GHCUP_INSTALL_BASE_PREFIX"/.ghcup/bin
+# Julia
+export JULIA_DEPOT_PATH="$XDG_DATA_HOME/julia:$JULIA_DEPOT_PATH"
+export JULIAUP_DEPOT_PATH="$XDG_DATA_HOME/julia"
+# Rust
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export PATH="$PATH":"$CARGO_HOME"/bin
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+# Java
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export JAVA_HOME="$(readlink -f /usr/bin/java | sed "s:/bin/java::")"
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+# Node, NPM
+export PATH="$PATH":"$XDG_DATA_HOME"/npm/bin
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
+export NVM_DIR="$XDG_DATA_HOME"/nvm
+export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
+# Android
+export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
+export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
+export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+export ANDROID_USER_HOME="$XDG_DATA_HOME"/android
+# Python
+export PYLINTHOME="${XDG_DATA_HOME:-$HOME/.local/share}"/pylint
+export PYTHON_EGG_CACHE="$XDG_CACHE_HOME"/python-eggs
+export PYTHONSTARTUP="$XDG_CONFIG_HOME"/python/config.py
+export RYE_HOME="$XDG_DATA_HOME"/rye
+export PYENV_ROOT="$XDG_DATA_HOME"/pyenv
+export PYTHON_HISTORY="$XDG_STATE_HOME"/python_history
+export PYTHONPYCACHEPREFIX="$XDG_CACHE_HOME"/python
+export PYTHONUSERBASE="$XDG_DATA_HOME"/python
+
+############################################################
+# ZSH                                                      #
+############################################################
+export ZDOTDIR="$HOME"/.config/zsh
+# word split
+# Delete up until `/` with <C-w>, specially useful when typing paths and need to
+# correct just a single section, but by default doing <C-w> deletes the entire "word"
+# default: *?_-.[]~=/&;!#$%^(){}<>
+# source: https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
+# source: https://apple.stackexchange.com/questions/382126/partially-delete-path-in-zsh-option-backspace
+export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+
+############################################################
+# FZF                                                      #
+############################################################
+FZF_BINDS="--bind f4:toggle-preview \
+ --bind ctrl-d:preview-half-page-down \
+ --bind ctrl-u:preview-half-page-up \
+ --bind 'ctrl-y:execute-silent(wl-copy {})' \
+ --bind alt-a:toggle-all \
+ --bind ctrl-n:down \
+ --bind ctrl-p:up \
+ --bind ctrl-j:next-history \
+ --bind ctrl-k:previous-history \
+ --history='$HOME/.local/share/fzf_history'
+ "
+
+FZF_DISPLAY="--layout=reverse --border=bold --multi --height=60% --style=full"
+
+if [ -x "$(command -v bat)" ]; then
+    FZF_PREVIEW="--preview 'bat --color=always --line-range :50 {}' --preview-border=bold"
+else
+    FZF_PREVIEW="--preview 'cat {}'"
+fi
+
+if [ -x "$(command -v fd)" ]; then
+    FD_COMMAND='fd --strip-cwd-prefix --hidden --exclude=\*.git/\* --type=file'
+    FZF_T_OPTS="
+        --bind 'ctrl-g:transform:[[ ! \$FZF_PROMPT == \"  > \" ]] &&
+        echo \"rebind(ctrl-g)+change-prompt(  > )+reload($FD_COMMAND --no-ignore)\" ||
+        echo \"rebind(ctrl-g)+change-prompt(ig> )+reload($FD_COMMAND)\"' \
+        --prompt 'ig> '
+        --header '/ CTRL-G .gitignore / CTRL-Y copy /'
+    "
+else
+    FD_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
+    FZF_T_OPTS=""
+fi
+
+export FZF_DEFAULT_COMMAND="$FD_COMMAND"
+export FZF_DEFAULT_OPTS="$FZF_DISPLAY $FZF_BINDS"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="$FZF_T_OPTS $FZF_PREVIEW"
+export FZF_ALT_C_COMMAND="find . -type d -not -path '*/\.git/*'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"

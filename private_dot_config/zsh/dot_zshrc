@@ -30,9 +30,7 @@ source "$ZDOTDIR/functions"
 # prompt
 zsh_add_file "prompt.zsh"
 # aliases
-zsh_add_file "aliasrc"
-# Exports
-[ -f ~/.zshenv ] && source ~/.zshenv
+[ -f $HOME/.config/shell/aliasrc ] && source $HOME/.config/shell/aliasrc
 
 # Plugins
 zsh_add_plugin "Aloxaf/fzf-tab"

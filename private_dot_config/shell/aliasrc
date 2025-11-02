@@ -1,0 +1,105 @@
+#!/bin/env sh
+
+# add color to commands
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias dir='dir --color=auto'
+alias ls='ls -Fh --color=auto'
+alias ll='ls -Flh --color=auto'
+alias lla='ls -FlAh --color=auto'
+alias d='dirs -v'
+
+# shortcuts
+alias sys='systemctl'
+alias icat='kitty +kitten icat'
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias nuke='rm -rI'
+alias rm='rm -vI'
+alias sudo='sudo '
+alias untar='tar -xvf'
+alias v='nvim'
+alias vim='nvim'
+alias cm='chezmoi'
+alias lg='lazygit'
+alias mbsync='mbsync --config "$XDG_CONFIG_HOME/mbsync/mbsyncrc"'
+alias adb='HOME="$XDG_DATA_HOME"/android adb'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# git
+alias g='git'
+alias ga='git add'
+alias gcl='git clone'
+alias cdg='cd $(git rev-parse --show-toplevel)'
+alias gaa='git add --all'
+alias gb='git branch -a'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gd='git diff'
+alias gp='git push'
+alias gl='git pull'
+alias gll='git log'
+alias gs='git status'
+alias gr='git remote -v'
+alias grm='git rm'
+alias grmc='git rm --cached'
+alias gmv='git mv'
+
+# create an alias for folders in the pushd stack
+i=0
+while [ "$i" -le 9 ]; do
+    # shellcheck disable=SC2139
+    alias "$i"="cd +${i}"
+    i=$((i + 1))
+done
+
+if command -v xdg-open >/dev/null 2>&1; then
+    open() {
+        xdg-open "$@" >/dev/null 2>&1 &
+    }
+fi
+
+# fkill - kill processes - list only the ones you can kill. Modified the earlier script.
+fkill() {
+    pid=""
+    if [ "$(id -u)" != "0" ]; then
+        pid=$(ps -f -u "$(id -u)" | sed 1d | fzf | awk '{print $2}')
+    else
+        pid=$(ps -ef | sed 1d | fzf | awk '{print $2}')
+    fi
+
+    if [ "$pid" != "x" ]
+    then
+        echo "$pid" | xargs kill -"${1:-9}"
+    fi
+}
+
+compress() {
+    tar -czf "${1%/}.tar.gz" "${1%/}";
+}
+
+# Write iso file to sd card / USB drive
+# source: https://github.com/basecamp/omarchy/blob/master/default/bash/functions
+iso2sd() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: iso2sd <input_file> <output_device>"
+        echo "Example: iso2sd ~/Downloads/ubuntu-25.04-desktop-amd64.iso /dev/sda"
+        printf "\nAvailable SD cards:"
+        lsblk -d -o NAME | grep -E '^sd[a-z]' | awk '{print "/dev/"$1}'
+    else
+        sudo dd bs=4M status=progress oflag=sync if="$1" of="$2"
+        sudo eject "$2"
+    fi
+}
+
+# Transcode any image to compressed-but-lossless PNG
+# source: https://github.com/basecamp/omarchy/blob/master/default/bash/functions
+img2png() {
+    magick "$1" -strip -define png:compression-filter=5 \
+        -define png:compression-level=9 \
+        -define png:compression-strategy=1 \
+        -define png:exclude-chunk=all \
+        "${1%.*}.png"
+}
