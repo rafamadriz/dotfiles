@@ -99,7 +99,7 @@ return {
                 t = { offset = -1, opts = clever_t },
                 T = { backward = true, offset = 1, opts = clever_t },
             } do
-                vim.keymap.set({'n', 'x', 'o'}, key, function ()
+                vim.keymap.set({'n', 'x'}, key, function ()
                     require('leap').leap(as_ft(key_specific_args))
                 end)
             end
