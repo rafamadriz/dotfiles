@@ -29,7 +29,7 @@ zstyle ':vcs_info:*' formats       \
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats " %{$fg[red]%}%m%u%c%%{$fg[yellow]%} %{$fg[magenta]%}%b"
+zstyle ':vcs_info:git:*' formats " %{$fg[red]%}%m%u%c%{$reset_color%} %{$fg[yellow]%}%{$reset_color%}%{$fg[magenta]%}%b%{$reset_color%}"
 
 # Example of two-line ZSH prompt with four components.
 #
@@ -132,14 +132,16 @@ function set-prompt() {
     fi
   }
 
-  # local top_left="%F{blue}%~%f $vcs_info_msg_0_ "
-  local top_left="%F{yellow}%n@%f%F{green}${CONTAINER_ID:-%m}%f %F{blue}%~%f $vcs_info_msg_0_ "
+  # partially generated with: https://zsh-prompt-generator.site/
+  # https://github.com/k-yokoishi/zsh-prompt-generator
+  local top_left="%B%F{105}%n%f%b@%F{158}${CONTAINER_ID:-%m}%f %B%~%b$vcs_info_msg_0_"
   local bottom_left='%B%F{%(?.green.red)}%(#.#.❯)%f%b '
+  local top_right="[%F{218}%?%f] %*"
 
   local REPLY
   fill-line "$top_left" "$top_right"
   PROMPT=$REPLY$'\n'$bottom_left
-  RPROMPT=$bottom_right
+  # RPROMPT=$bottom_right
 }
 
 setopt no_prompt_{bang,subst} prompt_{cr,percent,sp}
