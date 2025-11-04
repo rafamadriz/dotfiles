@@ -106,11 +106,13 @@ export PYTHONUSERBASE="$XDG_DATA_HOME"/python
 export ZDOTDIR="$HOME"/.config/zsh
 # word split
 # Delete up until `/` with <C-w>, specially useful when typing paths and need to
-# correct just a single section, but by default doing <C-w> deletes the entire "word"
+# correct just a single section, but by default doing <C-w> deletes the entire
+# "word" Delete up until `.` and `-` and `_`, usefule for filenames separated by
+# `-` and `_` and to change file extensions by deleting only up until `.`
 # default: *?_-.[]~=/&;!#$%^(){}<>
 # source: https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
 # source: https://apple.stackexchange.com/questions/382126/partially-delete-path-in-zsh-option-backspace
-export WORDCHARS="*?_-.[]~=&;!#$%^(){}<>"
+export WORDCHARS="*?[]~=&;!#$%^(){}<>"
 
 ############################################################
 # FZF                                                      #
