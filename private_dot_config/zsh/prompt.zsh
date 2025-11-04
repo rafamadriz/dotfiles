@@ -136,7 +136,7 @@ function set-prompt() {
   # https://github.com/k-yokoishi/zsh-prompt-generator
   local top_left="%B%F{105}%n%f%b@%F{158}${CONTAINER_ID:-%m}%f %B%~%b$vcs_info_msg_0_"
   local bottom_left='%B%F{%(?.green.red)}%(#.#.❯)%f%b '
-  local top_right="[%F{218}%?%f] %* "
+  local top_right="%*"
 
   local REPLY
   fill-line "$top_left" "$top_right"
