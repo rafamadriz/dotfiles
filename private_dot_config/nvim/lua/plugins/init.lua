@@ -123,6 +123,9 @@ return {
         config = true,
     },
     {
+        -- Neovim now has a Undotree ui: https://github.com/neovim/neovim/pull/35627
+        -- Will be available on 0.12, however, I test it and it's very minimal.
+        -- As an alternative, check atone: https://github.com/XXiaoA/atone.nvim
         "mbbill/undotree",
         cmd = "UndotreeToggle",
         keys = { { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Undotree" } },

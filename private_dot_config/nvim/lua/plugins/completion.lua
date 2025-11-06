@@ -3,7 +3,6 @@
 return {
     "saghen/blink.cmp",
     lazy = false,
-    enabled = false,
     dependencies = { "ribru17/blink-cmp-spell" },
     version = "1.*",
     ---@module "blink.cmp"
