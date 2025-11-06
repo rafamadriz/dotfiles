@@ -1,6 +1,6 @@
 HISTFILE="$XDG_DATA_HOME"/zsh/history
-HISTSIZE=10000000
-SAVEHIST=10000000
+HISTSIZE=100000
+SAVEHIST=100000
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
@@ -43,12 +43,14 @@ zsh_add_plugin "jeffreytse/zsh-vi-mode"
 PLUG_DIR=$ZDOTDIR/plugins
 export ZVM_VI_SURROUND_BINDKEY=classic
 # export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
+if [ -x "$(command -v fzf)" ]; then
+    eval "$(fzf --zsh)"
+fi
+
 # solves https://github.com/jeffreytse/zsh-vi-mode/issues/90
 #        https://github.com/jeffreytse/zsh-vi-mode/issues/24
 zvm_after_init() {
-    if [ -x "$(command -v fzf)" ]; then
-        eval "$(fzf --zsh)"
-    fi
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
 }

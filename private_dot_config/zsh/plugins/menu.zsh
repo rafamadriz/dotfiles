@@ -17,7 +17,7 @@ unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
 # Generic options completion
 # https://github.com/junegunn/fzf/issues/3349
-compdef _gnu_generic fzf msmtp
+compdef _gnu_generic fzf msmtp age
 
 #
 # Styles
