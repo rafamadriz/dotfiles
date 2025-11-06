@@ -15,9 +15,9 @@ setopt EXTENDED_GLOB       # Needed for file modification glob modifiers with co
 unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
 unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
 
-# FZF options completion
+# Generic options completion
 # https://github.com/junegunn/fzf/issues/3349
-compdef _gnu_generic fzf
+compdef _gnu_generic fzf msmtp
 
 #
 # Styles

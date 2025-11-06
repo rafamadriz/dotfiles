@@ -33,6 +33,7 @@ zsh_add_file "prompt.zsh"
 [ -f $HOME/.config/shell/aliasrc ] && source $HOME/.config/shell/aliasrc
 
 # Plugins
+# TODO: Move this funcionality to chezmoiexternal
 zsh_add_plugin "Aloxaf/fzf-tab"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
