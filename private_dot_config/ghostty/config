@@ -1,6 +1,6 @@
-theme = light:dayfox,dark:Dark Pastel
-font-family = "CommitMono"
-# font-family = "0xProto"
+theme = light:Dayfox,dark:Carbonfox
+# font-family = "CommitMono"
+font-family = "0xProto"
 # font-family = "Cascadia Mono"
 # font-family = "JetBrains Mono"
 # font-family = "Fira Code"
