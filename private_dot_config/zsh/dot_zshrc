@@ -32,10 +32,6 @@ zsh_add_file "prompt.zsh"
 # aliases
 [ -f $HOME/.config/shell/aliasrc ] && source $HOME/.config/shell/aliasrc
 
-if [ -x "$(command -v fzf)" ]; then
-    eval "$(fzf --zsh)"
-fi
-
 # Plugins
 # TODO: Move this funcionality to chezmoiexternal
 zsh_add_plugin "Aloxaf/fzf-tab"
@@ -47,11 +43,16 @@ zsh_add_plugin "jeffreytse/zsh-vi-mode"
 export ZVM_VI_SURROUND_BINDKEY=classic
 # export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
-# solves https://github.com/jeffreytse/zsh-vi-mode/issues/90
-#        https://github.com/jeffreytse/zsh-vi-mode/issues/24
 zvm_after_init() {
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
+
+    # NOTE: initialization of fzf needs to go inside zvm_after_init()
+    # solves https://github.com/jeffreytse/zsh-vi-mode/issues/90
+    #        https://github.com/jeffreytse/zsh-vi-mode/issues/24
+    if [ -x "$(command -v fzf)" ]; then
+        eval "$(fzf --zsh)"
+    fi
 }
 
 PLUG_DIR=$ZDOTDIR/plugins

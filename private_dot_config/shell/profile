@@ -34,6 +34,7 @@ export HOSTNAME="$(uname -n)"
 export DOTFILES="${XDG_DATA_HOME:-$HOME/.local/share}/chezmoi"
 export NVIMRC="${DOTFILES:-$HOME/.local/share/chezmoi}/private_dot_config/nvim"
 export ZK_NOTEBOOK_DIR="$HOME/Documents/notes"
+export MAILDIR="$XDG_DATA_HOME/maildir"
 
 ########################################################################################
 # Others programs:                                                                     #
