@@ -49,6 +49,8 @@ export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export LESSHISTFILE=-
 # Wine
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
+# Inputrc
+export INPUTRC="$XDG_CONFIG_HOME"/readline/inputrc
 # SQLite
 export SQLITE_HISTORY="$XDG_DATA_HOME"/sqlite_history
 # W3M
