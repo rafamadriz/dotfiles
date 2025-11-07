@@ -1,0 +1,20 @@
+#!/bin/env sh
+
+MAILDIR="{{ .chezmoi.homeDir }}/.local/share/maildir"
+
+[ ! -d "$MAILDIR" ] && mkdir -p "$MAILDIR"/fastmail/TrashArchive
+
+# --recursive: recurse into directories
+# --links: copy symlinks as symlinks
+# -p: preserve permissions
+# --times: preserve modification times
+# --group: preserve group
+# --owner: preserve owner
+# --progress: show progress during transfer
+# --ignore-existing: ignore files that already exist on receiving side
+# --human-readable: output numbers in a human-readable format
+rsync --verbose --recursive --links -p --times --group --owner --progress --ignore-existing --human-readable "$MAILDIR"/fastmail/Trash/* "$MAILDIR"/fastmail/TrashArchive || exit 1
+rsync --verbose --recursive --links -p --times --group --owner --progress --ignore-existing --human-readable "$MAILDIR"/fastmail/Spam/* "$MAILDIR"/fastmail/TrashArchive || exit 1
+
+# Sync mailboxes
+mbsync --config "{{ .chezmoi.homeDir }}/.config/mbsync/mbsyncrc" --verbose fastmail
