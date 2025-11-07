@@ -21,6 +21,11 @@ font-feature = -liga
 font-feature = -calt
 font-feature = -dlig
 
+# keep Ghostty running all the time so that new window creation will always be fast
+# Better if used with systemd: systemctl enable --user app-com.mitchellh.ghostty.service
+# https://ghostty.org/docs/linux/systemd
+quit-after-last-window-closed = false
+
 # only works on macos
 # keybind = global:ctrl+shift+]=toggle_quick_terminal
 
