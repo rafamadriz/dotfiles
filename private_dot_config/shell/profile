@@ -103,7 +103,6 @@ export PYTHONUSERBASE="$XDG_DATA_HOME"/python
 ############################################################
 # ZSH                                                      #
 ############################################################
-export ZDOTDIR="$HOME"/.config/zsh
 # word split
 # Delete up until `/` with <C-w>, specially useful when typing paths and need to
 # correct just a single section, but by default doing <C-w> deletes the entire
