@@ -26,6 +26,8 @@ font-feature = -dlig
 # https://ghostty.org/docs/linux/systemd
 quit-after-last-window-closed = false
 
+shell-integration = zsh
+
 # only works on macos
 # keybind = global:ctrl+shift+]=toggle_quick_terminal
 
