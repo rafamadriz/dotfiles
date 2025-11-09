@@ -70,8 +70,7 @@ fkill() {
         pid=$(ps -ef | sed 1d | fzf | awk '{print $2}')
     fi
 
-    if [ "$pid" != "x" ]
-    then
+    if [ ! -z "$pid" ]; then
         echo "$pid" | xargs kill -"${1:-9}"
     fi
 }
