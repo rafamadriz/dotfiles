@@ -120,18 +120,22 @@ function fill-line() {
 function set-prompt() {
   emulate -L zsh
 
+  # Print empty line before each prompt. It's easier to visually parse the
+  # terminal is there's some visual separation between the end of a command and
+  # next prompt.
   precmd() {
     print ""
-
-    # Get the most recent command
-    local last_cmd="$(fc -ln -1)"
-
-    # Check if the command starts with a space (ignore it if so)
-    if [[ -n "$last_cmd" && "${last_cmd:0:1}" != " " && "$(id -u)" -ne 0 ]]; then
-        printf "%s \x1F %s \x1F %s\n" "$(date "+%Y-%m-%d.%H:%M:%S")" "$(pwd)" "$last_cmd" >> $XDG_DATA_HOME/zsh/zsh-history-$HOSTNAME.log
-    fi
   }
-
+  # %F{green}, %F{blue}, %F{yellow} = change foreground color
+  # %f = turn off foreground color
+  # %n = $USER
+  # %m = hostname up to first "."
+  # %B = bold on, %b = bold off
+  # %1~ = show 1 trailing component of working directory, or "~" if is is $HOME
+  # %(1j.*.) = "*" if the number of jobs is at least 1
+  # %(?..!) = "!" if the exit status of the last command was not 0
+  # %(!.%F{yellow}%n%f.) = if root (!) show yellow $USER, otherwise nothing.
+  # $(!.%F{yellow}.%F{red})$(printf ...) = show one ❯ per $LVL (red for root, otherwise yellow)
   # partially generated with: https://zsh-prompt-generator.site/
   # https://github.com/k-yokoishi/zsh-prompt-generator
   local top_left="%B%F{105}%n%f%b@%F{158}${CONTAINER_ID:-%m}%f %B%~%b$vcs_info_msg_0_"
