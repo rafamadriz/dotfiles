@@ -1,6 +1,7 @@
 local M = {}
 
 M.config = {
+    "ivy",
     fzf_opts = {
         ["--history"] = vim.fn.stdpath "data" .. "/fzf-lua-history",
     },
@@ -17,12 +18,12 @@ M.config = {
         -- debug = true,
         multiline = 2, -- fzf >= 0.53.0
         -- formatter = "path.filename_first",
-        winopts = {
-            width = 0.8, -- window width
-            preview = {
-                layout = "vertical",
-            },
-        },
+        -- winopts = {
+        --     width = 0.8, -- window width
+        --     preview = {
+        --         layout = "vertical",
+        --     },
+        -- },
         rg_glob = true,
         rg_opts = [[--column --hidden --glob "!**/.git/**" ]]
             .. [[--line-number --no-heading --color=always ]]
@@ -62,8 +63,8 @@ M.keymaps = {
         string.format("<cmd>FzfLua files cwd=%s<CR>", vim.fn.expand "%:p:h"),
         desc = "Find files in directory of current buffer",
     },
-    { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Grep project" },
-    { "<leader>fG", "<cmd>FzfLua lgrep_curbuf<CR>", desc = "Grep on current buffer" },
+    { "<leader>fg", "<cmd>FzfLua live_grep<CR>", desc = "Live grep" },
+    { "<leader>fG", "<cmd>FzfLua grep<CR>", desc = "Grep a pattern" },
     {
         "<leader>fw",
         "<cmd>FzfLua grep_cword<CR>",

@@ -17,7 +17,7 @@ return {
         end, { range = true })
     end,
     config = function()
-        vim.keymap.set({ "n", "v" }, "<leader>=", "<cmd>Format<CR>")
+        vim.keymap.set({ "n", "v" }, "<leader>=", "<cmd>Format<CR>", { desc = "Format buffer" })
         require("conform").setup {
             format_on_save = nil,
             formatters_by_ft = {

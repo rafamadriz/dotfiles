@@ -29,7 +29,7 @@ local groups = function()
     local diagnostics = mini_statusline.section_diagnostics { trunc_width = 75, signs = diag_signs }
     diagnostics = diagnostics .. "%#MiniStatuslineFilename#"
 
-    local filename = mini_statusline.section_filename { trunc_width = 140 }
+    local filename = mini_statusline.section_filename { trunc_width = 200 }
     local fileinfo = string.format("%s | %s", vim.opt.fileencoding:get(), vim.bo.fileformat)
 
     local location = function()
