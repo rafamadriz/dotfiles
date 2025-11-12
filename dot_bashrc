@@ -35,14 +35,14 @@ if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/bash/fzf-tab-completion ]; then
     export FZF_COMPLETION_AUTO_COMMON_PREFIX_PART=true
 fi
 
+if [ -x "$(command -v fzf)" ]; then
+    eval "$(fzf --bash)"
+fi
+
 # Allows you to see repository status in your prompt.
 if [ -f /usr/share/git/git-prompt.sh ]; then
     source /usr/share/git/git-prompt.sh
 fi
 
-if [ -x "$(command -v fzf)" ]; then
-    eval "$(fzf --bash)"
-fi
-
 # Generated with: https://bash-prompt-generator.org/
-PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")'; PS1='\n\[\e[38;5;69m\]\u\[\e[0m\]@\[\e[38;5;195m\]\h\[\e[0m\] \[\e[1m\]\w\[\e[0;38;5;225;3m\]${PS1_CMD1}\[\e[0m\] \[\e[2m\]\t\[\e[0m\] [\[\e[38;5;167;2m\]$?\[\e[0m\]]\n\$ '
+ PROMPT_COMMAND='PS1_CMD1=$(command -v __git_ps1 >/dev/null 2>&1 && __git_ps1 " (%s)")'; PS1='\n\[\e[38;5;69m\]\u\[\e[0m\]@\[\e[38;5;195m\]\h\[\e[0m\] \[\e[1m\]\w\[\e[0;38;5;225;3m\]${PS1_CMD1}\[\e[0m\] \[\e[2m\]\t\[\e[0m\] [\[\e[38;5;167;2m\]$?\[\e[0m\]]\n\$ '
