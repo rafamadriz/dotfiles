@@ -13,6 +13,9 @@ map("i", "<c-space>", "<C-X><C-O>")
 map("i", "<C-F>", "<C-X><C-F>")
 map("i", "<C-L>", "<C-X><C-L>")
 
+-- Terminal
+map("t", [[<C-\>]], [[<C-\><C-n>]])
+
 -- Disable repeat last recorded character
 map("n", "Q", "<Nop>")
 -- I always type :Q by mistake
