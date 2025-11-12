@@ -1,7 +1,7 @@
 encryption = "age"
 
 [age]
-identity = "{{ .chezmoi.sourceDir }}/.key.txt"
+identity = "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt"
 recipient = "age16za5cd6p827u929wtrjeu40hyya0uu7tmdyrwntnt2l28pzdg5dsk076pw"
 
 [data]
@@ -12,3 +12,6 @@ name = "Rafael Madriz"
 command = "delta"
 args = "--color-only"
 pager = "delta"
+
+[keepassxc]
+database = "{{ .chezmoi.homeDir }}/Documents/KeePass/pass.kdbx"

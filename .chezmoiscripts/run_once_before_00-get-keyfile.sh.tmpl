@@ -1,0 +1,26 @@
+#!/bin/env sh
+
+DATABASE="{{ .chezmoi.homeDir }}/Documents/KeePass/pass.kdbx"
+KEY="{{ .chezmoi.sourceDir }}/.k"
+
+if ! command -v keepassxc-cli >/dev/null 2>&1; then
+    echo "KeePassXC cli needs to be installed"
+    exit 1
+fi
+
+if [ ! -f "$KEY" ]; then
+    # Initialize the attempt counter
+    attempt=1
+    max_attempts=3
+
+    while ! keepassxc-cli attachment-export "$DATABASE" "archlinux/chezmoi-age-key" "key.age" "$KEY"
+    do
+        if [ $attempt -ge $max_attempts ]; then
+            echo "Command failed after $attempt attempts. Exiting."
+            exit 1
+        fi
+        echo "Command failed. Retrying..."
+        attempt=$((attempt+1))
+        sleep 1  # Optional: wait 1 second before retrying
+    done
+fi

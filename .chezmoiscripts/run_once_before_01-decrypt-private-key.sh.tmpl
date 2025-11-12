@@ -1,0 +1,27 @@
+#!/bin/env sh
+
+USER_HOME="{{ .chezmoi.homeDir }}"
+
+if [ ! -f "$USER_HOME/.config/chezmoi/key.txt" ]; then
+    mkdir -p "$USER_HOME/.config/chezmoi"
+
+    # Initialize the attempt counter
+    attempt=1
+    max_attempts=3
+
+    echo "dotfiles private key must be decrypted"
+
+    while ! chezmoi age decrypt --output "$USER_HOME/.config/chezmoi/key.txt" --passphrase "{{ .chezmoi.sourceDir }}/.k"
+    do
+        if [ $attempt -ge $max_attempts ]; then
+            echo "Command failed after $attempt attempts. Exiting."
+            exit 1
+        fi
+        echo "Command failed. Retrying..."
+        attempt=$((attempt+1))
+        sleep 1  # Optional: wait 1 second before retrying
+    done
+
+
+    chmod 600 "$USER_HOME/.config/chezmoi/key.txt"
+fi
