@@ -5,13 +5,13 @@
 return {
     {
         "EdenEast/nightfox.nvim",
-        lazy = false,
         config = function()
             vim.cmd.colorscheme "carbonfox"
         end
     },
     {
         "catppuccin/nvim",
+        lazy = false,
         name = "catppuccin",
         config = function()
             require("catppuccin").setup {

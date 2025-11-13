@@ -27,6 +27,15 @@ vim.api.nvim_create_user_command("Q", function(arg)
     end
 end, { bang = true })
 
+-- I always type :W
+vim.api.nvim_create_user_command("W", function(arg)
+    if arg.bang then
+        vim.cmd.write { bang = true }
+    else
+        vim.cmd.update()
+    end
+end, { bang = true })
+
 -- Center buffer when searching
 --map("n", "n", "nzzzv")
 --map("n", "N", "Nzzzv")

@@ -1,4 +1,4 @@
-theme = light:Dayfox,dark:Carbonfox
+theme = light:Dayfox,dark:Catppuccin Mocha
 # font-family = "CommitMono"
 font-family = "0xProto"
 # font-family = "Cascadia Mono"
