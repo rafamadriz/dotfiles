@@ -6,9 +6,7 @@ return {
         branch = "main",
         lazy = false,
         build = ":TSUpdate",
-        -- See https://github.com/RRethy/nvim-treesitter-endwise/issues/27
-        -- Change to RRethy when it's updated
-        dependencies = { "brianhuster/treesitter-endwise.nvim" },
+        dependencies = { "RRethy/nvim-treesitter-endwise" },
         config = function()
             local ts = require"nvim-treesitter"
 
