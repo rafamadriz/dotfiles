@@ -11,6 +11,6 @@
 --embed-metadata
 --sub-langs all
 --embed-subs
---embed-thumbnail
+# --embed-thumbnail
 --convert-thumbnails jpg
 --embed-chapters
