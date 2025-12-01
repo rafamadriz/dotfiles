@@ -99,6 +99,18 @@ iso2sd() {
     fi
 }
 
+# Reduce file size of video
+# Based of https://github.com/basecamp/omarchy/blob/master/default/bash/functions
+transcode_video_small() {
+    ffmpeg -i "$1" -c:v libx264 -preset fast -crf 28 -c:a copy "${1%.*}"-small.mp4
+}
+
+# Transcode any image to JPG image that's great for sharing online without being too big
+# Source: https://github.com/basecamp/omarchy/blob/master/default/bash/functions
+img2jpg_small() {
+    magick "$1" -quality 95 -strip "${1%.*}"-small.jpg
+}
+
 # Transcode any image to compressed-but-lossless PNG
 # source: https://github.com/basecamp/omarchy/blob/master/default/bash/functions
 img2png() {
