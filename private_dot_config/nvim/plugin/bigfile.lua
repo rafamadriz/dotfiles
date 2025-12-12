@@ -1,6 +1,6 @@
 -- Taken from snacks' bigfile but with some modifcations to make simplier
 -- https://github.com/folke/snacks.nvim/blob/main/lua/snacks/bigfile.lua
-vim.filetype.add({
+vim.filetype.add {
     pattern = {
         [".*"] = {
             function(path, buf)
@@ -24,15 +24,15 @@ vim.filetype.add({
             end,
         },
     },
-})
+}
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
     group = vim.api.nvim_create_augroup("Bigfile", { clear = true }),
     pattern = "bigfile",
     callback = function(ev)
         vim.api.nvim_buf_call(ev.buf, function()
-            if vim.fn.exists(":NoMatchParen") ~= 0 then
-                vim.cmd([[NoMatchParen]])
+            if vim.fn.exists ":NoMatchParen" ~= 0 then
+                vim.cmd [[NoMatchParen]]
             end
             vim.opt_local.foldmethod = "manual"
             vim.opt_local.undolevels = 50
@@ -43,11 +43,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
             vim.b.minihipatterns_disable = true
 
             vim.schedule(function()
-                -- NOTE: We don't need to explicitly disable treesitter because the filetype is being 
-                -- set to "bigfile" in the filetype.add function above. Which automatically disables 
+                -- NOTE: We don't need to explicitly disable treesitter because the filetype is being
+                -- set to "bigfile" in the filetype.add function above. Which automatically disables
                 -- treesitter because there are no parsers for files of type "bigfile"
                 if vim.api.nvim_buf_is_valid(ev.buf) then
-                    vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
+                    vim.bo[ev.buf].syntax = vim.filetype.match { buf = ev.buf } or ""
                 end
             end)
         end)
