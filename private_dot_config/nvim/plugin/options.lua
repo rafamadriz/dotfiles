@@ -98,6 +98,27 @@ vim.opt.foldtext       = "" -- show original text with its syntax highlighting
 vim.opt.swapfile = false
 vim.opt.undofile = true
 
+-- Lua version of `help fuzzy-file-picker`
+---@param arg string
+---@return string[]
+_G.fuzzy_find = function(arg, _)
+   local paths = vim.fn.globpath(".", "**", true, true)
+   local fuzzy_filescache = vim.tbl_filter(function(path)
+       if vim.fn.isdirectory(path) then
+           return true
+       end
+       return false
+   end, paths)
+
+   fuzzy_filescache = vim.tbl_map(function(path) return vim.fn.fnamemodify(path, ":.") end, fuzzy_filescache)
+
+   if not arg or arg == "" then
+       return fuzzy_filescache
+   end
+   return vim.fn.matchfuzzy(fuzzy_filescache, arg)
+end
+vim.opt.findfunc = "v:lua.fuzzy_find"
+
 -- Wild and file globbing stuff
 vim.opt.wildignorecase = true -- Ignore case when completing file names and directories
 vim.opt.path = ".,**,,"
