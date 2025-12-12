@@ -1,12 +1,12 @@
 -- Timings
-vim.opt.timeoutlen = 1000 -- Time to wait for a keymap to complete
+vim.opt.timeoutlen  = 1000 -- Time to wait for a keymap to complete
 vim.opt.ttimeoutlen = 300 -- Time to wait for a key code sequence to complete
-vim.opt.updatetime = 300 -- If nothing is typed is this time, swap file will be written
+vim.opt.updatetime  = 400 -- If nothing is typed is this time, swap file will be written. Also used for 'CursorHold' autocommand
 
 -- Window splitting
 vim.opt.splitbelow = true -- Horizontal splits will be below
 vim.opt.splitright = true -- Vertical splits will be to the right
-vim.opt.splitkeep = "screen" -- Keep the text on same line when resizing, closing...
+vim.opt.splitkeep  = "screen" -- Keep the text on same line when resizing, closing...
 
 -- Diff options
 vim.opt.diffopt = {
@@ -34,38 +34,37 @@ vim.opt.shortmess = {
 }
 
 -- Display
-vim.opt.laststatus = 3 -- Use a single status line for all windows
-vim.opt.scrolloff = 2 -- Minimal number of lines to keep above/below the cursor
-vim.opt.signcolumn = "auto:2-3"
-vim.opt.termguicolors = true
-vim.opt.title = true
-vim.opt.titlestring = vim.fn.expand "%:p"
-vim.opt.confirm = true -- Save me from doing destructive things
-vim.opt.showmode = false -- When in insert, show mode in last line
-vim.opt.pumheight = 15 -- Maximum number of items to show in the popup menu
-vim.opt.completeopt = "menuone,noinsert,fuzzy,popup"
-vim.opt.mouse = "a"
-vim.o.winborder = "rounded"
+vim.opt.scrolloff     = 2 -- Minimal number of lines to keep above/below the cursor
+vim.opt.signcolumn    = "yes:2" -- show always, with fixed space for signs up to the given number (2)
+vim.opt.termguicolors = true -- Enables 24-bit RGB color in the TUI
+vim.opt.title         = true -- When on, the title of the window will be `filename [+= -] (path) - Nvim` or to value of titlestring if not empty
+vim.opt.confirm       = true -- Save me from doing destructive things
+vim.opt.showmode      = false -- When in insert, show mode in last line
+vim.opt.pumheight     = 15 -- Maximum number of items to show in the popup menu
+vim.opt.mouse         = "a" -- Enables mouse support
+vim.opt.winborder     = "rounded" -- Default border style for floating windows
+
+-- Completion
+vim.opt.completeopt = "menuone,fuzzy,popup,noinsert"
+vim.opt.wildoptions = "pum,fuzzy" -- A list of words that change how cmdline-completion is done.
 
 -- Indentetion
-vim.opt.wrap = false
-vim.opt.expandtab = true
+vim.opt.wrap        = false
+vim.opt.expandtab   = true -- Insert spaces instead of tabs on <Tab>
 vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.textwidth = 80
-vim.opt.virtualedit = "block"
+vim.opt.shiftwidth  = 4
+vim.opt.virtualedit = "block" -- Allow the cursor be positioned where there is no actual character
 
 -- Numbers and lines
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.number     = true
 vim.opt.cursorline = true
 
 -- Match and Search
 vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.opt.smartcase  = true
 
 -- List Chars
-vim.opt.list = true
+vim.opt.list      = true
 vim.opt.fillchars = {
     eob = " ", -- supress ~ at EndOfBuffer
     diff = "/",
@@ -82,7 +81,7 @@ vim.opt.listchars = {
 
 -- Session options
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
-vim.opt.exrc = true
+vim.opt.exrc           = true -- Enable project local configuration
 
 -- Use rg as grep program
 if vim.fn.executable "rg" > 0 then
@@ -91,10 +90,9 @@ end
 vim.opt.grepformat = "%f:%l:%c:%m"
 
 -- Folds
-vim.opt.foldlevelstart = 999
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldmethod = "expr"
-vim.opt.foldtext = "" -- show original text with its syntax highlighting
+vim.opt.foldlevelstart = 5
+vim.opt.foldmethod     = "expr"
+vim.opt.foldtext       = "" -- show original text with its syntax highlighting
 
 -- BACKUP AND SWAP
 vim.opt.swapfile = false
@@ -102,7 +100,6 @@ vim.opt.undofile = true
 
 -- Wild and file globbing stuff
 vim.opt.wildignorecase = true -- Ignore case when completing file names and directories
-vim.opt.wildoptions = "pum,fuzzy"
 vim.opt.path = ".,**,,"
 vim.opt.wildignore = {
     "*.aux",
