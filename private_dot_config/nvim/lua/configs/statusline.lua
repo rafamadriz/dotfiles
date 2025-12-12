@@ -1,5 +1,3 @@
-local M = {}
-
 local mini_statusline = require "mini.statusline"
 
 local groups = function()
@@ -32,6 +30,16 @@ local groups = function()
     local filename = mini_statusline.section_filename { trunc_width = 200 }
     local fileinfo = string.format("%s | %s", vim.opt.fileencoding:get(), vim.bo.fileformat)
 
+    local buffer_lsp = function()
+        local current_buffer = vim.api.nvim_get_current_buf()
+        local lsp_clients = vim.lsp.get_clients({ bufnr = current_buffer })
+        if vim.tbl_isempty(lsp_clients) then return end
+        local client_names = vim.tbl_map(function(client)
+            return client.name
+        end, lsp_clients)
+        return "[" .. table.concat(client_names, ",") .. "]"
+    end
+
     local location = function()
         local pos = vim.fn.getcurpos()
         local line, column = pos[2], pos[3]
@@ -63,15 +71,12 @@ local groups = function()
         { hl = "MiniStatuslineFilename", strings = { filename } },
         "%=", -- End left alignment
         { hl = "MiniStatuslineFilename", strings = { diagnostics } },
+        { hl = "NonText", strings = { buffer_lsp() } },
         { hl = "MiniStatuslineFileInfo", strings = { fileinfo } },
         { hl = mode_hl, strings = { search, location() } },
     }
 end
 
-M.setup = function()
-    mini_statusline.setup {
-        content = { active = groups },
-    }
-end
-
-return M
+mini_statusline.setup {
+    content = { active = groups },
+}
