@@ -10,19 +10,15 @@ vim.opt.splitkeep = "screen" -- Keep the text on same line when resizing, closin
 
 -- Diff options
 vim.opt.diffopt = {
-    "internal",
-    "filler",
-    "closeoff",
-    "vertical",
-    -- "iwhite",
-    "hiddenoff",
-    "algorithm:histogram",
-    "indent-heuristic",
-    "linematch:60",
+    "internal", -- Use internal diff library (indent-heuristic). Ignored when diffexpr is set
+    "filler", -- Show filler lines to keep text synchronized with window that has inserted lines in same place
+    "closeoff", -- Disable diff mode when last window is closed
+    "indent-heuristic", -- indent heuristic for internal diff library
+    -- "inline:char", -- Highlight inline differences character-wise
+    "linematch:60", -- Align and mark changes between the most similar lines between buffers
+    "algorithm:patience", -- Diff algorithm for internal diff engine
+    "vertical", -- Start diff mode in vertical splits
 }
-
--- vim.opt.iskeyword:append "-" -- Words separated by - are regconized as one word for commands like "w"...
--- vim.opt.iskeyword:remove "_"
 
 -- Message output on vim acctions
 vim.opt.shortmess = {
