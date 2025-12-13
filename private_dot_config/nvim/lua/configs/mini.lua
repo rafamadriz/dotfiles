@@ -7,7 +7,7 @@ require("mini.completion").setup()
 -- Enhance text objects
 local ai = require "mini.ai"
 ai.setup {
-    n_lines = 500,
+    n_lines = 10,
     mappings = { around_last = "", inside_last = "" },
     custom_textobjects = {
         i = ai.gen_spec.treesitter({ a = "@conditional.outer", i = "@conditional.inner" }, {}),
@@ -16,12 +16,25 @@ ai.setup {
     },
 }
 
+local hipatterns = require('mini.hipatterns')
+hipatterns.setup {
+    highlighters = {
+        fixme = { pattern = "FIXME", group = "MiniHipatternsFixme" },
+        hack  = { pattern = "HACK",  group = "MiniHipatternsHack"  },
+        todo  = { pattern = "TODO",  group = "MiniHipatternsTodo"  },
+        note  = { pattern = "NOTE",  group = "MiniHipatternsNote"  },
+
+        -- Highlight hex color strings (`#rrggbb`) using that color
+        hex_color = hipatterns.gen_highlighter.hex_color(),
+    },
+}
+
 require("mini.surround").setup {
     mappings = {
-        add = "ys", -- Add surrounding in Normal and Visual modes
-        delete = "ds", -- Delete surrounding
+        add = "ys",     -- Add surrounding in Normal and Visual modes
+        delete = "ds",  -- Delete surrounding
         replace = "cs", -- Replace surrounding
-        find = "", -- Find surrounding (to the right)
+        find = "",      -- Find surrounding (to the right)
         find_left = "", -- Find surrounding (to the left)
         highlight = "", -- Highlight surrounding
     },
