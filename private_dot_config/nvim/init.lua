@@ -72,6 +72,7 @@ require("lazy").setup({
     { "https://github.com/windwp/nvim-ts-autotag" },
     { "https://github.com/folke/ts-comments.nvim" },
     { "https://github.com/RRethy/nvim-treesitter-endwise" },
+    { "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
     {
         "https://github.com/nvim-treesitter/nvim-treesitter",
         branch = "main",
