@@ -3,6 +3,7 @@ require("mini.align").setup()
 require("mini.icons").setup()
 require("mini.bracketed").setup()
 require("mini.completion").setup()
+require("mini.cmdline").setup()
 
 -- Enhance text objects
 local ai = require "mini.ai"

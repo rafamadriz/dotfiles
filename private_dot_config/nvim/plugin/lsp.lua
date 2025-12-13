@@ -10,11 +10,11 @@ lsp.enable {
     "html",
     "cssls",
     "pyright",
-    -- "ts_ls",
+    "ts_ls",
     "css_variables",
     "gopls",
     "jsonls",
-    "vtsls",
+    -- "vtsls",
 }
 
 diagnostic.config {

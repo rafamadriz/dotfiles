@@ -9,6 +9,7 @@ map("n", "<BS>", "<C-^>", { desc = "Jump between last two buffers" })
 map({ "n", "v" }, "H", "^", { desc = "Go to first character of line" })
 map({ "n", "v" }, "L", "g_", { desc = "Go to last character of line" })
 
+-- TODO: remove mbbill/undotree and enable this on 0.12
 -- map("n", "<leader>u", ":Undotree<CR>", { desc = "undotree" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "undotree" })
 
@@ -19,12 +20,7 @@ map("t", [[<C-\>]], [[<C-\><C-n>]], { desc = "Enter normal mode in terminal" })
 map("n", "Q", "<Nop>")
 
 -- visual
-map(
-    "n",
-    "gV",
-    [["`[" . strpart(getregtype(), 0, 1) . "`]"]],
-    { expr = true, desc = "Reselect latest changed, put or yanked text" }
-)
+map( "n", "gV", [["`[" . strpart(getregtype(), 0, 1) . "`]"]], { expr = true, desc = "Reselect latest changed, put or yanked text" })
 map("x", "/", "<esc>/\\%V", { silent = false, desc = "Search inside visual selection" })
 
 -- Fix annoying behavior where for example: If in blockwise visual mode
@@ -170,7 +166,7 @@ map({ "n", "t" }, "<C-Right>", function() resize(true, 2) end, { desc = "Resize 
 map("n", "<leader><leader>", function()
     local current_buffer = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
     local is_oil_buffer = vim.startswith(current_buffer, "oil://")
-    if  is_oil_buffer then
+    if is_oil_buffer then
         vim.cmd(string.format("FzfLua files cwd=%s", require("oil").get_current_dir()))
         return
     end

@@ -14,6 +14,7 @@ vim.opt.diffopt = {
     "filler", -- Show filler lines to keep text synchronized with window that has inserted lines in same place
     "closeoff", -- Disable diff mode when last window is closed
     "indent-heuristic", -- indent heuristic for internal diff library
+    -- TODO: enable on 0.12
     -- "inline:char", -- Highlight inline differences character-wise
     "linematch:60", -- Align and mark changes between the most similar lines between buffers
     "algorithm:patience", -- Diff algorithm for internal diff engine

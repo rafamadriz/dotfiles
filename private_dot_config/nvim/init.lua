@@ -16,6 +16,7 @@ vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_remote_plugins    = 1
 
 -- Enable undotree
+-- TODO: remove mbbill/undotree and enable this on 0.12
 -- vim.cmd.packadd "nvim.undotree"
 
 -- Space as leaderkey
@@ -37,6 +38,7 @@ function _G.setup_plugin(plugin_name, opts)
     end
 end
 
+-- TODO: replace with builtin vim.pack on 0.12
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
     local lazyrepo = "https://github.com/folke/lazy.nvim.git"

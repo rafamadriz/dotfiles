@@ -24,7 +24,7 @@ local groups = function()
         HINT = "%#MiniStatuslineDiagnosticHint#H:",
     }
     -- Compute colored diagnostics and reset color for later LSP section
-    local diagnostics = mini_statusline.section_diagnostics { trunc_width = 75, signs = diag_signs }
+    local diagnostics = mini_statusline.section_diagnostics { trunc_width = 75, signs = diag_signs, icon = "" }
     diagnostics = diagnostics .. "%#MiniStatuslineFilename#"
 
     local filename = mini_statusline.section_filename { trunc_width = 200 }
