@@ -92,6 +92,7 @@ vim.g.undotree_SetFocusWhenToggle = 1
 setup_plugin "mason"
 setup_plugin "zk"
 setup_plugin("fzf-lua", { "ivy" })
+require("fzf-lua").register_ui_select()
 require "configs.mini"
 require "configs.oil"
 require "configs.leap"
