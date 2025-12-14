@@ -2,7 +2,12 @@ require "configs.statusline"
 require("mini.align").setup()
 require("mini.icons").setup()
 require("mini.bracketed").setup()
-require("mini.completion").setup()
+require("mini.completion").setup({
+    mappings = {
+        scroll_down = "<C-d>",
+        scroll_up = "<C-b>",
+    }
+})
 require("mini.cmdline").setup({
     autocorrect = {
         enable = false,
@@ -83,6 +88,43 @@ vim.keymap.set("n", "<leader>gf", ":Git log --patch -- %<CR>", { desc = "full lo
 vim.keymap.set("n", "<leader>gF", ":Git log --patch<CR>", { desc = "full log patch" })
 vim.keymap.set("n", "<leader>gd", ":Git diff -- %<CR>", { desc = "diff (buffer)" })
 vim.keymap.set("n", "<leader>gD", ":Git diff<CR>", { desc = "diff" })
+
+-- Snippets
+local snippets = require "mini.snippets"
+local gen_loader = snippets.gen_loader
+
+local match_strict = function(snips)
+    -- Do not match with whitespace to cursor's left
+    return snippets.default_match(snips, { pattern_fuzzy = "%S+" })
+end
+
+snippets.setup {
+    snippets = {
+        gen_loader.from_file(vim.fn.stdpath "config" .. "/snippets/global.json"),
+        gen_loader.from_lang(),
+    },
+    mappings = { expand = "", jump_next = "", jump_prev = "" },
+    expand = { match = match_strict },
+}
+
+local expand_or_jump = function()
+    local can_expand = #snippets.expand { insert = false } > 0
+    if can_expand then
+        vim.schedule(snippets.expand)
+        return ""
+    end
+    local is_active = snippets.session.get() ~= nil
+    if is_active then
+        snippets.session.jump "next"
+        return ""
+    end
+    return "\t"
+end
+
+local jump_prev = function() snippets.session.jump "prev" end
+
+vim.keymap.set("i", "<Tab>", expand_or_jump, { expr = true })
+vim.keymap.set("i", "<S-Tab>", jump_prev)
 
 -- Clues
 local miniclue = require "mini.clue"
