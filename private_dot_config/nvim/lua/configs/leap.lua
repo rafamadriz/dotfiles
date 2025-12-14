@@ -29,7 +29,7 @@ leap.opts.equivalence_classes = {
 
 -- Use the traversal keys to repeat the previous motion without
 -- explicitly invoking Leap:
-require("leap.user").set_repeat_keys("<enter>", "<tab>")
+require("leap.user").set_repeat_keys("<tab>", "<s-tab>")
 
 -- remote line(s), with optional count (yaa{leap}, y3aa{leap})
 vim.keymap.set({ "x", "o" }, "aa", function()
