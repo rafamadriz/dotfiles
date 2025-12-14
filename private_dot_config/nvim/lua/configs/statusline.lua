@@ -65,15 +65,15 @@ local groups = function()
 
     local search = mini_statusline.section_searchcount { trunc_width = 75 }
     return mini_statusline.combine_groups {
-        { hl = mode_hl, strings = { mode } },
-        { hl = "MiniStatuslineDevinfo", strings = { git, diff } },
+        { hl = mode_hl,                  strings = { mode } },
+        { hl = "MiniStatuslineDevinfo",  strings = { git,    diff } },
         "%<", -- Mark general truncate point
         { hl = "MiniStatuslineFilename", strings = { filename } },
         "%=", -- End left alignment
         { hl = "MiniStatuslineFilename", strings = { diagnostics } },
-        { hl = "NonText", strings = { buffer_lsp() } },
+        { hl = "NonText",                strings = { buffer_lsp() } },
         { hl = "MiniStatuslineFileInfo", strings = { fileinfo } },
-        { hl = mode_hl, strings = { search, location() } },
+        { hl = mode_hl,                  strings = { search, location() } },
     }
 end
 

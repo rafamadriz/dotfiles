@@ -34,10 +34,10 @@ diagnostic.config {
 local setup_keymaps = function(bufnr)
     local map = vim.keymap.set
     -- map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
-    map("n", "<C-k>", lsp.buf.signature_help, { desc = "Signature help", buffer = bufnr })
-    map("n", "grc", lsp.codelens.run, { desc = "Run code lens", buffer = bufnr })
+    map("n", "<C-k>", lsp.buf.signature_help,                                       { desc = "Signature help", buffer = bufnr })
+    map("n", "grc", lsp.codelens.run,                                               { desc = "Run code lens", buffer = bufnr })
     map({ "v", "n" }, "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "Format", buffer = bufnr })
-    map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics", buffer = bufnr })
+    map("n", "<leader>ll", diagnostic.open_float,                                   { desc = "Line diagnostics", buffer = bufnr })
     map(
         "n",
         "<leader>lh",

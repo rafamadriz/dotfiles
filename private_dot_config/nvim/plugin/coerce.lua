@@ -2,11 +2,11 @@ local coerce = require "coerce"
 
 local convert_names = {
     ["snake_case"] = coerce.to_snake_case,
-    ["camelCase"] = coerce.to_camel_case,
+    ["camelCase"]  = coerce.to_camel_case,
     ["PascalCase"] = coerce.to_pascal_case,
     ["UPPER_CASE"] = coerce.to_uppercase,
     ["kebab-case"] = coerce.to_kebab_case,
-    ["dot.case"] = coerce.to_dot_case,
+    ["dot.case"]   = coerce.to_dot_case,
 }
 
 vim.api.nvim_create_user_command("To", function(opts)
@@ -38,7 +38,7 @@ vim.api.nvim_create_user_command("To", function(opts)
         end
     end
 end, {
-    bang = true,
+    bang  = true,
     range = true,
     nargs = 1,
     complete = function()
@@ -59,10 +59,10 @@ _G.handle_coerce = function()
 
     local cword = coerce.get_cword_position(false)
     local position = {
-        start_row = cword.line + 1,
-        start_col = cword.start_col,
-        end_row = cword.line + 1,
-        end_col = cword.end_col,
+        start_row  = cword.line + 1,
+        start_col  = cword.start_col,
+        end_row    = cword.line + 1,
+        end_col    = cword.end_col,
     }
 
     coerce.handle_coerce(_G.cached_handle_coerce, position, "", false)
@@ -122,9 +122,9 @@ local coerce_to_kebab_case = function()
     return "g@l"
 end
 
-vim.keymap.set({ "v", "n" }, "cru", coerce_to_uppercase, { expr = true, desc = "UPPER_CASE" })
-vim.keymap.set({ "v", "n" }, "crs", coerce_to_snake_case, { expr = true, desc = "snake_case" })
-vim.keymap.set({ "v", "n" }, "crc", coerce_to_camel_case, { expr = true, desc = "camelCase" })
+vim.keymap.set({ "v", "n" }, "cru", coerce_to_uppercase,   { expr = true, desc = "UPPER_CASE" })
+vim.keymap.set({ "v", "n" }, "crs", coerce_to_snake_case,  { expr = true, desc = "snake_case" })
+vim.keymap.set({ "v", "n" }, "crc", coerce_to_camel_case,  { expr = true, desc = "camelCase" })
 vim.keymap.set({ "v", "n" }, "crp", coerce_to_pascal_case, { expr = true, desc = "PascalCase" })
-vim.keymap.set({ "v", "n" }, "cr.", coerce_to_dot_case, { expr = true, desc = "dot.case" })
-vim.keymap.set({ "v", "n" }, "cr-", coerce_to_kebab_case, { expr = true, desc = "kebab-case" })
+vim.keymap.set({ "v", "n" }, "cr.", coerce_to_dot_case,    { expr = true, desc = "dot.case" })
+vim.keymap.set({ "v", "n" }, "cr-", coerce_to_kebab_case,  { expr = true, desc = "kebab-case" })

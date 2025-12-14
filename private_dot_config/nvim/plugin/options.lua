@@ -1,24 +1,24 @@
 -- Timings
 vim.opt.timeoutlen  = 1000 -- Time to wait for a keymap to complete
-vim.opt.ttimeoutlen = 300 -- Time to wait for a key code sequence to complete
-vim.opt.updatetime  = 400 -- If nothing is typed is this time, swap file will be written. Also used for 'CursorHold' autocommand
+vim.opt.ttimeoutlen = 300  -- Time to wait for a key code sequence to complete
+vim.opt.updatetime  = 400  -- If nothing is typed is this time, swap file will be written. Also used for 'CursorHold' autocommand
 
 -- Window splitting
-vim.opt.splitbelow = true -- Horizontal splits will be below
-vim.opt.splitright = true -- Vertical splits will be to the right
+vim.opt.splitbelow = true     -- Horizontal splits will be below
+vim.opt.splitright = true     -- Vertical splits will be to the right
 vim.opt.splitkeep  = "screen" -- Keep the text on same line when resizing, closing...
 
 -- Diff options
 vim.opt.diffopt = {
-    "internal", -- Use internal diff library (indent-heuristic). Ignored when diffexpr is set
-    "filler", -- Show filler lines to keep text synchronized with window that has inserted lines in same place
-    "closeoff", -- Disable diff mode when last window is closed
-    "indent-heuristic", -- indent heuristic for internal diff library
+    "internal",           -- Use internal diff library (indent-heuristic). Ignored when diffexpr is set
+    "filler",             -- Show filler lines to keep text synchronized with window that has inserted lines in same place
+    "closeoff",           -- Disable diff mode when last window is closed
+    "indent-heuristic",   -- indent heuristic for internal diff library
     -- TODO: enable on 0.12
-    -- "inline:char", -- Highlight inline differences character-wise
-    "linematch:60", -- Align and mark changes between the most similar lines between buffers
+    -- "inline:char",        -- Highlight inline differences character-wise
+    "linematch:60",       -- Align and mark changes between the most similar lines between buffers
     "algorithm:patience", -- Diff algorithm for internal diff engine
-    "vertical", -- Start diff mode in vertical splits
+    "vertical",           -- Start diff mode in vertical splits
 }
 
 -- Message output on vim acctions
@@ -35,14 +35,14 @@ vim.opt.shortmess = {
 }
 
 -- Display
-vim.opt.scrolloff     = 2 -- Minimal number of lines to keep above/below the cursor
-vim.opt.signcolumn    = "yes:2" -- show always, with fixed space for signs up to the given number (2)
-vim.opt.termguicolors = true -- Enables 24-bit RGB color in the TUI
-vim.opt.title         = true -- When on, the title of the window will be `filename [+= -] (path) - Nvim` or to value of titlestring if not empty
-vim.opt.confirm       = true -- Save me from doing destructive things
-vim.opt.showmode      = false -- When in insert, show mode in last line
-vim.opt.pumheight     = 15 -- Maximum number of items to show in the popup menu
-vim.opt.mouse         = "a" -- Enables mouse support
+vim.opt.scrolloff     = 2         -- Minimal number of lines to keep above/below the cursor
+vim.opt.signcolumn    = "yes:2"   -- show always, with fixed space for signs up to the given number (2)
+vim.opt.termguicolors = true      -- Enables 24-bit RGB color in the TUI
+vim.opt.title         = true      -- When on, the title of the window will be `filename [+= -] (path) - Nvim` or to value of titlestring if not empty
+vim.opt.confirm       = true      -- Save me from doing destructive things
+vim.opt.showmode      = false     -- When in insert, show mode in last line
+vim.opt.pumheight     = 15        -- Maximum number of items to show in the popup menu
+vim.opt.mouse         = "a"       -- Enables mouse support
 vim.opt.winborder     = "rounded" -- Default border style for floating windows
 
 -- Completion
@@ -51,7 +51,7 @@ vim.opt.wildoptions = "pum,fuzzy" -- A list of words that change how cmdline-com
 
 -- Indentetion
 vim.opt.wrap        = false
-vim.opt.expandtab   = true -- Insert spaces instead of tabs on <Tab>
+vim.opt.expandtab   = true    -- Insert spaces instead of tabs on <Tab>
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth  = 4
 vim.opt.virtualedit = "block" -- Allow the cursor be positioned where there is no actual character
@@ -122,8 +122,8 @@ vim.opt.findfunc = "v:lua.fuzzy_find"
 
 -- Wild and file globbing stuff
 vim.opt.wildignorecase = true -- Ignore case when completing file names and directories
-vim.opt.path = ".,**,,"
-vim.opt.wildignore = {
+vim.opt.path           = ".,**,,"
+vim.opt.wildignore     = {
     "*.aux",
     "*.out",
     "*.toc",
