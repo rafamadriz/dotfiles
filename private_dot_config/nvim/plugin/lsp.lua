@@ -6,7 +6,7 @@ lsp.enable {
     "taplo",
     "rust_analyzer",
     "bashls",
-    "ccls",
+    -- "ccls",
     "html",
     "cssls",
     "pyright",
@@ -14,6 +14,7 @@ lsp.enable {
     "css_variables",
     "gopls",
     "jsonls",
+    "clangd",
     -- "vtsls",
 }
 
