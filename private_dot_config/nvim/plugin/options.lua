@@ -46,7 +46,7 @@ vim.opt.mouse         = "a" -- Enables mouse support
 vim.opt.winborder     = "rounded" -- Default border style for floating windows
 
 -- Completion
-vim.opt.completeopt = "menuone,fuzzy,popup,noinsert"
+vim.opt.completeopt = "menuone,fuzzy,popup,noselect"
 vim.opt.wildoptions = "pum,fuzzy" -- A list of words that change how cmdline-completion is done.
 
 -- Indentetion
