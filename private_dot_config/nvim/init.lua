@@ -75,11 +75,7 @@ require("lazy").setup({
     { "https://github.com/folke/ts-comments.nvim" },
     { "https://github.com/RRethy/nvim-treesitter-endwise" },
     { "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
-    {
-        "https://github.com/nvim-treesitter/nvim-treesitter",
-        branch = "main",
-        build = "TSUpdate",
-    },
+    { "https://github.com/nvim-treesitter/nvim-treesitter", build = ":TSUpdate", },
     { "https://github.com/mbbill/undotree" }
 }, opts)
 
