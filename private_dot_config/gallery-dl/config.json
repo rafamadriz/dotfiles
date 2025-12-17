@@ -1,34 +1,15 @@
 {
-  "extractor": {
-    "base-directory": "~/Pictures/random/gallery-dl",
-    "archive": "~/Pictures/random/gallery-dl/db/archive.sqlite3"
-  },
-  "postprocessors": [
-    {
-      "name": "exec",
-      "async": false,
-      "archive": "~/Pictures/random/gallery-dl/db/optimization-png.sqlite3",
-      "archive-prefix": "{category}, ",
-      "archive-format": "{id}.{extension!l}",
-      "archive-pragma": ["journal_mode=WAL", "synchronous=NORMAL"],
-      "command": "oxipng -o max --strip safe --force --preserve {}",
-      "event": "after",
-      "filter": "extension == 'png'",
-      "mtime": true,
-      "blacklist": null
+    "extractor": {
+        "base-directory": "~/Pictures/random/gallery-dl",
+        "archive": "~/Pictures/random/gallery-dl/db/archive.sqlite3"
     },
-    {
-      "name": "exec",
-      "async": false,
-      "archive": "~/Pictures/random/gallery-dl/db/optimization-jpg.sqlite3",
-      "archive-prefix": "{category}, ",
-      "archive-format": "{id}.{extension!l}",
-      "archive-pragma": ["journal_mode=WAL", "synchronous=NORMAL"],
-      "command": "exiftran -ai {} && jpegtran -copy none -perfect -optimize -outfile {} {}",
-      "event": "after",
-      "filter": "extension == 'jpg'",
-      "mtime": true,
-      "blacklist": null
-    }
-  ]
+    "postprocessors": [
+        {
+            "name": "exec",
+            "event": "after",
+            "filter": "extension in ('jpg','jpeg','png')",
+            "command": "sh -c 'avifenc --speed 7 \"$1\" \"${1%.*}.avif\" && rm \"$1\"' sh {}",
+            "mtime": true
+        }
+    ]
 }
