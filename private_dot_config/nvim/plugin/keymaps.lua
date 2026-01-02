@@ -177,7 +177,7 @@ map("n", "<leader>?",  ":FzfLua helptags<CR>",    { desc = "help tags" })
 map("n", "<leader>fq", ":FzfLua quickfix<CR>",    { desc = "quickfix" })
 map("n", "<leader>fg", ":FzfLua live_grep<CR>",   { desc = "grep live" })
 map("n", "<leader>fw", ":FzfLua grep_cword<CR>",  { desc = "grep cword" })
-map("v", "<leader>fv", ":FzfLua grep_visual<CR>", { desc = "grep visual" })
+map("v", "<leader>fw", ":FzfLua grep_visual<CR>", { desc = "grep visual" })
 map("n", "<leader>fp", ":FzfLua grep<CR>",        { desc = "grep pattern" })
 map("n", "<leader>fd", function()
     vim.ui.input(
