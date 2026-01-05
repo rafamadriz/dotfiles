@@ -35,6 +35,7 @@ vim.opt.shortmess = {
 }
 
 -- Display
+vim.opt.laststatus    = 3         -- Show statusline always and ONLY on last window
 vim.opt.scrolloff     = 2         -- Minimal number of lines to keep above/below the cursor
 vim.opt.signcolumn    = "yes:2"   -- show always, with fixed space for signs up to the given number (2)
 vim.opt.termguicolors = true      -- Enables 24-bit RGB color in the TUI
