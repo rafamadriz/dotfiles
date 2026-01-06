@@ -101,18 +101,13 @@ vim.opt.swapfile = false
 vim.opt.undofile = true
 
 -- Lua version of `help fuzzy-file-picker`
+local fuzzy_filescache = {}
 ---@param arg string
 ---@return string[]
 _G.fuzzy_find = function(arg, _)
-   local paths = vim.fn.globpath(".", "**", true, true)
-   local fuzzy_filescache = vim.tbl_filter(function(path)
-       if vim.fn.isdirectory(path) then
-           return true
-       end
-       return false
-   end, paths)
-
-   fuzzy_filescache = vim.tbl_map(function(path) return vim.fn.fnamemodify(path, ":.") end, fuzzy_filescache)
+    if #fuzzy_filescache == 0 then
+        fuzzy_filescache = vim.fn.systemlist("fd --type f --follow --hidden --exclude .git")
+    end
 
    if not arg or arg == "" then
        return fuzzy_filescache
