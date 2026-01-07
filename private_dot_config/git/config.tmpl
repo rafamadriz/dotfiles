@@ -20,6 +20,9 @@
     tree  = log --all --graph --decorate --oneline --simplify-by-decoration
     fixup = commit --amend --no-edit --allow-empty
     root  = rev-parse --show-toplevel
+    dlog  = -c diff.external=difft log --ext-diff
+    dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
 
 [merge]
     conflictstyle = diff3
