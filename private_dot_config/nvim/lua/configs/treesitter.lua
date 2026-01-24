@@ -45,7 +45,7 @@ ts.install(get_parsers_to_install())
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = ts.get_installed(),
-    callback = function(ev)
+    callback = function()
         -- syntax highlighting, provided by Neovim
         vim.treesitter.start()
         -- indentation, provided by nvim-treesitter
