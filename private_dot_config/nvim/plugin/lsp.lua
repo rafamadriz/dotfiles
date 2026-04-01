@@ -49,15 +49,6 @@ end
 ---@param client vim.lsp.Client
 ---@param bufnr number
 local setup_aucmds = function(client, bufnr)
-    if client:supports_method(lsp.protocol.Methods.textDocument_codeLens) then
-        aucmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
-            desc = "Refresh code lens",
-            group = augroup("LspCodeLens", { clear = true }),
-            buffer = bufnr,
-            callback = lsp.codelens.refresh,
-        })
-    end
-
     if client:supports_method(lsp.protocol.Methods.textDocument_documentHighlight) then
         local under_cursor_highlights = augroup("LspDocHighlight", { clear = false })
         aucmd({ "CursorHold", "CursorHoldI" }, {
