@@ -16,8 +16,7 @@ vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_remote_plugins    = 1
 
 -- Enable undotree
--- TODO: remove mbbill/undotree and enable this on 0.12
--- vim.cmd.packadd "nvim.undotree"
+vim.cmd.packadd "nvim.undotree"
 
 -- Space as leaderkey
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
@@ -38,52 +37,53 @@ function _G.setup_plugin(plugin_name, opts)
     end
 end
 
--- TODO: replace with builtin vim.pack on 0.12
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath }
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
-end
-vim.opt.rtp:prepend(lazypath)
+vim.pack.clean = function()
+    local inactive = vim.tbl_map(function(plugin)
+        if not plugin.active then
+            return plugin.spec.name
+        end
+    end, vim.pack.get())
 
-local opts = {
-    lockfile = os.getenv "HOME" .. "/.config/nvim/lazy-lock.json",
+    vim.pack.del(vim.tbl_values(inactive))
+end
+
+local augroup = vim.api.nvim_create_augroup("Run callback after vim.pack update", { clear = false })
+vim.api.nvim_create_autocmd("PackChanged", {
+    group = augroup,
+    pattern = "*",
+    callback = function(e)
+        local kind = e.data.kind
+        local run = (e.data.spec.data or {}).run
+        if kind == "update" and e.data.active then
+            if type(run) == "function" then
+                pcall(run, e.data)
+            end
+            if type(run) == "string" then
+                vim.cmd(run)
+            end
+        end
+    end,
+})
+
+vim.pack.add {
+    { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/mason-org/mason.nvim" },
+    { src = "https://github.com/nvim-mini/mini.nvim" },
+    { src = "https://github.com/ibhagwan/fzf-lua" },
+    { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://codeberg.org/andyg/leap.nvim" },
+    { src = "https://github.com/stevearc/conform.nvim" },
+    { src = "https://github.com/alker0/chezmoi.vim" },
+    { src = "https://github.com/zk-org/zk-nvim" },
+    { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+    { src = "https://github.com/windwp/nvim-ts-autotag" },
+    { src = "https://github.com/folke/ts-comments.nvim" },
+    { src = "https://github.com/RRethy/nvim-treesitter-endwise" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 }
 
-vim.keymap.set("n", "<leader>-", ":Lazy<CR>", { desc = "Lazy" })
-require("lazy").setup({
-    { "https://github.com/neovim/nvim-lspconfig" },
-    { "https://github.com/mason-org/mason.nvim" },
-    { "https://github.com/nvim-mini/mini.nvim" },
-    { "https://github.com/ibhagwan/fzf-lua" },
-    { "https://github.com/stevearc/oil.nvim" },
-    { "https://codeberg.org/andyg/leap.nvim" },
-    { "https://github.com/stevearc/conform.nvim" },
-    { "https://github.com/alker0/chezmoi.vim" },
-    { "https://github.com/zk-org/zk-nvim" },
-    { "https://github.com/catppuccin/nvim", name = "catppuccin" },
-    { "https://github.com/windwp/nvim-ts-autotag" },
-    { "https://github.com/folke/ts-comments.nvim" },
-    { "https://github.com/RRethy/nvim-treesitter-endwise" },
-    { "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
-    { "https://github.com/nvim-treesitter/nvim-treesitter", build = ":TSUpdate", },
-    { "https://github.com/mbbill/undotree" }
-}, opts)
-
-vim.cmd.colorschem "catppuccin"
-
-vim.g.undotree_WindowLayout = 4
-vim.g.undotree_SplitWidth = 45
-vim.g.undotree_SetFocusWhenToggle = 1
+vim.cmd.colorscheme "catppuccin"
 
 setup_plugin "mason"
 setup_plugin "zk"

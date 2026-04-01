@@ -8,9 +8,7 @@ map("n", "<BS>", "<C-^>",    { desc = "Jump between last two buffers" })
 map({ "n", "v" }, "H", "^",  { desc = "Go to first character of line" })
 map({ "n", "v" }, "L", "g_", { desc = "Go to last character of line" })
 
--- TODO: remove mbbill/undotree and enable this on 0.12
--- map("n", "<leader>u", ":Undotree<CR>", { desc = "undotree" })
-map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "undotree" })
+map("n", "<leader>u", "<cmd>Undotree<CR>", { desc = "undotree" })
 
 -- terminal
 map("t", [[<C-\>]], [[<C-\><C-n>]], { desc = "Enter normal mode in terminal" })
