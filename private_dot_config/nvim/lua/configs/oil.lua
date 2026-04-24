@@ -1,3 +1,7 @@
+if not is_installed "oil.nvim" then
+    return
+end
+
 local oil = require "oil"
 
 oil.setup {

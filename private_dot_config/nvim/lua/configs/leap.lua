@@ -1,3 +1,7 @@
+if not is_installed "leap.nvim" then
+    return
+end
+
 vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
 
 local leap = require "leap"

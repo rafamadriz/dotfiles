@@ -1,3 +1,7 @@
+if not is_installed "mini.nvim" then
+    return
+end
+
 require "configs.statusline"
 require("mini.align").setup()
 require("mini.icons").setup()

@@ -1,3 +1,7 @@
+if not is_installed "nvim-treesitter" then
+    return
+end
+
 local ts = require "nvim-treesitter"
 
 local parsers = {

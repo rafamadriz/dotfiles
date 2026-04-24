@@ -47,6 +47,18 @@ vim.pack.clean = function()
     vim.pack.del(vim.tbl_values(inactive))
 end
 
+---@param plugin_name string
+---@return boolean
+function _G.is_installed(plugin_name)
+    local installed = {}
+    for _, plugin in pairs(vim.pack.get()) do
+        if plugin.active then
+            table.insert(installed, plugin.spec.name)
+        end
+    end
+    return vim.tbl_contains(installed, plugin_name)
+end
+
 local augroup = vim.api.nvim_create_augroup("Run callback after vim.pack update", { clear = false })
 vim.api.nvim_create_autocmd("PackChanged", {
     group = augroup,
