@@ -1,3 +1,4 @@
+--SOURCE: https://github.com/davidde/mpv-autosub
 --=============================================================================
 -->>    SUBLIMINAL PATH:
 --=============================================================================
@@ -20,7 +21,7 @@ local languages = {
 --          { 'French', 'fr', 'fre' },
 --          { 'German', 'de', 'ger' },
 --          { 'Italian', 'it', 'ita' },
---          { 'Portuguese', 'pt', 'por' },
+            { 'Portuguese', 'pt', 'por' },
 --          { 'Polish', 'pl', 'pol' },
 --          { 'Russian', 'ru', 'rus' },
 --          { 'Chinese', 'zh', 'chi' },
@@ -59,7 +60,8 @@ local includes = {
     -- If anything is defined here, only the movies with a path
     -- containing any of these strings/paths will auto-download subtitles.
     -- Full paths are also allowed, e.g.:
-    -- '/home/david/Videos',
+    '/mnt/WD2TB/Media/Movies',
+    '/mnt/WD2TB/Media/TV Shows',
 }
 --=============================================================================
 local utils = require 'mp.utils'
