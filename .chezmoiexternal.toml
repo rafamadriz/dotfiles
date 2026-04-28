@@ -13,3 +13,23 @@ refreshPeriod = "672h"
 type = "file"
 url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh"
 refreshPeriod = "672h"
+
+[".config/mpv/scripts/modernz.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/Samillion/ModernZ/refs/heads/main/modernz.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/scripts/thumbfast.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/po5/thumbfast/refs/heads/master/thumbfast.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/script-opts/modernz-locale.json"]
+type = "file"
+url = "https://raw.githubusercontent.com/Samillion/ModernZ/refs/heads/main/extras/locale/modernz-locale.json"
+refreshPeriod = "672h"
+
+[".config/mpv/fonts/modernz-icons.ttf"]
+type = "file"
+url = "https://raw.githubusercontent.com/Samillion/ModernZ/refs/heads/main/modernz-icons.ttf"
+refreshPeriod = "672h"
