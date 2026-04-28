@@ -26,7 +26,7 @@ vim.g.maplocalleader = " "
 
 ---@param plugin_name string
 ---@param opts? table
-function _G.setup_plugin(plugin_name, opts)
+function vim.pack.setup_plugin(plugin_name, opts)
     local ok, plugin = pcall(require, plugin_name)
     if ok then
         if not opts then
@@ -49,7 +49,7 @@ end
 
 ---@param plugin_name string
 ---@return boolean
-function _G.is_installed(plugin_name)
+function vim.pack.is_installed(plugin_name)
     local installed = {}
     for _, plugin in pairs(vim.pack.get()) do
         if plugin.active then
@@ -97,9 +97,9 @@ vim.pack.add {
 
 vim.cmd.colorscheme "catppuccin"
 
-setup_plugin "mason"
-setup_plugin "zk"
-setup_plugin("fzf-lua", { "ivy", grep = { hidden = true } })
+vim.pack.setup_plugin "mason"
+vim.pack.setup_plugin "zk"
+vim.pack.setup_plugin("fzf-lua", { "ivy", grep = { hidden = true } })
 require("fzf-lua").register_ui_select()
 require "configs.mini"
 require "configs.oil"
@@ -108,5 +108,5 @@ require "configs.format"
 
 -- Treesitter
 require "configs.treesitter"
-setup_plugin "ts-comments"
-setup_plugin "nvim-ts-autotag"
+vim.pack.setup_plugin "ts-comments"
+vim.pack.setup_plugin "nvim-ts-autotag"

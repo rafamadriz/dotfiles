@@ -1,4 +1,4 @@
-if not is_installed "nvim-treesitter" then
+if not vim.pack.is_installed "nvim-treesitter" then
     return
 end
 

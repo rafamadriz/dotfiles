@@ -1,4 +1,4 @@
-if not is_installed "oil.nvim" then
+if not vim.pack.is_installed "oil.nvim" then
     return
 end
 

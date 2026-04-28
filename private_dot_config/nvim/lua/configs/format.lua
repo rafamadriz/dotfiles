@@ -1,4 +1,4 @@
-if not is_installed "conform.nvim" then
+if not vim.pack.is_installed "conform.nvim" then
     return
 end
 

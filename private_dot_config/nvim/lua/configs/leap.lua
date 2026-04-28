@@ -1,4 +1,4 @@
-if not is_installed "leap.nvim" then
+if not vim.pack.is_installed "leap.nvim" then
     return
 end
 

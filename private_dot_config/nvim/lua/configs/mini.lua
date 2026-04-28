@@ -1,4 +1,4 @@
-if not is_installed "mini.nvim" then
+if not vim.pack.is_installed "mini.nvim" then
     return
 end
 
