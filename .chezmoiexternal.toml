@@ -14,6 +14,8 @@ type = "file"
 url = "https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh"
 refreshPeriod = "672h"
 
+# MPV Scripts
+# =============================================
 [".config/mpv/scripts/modernz.lua"]
 type = "file"
 url = "https://raw.githubusercontent.com/Samillion/ModernZ/refs/heads/main/modernz.lua"
@@ -22,6 +24,36 @@ refreshPeriod = "672h"
 [".config/mpv/scripts/thumbfast.lua"]
 type = "file"
 url = "https://raw.githubusercontent.com/po5/thumbfast/refs/heads/master/thumbfast.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/scripts/blacklist-extensions.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/occivink/mpv-scripts/refs/heads/master/scripts/blacklist-extensions.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/scripts/crop.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/occivink/mpv-scripts/refs/heads/master/scripts/crop.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/scripts/encode.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/occivink/mpv-scripts/refs/heads/master/scripts/encode.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/scripts/misc.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/occivink/mpv-scripts/refs/heads/master/scripts/misc.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/scripts/seek-to.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/occivink/mpv-scripts/refs/heads/master/scripts/seek-to.lua"
+refreshPeriod = "672h"
+
+[".config/mpv/scripts/webm.lua"]
+type = "file"
+url = "{{ gitHubReleaseAssetURL "ekisu/mpv-webm" "latest" "webm.lua" }}"
 refreshPeriod = "672h"
 
 [".config/mpv/script-opts/modernz-locale.json"]
