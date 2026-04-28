@@ -18,6 +18,19 @@ lsp.enable {
     -- "vtsls",
 }
 
+--- @param diagnostics? vim.Diagnostic
+--- @param bufnr integer
+local function on_jump(diagnostics, bufnr)
+    if not diagnostics then return end
+
+    vim.diagnostic.show(
+        diagnostics.namespace,
+        bufnr,
+        { diagnostics },
+        { virtual_lines = { current_line = true }, virtual_text = false }
+    )
+end
+
 diagnostic.config {
     severity_sort = true,
     underline = {
@@ -27,7 +40,7 @@ diagnostic.config {
         source = "if_many",
     },
     jump = {
-        float = true,
+        on_jump = on_jump,
     },
 }
 
