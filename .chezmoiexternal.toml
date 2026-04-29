@@ -26,6 +26,11 @@ type = "file"
 url = "https://raw.githubusercontent.com/po5/thumbfast/refs/heads/master/thumbfast.lua"
 refreshPeriod = "672h"
 
+[".config/mpv/scripts/autoload.lua"]
+type = "file"
+url = "https://raw.githubusercontent.com/mpv-player/mpv/refs/heads/master/TOOLS/lua/autoload.lua"
+refreshPeriod = "672h"
+
 [".config/mpv/scripts/blacklist-extensions.lua"]
 type = "file"
 url = "https://raw.githubusercontent.com/occivink/mpv-scripts/refs/heads/master/scripts/blacklist-extensions.lua"
