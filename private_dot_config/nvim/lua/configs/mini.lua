@@ -21,7 +21,7 @@ require("mini.cmdline").setup({
 -- Enhance text objects
 local ai = require "mini.ai"
 ai.setup {
-    n_lines = 10,
+    n_lines = 100,
     mappings = { around_last = "", inside_last = "" },
     custom_textobjects = {
         i = ai.gen_spec.treesitter({ a = "@conditional.outer", i = "@conditional.inner" }, {}),
