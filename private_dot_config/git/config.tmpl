@@ -25,7 +25,15 @@
     ddiff = -c diff.external=difft diff
 
 [merge]
+    tool = nvimdiff
     conflictstyle = diff3
+
+[mergetool]
+    keepBackup = false
+    conflictstyle = diff3
+
+[mergetool "nvimdiff"]
+    layout = "LOCAL,BASE,REMOTE / MERGED"
 
 {{- if lookPath "delta" }}
 [interactive]
