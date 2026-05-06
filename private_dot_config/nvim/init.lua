@@ -24,6 +24,11 @@ vim.keymap.set("v", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Enable project local configuration
+-- exrc is loaded before plugin files. So having this option in plugin/options.lua
+-- doesn't work. check `:help startup` step 7 for exrc and step 11 for plugin files.
+vim.opt.exrc = true
+
 ---@param plugin_name string
 ---@param opts? table
 function vim.pack.setup_plugin(plugin_name, opts)

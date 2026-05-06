@@ -82,7 +82,6 @@ vim.opt.listchars = {
 
 -- Session options
 vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
-vim.opt.exrc           = true -- Enable project local configuration
 
 -- Use rg as grep program
 if vim.fn.executable "rg" > 0 then
