@@ -44,6 +44,7 @@ vim.opt.showmode      = false     -- When in insert, show mode in last line
 vim.opt.pumheight     = 15        -- Maximum number of items to show in the popup menu
 vim.opt.mouse         = "a"       -- Enables mouse support
 vim.opt.winborder     = "rounded" -- Default border style for floating windows
+vim.opt.pumborder     = "rounded" -- Default border style of popupmenu windows
 
 -- Completion
 vim.opt.completeopt = "menuone,fuzzy,popup,noselect"
