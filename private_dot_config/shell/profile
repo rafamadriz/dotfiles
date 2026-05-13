@@ -58,6 +58,10 @@ export SQLITE_HISTORY="$XDG_DATA_HOME"/sqlite_history
 export W3M_DIR="$XDG_STATE_HOME/w3m"
 # Pass
 export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
+# Ollama
+# ~/.ollama still exists. This just moves the models to the DATA folder
+# https://github.com/ollama/ollama/issues/228
+export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
 # GPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GPG_TTY="$(tty)"
