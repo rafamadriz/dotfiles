@@ -43,6 +43,11 @@ zsh_add_plugin "jeffreytse/zsh-vi-mode"
 export ZVM_VI_SURROUND_BINDKEY=classic
 # export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
 zvm_after_init() {
     bindkey '^[[A' history-substring-search-up
     bindkey '^[[B' history-substring-search-down
