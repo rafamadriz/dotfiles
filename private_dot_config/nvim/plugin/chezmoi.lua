@@ -199,18 +199,25 @@ local get_subcommand_suggestion = {}
 local suggestion_cache = {}
 local subcommand_handler = {}
 
-get_subcommand_suggestion.edit = function()
-    if suggestion_cache.edit then
-        return suggestion_cache.edit
-    end
+local get_managed_files = function()
     local dest_dir = vim.json.decode(vim.fn.system("chezmoi data")).chezmoi.destDir .. "/"
     local managed = vim.fn.systemlist({ "chezmoi", "managed", "--exclude", "externals" })
     local managed_files = {}
     for _, file in pairs(managed) do
         table.insert(managed_files, dest_dir .. file)
     end
-    suggestion_cache.edit = managed_files
+
     return managed_files
+end
+
+for _, cmd in pairs({"edit", "forget"}) do
+    get_subcommand_suggestion[cmd] = function()
+        if suggestion_cache.managed_files then
+            return suggestion_cache.managed_files
+        end
+        suggestion_cache.managed_files = get_managed_files()
+        return suggestion_cache.managed_files
+    end
 end
 
 subcommand_handler.edit = function(opts)
