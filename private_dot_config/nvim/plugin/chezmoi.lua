@@ -291,7 +291,7 @@ vim.api.nvim_create_user_command("Chezmoi", function(opts)
     end
 end, {
         nargs = "+",
-        complete = function(arg_lead, cmd_string, cursor_pos)
+        complete = function(arg_lead, cmd_string, _)
             if vim.startswith(arg_lead, "-") then
                 if arg_lead == "-" or arg_lead == "--" then return global_flags end
                 return vim.fn.matchfuzzy(global_flags, arg_lead)
