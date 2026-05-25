@@ -220,6 +220,12 @@ for _, cmd in pairs({"edit", "forget"}) do
     end
 end
 
+for _, cmd in pairs({"add", "re-add"}) do
+    get_subcommand_suggestion[cmd] = function(arg_lead)
+        return vim.fn.getcompletion(arg_lead, "file")
+    end
+end
+
 subcommand_handler.edit = function(opts)
     if not opts.smods.horizontal then
         opts.smods.vertical = true
@@ -295,7 +301,7 @@ end, {
             end
 
             if parsed.subcommand and get_subcommand_suggestion[parsed.subcommand] then
-                local suggestions = get_subcommand_suggestion[parsed.subcommand]()
+                local suggestions = get_subcommand_suggestion[parsed.subcommand](arg_lead)
                 if arg_lead == "" then return suggestions end
                 return vim.fn.matchfuzzy(suggestions, vim.fn.expand(arg_lead))
             end
