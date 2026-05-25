@@ -1,12 +1,12 @@
 local coerce = require "coerce"
 
 local convert_names = {
-    ["snake_case"] = coerce.to_snake_case,
-    ["camelCase"]  = coerce.to_camel_case,
-    ["PascalCase"] = coerce.to_pascal_case,
-    ["UPPER_CASE"] = coerce.to_uppercase,
-    ["kebab-case"] = coerce.to_kebab_case,
-    ["dot.case"]   = coerce.to_dot_case,
+    { "crs", "snake_case", coerce.to_snake_case },
+    { "crc", "camelCase" , coerce.to_camel_case },
+    { "crp", "PascalCase", coerce.to_pascal_case },
+    { "cru", "UPPER_CASE", coerce.to_uppercase },
+    { "cr-", "kebab-case", coerce.to_kebab_case },
+    { "cr.", "dot.case"  , coerce.to_dot_case },
 }
 
 vim.api.nvim_create_user_command("To", function(opts)
@@ -32,8 +32,9 @@ vim.api.nvim_create_user_command("To", function(opts)
     end
 
     local arg = opts.fargs[1]:gsub(" ", "")
-    for key, to_case in pairs(convert_names) do
-        if arg == key then
+    for _, m in pairs(convert_names) do
+        local cmd_name, to_case = m[2], m[3]
+        if arg == cmd_name then
             coerce.handle_coerce(to_case, position, mode, opts.bang)
         end
     end
@@ -43,8 +44,9 @@ end, {
     nargs = 1,
     complete = function()
         local completion = {}
-        for key, _ in pairs(convert_names) do
-            table.insert(completion, key)
+        for _, m in pairs(convert_names) do
+            local cmd_name = m[2]
+            table.insert(completion, cmd_name)
         end
         return completion
     end,
@@ -68,63 +70,18 @@ _G.handle_coerce = function()
     coerce.handle_coerce(_G.cached_handle_coerce, position, "", false)
 end
 
-local coerce_to_uppercase = function()
-    if vim.api.nvim_get_mode().mode == "v" or vim.api.nvim_get_mode().mode == "V" then
-        return ":To UPPER_CASE<CR>"
+local make_coerce_map = function(cmd_name, to_case)
+    return function()
+        if vim.api.nvim_get_mode().mode == "v" or vim.api.nvim_get_mode().mode == "V" then
+            return ":To " .. cmd_name .. "<CR>"
+        end
+        _G.cached_handle_coerce = to_case
+        vim.o.operatorfunc = "v:lua.handle_coerce"
+        return "g@l"
     end
-    _G.cached_handle_coerce = coerce.to_uppercase
-    vim.o.operatorfunc = "v:lua.handle_coerce"
-    return "g@l"
 end
 
-local coerce_to_snake_case = function()
-    if vim.api.nvim_get_mode().mode == "v" or vim.api.nvim_get_mode().mode == "V" then
-        return ":To snake_case<CR>"
-    end
-    _G.cached_handle_coerce = coerce.to_snake_case
-    vim.o.operatorfunc = "v:lua.handle_coerce"
-    return "g@l"
+for _, m in pairs(convert_names) do
+    local keymap, cmd_name, to_case = m[1], m[2], m[3]
+    vim.keymap.set({ "v", "n" }, keymap, make_coerce_map(cmd_name, to_case), { expr = true, desc = cmd_name })
 end
-
-local coerce_to_camel_case = function()
-    if vim.api.nvim_get_mode().mode == "v" or vim.api.nvim_get_mode().mode == "V" then
-        return ":To camelCase<CR>"
-    end
-    _G.cached_handle_coerce = coerce.to_camel_case
-    vim.o.operatorfunc = "v:lua.handle_coerce"
-    return "g@l"
-end
-
-local coerce_to_pascal_case = function()
-    if vim.api.nvim_get_mode().mode == "v" or vim.api.nvim_get_mode().mode == "V" then
-        return ":To PascalCase<CR>"
-    end
-    _G.cached_handle_coerce = coerce.to_pascal_case
-    vim.o.operatorfunc = "v:lua.handle_coerce"
-    return "g@l"
-end
-
-local coerce_to_dot_case = function()
-    if vim.api.nvim_get_mode().mode == "v" or vim.api.nvim_get_mode().mode == "V" then
-        return ":To dot.case<CR>"
-    end
-    _G.cached_handle_coerce = coerce.to_dot_case
-    vim.o.operatorfunc = "v:lua.handle_coerce"
-    return "g@l"
-end
-
-local coerce_to_kebab_case = function()
-    if vim.api.nvim_get_mode().mode == "v" or vim.api.nvim_get_mode().mode == "V" then
-        return ":To kebab-case<CR>"
-    end
-    _G.cached_handle_coerce = coerce.to_kebab_case
-    vim.o.operatorfunc = "v:lua.handle_coerce"
-    return "g@l"
-end
-
-vim.keymap.set({ "v", "n" }, "cru", coerce_to_uppercase,   { expr = true, desc = "UPPER_CASE" })
-vim.keymap.set({ "v", "n" }, "crs", coerce_to_snake_case,  { expr = true, desc = "snake_case" })
-vim.keymap.set({ "v", "n" }, "crc", coerce_to_camel_case,  { expr = true, desc = "camelCase" })
-vim.keymap.set({ "v", "n" }, "crp", coerce_to_pascal_case, { expr = true, desc = "PascalCase" })
-vim.keymap.set({ "v", "n" }, "cr.", coerce_to_dot_case,    { expr = true, desc = "dot.case" })
-vim.keymap.set({ "v", "n" }, "cr-", coerce_to_kebab_case,  { expr = true, desc = "kebab-case" })
