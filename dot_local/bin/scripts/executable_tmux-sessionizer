@@ -5,7 +5,7 @@ if [ $# -eq 1 ]; then
 else
 	selected=$(
 		(
-			find ~/code -mindepth 1 -maxdepth 1 -type d
+			find ~/Projects -mindepth 1 -maxdepth 1 -type d
 			printf "%s\n" "$ZK_NOTEBOOK_DIR" "$DOTFILES"
 		) | fzf --preview 'tree -L 2 -C {} | head -50'
 	)
