@@ -188,6 +188,7 @@ end
 ---@param text string[]
 ---@param buf number
 local function set_text(buf, position, text)
+    if text[1] == "" then return end
     vim.api.nvim_buf_set_text(buf,
         position.start_row - 1,
         position.start_col - 1,
