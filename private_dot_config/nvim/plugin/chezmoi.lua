@@ -226,6 +226,10 @@ for _, cmd in pairs({"add", "re-add"}) do
     end
 end
 
+get_subcommand_suggestion.help = function()
+    return subcommands
+end
+
 subcommand_handler.edit = function(opts)
     if not opts.smods.horizontal then
         opts.smods.vertical = true
