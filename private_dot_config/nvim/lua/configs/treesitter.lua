@@ -2,6 +2,18 @@ if not vim.pack.is_installed "nvim-treesitter" then
     return
 end
 
+vim.api.nvim_create_autocmd('User', { pattern = 'TSUpdate',
+    callback = function()
+        require"nvim-treesitter.parsers".qf = {
+            install_info = {
+                url = "https://github.com/OXY2DEV/tree-sitter-qf",
+                branch = "main",
+                queries = "queries/"
+            },
+        }
+    end
+})
+
 local ts = require "nvim-treesitter"
 
 local parsers = {
@@ -30,6 +42,7 @@ local parsers = {
     "yaml",
     "zig",
     "http",
+    "qf",
 }
 
 local function get_parsers_to_install()
