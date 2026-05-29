@@ -37,6 +37,13 @@ aucmd({ "BufReadPost" }, {
     end,
 })
 
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+    pattern = { "grep", "vimgrep" },
+    callback = function()
+        vim.cmd("copen")
+    end,
+})
+
 -- source: https://github.com/tsakirist/dotfiles/blob/7d3454a57679e5ba1c8ce4273bbed3eb737bb99c/nvim/lua/tt/autocommands.lua#L117-L142
 aucmd("BufWritePre", {
     pattern = "*",
