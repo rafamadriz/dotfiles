@@ -100,20 +100,14 @@ vim.opt.swapfile = false
 vim.opt.undofile = true
 
 -- Lua version of `help fuzzy-file-picker`
-local fuzzy_filescache = {}
----@param arg string
----@return string[]
-_G.fuzzy_find = function(arg, _)
-    if #fuzzy_filescache == 0 then
-        fuzzy_filescache = vim.fn.systemlist("fd --type f --follow --hidden --exclude .git")
+local filescache = {}
+function _G.find_files(arg, _)
+  if #filescache == 0 then
+        filescache = vim.fn.systemlist("find . -type f -follow -not -path '*.jj/*' -not -path '*.git/*' -not -path '*node_modules/*' -printf '%P\\n'")
     end
-
-   if not arg or arg == "" then
-       return fuzzy_filescache
-   end
-   return vim.fn.matchfuzzy(fuzzy_filescache, arg)
+  return #arg == 0 and filescache or vim.fn.matchfuzzy(filescache, arg)
 end
-vim.opt.findfunc = "v:lua.fuzzy_find"
+vim.opt.findfunc = "v:lua.find_files"
 
 -- Wild and file globbing stuff
 vim.opt.wildignorecase = true -- Ignore case when completing file names and directories
