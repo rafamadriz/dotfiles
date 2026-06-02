@@ -121,3 +121,10 @@ img2png() {
         -define png:exclude-chunk=all \
         "${1%.*}.png"
 }
+
+find_largest_files() {
+    find . -type f -size +10M -exec ls -lh {} \; | \
+        tr -s ' ' | \
+        cut -d ' ' -f 5,9- | \
+        sort -h
+}
