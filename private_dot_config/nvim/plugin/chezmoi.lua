@@ -1,3 +1,9 @@
+-- I'm using this to open files in the current nvim session when running commands
+-- like `:Chezmoi edit` and not open them in a nvim instance running inside
+-- the embeded terminal. However neovim --remote doesn't implement a way to wait
+-- for files to complete, this causes some undesired side effects. So I have to wait for this issue to get fixed
+-- https://github.com/neovim/neovim/issues/24788
+-- PR: https://github.com/neovim/neovim/pull/37951
 local tempfile = vim.fn.tempname()
 vim.fn.writefile({ "#!/bin/sh", "", 'if [ -n "$NVIM" ]; then', '    nvim --server "$NVIM" --remote "$@"', "else", '    nvim "$@"', "fi", "" }, tempfile)
 vim.system({"chmod", "+x", tempfile})
@@ -65,16 +71,25 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
             local target = vim.fn.systemlist({ "chezmoi", "target-path", info.file })[1]
             local dry_run_output = vim.fn.systemlist({ "chezmoi", "apply", "--dry-run", target })
+
             if vim.tbl_isempty(dry_run_output) then
                 local apply_job = vim.system({ "chezmoi", "apply", target}):wait()
                 if apply_job.code == 0 then
-                    if is_nvim_config(target) then create_session_and_restart() end
+                    if is_nvim_config(target) then
+                        vim.ui.select({ "yes", "no" }, { prompt = "Restart neovim?" }, function(choice)
+                            if not choice then return end
+                            if choice == "yes" then
+                                create_session_and_restart()
+                            end
+                        end)
+                    end
                     vim.api.nvim_echo({ { "Chezmoi: Target has been updated > ", "OkMsg" }, { target, "OkMsg" } }, true, {})
                 else
                     vim.api.nvim_echo({ { "Chezmoi: " .. apply_job.stderr, "ErrorMsg" } }, true, {})
                 end
                 return
             end
+
             vim.cmd("keepalt " .. build_chezmoi_cmd(nil, "apply " .. target))
             vim.cmd.startinsert()
             local term_buf = vim.api.nvim_get_current_buf()
