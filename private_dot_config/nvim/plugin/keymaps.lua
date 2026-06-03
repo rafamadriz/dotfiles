@@ -97,8 +97,6 @@ vim.api.nvim_create_user_command("W", function(arg)
     end
 end, { bang = true })
 
-vim.cmd.cnoreabbrev "grep silent grep!"
-
 vim.api.nvim_create_user_command("RemoveTrailing", function()
     local pos = vim.api.nvim_win_get_cursor(0)
 
