@@ -123,6 +123,15 @@ img2png() {
         "${1%.*}.png"
 }
 
+# https://github.com/SixArm/unix-shell-script-tactics/blob/73e8ddb83324d9a0cca97e5119d8ab4762e7a74f/doc/find-files-with-filter-for-permission-denied/index.md
+# Ignore "Permission denied" errors, inspired by the link above but using a simplier version,
+# since doing all that file descriptor swapping can cause some side effects like having each entry repeated in the output.
+# Use a "simplier" version instead of the one in the url above
+find() {
+    command find "$@" \
+        2> >(grep -v 'Permission denied' >&2)
+}
+
 find_largest_files() {
     find . -type f -size +10M -exec ls -lh {} \; | \
         tr -s ' ' | \
