@@ -77,6 +77,7 @@ end
 
 cmd_abbreviation("grep", "silent grep!")
 cmd_abbreviation("G", "Git")
+cmd_abbreviation("cfilter", "Cfilter")
 
 -- Make sure to go to proper indentation level when pressing i
 -- source: https://www.reddit.com/r/neovim/comments/12rqyl8/5_smart_minisnippets_for_making_text_editing_more/
