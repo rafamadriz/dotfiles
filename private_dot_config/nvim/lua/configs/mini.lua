@@ -6,6 +6,7 @@ require "configs.statusline"
 require("mini.align").setup()
 require("mini.icons").setup()
 require("mini.bracketed").setup()
+require("mini.notify").setup()
 require("mini.completion").setup({
     mappings = {
         scroll_down = "<C-d>",
