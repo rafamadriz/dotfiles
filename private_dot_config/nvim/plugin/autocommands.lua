@@ -37,10 +37,32 @@ aucmd({ "BufReadPost" }, {
     end,
 })
 
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+aucmd({ "QuickFixCmdPost" }, {
     pattern = { "grep", "vimgrep" },
+    desc = "Automatically open qflist on grep",
     callback = function()
         vim.cmd("copen")
+    end,
+})
+
+aucmd({ "BufEnter" }, {
+    pattern = { "oil://*" },
+    desc = "Grep currently open oil directory",
+    callback = function()
+        local ok, oil = pcall(require, "oil")
+
+        local search_directory
+        if ok then
+            search_directory = oil.get_current_dir()
+        else
+            search_directory = vim.fn.getcwd()
+        end
+
+        if vim.fn.executable "rg" > 0 then
+            vim.opt_local.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case --hidden $* ]] .. search_directory
+        else
+            vim.opt_local.grepprg = [[grep --line-number --recursive --binary-files=without-match --exclude-dir=.git $* ]] .. search_directory
+        end
     end,
 })
 
