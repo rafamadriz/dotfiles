@@ -69,6 +69,15 @@ map("i", "<C-Z>", "<C-g>u<Esc>[s1z=`]a<C-g>u", { desc = "Correct latest misspell
 map("v", "<", "<gv", { desc = "Keep visual selection when indenting to left" })
 map("v", ">", ">gv", { desc = "Keep visual selection when indenting to right" })
 
+local cmd_abbreviation = function(input, replace)
+    map("ca", input, function()
+        return vim.fn.getcmdtype() == ":" and vim.fn.getcmdline():match("^" .. input) and replace or input
+    end, { expr = true, noremap = true })
+end
+
+cmd_abbreviation("grep", "silent grep!")
+cmd_abbreviation("G", "Git")
+
 -- Make sure to go to proper indentation level when pressing i
 -- source: https://www.reddit.com/r/neovim/comments/12rqyl8/5_smart_minisnippets_for_making_text_editing_more/
 map("n", "i", function()

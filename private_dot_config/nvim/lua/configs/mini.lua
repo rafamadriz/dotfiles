@@ -57,7 +57,6 @@ require("mini.surround").setup {
 -- Git
 local git = require "mini.git"
 git.setup {}
-vim.cmd.cnoreabbrev "G Git"
 
 require("mini.diff").setup {
     view = {
