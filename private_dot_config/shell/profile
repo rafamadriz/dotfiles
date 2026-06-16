@@ -91,7 +91,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export NVM_DIR="$XDG_DATA_HOME"/nvm
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 # Android
-export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
+export ADB_VENDOR_KEYS="$XDG_CONFIG_HOME"/android
 export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
 export ADB_KEYS_PATH="$ANDROID_PREFS_ROOT"
 export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator
