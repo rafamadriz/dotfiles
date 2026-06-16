@@ -66,6 +66,11 @@ aucmd({ "BufEnter" }, {
     end,
 })
 
+aucmd({ "BufRead", "BufNewFile" }, {
+    pattern = { "todo.txt" },
+    command = "set filetype=todotxt"
+})
+
 aucmd({ "FileType" }, {
     pattern = { "snacks_*" },
     desc = "Disable completion menu on Snacks buffer",
