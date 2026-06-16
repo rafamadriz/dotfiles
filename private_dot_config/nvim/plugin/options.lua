@@ -87,8 +87,11 @@ vim.opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpo
 -- Use rg as grep program
 if vim.fn.executable "rg" > 0 then
     vim.opt.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case --hidden]]
+    vim.opt.grepformat = "%f:%l:%c:%m"
+else
+    vim.opt.grepprg = [[grep --line-number --recursive --binary-files=without-match --exclude-dir=.git]]
+    vim.opt.grepformat = "%f:%l:%m"
 end
-vim.opt.grepformat = "%f:%l:%c:%m"
 
 -- Folds
 vim.opt.foldlevelstart = 5
