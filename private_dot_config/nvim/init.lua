@@ -64,23 +64,15 @@ function vim.pack.is_installed(plugin_name)
     return vim.tbl_contains(installed, plugin_name)
 end
 
-local augroup = vim.api.nvim_create_augroup("Run callback after vim.pack update", { clear = false })
-vim.api.nvim_create_autocmd("PackChanged", {
-    group = augroup,
-    pattern = "*",
-    callback = function(e)
-        local kind = e.data.kind
-        local run = (e.data.spec.data or {}).run
-        if kind == "update" and e.data.active then
-            if type(run) == "function" then
-                pcall(run, e.data)
-            end
-            if type(run) == "string" then
-                vim.cmd(run)
-            end
-        end
-    end,
-})
+local hooks = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+
+    if name == "nvim-treesitter" and (kind == "install" or kind == "update" ) then
+        if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
+        vim.cmd("TSUpdate")
+    end
+end
+vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
 
 vim.pack.add {
     { src = "https://github.com/neovim/nvim-lspconfig" },
@@ -97,7 +89,7 @@ vim.pack.add {
     { src = "https://github.com/folke/ts-comments.nvim" },
     { src = "https://github.com/RRethy/nvim-treesitter-endwise" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 }
 
 vim.cmd.colorscheme "catppuccin"
