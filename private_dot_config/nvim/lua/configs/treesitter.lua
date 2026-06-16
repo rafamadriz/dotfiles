@@ -22,6 +22,7 @@ local parsers = {
     "comment",
     "cpp",
     "css",
+    "scss",
     "go",
     "html",
     "javascript",
@@ -36,6 +37,7 @@ local parsers = {
     "regex",
     "rust",
     "tsx",
+    "jsx",
     "typescript",
     "vim",
     "vimdoc",
@@ -43,6 +45,9 @@ local parsers = {
     "zig",
     "http",
     "qf",
+    "gitcommit",
+    "diff",
+    "todotxt",
 }
 
 local function get_parsers_to_install()
