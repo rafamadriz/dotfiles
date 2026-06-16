@@ -1,10 +1,13 @@
 theme = light:Dayfox,dark:Catppuccin Mocha
+font-size = 13.5
 # font-family = "CommitMono"
 # font-family = "0xProto"
 # font-family = "Cascadia Mono"
-font-family = "JetBrains Mono"
+# font-family = "JetBrains Mono"
 # font-family = "Fira Code"
 # font-family = "Hack"
+font-family = "Monaspace Neon"
+# font-family = "Monaspace Xenon"
 
 mouse-hide-while-typing = true
 maximize = true
