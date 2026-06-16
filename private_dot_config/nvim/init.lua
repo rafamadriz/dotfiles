@@ -29,38 +29,30 @@ vim.g.maplocalleader = " "
 -- doesn't work. check `:help startup` step 7 for exrc and step 11 for plugin files.
 vim.opt.exrc = true
 
----@param plugin_name string
----@param opts? table
 function vim.pack.setup_plugin(plugin_name, opts)
     local ok, plugin = pcall(require, plugin_name)
     if ok then
-        if not opts then
-            opts = {}
-        end
-        plugin.setup(opts)
+        plugin.setup(opts or {})
         return
     end
+    vim.api.nvim_echo({ { plugin_name .. " Not found", "ErrorMsg" } }, true, {})
 end
 
 vim.pack.clean = function()
-    local inactive = vim.tbl_map(function(plugin)
-        if not plugin.active then
-            return plugin.spec.name
-        end
-    end, vim.pack.get())
+    local inactive = vim.iter(vim.pack.get())
+        :filter(function(plugin) return not plugin.active end)
+        :map(function(data) return data.spec.name end)
+        :totable()
 
-    vim.pack.del(vim.tbl_values(inactive))
+    vim.pack.del(inactive)
 end
 
----@param plugin_name string
----@return boolean
 function vim.pack.is_installed(plugin_name)
-    local installed = {}
-    for _, plugin in pairs(vim.pack.get()) do
-        if plugin.active then
-            table.insert(installed, plugin.spec.name)
-        end
-    end
+    local installed = vim.iter(vim.pack.get())
+        :filter(function(plugin) return plugin.active end)
+        :map(function(data) return data.spec.name end)
+        :totable()
+
     return vim.tbl_contains(installed, plugin_name)
 end
 
