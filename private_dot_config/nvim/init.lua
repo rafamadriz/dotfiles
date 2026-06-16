@@ -29,7 +29,7 @@ vim.g.maplocalleader = " "
 -- doesn't work. check `:help startup` step 7 for exrc and step 11 for plugin files.
 vim.opt.exrc = true
 
-function vim.pack.setup_plugin(plugin_name, opts)
+function vim.pack.setup(plugin_name, opts)
     local ok, plugin = pcall(require, plugin_name)
     if ok then
         plugin.setup(opts or {})
@@ -86,9 +86,8 @@ vim.pack.add {
 
 vim.cmd.colorscheme "catppuccin"
 
-vim.pack.setup_plugin "mason"
-vim.pack.setup_plugin "zk"
-vim.pack.setup_plugin("fzf-lua", { "ivy", grep = { hidden = true } })
+vim.pack.setup "mason"
+vim.pack.setup "zk"
 require("fzf-lua").register_ui_select()
 require "configs.mini"
 require "configs.oil"
@@ -97,5 +96,5 @@ require "configs.format"
 
 -- Treesitter
 require "configs.treesitter"
-vim.pack.setup_plugin "ts-comments"
-vim.pack.setup_plugin "nvim-ts-autotag"
+vim.pack.setup "ts-comments"
+vim.pack.setup "nvim-ts-autotag"
