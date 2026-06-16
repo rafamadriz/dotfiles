@@ -18,6 +18,12 @@ lsp.enable {
     -- "vtsls",
 }
 
+-- disable gitlab server that automatically runs on :lsp enable
+-- because it uses npx so it run any remote package you don't have in
+-- your PATH and it's enabled for a bunch for filetypes.
+-- https://github.com/neovim/nvim-lspconfig/blob/a683e0ddf0cf64c6cd689e18ffb480ade3c162b7/lsp/gitlab_duo.lua#L316-L348
+lsp.config("gitlab_duo", { cmd = "", filetypes = {} })
+
 --- @param diagnostics? vim.Diagnostic
 --- @param bufnr integer
 local function on_jump(diagnostics, bufnr)
