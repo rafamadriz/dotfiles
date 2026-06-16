@@ -66,6 +66,14 @@ aucmd({ "BufEnter" }, {
     end,
 })
 
+aucmd({ "FileType" }, {
+    pattern = { "snacks_*" },
+    desc = "Disable completion menu on Snacks buffer",
+    callback = function(args)
+        vim.b[args.buf].minicompletion_disable = true
+    end,
+})
+
 -- source: https://github.com/tsakirist/dotfiles/blob/7d3454a57679e5ba1c8ce4273bbed3eb737bb99c/nvim/lua/tt/autocommands.lua#L117-L142
 aucmd("BufWritePre", {
     pattern = "*",

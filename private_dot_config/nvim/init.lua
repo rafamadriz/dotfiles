@@ -70,7 +70,7 @@ vim.pack.add {
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/nvim-mini/mini.nvim" },
-    { src = "https://github.com/ibhagwan/fzf-lua" },
+    { src = "https://github.com/folke/snacks.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://codeberg.org/andyg/leap.nvim" },
     { src = "https://github.com/stevearc/conform.nvim" },
@@ -86,9 +86,26 @@ vim.pack.add {
 
 vim.cmd.colorscheme "catppuccin"
 
+---@type snacks.Config
+local snacks_config = {
+    input     = { enabled = true },
+    quickfile = { enabled = true },
+    picker = {
+        layout = "ivy_split",
+        sources = {
+            files = {
+                hidden = true,
+            },
+            grep = {
+                hidden = true,
+            },
+        }
+    }
+}
+
 vim.pack.setup "mason"
 vim.pack.setup "zk"
-require("fzf-lua").register_ui_select()
+vim.pack.setup("snacks", snacks_config)
 require "configs.mini"
 require "configs.oil"
 require "configs.leap"

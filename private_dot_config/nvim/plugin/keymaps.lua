@@ -160,35 +160,37 @@ local resize = function(vertical, margin)
     cmd(_cmd)
 end
 
-map({ "n", "t" }, "<C-Up>",    function() resize(false, -2) end, { desc = "Resize up window horizontally" })
-map({ "n", "t" }, "<C-Down>",  function() resize(false, 2) end,  { desc = "Resize down window horizontally" })
-map({ "n", "t" }, "<C-Left>",  function() resize(true,  -2) end, { desc = "Resize left window vertically" })
-map({ "n", "t" }, "<C-Right>", function() resize(true,  2) end,  { desc = "Resize right window vertically" })
+map({ "n", "t" }, "<C-Up>",    function() resize(false, -2) end, { desc = "Resize up window horizontally"})
+map({ "n", "t" }, "<C-Down>",  function() resize(false, 2)  end, { desc = "Resize down window horizontally"})
+map({ "n", "t" }, "<C-Left>",  function() resize(true, -2)  end, { desc = "Resize left window vertically"})
+map({ "n", "t" }, "<C-Right>", function() resize(true, 2)   end, { desc = "Resize right window vertically"})
 
 ------------------------------
 ------- Plugins Keymaps ------
 ------------------------------
--- FZF
-map("n", "<leader><leader>", function()
+-- Picker
+if not Snacks then return end
+---@param picker fun(opts?: snacks.picker.files.Config|snacks.picker.grep.Config): snacks.Picker
+local with_oil_context = function(picker)
     local current_buffer = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
     local is_oil_buffer = vim.startswith(current_buffer, "oil://")
     if is_oil_buffer then
-        vim.cmd(string.format("FzfLua files cwd=%s", require("oil").get_current_dir()))
+        local oil_dir = require("oil").get_current_dir()
+        picker({ dirs = { oil_dir } })
         return
     end
-    vim.cmd "FzfLua global"
-end, { desc = "find global" })
-map("n", "<leader>`",  ":FzfLua resume<CR>",      { desc = "picker resume" })
-map("n", "<leader>fa", ":FzfLua builtin<CR>",     { desc = "all pickers" })
-map("n", "<leader>?",  ":FzfLua helptags<CR>",    { desc = "help tags" })
-map("n", "<leader>fq", ":FzfLua quickfix<CR>",    { desc = "quickfix" })
-map("n", "<leader>fg", ":FzfLua live_grep<CR>",   { desc = "grep live" })
-map("n", "<leader>fw", ":FzfLua grep_cword<CR>",  { desc = "grep cword" })
-map("v", "<leader>fw", ":FzfLua grep_visual<CR>", { desc = "grep visual" })
-map("n", "<leader>fp", ":FzfLua grep<CR>",        { desc = "grep pattern" })
+    picker()
+end
+map("n", "<leader><leader>",    function() with_oil_context(Snacks.picker.files) end, { desc = "find files" })
+map("n", "<leader>fg",          function() with_oil_context(Snacks.picker.grep) end,  { desc = "grep live" })
+map("n", "<leader>`",           Snacks.picker.resume,                                 { desc = "picker resume" })
+map("n", "<leader>fa",          function() Snacks.picker() end,                       { desc = "all pickers" })
+map("n", "<leader>?",           Snacks.picker.help,                                   { desc = "help tags" })
+map("n", "<leader>fq",          Snacks.picker.qflist,                                 { desc = "quickfix" })
+map({ "n", "v" }, "<leader>fw", Snacks.picker.grep_word,                              { desc = "grep visual or word" })
 map("n", "<leader>fd", function()
     vim.ui.input(
-        { prompt = "path to directory (leave empty for directory of current file): ", completion = "dir" },
+        { prompt = "Search dir path (empty for dir of current file): ", completion = "dir" },
         function(path)
             if not path then
                 return
@@ -197,15 +199,16 @@ map("n", "<leader>fd", function()
                 local filename = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
                 path = vim.fn.fnamemodify(filename, ":p:h")
             end
-            vim.cmd(string.format("FzfLua files cwd=%s", path))
+            Snacks.picker.files({ dirs = { path } })
         end
     )
 end, { desc = "find files in directory" })
 -- git
-map("n", "<leader>gC", ":FzfLua git_commits<CR>",               { desc = "commits" })
-map("n", "<leader>gc", ":FzfLua git_bcommits<CR>",              { desc = "buffer commits" })
+map("n", "<leader>gL", Snacks.picker.git_log,      { desc = "log" })
+map("n", "<leader>gl", Snacks.picker.git_log_file, { desc = "log file" })
+map("n", "<leader>gd", Snacks.picker.git_diff,     { desc = "diff" })
 -- lsp
-map("n", "<leader>ld", ":FzfLua lsp_document_diagnostics<CR>",  { desc = "document diagnostics" })
-map("n", "<leader>lD", ":FzfLua lsp_workspace_diagnostics<CR>", { desc = "workspace diagnostics" })
-map("n", "<leader>ls", ":FzfLua lsp_document_symbols<CR>",      { desc = "document symbols" })
-map("n", "<leader>lS", ":FzfLua lsp_workspace_symbols<CR>",     { desc = "workspace symbols" })
+map("n", "<leader>ld", Snacks.picker.diagnostics_buffer,    { desc = "document diagnostics" })
+map("n", "<leader>lD", Snacks.picker.diagnostics,           { desc = "workspace diagnostics" })
+map("n", "<leader>ls", Snacks.picker.lsp_symbols,           { desc = "document symbols" })
+map("n", "<leader>lS", Snacks.picker.lsp_workspace_symbols, { desc = "workspace symbols" })

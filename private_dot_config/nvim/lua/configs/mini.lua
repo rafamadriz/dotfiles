@@ -86,11 +86,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.keymap.set("n", "<leader>gt", require("mini.diff").toggle_overlay, { desc = "toggle diff overlay" })
 vim.keymap.set("n", "<leader>gs", ":Git add -- %<CR>",                 { desc = "stage buffer" })
 vim.keymap.set("n", "<leader>gu", ":Git restore --staged -- %<CR>",    { desc = "unstage buffer" })
-vim.keymap.set("n", "<leader>gl", ":Git lg<CR>",                       { desc = "log oneline" })
-vim.keymap.set("n", "<leader>gf", ":Git log --patch -- %<CR>",         { desc = "full log patch (buffer)" })
-vim.keymap.set("n", "<leader>gF", ":Git log --patch<CR>",              { desc = "full log patch" })
-vim.keymap.set("n", "<leader>gd", ":Git diff -- %<CR>",                { desc = "diff (buffer)" })
-vim.keymap.set("n", "<leader>gD", ":Git diff<CR>",                     { desc = "diff" })
 
 -- Snippets
 local snippets = require "mini.snippets"
