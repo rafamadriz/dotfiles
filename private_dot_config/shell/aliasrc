@@ -11,7 +11,6 @@ alias d='dirs -v'
 
 # shortcuts
 alias sys='systemctl'
-alias icat='kitty +kitten icat'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias nuke='rm -rI'
@@ -40,20 +39,11 @@ alias ....='cd ../../..'
 alias g='git'
 alias ga='git add'
 alias gcl='git clone'
-alias cdg='cd $(git rev-parse --show-toplevel)'
-alias gaa='git add --all'
-alias gb='git branch -a'
-alias gc='git commit'
-alias gcm='git commit -m'
 alias gd='git diff'
 alias gp='git push'
 alias gl='git pull'
-alias gll='git log'
 alias gs='git status'
 alias gr='git remote -v'
-alias grm='git rm'
-alias grmc='git rm --cached'
-alias gmv='git mv'
 
 # create an alias for folders in the pushd stack
 i=0
