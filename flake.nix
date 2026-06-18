@@ -51,8 +51,16 @@
                         # fzf
                         # bat
                         # git
-                        neovim
+
+                        # Automatic loading and unloading for env variables
+                        # depending on current directory. Paired with nix-direnv
+                        # implementation which is significantly faster by caching.
+                        # https://direnv.net/
+                        # https://github.com/nix-community/nix-direnv
                         direnv
+                        nix-direnv
+
+                        neovim
                         fd
                     ];
                 };
