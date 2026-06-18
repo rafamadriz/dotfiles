@@ -5,7 +5,7 @@
     "workspace.checkThirdParty": false,
     "workspace.library": [
         "lua",
-        "/usr/share/nvim/runtime/lua/",
+        "~/.local/state/nix/profile/share/nvim/runtime/lua",
         "~/.local/share/nvim/site/pack/core/opt/",
         "${3rd}/busted/library",
         "${3rd}/luv/library"
