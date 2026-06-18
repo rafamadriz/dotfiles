@@ -3,3 +3,5 @@ README.md
 .stylua.toml
 .k
 keyd/
+flake*
+.envrc

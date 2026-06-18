@@ -1,6 +1,8 @@
 HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=100000
 SAVEHIST=100000
+fpath+=($HOME/.local/state/nix/profiles/profile/share/zsh/site-functions)
+fpath+=(/nix/var/nix/profiles/default/share/zsh/site-functions/)
 autoload -Uz compinit
 compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
@@ -63,6 +65,10 @@ zvm_after_init() {
 PLUG_DIR=$ZDOTDIR/plugins
 [ -f $PLUG_DIR/menu.zsh ] && source $PLUG_DIR/menu.zsh
 [ -f $PLUG_DIR/colored-man-pages.zsh ] && source $PLUG_DIR/colored-man-pages.zsh
+
+if [ -x "$(command -v direnv)" ]; then
+    eval "$(direnv hook zsh)"
+fi
 
 # https://wiki.archlinux.org/title/tmux#Start_tmux_on_every_shell_login
 # if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
