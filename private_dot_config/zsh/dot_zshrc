@@ -76,6 +76,13 @@ if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook zsh)"
 fi
 
+# Ghostty shell integration
+# https://ghostty.org/docs/features/shell-integration
+# https://github.com/ghostty-org/ghostty/blob/main/src/shell-integration/README.md
+if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
+    source "$GHOSTTY_RESOURCES_DIR"/shell-integration/zsh/ghostty-integration
+fi
+
 # https://wiki.archlinux.org/title/tmux#Start_tmux_on_every_shell_login
 # if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
 #     tmux new-session -A -s ${USER} >/dev/null 2>&1
