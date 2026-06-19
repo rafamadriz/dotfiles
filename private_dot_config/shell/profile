@@ -5,7 +5,9 @@
 ############################################################
 # Path                                                     #
 ############################################################
-export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
+if [ -d "$HOME/.local/bin" ] && [ -z "$TMUX" ]; then
+    export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
+fi
 
 ############################################################
 # XDG PATHS                                                #
