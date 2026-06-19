@@ -22,32 +22,32 @@ local parsers = {
     "comment",
     "cpp",
     "css",
-    "scss",
+    "diff",
+    "gitcommit",
     "go",
     "html",
+    "http",
     "javascript",
     "json",
+    "jsx",
     "lua",
     "luadoc",
     "luap",
     "markdown",
     "markdown_inline",
     "python",
+    "qf",
     "query",
     "regex",
     "rust",
+    "scss",
+    "todotxt",
     "tsx",
-    "jsx",
     "typescript",
     "vim",
     "vimdoc",
     "yaml",
     "zig",
-    "http",
-    "qf",
-    "gitcommit",
-    "diff",
-    "todotxt",
 }
 
 local function get_parsers_to_install()
@@ -65,12 +65,22 @@ end
 
 ts.install(get_parsers_to_install())
 
+local installed = {}
+for _, lang in ipairs(ts.get_installed()) do
+    installed[lang] = true
+end
+
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = ts.get_installed(),
-    callback = function()
-        -- syntax highlighting, provided by Neovim
-        vim.treesitter.start()
+    callback = function(args)
+        local ft = vim.bo[args.buf].filetype
+        local lang = vim.treesitter.language.get_lang(ft)
+
+        if not installed[lang] then
+            return
+        end
+
         -- indentation, provided by nvim-treesitter
+        vim.treesitter.start(args.buf, lang)
         vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         -- treesitter based folding
         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
