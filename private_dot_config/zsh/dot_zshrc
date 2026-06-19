@@ -10,6 +10,11 @@ compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 [[ ! -d ~/.cache/zsh ]] && mkdir -p ~/.cache/zsh
 [[ ! -d ~/.local/share/zsh ]] && mkdir -p ~/.local/share/zsh
 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
 #
 # Options
 #
@@ -28,14 +33,24 @@ setopt AUTO_PUSHD             # Push the current directory visited on the stack.
 setopt PUSHD_IGNORE_DUPS      # Do not store duplicates in the stack.
 setopt PUSHD_SILENT           # Do not print the directory stack after pushd or popd.
 
-source "$ZDOTDIR/functions"
-# prompt
+# Function to source files if they exist
+function zsh_add_file() {
+    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+}
 zsh_add_file "prompt.zsh"
-# aliases
+zsh_add_file "menu.zsh"
+zsh_add_file "colored-man-pages.zsh"
 [ -f $HOME/.config/shell/aliasrc ] && source $HOME/.config/shell/aliasrc
 
-# Plugins
-# TODO: Move this funcionality to chezmoiexternal
+# Who needs oh-my-zsh ?
+function zsh_add_plugin() {
+    # if plugin name doesn't have `/` then it just returns orignal $1
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
+        zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" ||
+            zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+    fi
+}
 zsh_add_plugin "Aloxaf/fzf-tab"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
@@ -44,11 +59,6 @@ zsh_add_plugin "jeffreytse/zsh-vi-mode"
 
 export ZVM_VI_SURROUND_BINDKEY=classic
 # export ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^xe' edit-command-line
-bindkey '^x^e' edit-command-line
 
 zvm_after_init() {
     bindkey '^[[A' history-substring-search-up
@@ -61,10 +71,6 @@ zvm_after_init() {
         eval "$(fzf --zsh)"
     fi
 }
-
-PLUG_DIR=$ZDOTDIR/plugins
-[ -f $PLUG_DIR/menu.zsh ] && source $PLUG_DIR/menu.zsh
-[ -f $PLUG_DIR/colored-man-pages.zsh ] && source $PLUG_DIR/colored-man-pages.zsh
 
 if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook zsh)"
