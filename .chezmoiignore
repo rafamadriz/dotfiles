@@ -5,3 +5,7 @@ README.md
 keyd/
 flake*
 .envrc
+
+{{ if not .bash.enabled }}
+.bashrc
+{{- end }}
