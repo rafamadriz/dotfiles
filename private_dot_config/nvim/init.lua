@@ -48,6 +48,14 @@ vim.pack.clean = function()
     vim.pack.del(inactive)
 end
 
+vim.pack.revert = function()
+    local plugins = vim.iter(vim.pack.get())
+        :map(function(data) return data.spec.name end)
+        :totable()
+
+    vim.pack.update(plugins, { offline = true, target = 'lockfile' })
+end
+
 function vim.pack.is_installed(plugin_name)
     local installed = vim.iter(vim.pack.get())
         :filter(function(plugin) return plugin.active end)
