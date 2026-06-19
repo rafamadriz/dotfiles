@@ -29,7 +29,7 @@ zstyle ':vcs_info:*' formats       \
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
 
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:git:*' formats " %{$fg[red]%}%m%u%c%{$reset_color%} %{$fg[yellow]%}%{$reset_color%}%{$fg[magenta]%}%b%{$reset_color%}"
+zstyle ':vcs_info:git:*' formats " %{$fg[red]%}%m%u%c%{$reset_color%} %{$fg[yellow]%}%{$reset_color%}%{$fg[cyan]%}%b%{$reset_color%}"
 
 # Example of two-line ZSH prompt with four components.
 #
@@ -138,14 +138,18 @@ function set-prompt() {
   # $(!.%F{yellow}.%F{red})$(printf ...) = show one ❯ per $LVL (red for root, otherwise yellow)
   # partially generated with: https://zsh-prompt-generator.site/
   # https://github.com/k-yokoishi/zsh-prompt-generator
-  local top_left="%B%F{105}%n%f%b@%F{158}${CONTAINER_ID:-%m}%f %B%~%b$vcs_info_msg_0_"
-  local arrow_color='%(!.%F{red}.%F{yellow})'
+  local top_left="%B%F{105}%n%f%b@%F{magenta}${CONTAINER_ID:-%m}%f %B%~%b$vcs_info_msg_0_"
+  local arrow_color='%(?.%F{green}.%F{red})'
   local bottom_left="$arrow_color$(print ${(l.$SHLVL..❯.)})%f "
+
+  local top_right=""
+  local error="%(?..%F{red}%B[%?]%f)"
+  local bottom_right="$error %B%F{}%*%f"
 
   local REPLY
   fill-line "$top_left" "$top_right"
   PROMPT=$REPLY$'\n'$bottom_left
-  # RPROMPT=$bottom_right
+  RPROMPT=$bottom_right
 }
 
 setopt no_prompt_{bang,subst} prompt_{cr,percent,sp}
