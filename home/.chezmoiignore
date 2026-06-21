@@ -1,10 +1,4 @@
-README.md
 **/debug.lua
-.stylua.toml
-.k
-keyd/
-flake*
-.envrc
 
 {{ if not .bash.enabled }}
 .bashrc
