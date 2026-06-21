@@ -8,6 +8,8 @@ local tempfile = vim.fn.tempname()
 vim.fn.writefile({ "#!/bin/sh", "", 'if [ -n "$NVIM" ]; then', '    nvim --server "$NVIM" --remote "$@"', "else", '    nvim "$@"', "fi", "" }, tempfile)
 vim.system({"chmod", "+x", tempfile})
 
+local M = {}
+
 -- vim.system({"chmod +x", tempfile})
 --- Source: https://github.com/juniorsundar/cling.nvim/blob/b24a6b29f83a98493001aa12496b995fd0d77b84/lua/cling/core.lua#L41-L64
 --- Builds the chezmoi split command string based on smods.
@@ -56,11 +58,21 @@ local function is_nvim_config(target)
     return false
 end
 
+local function is_managed(target)
+    local managed = M.get_managed_files()
+    return vim.tbl_contains(managed, target)
+end
+
 vim.api.nvim_create_autocmd("BufWritePost", {
     group = vim.api.nvim_create_augroup("chezmoi", {}),
     pattern = vim.json.decode(vim.fn.system("chezmoi data")).chezmoi.sourceDir .. "/*",
     nested = true,
     callback = function(info)
+        local target = vim.fn.systemlist({ "chezmoi", "target-path", info.file })[1]
+        if not is_managed(target) then
+            return
+        end
+
         local origin_win = vim.api.nvim_get_current_win()
 
         vim.schedule(function()
@@ -69,7 +81,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
                 return
             end
 
-            local target = vim.fn.systemlist({ "chezmoi", "target-path", info.file })[1]
             local dry_run_output = vim.fn.systemlist({ "chezmoi", "apply", "--dry-run", target })
 
             if vim.tbl_isempty(dry_run_output) then
@@ -214,7 +225,7 @@ local get_subcommand_suggestion = {}
 local suggestion_cache = {}
 local subcommand_handler = {}
 
-local get_managed_files = function()
+M.get_managed_files = function()
     local dest_dir = vim.json.decode(vim.fn.system("chezmoi data")).chezmoi.destDir .. "/"
     local managed = vim.fn.systemlist({ "chezmoi", "managed", "--exclude", "externals" })
     local managed_files = {}
@@ -230,7 +241,7 @@ for _, cmd in pairs({"edit", "forget"}) do
         if suggestion_cache.managed_files then
             return suggestion_cache.managed_files
         end
-        suggestion_cache.managed_files = get_managed_files()
+        suggestion_cache.managed_files = M.get_managed_files()
         return suggestion_cache.managed_files
     end
 end
