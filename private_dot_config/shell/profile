@@ -63,7 +63,9 @@ export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 # Ollama
 # ~/.ollama still exists. This just moves the models to the DATA folder
 # https://github.com/ollama/ollama/issues/228
-export OLLAMA_MODELS=$XDG_DATA_HOME/ollama/models
+export OLLAMA_MODELS="$XDG_DATA_HOME"/ollama/models
+# Navidrome
+export ND_CONFIGFILE=/etc/navidrome/navidrome.toml
 # GPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export GPG_TTY="$(tty)"
