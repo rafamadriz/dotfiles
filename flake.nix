@@ -33,25 +33,21 @@
                     # ==================
                     # Search for package names at https://search.nixos.org/packages?channel=unstable
                     #
-                    # First time setup
+                    # First-time installation:
                     #   nix profile add .\#default
                     #
-                    # After editing this file:
+                    # After changing this file (add/remove packages):
+                    #   nix profile upgrade chezmoi
                     #
-                    #   - Add/remove packages:
-                    #     nix profile upgrade chezmoi
+                    # Update package versions:
+                    #   nix flake update
+                    #   nix profile upgrade chezmoi
                     #
-                    #   - Update to latest nixpkgs (newer package versions):
-                    #     nix flake update
-                    #     nix profile upgrade chezmoi
+                    # Revert package versions:
+                    #   git restore flake.lock
+                    #   nix profile upgrade chezmoi
+                    #
                     paths = with pkgs; [
-                        # ripgrep
-                        # fd
-                        # jq
-                        # fzf
-                        # bat
-                        # git
-
                         # Automatic loading and unloading for env variables
                         # depending on current directory. Paired with nix-direnv
                         # implementation which is significantly faster by caching.
@@ -60,8 +56,53 @@
                         direnv
                         nix-direnv
 
-                        neovim
-                        fd
+                        # These are not included in Arch by default
+                        # man
+                        # man-pages
+
+                        neovim   # my beloved
+                        chezmoi  # dotfiles management
+                        zk       # Notes
+                        ripgrep  # grep but respects .gitignore
+                        fzf      # fuzzy finder
+                        bat      # better cat
+                        fd       # faster and more intuitive find
+                        sd       # easier sed
+                        jq       # json processor
+                        tmux     # terminal multiplexer.
+                        tealdeer # tldr for man pages
+                        btop     # monitor resources
+                        age      # encryption tool
+                        ouch     # compressing and decompressing various formats
+                        tinyxxd  # Hex dump
+
+                        # Git stuff
+                        git
+                        lazygit
+                        jujutsu
+                        delta # Syntax-highlighting pager for git
+
+                        # Used for backups and some other scripts
+                        rsync      # Fast incremental file transfer utility
+                        restic     # Fast, secure, efficient backup program
+                        borgbackup # Deduplicating archiver with compression and encryption
+                        # rclone     # sync files and directories to and from major cloud storage
+
+                        # Download media from internet
+                        yt-dlp
+                        gallery-dl
+
+                        # containers
+                        podman
+                        distrobox
+
+                        nodejs-slim
+
+                        # Stuff I sometimes need.
+                        # `nix shell nixpkgs\#whatineed`
+                        # tokei - Count lines of code
+                        # single-file-cli - Save a webpage in a single HTML file
+                        # mediainfo -  Information about media files
                     ];
                 };
             });
