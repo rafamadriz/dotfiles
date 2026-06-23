@@ -1,0 +1,51 @@
+#!/usr/bin/env sh
+#
+# Inspired by https://github.com/NixOS/nix/issues/10015#issuecomment-1953942169
+
+set -eu
+# set -o xtrace
+
+if [ -t 1 ]; then
+    RED='\033[31m'; GREEN='\033[32m'; RESET='\033[0m'
+else
+    RED=''; GREEN=''; RESET=''
+fi
+
+log_info()  { printf "${GREEN}[INFO]${RESET}  %s\n" "$*"; }
+log_error() { printf "${RED}[ERROR]${RESET} %s\n" "$*" >&2; }
+
+FLAKE_DIR="$(realpath "${1:-.}")"
+
+if [ ! -f "$FLAKE_DIR/flake.nix" ]; then
+    log_error "No flake.nix found in $FLAKE_DIR"
+    exit 1
+fi
+
+if ! command -v nix > /dev/null; then
+    log_error "nix not found in \$PATH"
+    exit 1
+fi
+
+BEFORE_UPDATE="$(nix build --no-link --print-out-paths .)"
+
+log_info "Updating..."
+nix flake update
+log_info "Update finished"
+nix profile upgrade "$(basename "$FLAKE_DIR")"
+log_info "Profile upgraded"
+
+AFTER_UPDATE="$(nix build --no-link --print-out-paths .)"
+
+log_info "Generating diff..."
+DIFF_BODY=$(nix shell nixpkgs\#dix --command dix --force-correctness "$BEFORE_UPDATE" "$AFTER_UPDATE" | grep -v '<<<' | grep -v '>>>')
+log_info "Diff has been generated"
+
+COMMIT_MSG="chore(flake): update lock file
+
+$DIFF_BODY
+"
+
+log_info "==> Committing..."
+
+git -C "$FLAKE_DIR" add flake.lock
+git -C "$FLAKE_DIR" commit -m "$COMMIT_MSG"
