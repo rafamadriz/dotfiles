@@ -15,6 +15,17 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
+# word split
+# Delete up until `/` with <C-w>, specially useful when typing paths and need to
+# correct just a single section, but by default doing <C-w> deletes the entire
+# "word" Delete up until `.` and `-` and `_`, usefule for filenames separated by
+# `-` and `_` and to change file extensions by deleting only up until `.`
+# default: *?_-.[]~=/&;!#$%^(){}<>
+# Wordsplit = _ - . / =
+# source: https://unix.stackexchange.com/questions/48577/modifying-the-zsh-shell-word-split
+# source: https://apple.stackexchange.com/questions/382126/partially-delete-path-in-zsh-option-backspace
+export WORDCHARS="*?[]~&;!#$%^(){}<>"
+
 #
 # Options
 #
@@ -44,7 +55,6 @@ zsh_add_file "colored-man-pages.zsh"
 
 # Who needs oh-my-zsh ?
 function zsh_add_plugin() {
-    # if plugin name doesn't have `/` then it just returns orignal $1
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" ||
