@@ -38,10 +38,15 @@
 {{- if lookPath "delta" }}
 [interactive]
     diffFilter = delta --color-only
+
 [add.interactive]
     useBuiltin = false
 
+[include]
+    path = ./catppuccin.gitconfig
+
 [delta]
+    features = catppuccin-mocha
     navigate = true
     line-numbers = true
     hyperlinks = true
