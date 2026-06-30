@@ -14,6 +14,7 @@ vim.g.loaded_netrwPlugin       = 1
 vim.g.loaded_netrwSettings     = 1
 vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_remote_plugins    = 1
+vim.g.ftplugin_sql_omni_key    = "<C-o>"
 
 -- Enable plugins
 vim.cmd.packadd "nvim.undotree"
