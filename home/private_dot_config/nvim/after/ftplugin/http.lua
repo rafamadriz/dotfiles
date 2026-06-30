@@ -1,0 +1,11 @@
+local k = require("kulala")
+k.setup()
+
+vim.keymap.set({ "n", "v" }, "<leader>rs", k.run,          { desc = "Send request"})
+vim.keymap.set({ "n", "v" }, "<leader>ra", k.run_all,      { desc = "Send all request"})
+vim.keymap.set({ "n", "v" }, "<leader>rr", k.replay,       { desc = "Replay last request"})
+vim.keymap.set({ "n", "v" }, "<leader>rg", k.search,       { desc = "Search requests"})
+vim.keymap.set({ "n", "v" }, "<leader>rt", k.toggle_view,  { desc = "Toggle UI"})
+vim.keymap.set({ "n", "v" }, "<leader>rc", k.copy,         { desc = "Copy"})
+vim.keymap.set({ "n", "v" }, "<leader>rq", k.close,        { desc = "Close"})
+vim.keymap.set({ "n", "v" }, "<leader>ro", k.open,         { desc = "Open"})
