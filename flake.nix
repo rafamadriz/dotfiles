@@ -71,6 +71,7 @@
                         jq       # json processor
                         tmux     # terminal multiplexer.
                         tealdeer # tldr for man pages
+                        gron     # Make JSON greppable
                         btop     # monitor resources
                         age      # encryption tool
                         ouch     # compressing and decompressing various formats
