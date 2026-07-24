@@ -23,6 +23,7 @@ export XDG_STATE_HOME="${XDG_STATE_HOME:="$HOME/.local/state"}"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export MANPAGER='nvim +Man!'
+export TODO_DIR="$HOME/Documents/notes"
 export MANWIDTH=120
 export TERMINAL="ghostty"
 export BROWSER="firefox"
