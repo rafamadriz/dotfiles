@@ -10,6 +10,11 @@ map({ "n", "v" }, "L", "g_", { desc = "Go to last character of line" })
 
 map("n", "<leader>u", "<cmd>Undotree<CR>", { desc = "undotree" })
 
+-- Make * stay on first match
+-- Source: https://github.com/justinmk/config/blob/06dca4b877b4a1669e9cd377f1c2abc0c15cc376/.config/nvim/lua/my/keymaps.lua#L118-L119
+map("n", "*",  [[ms:<c-u>let @/='\V\<'.escape(expand('<cword>'), '/\').'\>'<bar>call histadd('/',@/)<bar>set hlsearch<cr>]], { noremap = true, silent = true })
+map("n", "g*", [[ms:<c-u>let @/='\V' . escape(expand('<cword>'), '/\')     <bar>call histadd('/',@/)<bar>set hlsearch<cr>]], { noremap = true, silent = true })
+
 -- terminal
 map("t", [[<C-\>]], [[<C-\><C-n>]], { desc = "Enter normal mode in terminal" })
 
