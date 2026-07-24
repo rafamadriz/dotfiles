@@ -2,7 +2,7 @@ local lsp, diagnostic = vim.lsp, vim.diagnostic
 local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
 lsp.enable {
-    "lua_ls",
+    -- "lua_ls",
     "taplo",
     "rust_analyzer",
     "bashls",
