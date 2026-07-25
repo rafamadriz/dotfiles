@@ -1,7 +1,11 @@
 {
     "extractor": {
         "base-directory": "~/Pictures/random/gallery-dl",
-        "archive": "~/Pictures/random/gallery-dl/db/archive.sqlite3"
+        "archive": "~/Pictures/random/gallery-dl/db/archive.sqlite3",
+        "reddit": {
+            "directory": ["reddit", "{subreddit}"],
+            "parent-directory": true
+        }
     },
     "postprocessors": [
         {
