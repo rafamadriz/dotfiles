@@ -38,7 +38,7 @@ map("n", "<C-D>", "<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>")
 -- Copy/paste with system clipboard
 map({ "n", "x", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 map("n", "<leader>Y", [["+y$]],              { desc = "Yank to system clipboard (end of line)" })
-map("n", "<leader>p", [["+p`[v`]=]],         { desc = "Paste from system clipboard" })
+map("n", "<leader>p", [["+p]],               { desc = "Paste from system clipboard" })
 map("n", "<leader>P", [["+P]],               { desc = "Paste from system clipboard" })
 -- Paste in Visual with `P` to not copy selected text (`:h v_P`)
 map("x", "<leader>p", [["+P]],               { desc = "Paste from system clipboard" })
