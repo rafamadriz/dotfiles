@@ -92,7 +92,6 @@ vim.pack.add {
     { src = "https://github.com/RRethy/nvim-treesitter-endwise" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-    { src = "https://github.com/mistweaverco/kulala.nvim" },
 }
 
 vim.cmd.colorscheme "catppuccin"
