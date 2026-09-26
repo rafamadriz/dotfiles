@@ -12,9 +12,17 @@
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "kulala.nvim": {
+      "rev": "f3804a9a581fe9a63ef42fbe00d58fb7589169f9",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
+    },
     "leap.nvim": {
       "rev": "d7f8ee64155b7790188f17a993390f32577cfb81",
       "src": "https://codeberg.org/andyg/leap.nvim"
+    },
+    "luna.nvim": {
+      "rev": "873b8bc9909fc84041e57e9a1dab66ac43479661",
+      "src": "https://github.com/WTFox/luna.nvim"
     },
     "mason.nvim": {
       "rev": "2a6940af80375532e5e9e7c1f2fc6319a1b7a69d",
@@ -23,6 +31,18 @@
     "mini.nvim": {
       "rev": "7ed410c73ebb910754c2938a6dae50c51c3a096a",
       "src": "https://github.com/nvim-mini/mini.nvim"
+    },
+    "nui.nvim": {
+      "rev": "de740991c12411b663994b2860f1a4fd0937c130",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
+    "nvim-dbee": {
+      "rev": "dda517694889a5d238d7aa407403984da9f80cc0",
+      "src": "https://github.com/kndndrj/nvim-dbee"
+    },
+    "nvim-fundo": {
+      "rev": "c2b83cb19e4ac475f2b08aaf775afe3da19bc495",
+      "src": "https://github.com/kevinhwang91/nvim-fundo"
     },
     "nvim-lspconfig": {
       "rev": "a683e0ddf0cf64c6cd689e18ffb480ade3c162b7",
@@ -47,6 +67,10 @@
     "oil.nvim": {
       "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
       "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "promise-async": {
+      "rev": "119e8961014c9bfaf1487bf3c2a393d254f337e2",
+      "src": "https://github.com/kevinhwang91/promise-async"
     },
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
