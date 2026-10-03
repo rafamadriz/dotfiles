@@ -78,7 +78,6 @@ vim.api.nvim_create_autocmd("PackChanged", { callback = hooks })
 
 vim.pack.add {
     { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/nvim-mini/mini.nvim" },
     { src = "https://github.com/folke/snacks.nvim" },
     { src = "https://github.com/stevearc/oil.nvim" },
@@ -113,7 +112,6 @@ local snacks_config = {
     }
 }
 
-vim.pack.setup "mason"
 vim.pack.setup "zk"
 vim.pack.setup("snacks", snacks_config)
 require "configs.mini"
