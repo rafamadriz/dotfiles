@@ -29,7 +29,7 @@ lsp.config("gitlab_duo", { cmd = "", filetypes = {} })
 local function on_jump(diagnostics, bufnr)
     if not diagnostics then return end
 
-    vim.diagnostic.show(
+    diagnostic.show(
         diagnostics.namespace,
         bufnr,
         { diagnostics },
