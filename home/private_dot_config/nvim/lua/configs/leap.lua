@@ -6,6 +6,7 @@ vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
 
 local leap = require "leap"
 
+leap.opts.labels = "sfnjklhodweimbuyvrgtaqpcxzSFNJKLHODWEIMBUYVRGTAQPCXZ?"
 vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap)")
 vim.keymap.set({ "n", "x", "o" }, "gs", function() require("leap.remote").action() end)
 
