@@ -51,7 +51,8 @@ vim.opt.completeopt = "menuone,fuzzy,popup,noselect"
 vim.opt.wildoptions = "pum,fuzzy" -- A list of words that change how cmdline-completion is done.
 
 -- Indentetion
-vim.opt.wrap        = false
+vim.opt.wrap        = true
+vim.opt.linebreak   = true
 vim.opt.expandtab   = true    -- Insert spaces instead of tabs on <Tab>
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth  = 4
