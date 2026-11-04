@@ -76,6 +76,7 @@ aucmd({ "FileType" }, {
     desc = "Disable completion menu on Snacks buffer",
     callback = function(args)
         vim.b[args.buf].minicompletion_disable = true
+        vim.opt_local.autocomplete = false
     end,
 })
 
