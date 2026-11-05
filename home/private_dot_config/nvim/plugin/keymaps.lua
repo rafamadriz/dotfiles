@@ -32,8 +32,8 @@ map("x", "/", "<esc>/\\%V",                                    { silent = false,
 map("i", "<C-c>", "<C-c>")
 
 -- Kinda of smooth scrolling. See :help scroll-smooth
-map("n", "<C-U>", "<C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>")
-map("n", "<C-D>", "<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>")
+-- map("n", "<C-U>", "<C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>")
+-- map("n", "<C-D>", "<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>")
 
 -- Copy/paste with system clipboard
 map({ "n", "x", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
