@@ -5,14 +5,16 @@ end
 require "configs.statusline"
 require("mini.align").setup()
 require("mini.icons").setup()
-require("mini.bracketed").setup()
-require("mini.notify").setup()
-require("mini.completion").setup({
-    mappings = {
-        scroll_down = "<C-d>",
-        scroll_up = "<C-b>",
-    }
+require("mini.bracketed").setup({
+    comment = { suffix = "", options = {} },
 })
+require("mini.notify").setup()
+-- require("mini.completion").setup({
+--     mappings = {
+--         scroll_down = "<C-d>",
+--         scroll_up = "<C-b>",
+--     }
+-- })
 require("mini.cmdline").setup({
     autocorrect = {
         enable = false,
