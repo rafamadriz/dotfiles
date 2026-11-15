@@ -213,7 +213,6 @@ end, { desc = "find files in directory" })
 -- git
 map("n", "<leader>gL", Snacks.picker.git_log,      { desc = "log" })
 map("n", "<leader>gl", Snacks.picker.git_log_file, { desc = "log file" })
-map("n", "<leader>gd", Snacks.picker.git_diff,     { desc = "diff" })
 -- lsp
 map("n", "<leader>ld", Snacks.picker.diagnostics_buffer,    { desc = "document diagnostics" })
 map("n", "<leader>lD", Snacks.picker.diagnostics,           { desc = "workspace diagnostics" })

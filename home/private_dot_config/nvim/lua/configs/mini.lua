@@ -81,9 +81,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         vim.keymap.set({ "n", "x" }, "gd", git.show_diff_source, { buffer = args.buf, desc = "Go to git source" })
     end,
 })
-vim.keymap.set("n", "<leader>gt", require("mini.diff").toggle_overlay, { desc = "toggle diff overlay" })
-vim.keymap.set("n", "<leader>gs", ":Git add -- %<CR>",                 { desc = "stage buffer" })
-vim.keymap.set("n", "<leader>gu", ":Git restore --staged -- %<CR>",    { desc = "unstage buffer" })
+vim.keymap.set("n", "<leader>gt", require("mini.diff").toggle_overlay,  { desc = "toggle diff overlay" })
+vim.keymap.set({ "n", "x" }, "<leader>gs", git.show_at_cursor,          { desc = "Show history of range" })
+vim.keymap.set("n", "<leader>gu", ":Git restore --staged -- %<CR>",     { desc = "unstage buffer" })
+vim.keymap.set("n", "<leader>gb", ":leftabove vert Git blame -- %<CR>", { desc = "blame buffer" })
+vim.keymap.set("n", "<leader>gd", ":Git diff -- %<CR>",                 { desc = "diff file" })
+vim.keymap.set("n", "<leader>gD", ":Git diff<CR>",                      { desc = "diff" })
 
 local align_blame = function(au_data)
     if au_data.data.git_subcommand ~= 'blame' then return end
