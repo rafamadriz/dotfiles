@@ -37,7 +37,11 @@ log_info "Profile upgraded"
 AFTER_UPDATE="$(nix build --no-link --print-out-paths .)"
 
 log_info "Generating diff..."
-DIFF_BODY=$(nix shell nixpkgs\#dix --command dix diff "$BEFORE_UPDATE" "$AFTER_UPDATE" | grep -v '<<<' | grep -v '>>>')
+# Pin dix to version 3.0.0
+# More versions at https://www.nixsearch.com/pkg/dix
+COMMIT_HASH="2074cc672349f14240fb7ea90d509e0b643e9dd4"
+NIXPKG_REF="github:NixOS/nixpkgs/$COMMIT_HASH#dix"
+DIFF_BODY=$(nix shell "$NIXPKG_REF" --command dix diff "$BEFORE_UPDATE" "$AFTER_UPDATE" | grep -v '<<<' | grep -v '>>>')
 log_info "Diff has been generated"
 
 COMMIT_MSG="chore(flake): update lock file
