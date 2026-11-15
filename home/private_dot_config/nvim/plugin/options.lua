@@ -6,7 +6,6 @@ vim.opt.updatetime  = 400  -- If nothing is typed is this time, swap file will b
 -- Window splitting
 vim.opt.splitbelow = true     -- Horizontal splits will be below
 vim.opt.splitright = true     -- Vertical splits will be to the right
-vim.opt.splitkeep  = "screen" -- Keep the text on same line when resizing, closing...
 
 -- Diff options
 vim.opt.diffopt = {
