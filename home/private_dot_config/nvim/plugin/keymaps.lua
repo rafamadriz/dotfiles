@@ -189,6 +189,7 @@ local with_oil_context = function(picker)
 end
 map("n", "<leader><leader>",    function() with_oil_context(Snacks.picker.files) end, { desc = "find files" })
 map("n", "<leader>fg",          function() with_oil_context(Snacks.picker.grep) end,  { desc = "grep live" })
+map("n", "<leader>b",           Snacks.picker.buffers,                                { desc = "find buffers" })
 map("n", "<leader>`",           Snacks.picker.resume,                                 { desc = "picker resume" })
 map("n", "<leader>fa",          function() Snacks.picker() end,                       { desc = "all pickers" })
 map("n", "<leader>?",           Snacks.picker.help,                                   { desc = "help tags" })
