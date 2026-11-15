@@ -136,16 +136,16 @@ else
 fi
 
 if [ -x "$(command -v fd)" ]; then
-    FD_COMMAND='fd --strip-cwd-prefix --hidden --exclude=\*.git/\* --type=file'
+    FD_COMMAND='fd --strip-cwd-prefix --hidden --exclude=.git --exclude=.jj --type=file'
     FZF_T_OPTS="
         --bind 'ctrl-g:transform:[[ ! \$FZF_PROMPT == \"  > \" ]] &&
         echo \"rebind(ctrl-g)+change-prompt(  > )+reload($FD_COMMAND --no-ignore)\" ||
         echo \"rebind(ctrl-g)+change-prompt(ig> )+reload($FD_COMMAND)\"' \
         --prompt 'ig> '
-        --header '/ CTRL-G .gitignore / CTRL-Y copy /'
+        --header '/ CTRL-G toggle .gitignore / CTRL-Y copy /'
     "
 else
-    FD_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*'"
+    FD_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules*' -not -path '*/\.jj/*'"
     FZF_T_OPTS=""
 fi
 
