@@ -194,6 +194,7 @@ map("n", "<leader>`",           Snacks.picker.resume,                           
 map("n", "<leader>fa",          function() Snacks.picker() end,                       { desc = "all pickers" })
 map("n", "<leader>?",           Snacks.picker.help,                                   { desc = "help tags" })
 map("n", "<leader>fq",          Snacks.picker.qflist,                                 { desc = "quickfix" })
+map("n", "<leader>fl",          Snacks.picker.lines,                                  { desc = "lines" })
 map({ "n", "v" }, "<leader>fw", Snacks.picker.grep_word,                              { desc = "grep visual or word" })
 map("n", "<leader>fd", function()
     vim.ui.input(
