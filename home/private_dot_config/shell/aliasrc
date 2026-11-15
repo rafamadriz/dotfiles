@@ -4,9 +4,9 @@
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias dir='dir --color=auto'
-alias ls='ls -Fh --color=auto'
-alias ll='ls -Flh --color=auto'
-alias lla='ls -FlAh --color=auto'
+alias ls='ls --hyperlink=auto -Fh   --color=auto'
+alias ll='ls --hyperlink=auto -Flh  --color=auto'
+alias lla='ls --hyperlink=auto -FlAh --color=auto'
 alias d='dirs -v'
 
 # shortcuts
