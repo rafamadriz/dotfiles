@@ -37,7 +37,7 @@ log_info "Profile upgraded"
 AFTER_UPDATE="$(nix build --no-link --print-out-paths .)"
 
 log_info "Generating diff..."
-DIFF_BODY=$(nix shell nixpkgs\#dix --command dix --force-correctness "$BEFORE_UPDATE" "$AFTER_UPDATE" | grep -v '<<<' | grep -v '>>>')
+DIFF_BODY=$(nix shell nixpkgs\#dix --command dix diff "$BEFORE_UPDATE" "$AFTER_UPDATE" | grep -v '<<<' | grep -v '>>>')
 log_info "Diff has been generated"
 
 COMMIT_MSG="chore(flake): update lock file
