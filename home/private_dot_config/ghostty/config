@@ -1,13 +1,17 @@
 theme = light:Dayfox,dark:Catppuccin Mocha
-font-size = 13.5
-# font-family = "CommitMono"
-# font-family = "0xProto"
-# font-family = "Cascadia Mono"
-# font-family = "JetBrains Mono"
-# font-family = "Fira Code"
-# font-family = "Hack"
-font-family = "Monaspace Neon"
-# font-family = "Monaspace Xenon"
+font-size = 14.5
+font-family = Iosevka
+# font-family = Aporetic Sans Mono
+# font-family = Aporetic Serif Mono
+# font-family = JetBrains Mono
+# font-family = CommitMono
+# font-family = Cascadia Mono
+# font-family = Fira Code
+
+# disable all ligatures
+font-feature = -liga
+font-feature = -calt
+font-feature = -dlig
 
 mouse-hide-while-typing = true
 maximize = true
@@ -16,11 +20,6 @@ command = /usr/bin/env zsh --login -c "if [ -x "$(command -v tmux)" ] && [ -n "$
 
 # don't confirm when closing window/terminal
 confirm-close-surface = false
-
-# disable all ligatures
-font-feature = -liga
-font-feature = -calt
-font-feature = -dlig
 
 # keep Ghostty running all the time so that new window creation will always be fast
 # Better if used with systemd: systemctl enable --user app-com.mitchellh.ghostty.service
