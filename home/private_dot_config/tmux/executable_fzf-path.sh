@@ -4,7 +4,7 @@ cd "${1:-$PWD}" || exit 1
 
 FD='fd --strip-cwd-prefix --hidden --exclude=.git --exclude=.jj --type=file'
 
-out=$($FD | fzf-tmux -p -- -m --expect=ctrl-y --prompt='ig> ' \
+out=$($FD | fzf-tmux -p -- --color=base16 -m --expect=ctrl-y --prompt='ig> ' \
     --header='enter: insert | ctrl-y: copy | ctrl-g: toggle .gitignore' \
     --bind "ctrl-g:transform:[ \"\$FZF_PROMPT\" = 'ig> ' ] &&
         echo \"change-prompt(  > )+reload($FD --no-ignore)\" ||
