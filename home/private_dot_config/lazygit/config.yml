@@ -4,9 +4,10 @@ gui:
     selectedLineBgColor:
       - reverse
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never
+       # From docs: https://github.com/jesseduffield/lazygit/blob/54cc6af1d77b5a6cec3dc9ad0b203afdb4ad3451/docs/Custom_DiffRenderers.md?plain=1#L66-L68
+      command: delta --{{colorScheme}} --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
 
   # If true, periodically fetch from remote
   autoFetch: false
