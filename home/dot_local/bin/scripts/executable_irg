@@ -25,6 +25,6 @@ INITIAL_QUERY="${*:-}"
     --prompt '1. ripgrep> ' \
     --delimiter : \
     --header 'CTRL-G: Switch between ripgrep/fzf' \
-    --preview 'bat --color=always {1} --highlight-line {2}' \
+    --preview 'fzf-bat-preview {1} {2}' \
     --preview-window 'up,50%,border-bottom,+{2}+3/3,~3' \
     --bind "enter:become:$OPENER"

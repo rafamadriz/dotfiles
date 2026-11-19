@@ -13,4 +13,10 @@ case ":$XDG_CURRENT_DESKTOP:" in
         ;;
 esac
 
-exec bat --color=always --theme="$theme" --line-range :50 "$1"
+if [ -n "${2:-}" ]; then
+    exec bat --color=always --theme="$theme" \
+        --line-range :50 --highlight-line "$2" "$1"
+else
+    exec bat --color=always --theme="$theme" \
+        --line-range :50 "$1"
+fi
