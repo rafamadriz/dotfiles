@@ -23,6 +23,9 @@ compdef _gnu_generic fzf msmtp age
 # Styles
 #
 
+# Make fzf-tab use follow base16 theme from temrinal
+zstyle ':fzf-tab:*' fzf-flags --color=base16
+
 # Use caching to make completion for commands such as dpkg and apt usable.
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "$XDG_CACHE_HOME/zcompcache"

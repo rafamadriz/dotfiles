@@ -86,6 +86,10 @@ if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook zsh)"
 fi
 
+if [ -x "$(command -v dircolors)" ]; then
+    eval "$(dircolors -b)"
+fi
+
 # Ghostty shell integration
 # https://ghostty.org/docs/features/shell-integration
 # https://github.com/ghostty-org/ghostty/blob/main/src/shell-integration/README.md

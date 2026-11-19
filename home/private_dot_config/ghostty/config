@@ -1,4 +1,4 @@
-theme = light:Dayfox,dark:Catppuccin Mocha
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
 font-size = 14.5
 font-family = Iosevka
 # font-family = Aporetic Sans Mono

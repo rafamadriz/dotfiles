@@ -1,0 +1,16 @@
+#!/bin/env sh
+
+# Pick bat's theme from the GNOME color scheme. Outside GNOME sessions,
+# fall back to dark.
+# TODO: add case for other desktops if I ever use something else.
+theme=dark
+case ":$XDG_CURRENT_DESKTOP:" in
+    *:GNOME:*)
+        if command -v gsettings >/dev/null 2>&1 \
+            && ! gsettings get org.gnome.desktop.interface color-scheme | grep -q dark; then
+            theme=light
+        fi
+        ;;
+esac
+
+exec bat --color=always --theme="$theme" --line-range :50 "$1"
