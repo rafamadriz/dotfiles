@@ -146,6 +146,9 @@ local miniclue = require "mini.clue"
 miniclue.setup {
     window = {
         delay = 200,
+        config = {
+            width = 45,
+        },
     },
     triggers = {
         -- Leader triggers
