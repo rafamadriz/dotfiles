@@ -48,6 +48,11 @@ setopt PUSHD_SILENT           # Do not print the directory stack after pushd or 
 function zsh_add_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
+
+if [ -x "$(command -v dircolors)" ]; then
+    eval "$(dircolors -b)"
+fi
+
 zsh_add_file "prompt.zsh"
 zsh_add_file "menu.zsh"
 zsh_add_file "colored-man-pages.zsh"
@@ -84,10 +89,6 @@ zvm_after_init() {
 
 if [ -x "$(command -v direnv)" ]; then
     eval "$(direnv hook zsh)"
-fi
-
-if [ -x "$(command -v dircolors)" ]; then
-    eval "$(dircolors -b)"
 fi
 
 # Ghostty shell integration
