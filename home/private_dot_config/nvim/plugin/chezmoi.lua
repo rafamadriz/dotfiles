@@ -236,7 +236,7 @@ M.get_managed_files = function()
     return managed_files
 end
 
-for _, cmd in pairs({"edit", "forget"}) do
+for _, cmd in pairs({"edit", "forget", "apply"}) do
     get_subcommand_suggestion[cmd] = function()
         if suggestion_cache.managed_files then
             return suggestion_cache.managed_files
