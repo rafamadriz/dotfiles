@@ -1,6 +1,3 @@
-# Add zsh-completions to $fpath.
-fpath=("${0:h}/external/src" $fpath)
-
 #
 # Options
 #
