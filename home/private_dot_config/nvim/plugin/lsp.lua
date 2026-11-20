@@ -43,7 +43,7 @@ local setup_keymaps = function(bufnr)
     end, { desc = "Format", buf = bufnr })
     map( "n", "<leader>lh", function()
         lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-        { desc = "Toggle inlay hints", buf = bufnr })
+        { desc = "Hints toggle", buf = bufnr })
 end
 
 ---@param client vim.lsp.Client
