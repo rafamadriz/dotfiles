@@ -69,6 +69,7 @@ export OLLAMA_MODELS="$XDG_DATA_HOME"/ollama/models
 export ND_CONFIGFILE=/etc/navidrome/navidrome.toml
 # GPG
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+# Required for gpg support on commits
 export GPG_TTY="$(tty)"
 # Go
 export GOPATH="$XDG_DATA_HOME"/go

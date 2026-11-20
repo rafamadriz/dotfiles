@@ -118,6 +118,7 @@ img2png() {
 # Ignore "Permission denied" errors, inspired by the link above but using a simplier version,
 # since doing all that file descriptor swapping can cause some side effects like having each entry repeated in the output.
 # Use a "simplier" version instead of the one in the url above
+# shellcheck disable=SC3001  # process substitution: sourced by zsh/bash, never dash
 find() {
     command find "$@" \
         2> >(grep -v 'Permission denied' >&2)
