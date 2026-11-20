@@ -24,18 +24,6 @@ lsp.enable {
 -- https://github.com/neovim/nvim-lspconfig/blob/a683e0ddf0cf64c6cd689e18ffb480ade3c162b7/lsp/gitlab_duo.lua#L316-L348
 lsp.config("gitlab_duo", { cmd = "", filetypes = {} })
 
---- @param diagnostics? vim.Diagnostic
---- @param bufnr integer
-local function on_jump(diagnostics, bufnr)
-    if not diagnostics then return end
-
-    diagnostic.show(
-        diagnostics.namespace,
-        bufnr,
-        { diagnostics },
-        { virtual_lines = { current_line = true }, virtual_text = false }
-    )
-end
 
 diagnostic.config {
     severity_sort = true,
@@ -44,9 +32,6 @@ diagnostic.config {
     },
     float = {
         source = "if_many",
-    },
-    jump = {
-        on_jump = on_jump,
     },
 }
 
