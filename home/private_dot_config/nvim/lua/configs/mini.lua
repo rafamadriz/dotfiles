@@ -31,7 +31,7 @@ hipatterns.setup {
 
 require("mini.surround").setup {
     mappings = {
-        add       = "ys", -- Add surrounding in Normal and Visual modes
+        add       = "ms", -- Add surrounding in Normal and Visual modes
         delete    = "ds", -- Delete surrounding
         replace   = "cs", -- Replace surrounding
         find      = "",   -- Find surrounding (to the right)
