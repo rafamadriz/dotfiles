@@ -1,6 +1,6 @@
 # Increase history size
 export HISTSIZE=50000
-export HISTFILESIZE=1000000
+export HISTFILESIZE=10000
 
 # Change location of history file
 if [ ! -d "${XDG_DATA_HOME:-$HOME/.local/share}"/bash ]; then
