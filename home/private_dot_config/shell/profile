@@ -155,3 +155,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="$FZF_T_OPTS $FZF_PREVIEW"
 export FZF_ALT_C_COMMAND="find . -type d -not -path '*/\.git/*'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -50'"
+
+if [ -n "$ZSH_VERSION" ]; then
+    typeset -aU path
+fi
