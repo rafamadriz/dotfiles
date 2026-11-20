@@ -14,4 +14,4 @@ local function RemoveQuickFixEntry()
 end
 
 -- Allow easily removing quickfix items.
-vim.keymap.set("n", "dd", RemoveQuickFixEntry, { buffer = 0, silent = true })
+vim.keymap.set("n", "dd", RemoveQuickFixEntry, { buf = 0, silent = true })

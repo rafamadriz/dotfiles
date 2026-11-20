@@ -65,8 +65,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         vim.wo.foldmethod = "expr"
         vim.wo.foldexpr = "v:lua.MiniGit.diff_foldexpr()"
 
-        vim.keymap.set({ "n", "x" }, "K", git.show_at_cursor, { buffer = args.buf, desc = "Show git data" })
-        vim.keymap.set({ "n", "x" }, "gd", git.show_diff_source, { buffer = args.buf, desc = "Go to git source" })
+        vim.keymap.set({ "n", "x" }, "K", git.show_at_cursor, { buf = args.buf, desc = "Show git data" })
+        vim.keymap.set({ "n", "x" }, "gd", git.show_diff_source, { buf = args.buf, desc = "Go to git source" })
     end,
 })
 vim.keymap.set("n", "<leader>gt", require("mini.diff").toggle_overlay,  { desc = "toggle diff overlay" })

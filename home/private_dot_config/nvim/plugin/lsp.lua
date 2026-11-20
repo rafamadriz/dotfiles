@@ -35,15 +35,15 @@ diagnostic.config {
 
 local setup_keymaps = function(bufnr)
     local map = vim.keymap.set
-    map("n", "<C-k>", lsp.buf.signature_help,     { desc = "Signature help",                 buffer = bufnr })
-    map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics",               buffer = bufnr })
-    map("n", "<leader>lq", diagnostic.setqflist,  { desc = "Quickfix list with diagnostics", buffer = bufnr })
+    map("n", "<C-k>", lsp.buf.signature_help,     { desc = "Signature help",                 buf = bufnr })
+    map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics",               buf = bufnr })
+    map("n", "<leader>lq", diagnostic.setqflist,  { desc = "Quickfix list with diagnostics", buf = bufnr })
     map({ "v", "n" }, "<leader>lf", function()
         lsp.buf.format { async = true }
-    end, { desc = "Format", buffer = bufnr })
+    end, { desc = "Format", buf = bufnr })
     map( "n", "<leader>lh", function()
         lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-        { desc = "Toggle inlay hints", buffer = bufnr })
+        { desc = "Toggle inlay hints", buf = bufnr })
 end
 
 ---@param client vim.lsp.Client
@@ -54,13 +54,13 @@ local setup_aucmds = function(client, bufnr)
         aucmd({ "CursorHold", "CursorHoldI" }, {
             group = under_cursor_highlights,
             desc = "Highlight references under the cursor",
-            buffer = bufnr,
+            buf = bufnr,
             callback = lsp.buf.document_highlight,
         })
         aucmd({ "CursorMoved" }, {
             group = under_cursor_highlights,
             desc = "Clear highlight references",
-            buffer = bufnr,
+            buf = bufnr,
             callback = lsp.buf.clear_references,
         })
     end
