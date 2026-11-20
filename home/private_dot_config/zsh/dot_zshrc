@@ -3,12 +3,13 @@ HISTSIZE=100000
 SAVEHIST=100000
 fpath+=($HOME/.local/state/nix/profiles/profile/share/zsh/site-functions)
 fpath+=(/nix/var/nix/profiles/default/share/zsh/site-functions/)
-autoload -Uz compinit
-compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 # these directories are necessary for zsh.
 [[ ! -d ~/.cache/zsh ]] && mkdir -p ~/.cache/zsh
 [[ ! -d ~/.local/share/zsh ]] && mkdir -p ~/.local/share/zsh
+
+autoload -Uz compinit
+compinit -d ~/.cache/zsh/zcompdump-$ZSH_VERSION
 
 autoload -U edit-command-line
 zle -N edit-command-line
