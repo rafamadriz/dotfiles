@@ -50,32 +50,20 @@ local parsers = {
     "zig",
 }
 
+local installed = ts.get_installed()
 local function get_parsers_to_install()
-    local installed = ts.get_installed()
-    local not_installed = {}
-
-    for _, parser in pairs(parsers) do
-        if not vim.tbl_contains(installed, parser) then
-            table.insert(not_installed, parser)
-        end
-    end
-
-    return not_installed
+    return vim.tbl_filter(function(parser)
+        return not vim.tbl_contains(installed, parser)
+    end, parsers)
 end
-
 ts.install(get_parsers_to_install())
-
-local installed = {}
-for _, lang in ipairs(ts.get_installed()) do
-    installed[lang] = true
-end
 
 vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
         local ft = vim.bo[args.buf].filetype
         local lang = vim.treesitter.language.get_lang(ft)
 
-        if not installed[lang] then
+        if not vim.tbl_contains(installed, lang) then
             return
         end
 
