@@ -3,12 +3,12 @@
 DATABASE="{{ .chezmoi.homeDir }}/Documents/KeePass/pass.kdbx"
 KEY="{{ .chezmoi.sourceDir }}/.k"
 
-if ! command -v keepassxc-cli >/dev/null 2>&1; then
-    echo "KeePassXC cli needs to be installed"
-    exit 1
-fi
-
 if [ ! -f "$KEY" ]; then
+    if ! command -v keepassxc-cli >/dev/null 2>&1; then
+        echo "KeePassXC cli needs to be installed"
+        exit 1
+    fi
+
     # Initialize the attempt counter
     attempt=1
     max_attempts=3
