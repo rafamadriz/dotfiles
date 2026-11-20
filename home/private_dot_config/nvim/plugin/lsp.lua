@@ -62,6 +62,7 @@ local setup_keymaps = function(bufnr)
         function() lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
         { desc = "Toggle inlay hints", buffer = bufnr }
     )
+    map("n", "<leader>lq", diagnostic.setqflist,  { desc = "Quickfix list with diagnostics", buffer = bufnr })
 end
 
 ---@param client vim.lsp.Client
