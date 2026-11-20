@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 #
 # From git-extras
 # source: https://github.com/tj/git-extras/blob/master/bin/git-alias

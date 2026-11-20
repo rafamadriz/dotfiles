@@ -1,4 +1,4 @@
-#!/bin/env sh
+#!/bin/sh
 
 # Pick bat's theme from the GNOME color scheme. Outside GNOME sessions,
 # fall back to dark.

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 #
 # Inspired by https://github.com/NixOS/nix/issues/10015#issuecomment-1953942169
 

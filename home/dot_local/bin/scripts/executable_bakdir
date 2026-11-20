@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # Transfer files from a [source] to a [destination]
 # This script is meant to be used for backing up folders to an external drive

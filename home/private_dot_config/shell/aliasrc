@@ -1,4 +1,4 @@
-#!/bin/env sh
+#!/bin/sh
 
 # add color to commands
 alias grep='grep --color=auto'

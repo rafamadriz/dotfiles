@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 #
 # Neovim bootloader to change configs
 # From: https://www.youtube.com/watch?v=LkHjJlSgKZY

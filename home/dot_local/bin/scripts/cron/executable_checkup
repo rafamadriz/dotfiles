@@ -1,4 +1,4 @@
-#!/bin/env sh
+#!/bin/sh
 
 notify="notify-send --icon=system-software-install --app-name=Checkup --expire-time 3000 $1 $2"
 

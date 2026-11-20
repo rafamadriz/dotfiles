@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 #
 # Show pressed keys on screen
 # Doesn't work on wayland, showmethekey can

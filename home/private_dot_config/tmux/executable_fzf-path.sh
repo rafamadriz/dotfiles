@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 cd "${1:-$PWD}" || exit 1
 

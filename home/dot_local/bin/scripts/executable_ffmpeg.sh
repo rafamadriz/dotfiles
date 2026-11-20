@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # audio
 A="$(pactl list sources | grep 'analog.*monitor' | awk '{print $2}')"
