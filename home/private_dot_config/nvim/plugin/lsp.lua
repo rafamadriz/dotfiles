@@ -83,17 +83,6 @@ local setup_aucmds = function(client, bufnr)
             callback = lsp.buf.clear_references,
         })
     end
-
-    aucmd("DiagnosticChanged", {
-        desc = "Update diagnostics loclist",
-        group = augroup("UpdateDiagnosticLoc", { clear = true }),
-        callback = function(args)
-            diagnostic.setloclist { open = false }
-            if #diagnostic.get(args.buf) == 0 then
-                vim.cmd "silent! lclose"
-            end
-        end,
-    })
 end
 
 aucmd("LspAttach", {
