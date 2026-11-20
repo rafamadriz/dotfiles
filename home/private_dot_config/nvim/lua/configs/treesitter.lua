@@ -81,9 +81,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
         -- indentation, provided by nvim-treesitter
         vim.treesitter.start(args.buf, lang)
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         -- treesitter based folding
-        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
         if not vim.pack.is_installed "nvim-treesitter-textobjects" then
             return
@@ -91,15 +91,15 @@ vim.api.nvim_create_autocmd("FileType", {
 
         vim.keymap.set({ "x", "o" }, "af", function()
             require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects")
-        end)
+        end, { buf = args.buf })
         vim.keymap.set({ "x", "o" }, "if", function()
             require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects")
-        end)
+        end, { buf = args.buf })
         vim.keymap.set({ "x", "o" }, "ac", function()
             require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects")
-        end)
+        end, { buf = args.buf })
         vim.keymap.set({ "x", "o" }, "ic", function()
             require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects")
-        end)
+        end, { buf = args.buf })
     end,
 })
