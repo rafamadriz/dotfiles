@@ -40,13 +40,14 @@ vim.opt.termguicolors = true      -- Enables 24-bit RGB color in the TUI
 vim.opt.title         = true      -- When on, the title of the window will be `filename [+= -] (path) - Nvim` or to value of titlestring if not empty
 vim.opt.confirm       = true      -- Save me from doing destructive things
 vim.opt.showmode      = false     -- When in insert, show mode in last line
-vim.opt.pumheight     = 10        -- Maximum number of items to show in the popup menu
+vim.opt.pumheight     = 5         -- Maximum number of items to show in the popup menu
 vim.opt.mouse         = "a"       -- Enables mouse support
 vim.opt.winborder     = "rounded" -- Default border style for floating windows
 vim.opt.pumborder     = "rounded" -- Default border style of popupmenu windows
 
 -- Completion
 vim.opt.completeopt = "menuone,fuzzy,popup,noselect"
+vim.opt.complete    = "o^5,t^5,.^5,w^5,b^5"
 vim.opt.wildoptions = "pum,fuzzy" -- A list of words that change how cmdline-completion is done.
 
 -- Indentetion
