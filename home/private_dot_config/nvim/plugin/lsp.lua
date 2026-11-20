@@ -30,24 +30,20 @@ diagnostic.config {
     underline = {
         severity = { diagnostic.severity.ERROR, diagnostic.severity.WARN },
     },
-    float = {
-        source = "if_many",
-    },
+    float = { source = "if_many", },
 }
 
 local setup_keymaps = function(bufnr)
     local map = vim.keymap.set
-    -- map("n", "gd", lsp.buf.definition, { desc = "Go to definition", buffer = bufnr })
-    map("n", "<C-k>", lsp.buf.signature_help,                                       { desc = "Signature help", buffer = bufnr })
-    map({ "v", "n" }, "<leader>lf", function() lsp.buf.format { async = true } end, { desc = "Format", buffer = bufnr })
-    map("n", "<leader>ll", diagnostic.open_float,                                   { desc = "Line diagnostics", buffer = bufnr })
-    map(
-        "n",
-        "<leader>lh",
-        function() lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
-        { desc = "Toggle inlay hints", buffer = bufnr }
-    )
+    map("n", "<C-k>", lsp.buf.signature_help,     { desc = "Signature help",                 buffer = bufnr })
+    map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics",               buffer = bufnr })
     map("n", "<leader>lq", diagnostic.setqflist,  { desc = "Quickfix list with diagnostics", buffer = bufnr })
+    map({ "v", "n" }, "<leader>lf", function()
+        lsp.buf.format { async = true }
+    end, { desc = "Format", buffer = bufnr })
+    map( "n", "<leader>lh", function()
+        lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end,
+        { desc = "Toggle inlay hints", buffer = bufnr })
 end
 
 ---@param client vim.lsp.Client
