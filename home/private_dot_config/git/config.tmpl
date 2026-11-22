@@ -2,13 +2,29 @@
   email = {{ .email }}
   name = {{ .name }}
 
+[core]
+  editor = nvim
+
+[init]
+    defaultBranch = main
+
+[color]
+    ui = auto
+
 [commit]
   template = ~/.config/git/gitmessage
   gpgsign = false
   verbose = true
 
-[core]
-  editor = nvim
+[merge]
+    tool = nvimdiff
+    conflictStyle = zdiff3
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "nvimdiff"]
+    layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [alias]
     lg    = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
@@ -21,17 +37,10 @@
     fixup = commit --amend --no-edit --allow-empty
     root  = rev-parse --show-toplevel
 
-[merge]
-    tool = nvimdiff
-    conflictStyle = zdiff3
-
-[mergetool]
-    keepBackup = false
-
-[mergetool "nvimdiff"]
-    layout = "LOCAL,BASE,REMOTE / MERGED"
-
 {{- if lookPath "delta" }}
+[core]
+    pager = delta
+
 [interactive]
     diffFilter = delta --color-only
 
@@ -44,13 +53,4 @@
     line-numbers = true
     hyperlinks = true
     ; side-by-side = true
-
-[core]
-    pager = delta
 {{- end }}
-
-[color]
-    ui = auto
-
-[init]
-    defaultBranch = main
