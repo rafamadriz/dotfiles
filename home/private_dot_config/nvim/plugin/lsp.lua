@@ -38,6 +38,10 @@ local setup_keymaps = function(bufnr)
     map("n", "<C-k>", lsp.buf.signature_help,     { desc = "Signature help",                 buf = bufnr })
     map("n", "<leader>ll", diagnostic.open_float, { desc = "Line diagnostics",               buf = bufnr })
     map("n", "<leader>lq", diagnostic.setqflist,  { desc = "Quickfix list with diagnostics", buf = bufnr })
+    map("n", "<leader>lv", function()
+        local new_config = not diagnostic.config().virtual_lines
+        diagnostic.config({ virtual_lines = new_config })
+    end, { desc = "Virtual lines toggle" })
     map({ "v", "n" }, "<leader>lf", function()
         lsp.buf.format { async = true }
     end, { desc = "Format", buf = bufnr })
