@@ -174,7 +174,7 @@ miniclue.setup {
         { mode = "x", keys = "z" },
 
         -- coerce plugin ./plugin/coerce.lua
-        { mode = "v", keys = "cr" },
+        { mode = "x", keys = "gC" },
         { mode = "n", keys = "cr" },
     },
     clues = {

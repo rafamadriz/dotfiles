@@ -1,12 +1,12 @@
 local coerce = require "coerce"
 
 local convert_names = {
-    { "crs", "snake_case", coerce.to_snake_case },
-    { "crc", "camelCase" , coerce.to_camel_case },
-    { "crp", "PascalCase", coerce.to_pascal_case },
-    { "cru", "UPPER_CASE", coerce.to_uppercase },
-    { "cr-", "kebab-case", coerce.to_kebab_case },
-    { "cr.", "dot.case"  , coerce.to_dot_case },
+    { "rs", "snake_case", coerce.to_snake_case },
+    { "rc", "camelCase" , coerce.to_camel_case },
+    { "rp", "PascalCase", coerce.to_pascal_case },
+    { "ru", "UPPER_CASE", coerce.to_uppercase },
+    { "r-", "kebab-case", coerce.to_kebab_case },
+    { "r.", "dot.case"  , coerce.to_dot_case },
 }
 
 vim.api.nvim_create_user_command("To", function(opts)
@@ -83,5 +83,6 @@ end
 
 for _, m in pairs(convert_names) do
     local keymap, cmd_name, to_case = m[1], m[2], m[3]
-    vim.keymap.set({ "v", "n" }, keymap, make_coerce_map(cmd_name, to_case), { expr = true, desc = cmd_name })
+    vim.keymap.set({ "n" }, "c" .. keymap, make_coerce_map(cmd_name, to_case), { expr = true, desc = cmd_name })
+    vim.keymap.set({ "x" }, "gC" .. keymap:gsub("r", "", 1), make_coerce_map(cmd_name, to_case), { expr = true, desc = cmd_name })
 end
