@@ -1,5 +1,7 @@
 #!/bin/sh
 
+umask 077
+
 DATABASE="{{ .chezmoi.homeDir }}/Documents/KeePass/pass.kdbx"
 KEY="{{ .chezmoi.config.sourceDir }}/.k"
 

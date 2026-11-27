@@ -1,5 +1,7 @@
 #!/bin/sh
 
+umask 077
+
 USER_HOME="{{ .chezmoi.homeDir }}"
 
 if [ ! -f "$USER_HOME/.config/chezmoi/key.txt" ]; then
