@@ -35,15 +35,6 @@ vim.opt.exrc = true
 
 if not vim.pack then return end
 
-function vim.pack.setup(plugin_name, opts)
-    local ok, plugin = pcall(require, plugin_name)
-    if ok then
-        plugin.setup(opts or {})
-        return
-    end
-    vim.api.nvim_echo({ { plugin_name .. " Not found", "ErrorMsg" } }, true, {})
-end
-
 vim.pack.clean = function()
     local inactive = vim.iter(vim.pack.get(nil, { info = false }))
         :filter(function(plugin) return not plugin.active end)
@@ -106,6 +97,15 @@ local snacks_config = {
         }
     }
 }
+
+vim.pack.setup = function(module, opts)
+    local ok, plugin = pcall(require, module)
+    if ok then
+        plugin.setup(opts or {})
+        return
+    end
+    vim.api.nvim_echo({ { module .. " Not found", "ErrorMsg" } }, true, {})
+end
 
 vim.pack.setup "zk"
 vim.pack.setup("snacks", snacks_config)
