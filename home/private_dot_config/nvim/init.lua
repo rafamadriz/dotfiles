@@ -1,4 +1,6 @@
-vim.loader.enable()
+if vim.loader then
+    vim.loader.enable()
+end
 
 -- Disable some builtin plugins
 vim.g.loaded_gzip              = 1
@@ -30,6 +32,8 @@ vim.g.maplocalleader = " "
 -- exrc is loaded before plugin files. So having this option in plugin/options.lua
 -- doesn't work. check `:help startup` step 7 for exrc and step 11 for plugin files.
 vim.opt.exrc = true
+
+if not vim.pack then return end
 
 function vim.pack.setup(plugin_name, opts)
     local ok, plugin = pcall(require, plugin_name)
