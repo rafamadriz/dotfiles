@@ -1,23 +1,6 @@
 local lsp, diagnostic = vim.lsp, vim.diagnostic
 local aucmd, augroup = vim.api.nvim_create_autocmd, vim.api.nvim_create_augroup
 
-lsp.enable {
-    -- "lua_ls",
-    "taplo",
-    "rust_analyzer",
-    "bashls",
-    -- "ccls",
-    "html",
-    "cssls",
-    "pyright",
-    "ts_ls",
-    "css_variables",
-    "gopls",
-    "jsonls",
-    "clangd",
-    -- "vtsls",
-}
-
 -- disable gitlab server that automatically runs on :lsp enable
 -- because it uses npx so it run any remote package you don't have in
 -- your PATH and it's enabled for a bunch for filetypes.
