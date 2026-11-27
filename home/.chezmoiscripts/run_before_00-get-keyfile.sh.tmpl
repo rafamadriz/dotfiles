@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DATABASE="{{ .chezmoi.homeDir }}/Documents/KeePass/pass.kdbx"
-KEY="{{ .chezmoi.sourceDir }}/.k"
+KEY="{{ .chezmoi.config.sourceDir }}/.k"
 
 if [ ! -f "$KEY" ]; then
     if ! command -v keepassxc-cli >/dev/null 2>&1; then
