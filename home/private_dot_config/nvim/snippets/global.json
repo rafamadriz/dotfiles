@@ -9,38 +9,48 @@
     "date": {
         "prefix": "date",
         "body": ["${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}"],
-        "description": "Put the date in (Y-m-D) format"
+        "description": "Date (Y-M-D) format"
     },
-    "dateDMY": {
-        "prefix": "dateDMY",
-        "body": ["${CURRENT_DATE}/${CURRENT_MONTH}/${CURRENT_YEAR}"],
-        "description": "Put date in (DD/MM/YY) format"
+    "dated": {
+        "prefix": "dated",
+        "body": ["${CURRENT_DATE}-${CURRENT_MONTH}-${CURRENT_YEAR}"],
+        "description": "Date (D-M-Y) format"
     },
-    "dateMDY": {
-        "prefix": "dateMDY",
-        "body": ["${CURRENT_MONTH}/${CURRENT_DATE}/${CURRENT_YEAR}"],
-        "description": "Put the date in (m/D/Y) format"
+    "datef": {
+        "prefix": "datef",
+        "body": ["${CURRENT_DAY_NAME}, ${CURRENT_MONTH_NAME} ${CURRENT_DATE}, ${CURRENT_YEAR}"],
+        "description": "Date (D MONTH, YYYY) format"
+    },
+    "datefull": {
+        "prefix": "datefull",
+        "body": ["${CURRENT_DAY_NAME}, ${CURRENT_MONTH_NAME} ${CURRENT_DATE}, ${CURRENT_YEAR} - ${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND} ${CURRENT_TIMEZONE_OFFSET}"],
+        "description": "Date (D MONTH, YYYY) format"
     },
     "time": {
         "prefix": "time",
         "body": ["${CURRENT_HOUR}:${CURRENT_MINUTE}"],
-        "description": "I give you back the time (H:M)"
+        "description": "Time (H:M)"
     },
     "timeHMS": {
-        "prefix": "timeHMS",
+        "prefix": "times",
         "body": ["${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}"],
-        "description": "I give you back the time (H:M:S)"
+        "description": "Time (H:M:S)"
     },
     "datetime": {
         "prefix": "datetime",
         "body": [
             "${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE} ${CURRENT_HOUR}:${CURRENT_MINUTE}"
         ],
-        "description": "I give you back the time and date (Y-m-d H:M)"
+        "description": "Time and date (Y-m-d H:M)"
     },
     "uuid": {
         "prefix": "uuid",
         "body": "${UUID}",
         "description": "A Version 4 UUID"
+    },
+    "return": {
+        "prefix": "rt",
+        "body": "return ",
+        "description": "return statement"
     }
 }
