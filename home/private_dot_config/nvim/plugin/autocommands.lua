@@ -59,9 +59,9 @@ aucmd({ "BufEnter" }, {
         end
 
         if vim.fn.executable "rg" > 0 then
-            vim.opt_local.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case --hidden $* ]] .. search_directory
+            vim.opt_local.grepprg = [[rg --glob "!.git" --vimgrep --no-heading --smart-case --hidden $* ]] .. vim.fn.shellescape(search_directory)
         else
-            vim.opt_local.grepprg = [[grep --line-number --recursive --binary-files=without-match --exclude-dir=.git $* ]] .. search_directory
+            vim.opt_local.grepprg = [[grep --line-number --recursive --binary-files=without-match --exclude-dir=.git $* ]] .. vim.fn.shellescape(search_directory)
         end
     end,
 })
