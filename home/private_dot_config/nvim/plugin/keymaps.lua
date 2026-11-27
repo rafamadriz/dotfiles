@@ -180,8 +180,9 @@ if not Snacks then return end
 local with_oil_context = function(picker)
     local current_buffer = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
     local is_oil_buffer = vim.startswith(current_buffer, "oil://")
-    if is_oil_buffer then
-        local oil_dir = require("oil").get_current_dir()
+    local ok, oil = pcall(require, "oil")
+    if is_oil_buffer and ok then
+        local oil_dir = oil.get_current_dir()
         picker({ dirs = { oil_dir } })
         return
     end

@@ -1,6 +1,5 @@
-if not vim.pack.is_installed "nvim-treesitter" then
-    return
-end
+local ok, ts = pcall(require, "nvim-treesitter")
+if not ok then return end
 
 vim.api.nvim_create_autocmd('User', { pattern = 'TSUpdate',
     callback = function()
@@ -13,8 +12,6 @@ vim.api.nvim_create_autocmd('User', { pattern = 'TSUpdate',
         }
     end
 })
-
-local ts = require "nvim-treesitter"
 
 local parsers = {
     "bash",
@@ -73,9 +70,8 @@ vim.api.nvim_create_autocmd("FileType", {
         -- treesitter based folding
         vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-        if not vim.pack.is_installed "nvim-treesitter-textobjects" then
-            return
-        end
+        local ok, _ = pcall(require, "nvim-treesitter-textobjects.select")
+        if not ok then return end
 
         vim.keymap.set({ "x", "o" }, "af", function()
             require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects")

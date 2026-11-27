@@ -1,9 +1,7 @@
-if not vim.pack.is_installed "leap.nvim" then
-    return
-end
+local ok, leap = pcall(require, "leap")
+if not ok then return end
 
 -- vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-local leap = require "leap"
 
 -- TODO: I changed the default labels to remove / from it, but it still shows up,
 -- I should try to reproduce it on a minimal config to see if it's a bug a report it.

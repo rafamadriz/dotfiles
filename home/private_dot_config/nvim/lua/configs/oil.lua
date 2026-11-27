@@ -1,8 +1,5 @@
-if not vim.pack.is_installed "oil.nvim" then
-    return
-end
-
-local oil = require "oil"
+local ok, oil = pcall(require, "oil")
+if not ok then return end
 
 oil.setup {
     default_file_explorer = true,

@@ -1,6 +1,5 @@
-if not vim.pack.is_installed "conform.nvim" then
-    return
-end
+local ok, conform = pcall(require, "conform")
+if not ok then return end
 
 vim.api.nvim_create_user_command("Format", function(args)
     local range = nil
@@ -11,10 +10,10 @@ vim.api.nvim_create_user_command("Format", function(args)
             ["end"] = { args.line2, end_line:len() },
         }
     end
-    require("conform").format { async = true, lsp_fallback = true, range = range }
+    conform.format { async = true, lsp_fallback = true, range = range }
 end, { range = true })
 
-require("conform").setup {
+conform.setup {
     format_on_save = nil,
     formatters_by_ft = {
         -- Conform will run multiple formatters sequentially

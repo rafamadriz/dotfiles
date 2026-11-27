@@ -57,15 +57,6 @@ vim.pack.revert = function()
     vim.pack.update(plugins, { offline = true, target = 'lockfile' })
 end
 
-function vim.pack.is_installed(plugin_name)
-    local installed = vim.iter(vim.pack.get())
-        :filter(function(plugin) return plugin.active end)
-        :map(function(data) return data.spec.name end)
-        :totable()
-
-    return vim.tbl_contains(installed, plugin_name)
-end
-
 local hooks = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
 

@@ -1,6 +1,6 @@
-if not vim.pack.is_installed "mini.nvim" then
-    return
-end
+-- since mini.nvim has a bunch of modules, let's test with any, it doesn' matter
+local ok, _ = pcall(require, "mini.icons")
+if not ok then return end
 
 require "configs.statusline"
 require("mini.align").setup()
