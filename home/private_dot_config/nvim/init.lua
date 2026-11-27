@@ -45,7 +45,7 @@ function vim.pack.setup(plugin_name, opts)
 end
 
 vim.pack.clean = function()
-    local inactive = vim.iter(vim.pack.get())
+    local inactive = vim.iter(vim.pack.get(nil, { info = false }))
         :filter(function(plugin) return not plugin.active end)
         :map(function(data) return data.spec.name end)
         :totable()
@@ -54,7 +54,7 @@ vim.pack.clean = function()
 end
 
 vim.pack.revert = function()
-    local plugins = vim.iter(vim.pack.get())
+    local plugins = vim.iter(vim.pack.get(nil, { info = false }))
         :map(function(data) return data.spec.name end)
         :totable()
 
